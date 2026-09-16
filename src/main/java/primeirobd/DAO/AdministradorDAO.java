@@ -11,13 +11,12 @@ import java.util.List;
 
 public class AdministradorDAO {
 
-    private final ConexaoBancoPrimeiro conexaoBancoPrimeiro = new ConexaoBancoPrimeiro();
-
     // metodo select :D
     public List<Administrador> select(String comando) {
         List<Administrador> resultado = new ArrayList<>();
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
+        Connection conexao = ConexaoBancoPrimeiro.getConnection(); // conexão compartilhada, não fecha aqui
+
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
@@ -35,9 +34,9 @@ public class AdministradorDAO {
 
     // metodo delete :)
     public String delete(String comando) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
             preparoConsultaSQL.execute();
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
@@ -47,9 +46,9 @@ public class AdministradorDAO {
 
     // metodo insert :O
     public String insert(String comando, Administrador adm) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
             preparoConsultaSQL.setInt(1, adm.getId());
             preparoConsultaSQL.setString(2, adm.getEmail());
             preparoConsultaSQL.setString(3, adm.getSenha());
@@ -62,9 +61,9 @@ public class AdministradorDAO {
 
     // metodo update :P
     public String update(String comando) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
