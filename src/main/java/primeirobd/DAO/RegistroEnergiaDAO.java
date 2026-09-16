@@ -11,13 +11,11 @@ import java.util.List;
 
 public class RegistroEnergiaDAO {
 
-    private final ConexaoBancoPrimeiro conexaoBancoPrimeiro = new ConexaoBancoPrimeiro();
-
     // metodo select :D
     public List<RegistroEnergia> select(String comando) {
         List<RegistroEnergia> informacoes = new ArrayList<>();
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
@@ -37,8 +35,8 @@ public class RegistroEnergiaDAO {
 
     // metodo delete :)
     public String delete(String comando) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
 
             preparoConsultaSQL.execute();
             return "Item apagado com sucesso no banco de dados";
@@ -50,8 +48,8 @@ public class RegistroEnergiaDAO {
 
     // metodo insert :O
     public String insert(String comando, RegistroEnergia ree) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
 
             preparoConsultaSQL.setInt(1, ree.getId());
             preparoConsultaSQL.setDate(2, ree.getDtRegistro());
@@ -67,8 +65,8 @@ public class RegistroEnergiaDAO {
 
     // metodo update :P
     public String update(String comando) {
-        try (Connection conexao = conexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
 
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
