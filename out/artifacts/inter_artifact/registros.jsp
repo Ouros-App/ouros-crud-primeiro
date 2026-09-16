@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Funcionários</title>
-    <link rel="stylesheet" href="funcionarios.css">
-    <link rel="icon" type="image/png" href="/img/fucionarios.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registros</title>
+    <link rel="stylesheet" href="registros.css">
+    <link rel="icon" type="image/png" href="/img/registros.svg">
 </head>
 <body>
 
@@ -30,13 +30,13 @@
             <a href="lotes.html" class="MenuItem">
                 <span class="Icone"><img src="/img/lotes.svg" alt=""></span> Lotes
             </a>
-            <a href="funcionarios.html" class="MenuItem fucionarios">
+            <a href="funcionarios.html" class="MenuItem">
                 <span class="Icone"><img src="/img/fucionarios.svg" alt=""></span> Funcionários
             </a>
             <!-- <a href="vacinas.html" class="MenuItem">
                 <span class="Icone"><img src="/img/vacinas.svg" alt=""></span> Vacinas
             </a> -->
-            <a href="registros.html" class="MenuItem">
+            <a href="registros.html" class="MenuItem registro">
                 <span class="Icone"><img src="/img/registros.svg" alt=""></span> Registros
             </a>
             <a href="metas.html" class="MenuItem">
@@ -56,7 +56,7 @@
 
     <div class="hero">
         <div class="Titulo">
-            <h1>Funcionários</h1>
+            <h1>Registros</h1>
         </div>
         <div class="subtitulo">
             <p></p>

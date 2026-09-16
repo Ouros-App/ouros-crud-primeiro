@@ -32,7 +32,6 @@ public class MetaDAO {
                 met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
                 met.setTitulo(resultadoConsulta.getString("titulo"));
                 met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
-
                 informacoes.add(met);
             }
             return informacoes;

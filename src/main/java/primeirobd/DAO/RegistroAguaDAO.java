@@ -42,7 +42,7 @@ public class RegistroAguaDAO {
 
             preparoConsultaSQL.setInt(1, rea.getId());
             preparoConsultaSQL.setDate(2, rea.getDtRegistro());
-            preparoConsultaSQL.setInt(3, rea.getHidrometroIniio());
+            preparoConsultaSQL.setInt(3, rea.getHidrometroInicio());
             preparoConsultaSQL.setInt(4, rea.getHidrometroFinal());
             preparoConsultaSQL.setInt(5, rea.getIdLote());
             preparoConsultaSQL.executeUpdate();

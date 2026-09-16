@@ -6,7 +6,7 @@ public class RegistroAgua {
     // atributos da tabela
     private int id;
     private Date dtRegistro;
-    private int hidrometroIniio;
+    private int hidrometroInicio;
     private int hidrometroFinal;
     private int idLote;
 
@@ -24,8 +24,8 @@ public class RegistroAgua {
         return dtRegistro;
     }
 
-    public int getHidrometroIniio() {
-        return hidrometroIniio;
+    public int getHidrometroInicio() {
+        return hidrometroInicio;
     }
 
     public int getHidrometroFinal() {
@@ -47,8 +47,8 @@ public class RegistroAgua {
         this.dtRegistro = dtRegistro;
     }
 
-    public void setHidrometroInicio(int hidrometroIniio) {
-        this.hidrometroIniio = hidrometroIniio;
+    public void setHidrometroInicio(int hidrometroInicio) {
+        this.hidrometroInicio = hidrometroInicio;
     }
 
     public void setHidrometroFinal(int hidrometroFinal) {
@@ -64,7 +64,7 @@ public class RegistroAgua {
         return "\nREGISTRO_AGUA" +
                 "\nId: " + this.id +
                 "\nDt_Registro: " + this.dtRegistro +
-                "\nHidrometro_Iniio: " + this.hidrometroIniio +
+                "\nHidrometro_Iniio: " + this.hidrometroInicio +
                 "\nHidrometro_Final: " + this.hidrometroFinal +
                 "\nId_Lote: " + this.idLote+
                 "\n-------------------------------------------------------------";

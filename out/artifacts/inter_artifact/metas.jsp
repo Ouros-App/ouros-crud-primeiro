@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Funcionários</title>
-    <link rel="stylesheet" href="funcionarios.css">
-    <link rel="icon" type="image/png" href="/img/fucionarios.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metas</title>
+    <link rel="stylesheet" href="metas.css">
+    <link rel="icon" type="image/png" href="/img/metas.svg">
 </head>
 <body>
 
@@ -24,13 +24,13 @@
             <a href="index.html" class="MenuItem">
                 <span class="Icone"><img src="/img/inicio.svg" alt=""></span> Início
             </a>
-            <a href="granjas.html" class="MenuItem">
+            <a href="metas.html" class="MenuItem">
                 <span class="Icone"><img src="/img/granja.svg" alt=""></span> Granjas
             </a>
             <a href="lotes.html" class="MenuItem">
                 <span class="Icone"><img src="/img/lotes.svg" alt=""></span> Lotes
             </a>
-            <a href="funcionarios.html" class="MenuItem fucionarios">
+            <a href="funcionarios.html" class="MenuItem">
                 <span class="Icone"><img src="/img/fucionarios.svg" alt=""></span> Funcionários
             </a>
             <!-- <a href="vacinas.html" class="MenuItem">
@@ -39,7 +39,7 @@
             <a href="registros.html" class="MenuItem">
                 <span class="Icone"><img src="/img/registros.svg" alt=""></span> Registros
             </a>
-            <a href="metas.html" class="MenuItem">
+            <a href="metas.html" class="MenuItem metas">
                 <span class="Icone"><img src="/img/metas.svg" alt=""></span> Metas
             </a>
         </nav>
@@ -56,7 +56,7 @@
 
     <div class="hero">
         <div class="Titulo">
-            <h1>Funcionários</h1>
+            <h1>Metas</h1>
         </div>
         <div class="subtitulo">
             <p></p>

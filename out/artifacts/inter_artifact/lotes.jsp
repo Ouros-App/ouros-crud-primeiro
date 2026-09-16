@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Funcionários</title>
-    <link rel="stylesheet" href="funcionarios.css">
-    <link rel="icon" type="image/png" href="/img/fucionarios.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotes</title>
+    <link rel="stylesheet" href="lotes.css">
+    <link rel="icon" type="image/png" href="/img/lotes.svg">
 </head>
 <body>
 
@@ -27,10 +27,10 @@
             <a href="granjas.html" class="MenuItem">
                 <span class="Icone"><img src="/img/granja.svg" alt=""></span> Granjas
             </a>
-            <a href="lotes.html" class="MenuItem">
+            <a href="lotes.html" class="MenuItem lotes">
                 <span class="Icone"><img src="/img/lotes.svg" alt=""></span> Lotes
             </a>
-            <a href="funcionarios.html" class="MenuItem fucionarios">
+            <a href="funcionarios.html" class="MenuItem">
                 <span class="Icone"><img src="/img/fucionarios.svg" alt=""></span> Funcionários
             </a>
             <!-- <a href="vacinas.html" class="MenuItem">
@@ -56,7 +56,7 @@
 
     <div class="hero">
         <div class="Titulo">
-            <h1>Funcionários</h1>
+            <h1>Lotes</h1>
         </div>
         <div class="subtitulo">
             <p></p>

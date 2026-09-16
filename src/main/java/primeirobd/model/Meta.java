@@ -6,7 +6,7 @@ public class Meta {
     private String descricao;
     private String estado;
     private int idGranja;
-    private boolean isIndividual;
+    private boolean individual;
     private String regiao;
     private String status;
     private String tipoMeta;
@@ -38,7 +38,7 @@ public class Meta {
     }
 
     public boolean isIndividual() {
-        return isIndividual;
+        return individual;
     }
 
     public String getRegiao() {
@@ -80,7 +80,7 @@ public class Meta {
     }
 
     public void setIndividual(boolean individual) {
-        isIndividual = individual;
+        this.individual = individual;
     }
 
     public void setRegiao(String regiao) {
@@ -110,7 +110,7 @@ public class Meta {
                 "\nDescricao: " + this.descricao +
                 "\nEstado: " + this.estado +
                 "\nId_Granja: " + this.idGranja +
-                "\nIs_Individual: " + this.isIndividual +
+                "\nIs_Individual: " + this.individual +
                 "\nRegião: " + this.regiao +
                 "\nStatus: " + this.status +
                 "\nTipo_Meta: " + this.tipoMeta +

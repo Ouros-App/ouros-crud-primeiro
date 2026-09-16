@@ -15,6 +15,7 @@ public class EmpresaDAO {
 
     // metodo select :D
     public List<Empresa> select(String comando) {
+        // comando sql aqui
         List<Empresa> resultado = new ArrayList<>();
         try (Connection conexao = conexaoBancoPrimeiro.getConnection();
              PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
@@ -31,6 +32,7 @@ public class EmpresaDAO {
             }
             return resultado;
         } catch (SQLException e) {
+            // mensagem mais específica
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }

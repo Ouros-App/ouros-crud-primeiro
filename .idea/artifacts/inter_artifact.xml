@@ -1,11 +1,10 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="inter_modulo">
-    <output-path>$PROJECT_DIR$/out/artifacts/inter_modulo</output-path>
+  <artifact type="exploded-war" name="inter_artifact">
+    <output-path>$PROJECT_DIR$/out/artifacts/inter_artifact</output-path>
     <root id="root">
-      <element id="module-output" name="inter" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="inter (1)" />
+          <element id="module-output" name="inter_modulo" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.7.3" />
@@ -18,7 +17,7 @@
           <element id="library" level="project" name="Maven: org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="inter (1)/web/Web" />
+      <element id="javaee-facet-resources" facet="inter_modulo/web/Web" />
     </root>
   </artifact>
 </component>
