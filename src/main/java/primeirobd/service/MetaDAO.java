@@ -1,6 +1,6 @@
-package primeirobd.DAO;
+package primeirobd.service;
 
-import primeirobd.model.RegistroEnergia;
+import primeirobd.model.Meta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,22 +9,28 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroEnergiaDAO {
+public class MetaDAO {
 
     // metodo select :D
-    public List<RegistroEnergia> select(String comando) {
-        List<RegistroEnergia> informacoes = new ArrayList<>();
+    public List<Meta> select(String comando) {
+        List<Meta> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
-                RegistroEnergia ree = new RegistroEnergia();
-                ree.setId(resultadoConsulta.getInt("id"));
-                ree.setConsumo(resultadoConsulta.getInt("consumo"));
-                ree.setDtRegistro(resultadoConsulta.getDate("dt_registro")); // <- ajustar se "registro" era outro campo
-                ree.setIdLote(resultadoConsulta.getInt("id_lote"));
-                informacoes.add(ree);
+                Meta met = new Meta();
+                met.setId(resultadoConsulta.getInt("id"));
+                met.setDescricao(resultadoConsulta.getString("descricao"));
+                met.setEstado(resultadoConsulta.getString("estado"));
+                met.setIdGranja(resultadoConsulta.getInt("id_granja"));
+                met.setIndividual(resultadoConsulta.getBoolean("is_individual"));
+                met.setRegiao(resultadoConsulta.getString("regiao"));
+                met.setStatus(resultadoConsulta.getString("status"));
+                met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
+                met.setTitulo(resultadoConsulta.getString("titulo"));
+                met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                informacoes.add(met);
             }
             return informacoes;
 
@@ -47,14 +53,20 @@ public class RegistroEnergiaDAO {
     }
 
     // metodo insert :O
-    public String insert(String comando, RegistroEnergia ree) {
+    public String insert(String comando, Meta met) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
 
-            preparoConsultaSQL.setInt(1, ree.getId());
-            preparoConsultaSQL.setDate(2, ree.getDtRegistro());
-            preparoConsultaSQL.setInt(3, ree.getConsumo());
-            preparoConsultaSQL.setInt(4, ree.getIdLote());
+            preparoConsultaSQL.setInt(1, met.getId());
+            preparoConsultaSQL.setString(2, met.getTitulo());
+            preparoConsultaSQL.setString(3, met.getDescricao());
+            preparoConsultaSQL.setString(4, met.getTipoMeta());
+            preparoConsultaSQL.setString(5, met.getStatus());
+            preparoConsultaSQL.setFloat(6, met.getValorAlvo());
+            preparoConsultaSQL.setString(7, met.getRegiao());
+            preparoConsultaSQL.setString(8, met.getEstado());
+            preparoConsultaSQL.setBoolean(9, met.isIndividual());
+            preparoConsultaSQL.setInt(10, met.getIdGranja());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 

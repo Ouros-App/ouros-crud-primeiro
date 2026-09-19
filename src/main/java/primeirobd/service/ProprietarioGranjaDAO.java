@@ -1,6 +1,6 @@
-package primeirobd.DAO;
+package primeirobd.service;
 
-import primeirobd.model.Granja;
+import primeirobd.model.ProprietarioGranja;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,28 +9,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GranjaDAO {
+public class ProprietarioGranjaDAO {
 
     // metodo select :D
-    public List<Granja> select(String comando) {
-        List<Granja> resultado = new ArrayList<>();
+    public List<ProprietarioGranja> select(String comando) {
+        List<ProprietarioGranja> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
-                Granja gra = new Granja();
-
-                gra.setId(resultadoConsulta.getInt("id"));
-                gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
-                gra.setNome(resultadoConsulta.getString("nome"));
-                gra.setRegiao(resultadoConsulta.getString("regiao"));
-
-                resultado.add(gra);
+                ProprietarioGranja prg = new ProprietarioGranja();
+                prg.setId(resultadoConsulta.getInt("id"));
+                prg.setCpf(resultadoConsulta.getString("cpf"));
+                prg.setEmail(resultadoConsulta.getString("email"));
+                prg.setIdGranja(resultadoConsulta.getInt("id_granja"));
+                prg.setNome(resultadoConsulta.getString("nome"));
+                prg.setSenha(resultadoConsulta.getString("senha"));
+                informacoes.add(prg);
             }
-            return resultado;
+            return informacoes;
+
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
@@ -43,22 +42,23 @@ public class GranjaDAO {
 
             preparoConsultaSQL.execute();
             return "Item apagado com sucesso no banco de dados";
+
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
     // metodo insert :O
-    public String insert(String comando, Granja gra) {
+    public String insert(String comando, ProprietarioGranja prg) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
 
-            preparoConsultaSQL.setInt(1, gra.getId());
-            preparoConsultaSQL.setString(2, gra.getNome());
-            preparoConsultaSQL.setInt(3, gra.getCapacidadeDeAves());
-            preparoConsultaSQL.setString(4, gra.getRegiao());
-            preparoConsultaSQL.setInt(5, gra.getAreaPropriedade());
-            preparoConsultaSQL.setInt(6, gra.getIdEmpresa());
+            preparoConsultaSQL.setInt(1, prg.getId());
+            preparoConsultaSQL.setString(2, prg.getNome());
+            preparoConsultaSQL.setString(3, prg.getCpf());
+            preparoConsultaSQL.setString(4, prg.getSenha());
+            preparoConsultaSQL.setString(5, prg.getEmail());
+            preparoConsultaSQL.setInt(6, prg.getIdGranja());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 
@@ -74,9 +74,9 @@ public class GranjaDAO {
 
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
+
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 }
-

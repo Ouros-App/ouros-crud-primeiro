@@ -1,6 +1,6 @@
-package primeirobd.testes;
+package primeirobd.tests;
 
-import primeirobd.DAO.*;
+import primeirobd.service.*;
 import primeirobd.model.*;
 
 public class MainTestesTodos {

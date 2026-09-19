@@ -1,4 +1,4 @@
-package primeirobd.DAO;
+package primeirobd.service;
 
 import io.github.cdimascio.dotenv.Dotenv;
 

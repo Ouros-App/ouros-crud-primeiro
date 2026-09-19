@@ -1,6 +1,6 @@
-package primeirobd.DAO;
+package primeirobd.service;
 
-import primeirobd.model.RegistroAgua;
+import primeirobd.model.Empresa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,44 +9,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RegistroAguaDAO {
+public class EmpresaDAO {
+
 
     // metodo select :D
-    public List<RegistroAgua> select(String comando) {
-        List<RegistroAgua> resultado = new ArrayList<>();
+    public List<Empresa> select(String comando) {
+
+        List<Empresa> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setId(resultadoConsulta.getInt("id"));
-                rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                rea.setHidrometroInicio(resultadoConsulta.getInt("hidrometro_inicio"));
-                rea.setHidrometroFinal(resultadoConsulta.getInt("hidrometro_final"));
-                rea.setIdLote(resultadoConsulta.getInt("id_lote"));
-                resultado.add(rea);
+                Empresa emp = new Empresa();
+                emp.setId(resultadoConsulta.getInt("id"));
+                emp.setCnpj(resultadoConsulta.getString("cnpj"));
+                emp.setEmailCorporativo(resultadoConsulta.getString("email_corporativo"));
+                emp.setNome(resultadoConsulta.getString("nome"));
+                emp.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
+                resultado.add(emp);
             }
             return resultado;
         } catch (SQLException e) {
+            // mensagem mais específica
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
-        }
-    }
-
-    // metodo insert :O
-    public String insert(String comando, RegistroAgua rea) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
-
-            preparoConsultaSQL.setInt(1, rea.getId());
-            preparoConsultaSQL.setDate(2, rea.getDtRegistro());
-            preparoConsultaSQL.setInt(3, rea.getHidrometroInicio());
-            preparoConsultaSQL.setInt(4, rea.getHidrometroFinal());
-            preparoConsultaSQL.setInt(5, rea.getIdLote());
-            preparoConsultaSQL.executeUpdate();
-            return "Item inserido com sucesso no banco de dados";
-        } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
@@ -59,6 +45,23 @@ public class RegistroAguaDAO {
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
+        }
+    }
+
+    // metodo insert :O
+    public String insert(String comando, Empresa emp) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {
+
+            preparoConsultaSQL.setInt(1, emp.getId());
+            preparoConsultaSQL.setString(2, emp.getCnpj());
+            preparoConsultaSQL.setString(3, emp.getEmailCorporativo());
+            preparoConsultaSQL.setString(4, emp.getNome());
+            preparoConsultaSQL.setString(5, emp.getTelefoneCorporativo());
+            preparoConsultaSQL.executeUpdate();
+            return "Item inserido com sucesso no banco de dados";
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 

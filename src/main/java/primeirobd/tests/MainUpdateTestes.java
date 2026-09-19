@@ -1,13 +1,13 @@
-package primeirobd.testes;
+package primeirobd.tests;
 
-import primeirobd.DAO.*;
+import primeirobd.service.*;
 import primeirobd.model.*;
 
-public class MainDeleteTestes {
+public class MainUpdateTestes {
     public static void main(String[] args) {
-        /*
+         /*
     =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
-    ░█████████                                                             ░████████████                        ░██
+    ░█████████                                                            ░████████████                         ░██
           ░██                                             ░██                   ░██                             ░██
          ░██    ░███████  ░████████   ░██████       ░████████  ░███████         ░██     ░███████   ░███████  ░████████  ░███████
        ░███    ░██    ░██ ░██    ░██       ░██     ░██    ░██ ░██    ░██        ░██    ░██    ░██ ░██           ░██    ░██    ░██
@@ -15,6 +15,9 @@ public class MainDeleteTestes {
      ░██       ░██    ░██ ░██    ░██ ░██   ░██     ░██   ░███ ░██               ░██    ░██               ░██    ░██    ░██
     ░█████████  ░███████  ░██    ░██  ░█████░██     ░█████░██  ░███████         ░██     ░███████   ░███████      ░████  ░███████
     =+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=
+
+
+
          */
         // variavel do comando
         String comando;
@@ -51,46 +54,48 @@ public class MainDeleteTestes {
         TelefoneFuncionarioDAO teFDAO = new TelefoneFuncionarioDAO();
         TelefoneProprietarioDAO tePDAO = new TelefoneProprietarioDAO();
 
-        comando = "delete from administrador where id = 1010;";
-        System.out.println(admDAO.delete(comando));
 
-        comando = "delete from empresa where id = 1010;";
-        System.out.println(empDAO.delete(comando));
 
-        comando = "delete from endereco_empresa where id = 1010;";
-        System.out.println(enEmpDAO.delete(comando));
+        comando = "update administrador set id = 1010 where id = 0";
+        System.out.println(admDAO.update(comando));
 
-        comando = "delete from endereco_granja where id = 1010;";
-        System.out.println(enGraDAO.delete(comando));
+        comando = "update empresa set id = 1010 where id = 0";
+        System.out.println(empDAO.update(comando));
 
-        comando = "delete from endereco_proprietario where id = 1010;";
-        System.out.println(enProDAO.delete(comando));
+        comando = "update endereco_empresa set id = 1010 where id = 0";
+        System.out.println(enEmpDAO.update(comando));
 
-        comando = "delete from funcionario where id = 1010;";
-        System.out.println(funDAO.delete(comando));
+        comando = "update endereco_granja set id = 1010 where id = 0";
+        System.out.println(enGraDAO.update(comando));
 
-        comando = "delete from granja where id = 1010;";
-        System.out.println(graDAO.delete(comando));
+        comando = "update endereco_proprietario set id = 1010 where id = 0";
+        System.out.println(enProDAO.update(comando));
 
-        comando = "delete from lote where id = 1010;";
-        System.out.println(lotDAO.delete(comando));
+        comando = "update funcionario set id = 1010 where id = 0";
+        System.out.println(funDAO.update(comando));
 
-        comando = "delete from meta where id = 1010;";
-        System.out.println(metDAO.delete(comando));
+        comando = "update granja set id = 1010 where id = 0";
+        System.out.println(graDAO.update(comando));
 
-        comando = "delete from proprietario_granja where id = 1010;";
-        System.out.println(proGraDAO.delete(comando));
+        comando = "update lote set id = 1010 where id = 0";
+        System.out.println(lotDAO.update(comando));
 
-        comando = "delete from registro_agua where id = 1010;";
-        System.out.println(reADAO.delete(comando));
+        comando = "update meta set id = 1010 where id = 0";
+        System.out.println(metDAO.update(comando));
 
-        comando = "delete from registro_energia where id = 1010;";
-        System.out.println(reEDAO.delete(comando));
+        comando = "update proprietario_granja set id = 1010 where id = 0";
+        System.out.println(proGraDAO.update(comando));
 
-        comando = "delete from telefone_funcionario where id = 1010;";
-        System.out.println(teFDAO.delete(comando));
+        comando = "update registro_agua set id = 1010 where id = 0";
+        System.out.println(reADAO.update(comando));
 
-        comando = "delete from telefone_proprietario where id = 1010;";
-        System.out.println(tePDAO.delete(comando));
+        comando = "update registro_energia set id = 1010 where id = 0";
+        System.out.println(reEDAO.update(comando));
+
+        comando = "update telefone_funcionario set id = 1010 where id = 0";
+        System.out.println(teFDAO.update(comando));
+
+        comando = "update telefone_proprietario set id = 1010 where id = 0";
+        System.out.println(tePDAO.update(comando));
     }
 }

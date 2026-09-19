@@ -1,4 +1,4 @@
-package primeirobd.DAO;
+package primeirobd.service;
 
 import primeirobd.model.Funcionario;
 
