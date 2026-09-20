@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/FuncionarioDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/MetaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/RegistroAguaDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/RegistroEnergiaDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
