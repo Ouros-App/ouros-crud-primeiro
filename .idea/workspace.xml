@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="InterBack:war exploded" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ad2ea4b-9534-455b-a190-64a6a8b954c4" name="Changes" comment="" />
+    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroAguaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroAguaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroEnergiaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroEnergiaDAO.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,20 +20,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -40,79 +34,13 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="2.158710253844416" />
-      <entry key="MS500" value="4.541485610862617" />
-      <entry key="S2" value="6.72819032322189" />
-      <entry key="S5" value="7.680824965620498" />
-      <entry key="S10" value="8.338043322669783" />
-      <entry key="S30" value="9.972806689758636" />
-      <entry key="S60" value="11.103742421230425" />
-      <entry key="M2" value="12.047262459990547" />
-      <entry key="M5" value="15.64632132545132" />
-      <entry key="M10" value="28.307721377125425" />
-      <entry key="M15" value="42.963495916906254" />
-      <entry key="M30" value="77.85526027795694" />
-      <entry key="H1" value="113.59682486211103" />
-      <entry key="H2" value="140.31009151505657" />
-      <entry key="H4" value="156.83941123392782" />
-      <entry key="D1" value="172.60438858719507" />
-      <entry key="W1" value="175.5096840604254" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.6611259128358325E-285" />
-      <entry key="S2" value="7.32453054856209E-72" />
-      <entry key="S5" value="5.113613130971926E-29" />
-      <entry key="S10" value="1.1262075959324424E-14" />
-      <entry key="S30" value="4.559649219850713E-5" />
-      <entry key="S60" value="0.012377096655592478" />
-      <entry key="M2" value="0.23488437203829607" />
-      <entry key="M5" value="1.904981401162592" />
-      <entry key="M10" value="5.033333644758595" />
-      <entry key="M15" value="7.547126853316458" />
-      <entry key="M30" value="12.150559056237034" />
-      <entry key="H1" value="16.041518556185807" />
-      <entry key="H2" value="18.68372769016072" />
-      <entry key="H4" value="20.244551310963235" />
-      <entry key="D1" value="21.692601708580366" />
-      <entry key="W1" value="21.955704316249637" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="1.8832499163723868" />
-      <entry key="MS500" value="4.351814763401032" />
-      <entry key="S2" value="6.656802443313487" />
-      <entry key="S5" value="7.648352652860042" />
-      <entry key="S10" value="8.319624123758075" />
-      <entry key="S30" value="9.963322304170495" />
-      <entry key="S60" value="11.109722846211985" />
-      <entry key="M2" value="12.275401217374126" />
-      <entry key="M5" value="17.53683681243419" />
-      <entry key="M10" value="33.31884181099555" />
-      <entry key="M15" value="50.485485714901685" />
-      <entry key="M30" value="89.98136743105424" />
-      <entry key="H1" value="129.6200804861125" />
-      <entry key="H2" value="158.98243084414528" />
-      <entry key="H4" value="177.07756931516653" />
-      <entry key="D1" value="194.29581352695087" />
-      <entry key="W1" value="197.46521733678" />
-    </decayedShown>
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 6,
+  &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3JPD5HmKWikCcwO3nRoMDVYhhvW" />
+  <component name="ProjectId" id="3JaiaOIYNHXTOBmToWQUvHwc7vJ" />
   <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -120,158 +48,46 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Application.MainTestesTodos.executor&quot;: &quot;Run&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.InterModulo.executor&quot;: &quot;Run&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;DAO&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;
   }
 }</component>
-  <component name="RunDashboard">
-    <option name="configurationStatuses">
-      <map>
-        <entry key="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-          <value>
-            <map>
-              <entry key="InterModulo" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="RunManager">
-    <configuration name="InterModulo" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.25" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterModulo/servlet-principal" />
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="InterBack:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/InterModulo" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="ced0dd87-668b-4c6e-9b6f-79caa7ab3d49" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="53097" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="InterBack:war exploded" />
-        </option>
-      </method>
-    </configuration>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3ad2ea4b-9534-455b-a190-64a6a8b954c4" name="Changes" comment="" />
-      <created>1789553626593</created>
+      <changelist id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="" />
+      <created>1789905646319</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1789553626593</updated>
+      <updated>1789905646319</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

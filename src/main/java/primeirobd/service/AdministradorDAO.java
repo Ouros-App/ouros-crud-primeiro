@@ -14,7 +14,9 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public static final String SELECT_EMAIL = "SELECT email FROM administrador";
     public static final String INSERT = "INSERT INTO administrador (id, email, senha) values (?, ?, ?)";
     public static final String DELETE_BY_ID = "DELETE FROM administrador WHERE id = ?";
-    public static final String UPDATE = "UPDATE administrador SET id = ? WHERE id = ?";
+    public static final String UPDATE_ID = "UPDATE administrador SET id = ? WHERE id = ?";
+    public static final String UPDATE_EMAIL = "UPDATE administrador SET email = ? WHERE email = ?";
+    public static final String UPDATE_SENHA = "UPDATE administrador SET senha = ? WHERE senha = ?";
 
     // metodos selects :D
     public List<Administrador> select_all() {
@@ -82,7 +84,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public String update_id(int idNew, int idOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
             preparoConsultaSQL.setInt(1, idNew);
             preparoConsultaSQL.setInt(2, idOld);
             preparoConsultaSQL.execute();
@@ -95,7 +97,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public String update_email(String emailNew, String emailOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_EMAIL)) {
             preparoConsultaSQL.setString(1, emailNew);
             preparoConsultaSQL.setString(2, emailOld);
             preparoConsultaSQL.execute();
@@ -108,7 +110,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public String update_senha(String senhaNew, String senhaOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_SENHA)) {
             preparoConsultaSQL.setString(1, senhaNew);
             preparoConsultaSQL.setString(2, senhaOld);
             preparoConsultaSQL.execute();
