@@ -51,8 +51,7 @@ public class MainDeleteTestes {
         TelefoneFuncionarioDAO teFDAO = new TelefoneFuncionarioDAO();
         TelefoneProprietarioDAO tePDAO = new TelefoneProprietarioDAO();
 
-        comando = "delete from administrador where id = 1010;";
-        System.out.println(admDAO.delete(comando));
+        System.out.println(admDAO.delete(1010));
 
         comando = "delete from empresa where id = 1010;";
         System.out.println(empDAO.delete(comando));
@@ -66,26 +65,20 @@ public class MainDeleteTestes {
         comando = "delete from endereco_proprietario where id = 1010;";
         System.out.println(enProDAO.delete(comando));
 
-        comando = "delete from funcionario where id = 1010;";
-        System.out.println(funDAO.delete(comando));
+        System.out.println(funDAO.delete(1010));
 
-        comando = "delete from granja where id = 1010;";
-        System.out.println(graDAO.delete(comando));
+        System.out.println(graDAO.delete(1010));
 
-        comando = "delete from lote where id = 1010;";
-        System.out.println(lotDAO.delete(comando));
+        System.out.println(lotDAO.delete(1010));
 
-        comando = "delete from meta where id = 1010;";
-        System.out.println(metDAO.delete(comando));
+        System.out.println(metDAO.delete(1010));
 
         comando = "delete from proprietario_granja where id = 1010;";
         System.out.println(proGraDAO.delete(comando));
 
-        comando = "delete from registro_agua where id = 1010;";
-        System.out.println(reADAO.delete(comando));
+        System.out.println(reADAO.delete(1010));
 
-        comando = "delete from registro_energia where id = 1010;";
-        System.out.println(reEDAO.delete(comando));
+        System.out.println(reEDAO.delete(1010));
 
         comando = "delete from telefone_funcionario where id = 1010;";
         System.out.println(teFDAO.delete(comando));

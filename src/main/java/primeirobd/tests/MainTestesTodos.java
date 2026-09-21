@@ -53,15 +53,13 @@ public class MainTestesTodos {
         /*
         INSERTS
          */
-
         //informações
         adm.setId(0);
         adm.setEmail("testeJDBC_7@teste_7.com");
         adm.setSenha("1234567");
-        //definindo comando
-        comando = "insert into administrador (id, email, senha) values (?, ?, ?)";
+
         // realizando comando insert
-        System.out.println(admDAO.insert(comando, adm));
+        System.out.println(admDAO.insert(adm));
 
         //informações
         emp.setId(0);
@@ -121,10 +119,8 @@ public class MainTestesTodos {
         fun.setSetor("teste");
         fun.setIdEmpresa(1);
 
-        //definindo comando
-        comando = "insert into funcionario (id, nome, cpf, email, setor, id_empresa) values (?, ?, ?, ?, ?, ?)";
         //realizando comando insert
-        System.out.println(funDAO.insert(comando, fun));
+        System.out.println(funDAO.insert(fun));
 
         //informações
         gra.setId(0);
@@ -133,10 +129,8 @@ public class MainTestesTodos {
         gra.setRegiao("teste");
         gra.setAreaPropriedade(1234);
         gra.setIdEmpresa(1);
-        //definindo comando
-        comando = "insert into granja (id, nome, capacidade_aves, regiao, area_propriedade, id_empresa) values (?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(graDAO.insert(comando, gra));
+        System.out.println(graDAO.insert(gra));
 
         //informações
         lot.setId(0);
@@ -147,10 +141,8 @@ public class MainTestesTodos {
         lot.setDtEntrega(java.sql.Date.valueOf("0101-01-01"));
         lot.setGanho(0);
         lot.setIdGranja(1);
-        //definindo comando
-        comando = "insert into lote (id, galinhas_entregadas, galinhas_recebidas, dt_nascimento, dt_chegada, dt_entrega, ganho, id_granja) values (?, ?, ?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(lotDAO.insert(comando, lot));
+        System.out.println(lotDAO.insert(lot));
 
         // informações
         met.setId(0);
@@ -163,10 +155,8 @@ public class MainTestesTodos {
         met.setEstado("teste");
         met.setIndividual(true);
         met.setIdGranja(1);
-        //definindo comando
-        comando = "insert into meta (id, titulo, descricao, tipo_meta, status, valor_alvo, regiao, estado, is_individual, id_granja) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(metDAO.insert(comando, met));
+        System.out.println(metDAO.insert(met));
 
         // informações
         proGra.setId(0);
@@ -186,20 +176,16 @@ public class MainTestesTodos {
         reA.setHidrometroInicio(1234);
         reA.setHidrometroFinal(1234);
         reA.setIdLote(1);
-        //definindo comando
-        comando = "insert into registro_agua (id, dt_registro, hidrometro_inicio, hidrometro_final, id_lote) values (?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(reADAO.insert(comando, reA));
+        System.out.println(reADAO.insert(reA));
 
         // informações
         reE.setId(0);
         reE.setDtRegistro(java.sql.Date.valueOf("0101-01-01"));
         reE.setConsumo(1234);
         reE.setIdLote(1);
-        //definindo comando
-        comando = "insert into registro_energia (id, dt_registro, consumo, id_lote) values (?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(reEDAO.insert(comando, reE));
+        System.out.println(reEDAO.insert(reE));
 
         // informações
         teF.setId(0);
@@ -223,9 +209,7 @@ public class MainTestesTodos {
         /*
         UPDATE
          */
-
-        comando = "update administrador set id = 1010 where id = 0";
-        System.out.println(admDAO.update(comando));
+        System.out.println(admDAO.update_id(1010,0));
 
         comando = "update empresa set id = 1010 where id = 0";
         System.out.println(empDAO.update(comando));
@@ -239,26 +223,21 @@ public class MainTestesTodos {
         comando = "update endereco_proprietario set id = 1010 where id = 0";
         System.out.println(enProDAO.update(comando));
 
-        comando = "update funcionario set id = 1010 where id = 0";
-        System.out.println(funDAO.update(comando));
 
-        comando = "update granja set id = 1010 where id = 0";
-        System.out.println(graDAO.update(comando));
+        System.out.println(funDAO.update_id(1010,0));
 
-        comando = "update lote set id = 1010 where id = 0";
-        System.out.println(lotDAO.update(comando));
+        System.out.println(graDAO.update_id(1010,0));
 
-        comando = "update meta set id = 1010 where id = 0";
-        System.out.println(metDAO.update(comando));
+        System.out.println(lotDAO.update_id(1010,0));
+
+        System.out.println(metDAO.update_id(1010,0));
 
         comando = "update proprietario_granja set id = 1010 where id = 0";
         System.out.println(proGraDAO.update(comando));
 
-        comando = "update registro_agua set id = 1010 where id = 0";
-        System.out.println(reADAO.update(comando));
+        System.out.println(reADAO.update_id(1010,0));
 
-        comando = "update registro_energia set id = 1010 where id = 0";
-        System.out.println(reEDAO.update(comando));
+        System.out.println(reEDAO.update_id(1010,0));
 
         comando = "update telefone_funcionario set id = 1010 where id = 0";
         System.out.println(teFDAO.update(comando));
@@ -270,10 +249,7 @@ public class MainTestesTodos {
         /*
         DELETE
          */
-
-
-        comando = "delete from administrador where id = 1010;";
-        System.out.println(admDAO.delete(comando));
+        System.out.println(admDAO.delete(1010));
 
         comando = "delete from empresa where id = 1010;";
         System.out.println(empDAO.delete(comando));
@@ -287,26 +263,20 @@ public class MainTestesTodos {
         comando = "delete from endereco_proprietario where id = 1010;";
         System.out.println(enProDAO.delete(comando));
 
-        comando = "delete from funcionario where id = 1010;";
-        System.out.println(funDAO.delete(comando));
+        System.out.println(funDAO.delete(1010));
 
-        comando = "delete from granja where id = 1010;";
-        System.out.println(graDAO.delete(comando));
+        System.out.println(graDAO.delete(1010));
 
-        comando = "delete from lote where id = 1010;";
-        System.out.println(lotDAO.delete(comando));
+        System.out.println(lotDAO.delete(1010));
 
-        comando = "delete from meta where id = 1010;";
-        System.out.println(metDAO.delete(comando));
+        System.out.println(metDAO.delete(1010));
 
         comando = "delete from proprietario_granja where id = 1010;";
         System.out.println(proGraDAO.delete(comando));
 
-        comando = "delete from registro_agua where id = 1010;";
-        System.out.println(reADAO.delete(comando));
+        System.out.println(reADAO.delete(1010));
 
-        comando = "delete from registro_energia where id = 1010;";
-        System.out.println(reEDAO.delete(comando));
+        System.out.println(reEDAO.delete(1010));
 
         comando = "delete from telefone_funcionario where id = 1010;";
         System.out.println(teFDAO.delete(comando));
@@ -318,10 +288,7 @@ public class MainTestesTodos {
         SELECT
          */
 
-        //definindo comando
-        comando = "select * from administrador";
-        // realizando comando select
-        System.out.println(admDAO.select(comando));
+        System.out.println(admDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from empresa";
@@ -346,22 +313,22 @@ public class MainTestesTodos {
         //definindo comando
         comando = "select * from funcionario";
         // realizando comando select
-        System.out.println(funDAO.select(comando));
+        System.out.println(funDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from granja";
         // realizando comando select
-        System.out.println(graDAO.select(comando));
+        System.out.println(graDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from lote";
         // realizando comando select
-        System.out.println(lotDAO.select(comando));
+        System.out.println(lotDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from meta";
         // realizando comando select
-        System.out.println(metDAO.select(comando));
+        System.out.println(metDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from proprietario_granja";
@@ -371,12 +338,12 @@ public class MainTestesTodos {
         //definindo comando
         comando = "select * from registro_agua";
         // realizando comando select
-        System.out.println(reADAO.select(comando));
+        System.out.println(reADAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from registro_energia";
         // realizando comando select
-        System.out.println(reEDAO.select(comando));
+        System.out.println(reEDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from telefone_funcionario";
@@ -388,5 +355,6 @@ public class MainTestesTodos {
         // realizando comando select
         System.out.println(tePDAO.select(comando));
         System.out.println("======================================================================");
+
     }
 }

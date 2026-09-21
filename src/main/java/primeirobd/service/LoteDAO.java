@@ -2,12 +2,8 @@ package primeirobd.service;
 
 import primeirobd.model.Lote;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.*;
 import java.util.List;
 
 public class LoteDAO implements primeirobd.repository.LoteDAO {
@@ -18,7 +14,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String SELECT_GANHO = "SELECT ganho FROM lote";
     //----------------------------------------------------------------------------------------
     public static final String DELETE_BY_ID = "DELETE FROM lote WHERE id = ?";
-    public static final String INSERT = "INSERT INTO lote (id, galinahs_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO lote (id, galinhas_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?,?)";
     //----------------------------------------------------------------------------------------
     public static final String UPDATE_ID = "UPDATE lote SET id = ? WHERE id = ?";
     public static final String UPDATE_ENTREGUES = "UPDATE lote SET galinhas_entregadas = ? WHERE galinhas_entregadas = ?";

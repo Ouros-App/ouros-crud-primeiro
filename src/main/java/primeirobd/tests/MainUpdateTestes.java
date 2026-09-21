@@ -56,8 +56,8 @@ public class MainUpdateTestes {
 
 
 
-        comando = "update administrador set id = 1010 where id = 0";
-        System.out.println(admDAO.update(comando));
+
+        System.out.println(admDAO.update_id(1010,0));
 
         comando = "update empresa set id = 1010 where id = 0";
         System.out.println(empDAO.update(comando));
@@ -71,26 +71,21 @@ public class MainUpdateTestes {
         comando = "update endereco_proprietario set id = 1010 where id = 0";
         System.out.println(enProDAO.update(comando));
 
-        comando = "update funcionario set id = 1010 where id = 0";
-        System.out.println(funDAO.update(comando));
 
-        comando = "update granja set id = 1010 where id = 0";
-        System.out.println(graDAO.update(comando));
+        System.out.println(funDAO.update_id(1010,0));
 
-        comando = "update lote set id = 1010 where id = 0";
-        System.out.println(lotDAO.update(comando));
+        System.out.println(graDAO.update_id(1010,0));
 
-        comando = "update meta set id = 1010 where id = 0";
-        System.out.println(metDAO.update(comando));
+        System.out.println(lotDAO.update_id(1010,0));
+
+        System.out.println(metDAO.update_id(1010,0));
 
         comando = "update proprietario_granja set id = 1010 where id = 0";
         System.out.println(proGraDAO.update(comando));
 
-        comando = "update registro_agua set id = 1010 where id = 0";
-        System.out.println(reADAO.update(comando));
+        System.out.println(reADAO.update_id(1010,0));
 
-        comando = "update registro_energia set id = 1010 where id = 0";
-        System.out.println(reEDAO.update(comando));
+        System.out.println(reEDAO.update_id(1010,0));
 
         comando = "update telefone_funcionario set id = 1010 where id = 0";
         System.out.println(teFDAO.update(comando));

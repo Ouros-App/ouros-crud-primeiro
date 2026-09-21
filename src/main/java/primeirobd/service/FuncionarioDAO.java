@@ -15,7 +15,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String SELECT_SETOR = "SELECT setor FROM funcionario";
     public static final String SELECT_EMAIL = "SELECT email FROM funcionario";
     public static final String DELETE_BY_ID = "DELETE FROM funcionario where id = ?";
-    public static final String INSERT = "INSERT INTO funcionario (id,nome,cpf,email,setor,idEmpresa) VALUES (?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO funcionario (id,nome,cpf,email,setor,id_empresa) VALUES (?,?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE funcionario SET id = ? where id = ?";
     public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? where email = ?";
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? where nome = ?";

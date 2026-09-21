@@ -64,10 +64,9 @@ public class MainInsertTeste {
         adm.setId(0);
         adm.setEmail("testeJDBC_7@teste_7.com");
         adm.setSenha("1234567");
-        //definindo comando
-        comando = "insert into administrador (id, email, senha) values (?, ?, ?)";
+
         // realizando comando insert
-        System.out.println(admDAO.insert(comando, adm));
+        System.out.println(admDAO.insert(adm));
 
         //informações
         emp.setId(0);
@@ -127,10 +126,8 @@ public class MainInsertTeste {
         fun.setSetor("teste");
         fun.setIdEmpresa(1);
 
-        //definindo comando
-        comando = "insert into funcionario (id, nome, cpf, email, setor, id_empresa) values (?, ?, ?, ?, ?, ?)";
         //realizando comando insert
-        System.out.println(funDAO.insert(comando, fun));
+        System.out.println(funDAO.insert(fun));
 
         //informações
         gra.setId(0);
@@ -139,10 +136,8 @@ public class MainInsertTeste {
         gra.setRegiao("teste");
         gra.setAreaPropriedade(1234);
         gra.setIdEmpresa(1);
-        //definindo comando
-        comando = "insert into granja (id, nome, capacidade_aves, regiao, area_propriedade, id_empresa) values (?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(graDAO.insert(comando, gra));
+        System.out.println(graDAO.insert(gra));
 
         //informações
         lot.setId(0);
@@ -153,10 +148,8 @@ public class MainInsertTeste {
         lot.setDtEntrega(java.sql.Date.valueOf("0101-01-01"));
         lot.setGanho(0);
         lot.setIdGranja(1);
-        //definindo comando
-        comando = "insert into lote (id, galinhas_entregadas, galinhas_recebidas, dt_nascimento, dt_chegada, dt_entrega, ganho, id_granja) values (?, ?, ?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(lotDAO.insert(comando, lot));
+        System.out.println(lotDAO.insert(lot));
 
         // informações
         met.setId(0);
@@ -169,10 +162,8 @@ public class MainInsertTeste {
         met.setEstado("teste");
         met.setIndividual(true);
         met.setIdGranja(1);
-        //definindo comando
-        comando = "insert into meta (id, titulo, descricao, tipo_meta, status, valor_alvo, regiao, estado, is_individual, id_granja) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(metDAO.insert(comando, met));
+        System.out.println(metDAO.insert(met));
 
         // informações
         proGra.setId(0);
@@ -192,20 +183,16 @@ public class MainInsertTeste {
         reA.setHidrometroInicio(1234);
         reA.setHidrometroFinal(1234);
         reA.setIdLote(1);
-        //definindo comando
-        comando = "insert into registro_agua (id, dt_registro, hidrometro_inicio, hidrometro_final, id_lote) values (?, ?, ?, ?, ?)";
         // realizando comando insert
-        System.out.println(reADAO.insert(comando, reA));
+        System.out.println(reADAO.insert(reA));
 
         // informações
         reE.setId(0);
         reE.setDtRegistro(java.sql.Date.valueOf("0101-01-01"));
         reE.setConsumo(1234);
         reE.setIdLote(1);
-        //definindo comando
-        comando = "insert into registro_energia (id, dt_registro, consumo, id_lote) values (?, ?, ?, ?)";
-        // realizando comando insert
-        System.out.println(reEDAO.insert(comando, reE));
+       // realizando comando insert
+        System.out.println(reEDAO.insert(reE));
 
         // informações
         teF.setId(0);

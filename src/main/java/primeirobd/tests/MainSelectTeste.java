@@ -57,10 +57,8 @@ public class MainSelectTeste {
         //                  Apenas Selects!
         //======================================================
 
-        //definindo comando
-        comando = "select * from administrador";
-        // realizando comando select
-        System.out.println(admDAO.select(comando));
+
+        System.out.println(admDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from empresa";
@@ -85,22 +83,22 @@ public class MainSelectTeste {
         //definindo comando
         comando = "select * from funcionario";
         // realizando comando select
-        System.out.println(funDAO.select(comando));
+        System.out.println(funDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from granja";
         // realizando comando select
-        System.out.println(graDAO.select(comando));
+        System.out.println(graDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from lote";
         // realizando comando select
-        System.out.println(lotDAO.select(comando));
+        System.out.println(lotDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from meta";
         // realizando comando select
-        System.out.println(metDAO.select(comando));
+        System.out.println(metDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from proprietario_granja";
@@ -110,12 +108,12 @@ public class MainSelectTeste {
         //definindo comando
         comando = "select * from registro_agua";
         // realizando comando select
-        System.out.println(reADAO.select(comando));
+        System.out.println(reADAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from registro_energia";
         // realizando comando select
-        System.out.println(reEDAO.select(comando));
+        System.out.println(reEDAO.select_all());
         System.out.println("======================================================================");
         //definindo comando
         comando = "select * from telefone_funcionario";

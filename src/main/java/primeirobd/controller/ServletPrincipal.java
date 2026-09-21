@@ -48,28 +48,22 @@ public class ServletPrincipal extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         // um servlet por tabela
-        String selectFuncionario = "SELECT * FROM funcionario;";
-        List<Funcionario> funcionarios = funcionario.select(selectFuncionario);
+        List<Funcionario> funcionarios = funcionario.select_all();
         request.setAttribute("funcionarios", funcionarios);
 
-        String selectGranja = "SELECT * FROM granja;";
-        List<Granja> granjas = granja.select(selectGranja);
+        List<Granja> granjas = granja.select_all();
         request.setAttribute("granjas", granjas);
 
-        String selectLote = "SELECT * FROM lote;";
-        List<Lote> lotes = lote.select(selectLote);
+        List<Lote> lotes = lote.select_all();
         request.setAttribute("lotes", lotes);
 
-        String selectMeta = "SELECT * FROM meta;";
-        List<Meta> metas = meta.select(selectMeta);
+        List<Meta> metas = meta.select_all();
         request.setAttribute("metas", metas);
 
-        String selectRegistroAgua = "SELECT * FROM registro_agua;";
-        List<RegistroAgua> registroAguas = registroAgua.select(selectRegistroAgua);
+        List<RegistroAgua> registroAguas = registroAgua.select_all();
         request.setAttribute("registroAguas", registroAguas);
 
-        String selectRegistroEnergia = "SELECT * FROM registro_energia;";
-        List<RegistroEnergia> registroEnergias = registroEnergia.select(selectRegistroEnergia);
+        List<RegistroEnergia> registroEnergias = registroEnergia.select_all();
         request.setAttribute("registroEnergias", registroEnergias);
 
         request.getServletContext().getRequestDispatcher("/TabelaInterface.jsp").forward(request, response);

@@ -2,7 +2,7 @@ package primeirobd.repository;
 
 import primeirobd.model.Lote;
 
-import java.util.Date;
+import java.sql.*;
 import java.util.List;
 
 public interface LoteDAO {
