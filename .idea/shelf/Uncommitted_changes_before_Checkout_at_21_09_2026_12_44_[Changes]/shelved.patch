@@ -1,0 +1,163 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"inter_artifact\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"ca3ccaf3-e37e-42a8-8650-dfdfd8fd5869\" name=\"Changes\" comment=\"First commit\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/artifacts/inter_modulo.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/vcs.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/EmpresaDAO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/EmpresaDAO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/MetaDAO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/MetaDAO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/RegistroAguaDAO.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/DAO/RegistroAguaDAO.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/model/Meta.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/model/Meta.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/primeirobd/model/RegistroAgua.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/primeirobd/model/RegistroAgua.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/TabelaInterface.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/TabelaInterface.jsp\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/funcionarios.jsp\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/funcionarios.jsp\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;fnzaia&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Ouros-App/ouros-crud-primeiro/&quot;,\r\n    &quot;accountId&quot;: &quot;0e5b9163-fd16-4d7b-afa8-dec310e9ad6f&quot;\r\n  }\r\n}</component>\r\n  <component name=\"KubernetesApiPersistence\">{}</component>\r\n  <component name=\"KubernetesApiProvider\">{\r\n  &quot;isMigrated&quot;: true\r\n}</component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2,\r\n  &quot;fromUser&quot;: false\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"3JKHNxsgW6kFtqYVw3Gzq4tU4YO\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Application.MainSelectTeste.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Tomcat Server.inter_servlet.executor\": \"Run\",\r\n    \"codeWithMe.voiceChat.enabledByDefault\": \"false\",\r\n    \"git-widget-placeholder\": \"#1 on v4\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/20260083-ieg/Documents/Inter_pratico/inter\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\Users\\20260083-ieg\\Documents\\Inter_pratico\\inter\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunDashboard\">\r\n    <option name=\"configurationStatuses\">\r\n      <map>\r\n        <entry key=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\">\r\n          <value>\r\n            <map>\r\n              <entry key=\"inter_servlet\" value=\"STOPPED\" />\r\n            </map>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"inter\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"inter\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"inter_servlet\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"inter_servlet\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"OPEN_IN_BROWSER_URL\" value=\"http://localhost:8080/inter_artifact/servlet-principal\" />\r\n      <option name=\"UPDATING_POLICY\" value=\"redeploy-artifacts\" />\r\n      <deployment>\r\n        <artifact name=\"inter_artifact\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/inter_artifact\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"f86cbc15-5f97-4e5a-91b1-1b318447624d\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <extension name=\"net.ashald.envfile\">\r\n        <option name=\"IS_ENABLED\" value=\"false\" />\r\n        <option name=\"IS_SUBST\" value=\"false\" />\r\n        <option name=\"IS_PATH_MACRO_SUPPORTED\" value=\"false\" />\r\n        <option name=\"IS_IGNORE_MISSING_FILES\" value=\"false\" />\r\n        <option name=\"IS_ENABLE_EXPERIMENTAL_INTEGRATIONS\" value=\"false\" />\r\n        <ENTRIES>\r\n          <ENTRY IS_ENABLED=\"true\" PARSER=\"runconfig\" IS_EXECUTABLE=\"false\" />\r\n        </ENTRIES>\r\n      </extension>\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"59937\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"inter_artifact\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"ca3ccaf3-e37e-42a8-8650-dfdfd8fd5869\" name=\"Changes\" comment=\"\" />\r\n      <created>1789402816557</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1789402816557</updated>\r\n      <workItem from=\"1789402820676\" duration=\"130000\" />\r\n      <workItem from=\"1789407359869\" duration=\"354000\" />\r\n      <workItem from=\"1789436732234\" duration=\"1837000\" />\r\n      <workItem from=\"1789465444521\" duration=\"2903000\" />\r\n      <workItem from=\"1789472839190\" duration=\"2780000\" />\r\n      <workItem from=\"1789494234803\" duration=\"585000\" />\r\n      <workItem from=\"1789553205176\" duration=\"6015000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"First commit\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1789437561637</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1789437561638</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"First commit\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"First commit\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 120444ead041d0a3494232a2892476605b0c2abb)
++++ b/.idea/workspace.xml	(date 1789754536666)
+@@ -10,23 +10,24 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="ca3ccaf3-e37e-42a8-8650-dfdfd8fd5869" name="Changes" comment="First commit">
+-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/inter_modulo.xml" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletGranjas.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/EmpresaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/EmpresaDAO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/MetaDAO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/RegistroAguaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/RegistroAguaDAO.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/model/Meta.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/RegistroAgua.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/model/RegistroAgua.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/DAO/AdministradorDAO.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/webapp/TabelaInterface.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/TabelaInterface.jsp" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/funcionarios.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/funcionarios.jsp" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/granjas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/granjas.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
++  </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Jsp File" />
++      </list>
++    </option>
+   </component>
+   <component name="Git.Settings">
+     <option name="RECENT_BRANCH_BY_REPOSITORY">
+@@ -78,27 +79,28 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.MainSelectTeste.executor": "Run",
+-    "ModuleVcsDetector.initialDetectionPerformed": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+-    "RunOnceActivity.git.unshallow": "true",
+-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "Tomcat Server.inter_servlet.executor": "Run",
+-    "codeWithMe.voiceChat.enabledByDefault": "false",
+-    "git-widget-placeholder": "#1 on v4",
+-    "kotlin-language-version-configured": "true",
+-    "last_opened_file_path": "C:/Users/20260083-ieg/Documents/Inter_pratico/inter",
+-    "nodejs_package_manager_path": "npm",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.2",
+-    "vue.rearranger.settings.migration": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.MainSelectTeste.executor&quot;: &quot;Run&quot;,
++    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;Tomcat Server.inter_servlet.executor&quot;: &quot;Run&quot;,
++    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;#1 on v4&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;C:/Users/20260083-ieg/Documents/Inter_pratico/inter&quot;,
++    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
++    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="C:\Users\20260083-ieg\Documents\Inter_pratico\inter" />
+@@ -249,7 +251,12 @@
+       <workItem from="1789465444521" duration="2903000" />
+       <workItem from="1789472839190" duration="2780000" />
+       <workItem from="1789494234803" duration="585000" />
+-      <workItem from="1789553205176" duration="6015000" />
++      <workItem from="1789553205176" duration="7398000" />
++      <workItem from="1789598531488" duration="102000" />
++      <workItem from="1789638699212" duration="5482000" />
++      <workItem from="1789664797601" duration="1792000" />
++      <workItem from="1789725207731" duration="2461000" />
++      <workItem from="1789750986558" duration="1441000" />
+     </task>
+     <task id="LOCAL-00001" summary="First commit">
+       <option name="closed" value="true" />
+Index: src/main/java/primeirobd/controller/ServletGranjas.java
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/ServletGranjas.java b/src/main/java/primeirobd/controller/ServletGranjas.java
+new file mode 100644
+--- /dev/null	(date 1789751905636)
++++ b/src/main/java/primeirobd/controller/ServletGranjas.java	(date 1789751905636)
+@@ -0,0 +1,31 @@
++package primeirobd.controller;
++
++import jakarta.servlet.ServletException;
++import jakarta.servlet.annotation.WebServlet;
++import jakarta.servlet.http.HttpServlet;
++import jakarta.servlet.http.HttpServletRequest;
++import jakarta.servlet.http.HttpServletResponse;
++import primeirobd.DAO.*;
++import primeirobd.model.*;
++
++import java.io.IOException;
++import java.util.ArrayList;
++import java.util.List;
++
++
++@WebServlet(name = "ServletGranjas", value = "/granjas")
++public class ServletGranjas extends HttpServlet {
++    @Override
++    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
++        GranjaDAO granja = new GranjaDAO();
++        granja.select();
++        List<Granja> granjas = new ArrayList<>();
++        request.setAttribute("granjas", granjas);
++        getServletContext().getRequestDispatcher("/granjas.jsp").forward(request, response);
++    }
++
++    @Override
++    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
++
++    }
++}
+\ No newline at end of file
+Index: src/main/java/primeirobd/DAO/AdministradorDAO.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package primeirobd.DAO;\r\n\r\nimport primeirobd.model.Administrador;\r\n\r\nimport java.sql.Connection;\r\nimport java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class AdministradorDAO {\r\n\r\n    private final ConexaoBancoPrimeiro conexaoBancoPrimeiro = new ConexaoBancoPrimeiro();\r\n\r\n    // metodo select :D\r\n    public List<Administrador> select(String comando) {\r\n        List<Administrador> resultado = new ArrayList<>();\r\n        try (Connection conexao = conexaoBancoPrimeiro.getConnection();\r\n             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);\r\n             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {\r\n\r\n            while (resultadoConsulta.next()) {\r\n                Administrador adm = new Administrador();\r\n                adm.setId(resultadoConsulta.getInt(\"id\"));\r\n                adm.setEmail(resultadoConsulta.getString(\"email\"));\r\n                adm.setSenha(resultadoConsulta.getString(\"senha\"));\r\n                resultado.add(adm);\r\n            }\r\n            return resultado;\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(\"Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\\n\" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    // metodo delete :)\r\n    public String delete(String comando) {\r\n        try (Connection conexao = conexaoBancoPrimeiro.getConnection();\r\n             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {\r\n\r\n            preparoConsultaSQL.execute();\r\n            return \"Item apagado com sucesso no banco de dados\";\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(\"Ocorreu um erro ao tentar deletar informacoes no banco de dados.\\n\" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    // metodo insert :O\r\n    public String insert(String comando, Administrador adm) {\r\n        try (Connection conexao = conexaoBancoPrimeiro.getConnection();\r\n             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {\r\n\r\n            preparoConsultaSQL.setInt(1, adm.getId());\r\n            preparoConsultaSQL.setString(2, adm.getEmail());\r\n            preparoConsultaSQL.setString(3, adm.getSenha());\r\n            preparoConsultaSQL.executeUpdate();\r\n            return \"Item inserido com sucesso no banco de dados\";\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(\"Ocorreu um erro ao tentar inserir informacoes no banco de dados.\\n\" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    // metodo update :P\r\n    public String update(String comando) {\r\n        try (Connection conexao = conexaoBancoPrimeiro.getConnection();\r\n             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando)) {\r\n\r\n            preparoConsultaSQL.execute();\r\n            return \"Item atualizado com sucesso no banco de dados\";\r\n        } catch (SQLException e) {\r\n            throw new RuntimeException(\"Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\\n\" + e.getMessage());\r\n        }\r\n    }\r\n}
+===================================================================
+diff --git a/src/main/java/primeirobd/DAO/AdministradorDAO.java b/src/main/java/primeirobd/DAO/AdministradorDAO.java
+--- a/src/main/java/primeirobd/DAO/AdministradorDAO.java	(revision 120444ead041d0a3494232a2892476605b0c2abb)
++++ b/src/main/java/primeirobd/DAO/AdministradorDAO.java	(date 1789666181310)
+@@ -20,6 +20,7 @@
+              PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comando);
+              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+ 
++
+             while (resultadoConsulta.next()) {
+                 Administrador adm = new Administrador();
+                 adm.setId(resultadoConsulta.getInt("id"));

@@ -1,0 +1,224 @@
+Index: src/main/webapp/granjas.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"pt-br\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>Granjas</title>\r\n    <link rel=\"stylesheet\" href=\"granjas.css\">\r\n    <link rel=\"icon\" type=\"image/png\" href=\"/img/granja.svg\">\r\n</head>\r\n<body>\r\n\r\n<div class=\"Layout\">\r\n\r\n\r\n    <aside class=\"Sidebar\">\r\n        <div class=\"SidebarTopo\">\r\n            <span class=\"Crud\">| CRUD</span>\r\n            <div class=\"LogoSidebar\">\r\n                <img src=\"/img/Ouros.png\" alt=\"logo do ouros\">\r\n            </div>\r\n        </div>\r\n\r\n        <nav class=\"Menu\">\r\n            <a href=\"index.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/inicio.svg\" alt=\"\"></span> Início\r\n            </a>\r\n            <a href=\"granjas.html\" class=\"MenuItem granjas\">\r\n                <span class=\"Icone\"><img src=\"/img/granja.svg\" alt=\"\"></span> Granjas\r\n            </a>\r\n            <a href=\"lotes.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/lotes.svg\" alt=\"\"></span> Lotes\r\n            </a>\r\n            <a href=\"funcionarios.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/fucionarios.svg\" alt=\"\"></span> Funcionários\r\n            </a>\r\n            <!-- <a href=\"vacinas.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/vacinas.svg\" alt=\"\"></span> Vacinas\r\n            </a> -->\r\n            <a href=\"registros.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/registros.svg\" alt=\"\"></span> Registros\r\n            </a>\r\n            <a href=\"metas.html\" class=\"MenuItem\">\r\n                <span class=\"Icone\"><img src=\"/img/metas.svg\" alt=\"\"></span> Metas\r\n            </a>\r\n        </nav>\r\n\r\n        <div class=\"Usuario\">\r\n            <img src=\"/img/vera-marcelina.svg\" alt=\"foto do usuário\">\r\n            <div class=\"UsuarioInfo\">\r\n                <strong>User</strong>\r\n                <span>Admin</span>\r\n            </div>\r\n        </div>\r\n    </aside>\r\n\r\n\r\n    <div class=\"hero\">\r\n        <div class=\"Titulo\">\r\n            <h1>Granjas</h1>\r\n        </div>\r\n        <div class=\"subtitulo\">\r\n            <p></p>\r\n        </div>\r\n    </div>\r\n\r\n\r\n    </main>\r\n\r\n</div>\r\n\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/granjas.jsp b/src/main/webapp/granjas.jsp
+--- a/src/main/webapp/granjas.jsp	(revision 120444ead041d0a3494232a2892476605b0c2abb)
++++ b/src/main/webapp/granjas.jsp	(date 1789726955360)
+@@ -1,3 +1,5 @@
++<%@ page contentType="text/html;charset=UTF-8" language="java" %>
++<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+ <!DOCTYPE html>
+ <html lang="pt-br">
+ <head>
+@@ -67,6 +69,36 @@
+     </main>
+ 
+ </div>
++<h2>Granjas</h2>
++<c:if test="${empty granjas}">
++    <p>Nenhuma granja cadastrada.</p>
++</c:if>
+ 
++<c:if test="${not empty granjas}">
++    <table>
++        <thead>
++        <tr>
++            <th>ID</th>
++            <th>Nome</th>
++            <th>Região</th>
++            <th>Area da propriedade</th>
++            <th>Capacidade de aves</th>
++            <th>ID_Empresa</th>
++        </tr>
++        </thead>
++        <tbody>
++        <c:forEach var="granjas" items="${granjas}">
++            <tr>
++                <td><c:out value ="${granjas.id}"></c:out></td>
++                <td><c:out value="${granjas.nome}"></c:out></td>
++                <td><c:out value="${granjas.regiao}"></c:out></td>
++                <td><c:out value="${granjas.areaPropriedade}"></c:out></td>
++                <td><c:out value="${granjas.capacidadeDeAves}"></c:out></td>
++                <td><c:out value="${granjas.idEmpresa}"></c:out></td>
++            </tr>
++        </c:forEach>
++        </tbody>
++    </table>
++</c:if>
+ </body>
+ </html>
+\ No newline at end of file
+Index: src/main/webapp/TabelaInterface.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib prefix=\"c\" uri=\"jakarta.tags.core\" %>\r\n<html lang=\"pt-BR\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Tabelas do BD</title>\r\n    <style>\r\n        body{\r\n            font-family: Arial, sans-serif;\r\n            margin: 40px;\r\n        }\r\n        table{\r\n            width: 100%;\r\n            border-collapse: collapse;\r\n        }\r\n        th, td{\r\n            padding: 10px;\r\n            border: 1px solid #cccccc;\r\n            text-align: left;\r\n        }\r\n        th{\r\n            background-color: #cccccc;\r\n        }\r\n    </style>\r\n</head>\r\n<body>\r\n    <h1>Informações</h1>\r\n        <h2>Granjas</h2>\r\n        <c:if test=\"${empty granjas}\">\r\n            <p>Nenhuma granja cadastrada.</p>\r\n        </c:if>\r\n\r\n        <c:if test=\"${not empty granjas}\">\r\n            <table>\r\n                <thead>\r\n                <tr>\r\n                    <th>ID</th>\r\n                    <th>Nome</th>\r\n                    <th>Região</th>\r\n                    <th>Area da propriedade</th>\r\n                    <th>Capacidade de aves</th>\r\n                    <th>ID_Empresa</th>\r\n                </tr>\r\n                </thead>\r\n                <tbody>\r\n                <c:forEach var=\"granjas\" items=\"${granjas}\">\r\n                    <tr>\r\n                        <td><c:out value =\"${granjas.id}\"></c:out></td>\r\n                        <td><c:out value=\"${granjas.nome}\"></c:out></td>\r\n                        <td><c:out value=\"${granjas.regiao}\"></c:out></td>\r\n                        <td><c:out value=\"${granjas.areaPropriedade}\"></c:out></td>\r\n                        <td><c:out value=\"${granjas.capacidadeDeAves}\"></c:out></td>\r\n                        <td><c:out value=\"${granjas.idEmpresa}\"></c:out></td>\r\n                    </tr>\r\n                </c:forEach>\r\n                </tbody>\r\n            </table>\r\n        </c:if>\r\n    <h2>Funcionário</h2>\r\n    <c:if test=\"${empty funcionarios}\">\r\n        <p>Nenhum funcionário cadastrado.</p>\r\n    </c:if>\r\n\r\n    <c:if test=\"${not empty funcionarios}\">\r\n        <table>\r\n            <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Nome</th>\r\n                <th>CPF</th>\r\n                <th>Setor</th>\r\n                <th>Email</th>\r\n                <th>ID_Empresa</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            <c:forEach var=\"funcionarios\" items=\"${funcionarios}\">\r\n                <tr>\r\n                    <td><c:out value =\"${funcionarios.id}\"></c:out></td>\r\n                    <td><c:out value=\"${funcionarios.nome}\"></c:out></td>\r\n                    <td><c:out value=\"${funcionarios.cpf}\"></c:out></td>\r\n                    <td><c:out value=\"${funcionarios.setor}\"></c:out></td>\r\n                    <td><c:out value=\"${funcionarios.email}\"></c:out></td>\r\n                    <td><c:out value=\"${funcionarios.idEmpresa}\"></c:out></td>\r\n                </tr>\r\n            </c:forEach>\r\n            </tbody>\r\n        </table>\r\n    </c:if>\r\n    <h2>Lotes</h2>\r\n    <c:if test=\"${empty lotes}\">\r\n        <p>Nenhum lote cadastrado.</p>\r\n    </c:if>\r\n\r\n    <c:if test=\"${not empty lotes}\">\r\n        <table>\r\n            <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Data de chegada</th>\r\n                <th>Data de entrega</th>\r\n                <th>Data de nascimento</th>\r\n                <th>Galinhas recebidas</th>\r\n                <th>Galinhas entregadas</th>\r\n                <th>Ganho</th>\r\n                <th>ID_Granja</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            <c:forEach var=\"lotes\" items=\"${lotes}\">\r\n                <tr>\r\n                    <td><c:out value =\"${lotes.id}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.dtChegada}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.dtEntrega}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.dtNascimento}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.galinhasRecebidas}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.galinhasEntregadas}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.ganho}\"></c:out></td>\r\n                    <td><c:out value=\"${lotes.idGranja}\"></c:out></td>\r\n                </tr>\r\n            </c:forEach>\r\n            </tbody>\r\n        </table>\r\n    </c:if>\r\n    <h2>Metas<h2>\r\n    <c:if test=\"${empty metas}\">1\r\n        <p>Nenhuma meta cadastrada.</p>\r\n    </c:if>\r\n\r\n    <c:if test=\"${not empty metas}\">\r\n        <table>\r\n            <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Título</th>\r\n                <th>Descrição</th>\r\n                <th>Estado</th>\r\n                <th>Região</th>\r\n                <th>Status</th>\r\n                <th>Tipo da meta</th>\r\n                <th>Valor alvo</th>\r\n                <th>ID_Granja</th>\r\n                <th>Individual</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            <c:forEach var=\"metas\" items=\"${metas}\">\r\n                <tr>\r\n                    <td><c:out value =\"${metas.id}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.titulo}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.descricao}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.estado}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.regiao}\"></c:out></td>\r\n                    <td><c:out value =\"${metas.status}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.tipoMeta}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.valorAlvo}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.idGranja}\"></c:out></td>\r\n                    <td><c:out value=\"${metas.individual}\"></c:out></td>\r\n                </tr>\r\n            </c:forEach>\r\n            </tbody>\r\n        </table>\r\n    </c:if>\r\n    <h2>Registros de Água</h2>\r\n    <c:if test=\"${empty registroAguas}\">\r\n    <p>Nenhum registro cadastrado.</p>\r\n    </c:if>\r\n\r\n    <c:if test=\"${not empty registroAguas}\">\r\n    <table>\r\n        <thead>\r\n        <tr>\r\n            <th>ID</th>\r\n            <th>Data Registro</th>\r\n            <th>Hidrômetro início</th>\r\n            <th>Hidrômetro final</th>\r\n            <th>ID_Lote</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <c:forEach var=\"registroAguas\" items=\"${registroAguas}\">\r\n            <tr>\r\n                <td><c:out value =\"${registroAguas.id}\"></c:out></td>\r\n                <td><c:out value=\"${registroAguas.dtRegistro}\"></c:out></td>\r\n                <td><c:out value=\"${registroAguas.hidrometroInicio}\"></c:out></td>\r\n                <td><c:out value=\"${registroAguas.hidrometroFinal}\"></c:out></td>\r\n                <td><c:out value=\"${registroAguas.idLote}\"></c:out></td>\r\n            </tr>\r\n        </c:forEach>\r\n        </tbody>\r\n    </table>\r\n    </c:if>\r\n        <h2>Registros de Energia</h2>\r\n        <c:if test=\"${empty registroEnegias}\">\r\n        <p>Nenhum registro cadastrado.</p>\r\n        </c:if>\r\n\r\n        <c:if test=\"${not empty registroEnergias}\">\r\n        <table>\r\n            <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Consumo</th>\r\n                <th>Data de registro</th>\r\n                <th>ID_Lote</th>\r\n            </tr>\r\n            </thead>\r\n            <tbody>\r\n            <c:forEach var=\"registroEnergias\" items=\"${registroEnergias}\">\r\n                <tr>\r\n                    <td><c:out value =\"${registroEnergias.id}\"></c:out></td>\r\n                    <td><c:out value=\"${registroEnergias.consumo}\"></c:out></td>\r\n                    <td><c:out value=\"${registroEnergias.dtRegistro}\"></c:out></td>\r\n                    <td><c:out value=\"${registroEnergias.idLote}\"></c:out></td>\r\n                </tr>\r\n            </c:forEach>\r\n            </tbody>\r\n        </table>\r\n        </c:if>\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/TabelaInterface.jsp b/src/main/webapp/TabelaInterface.jsp
+--- a/src/main/webapp/TabelaInterface.jsp	(revision 120444ead041d0a3494232a2892476605b0c2abb)
++++ b/src/main/webapp/TabelaInterface.jsp	(date 1789726955403)
+@@ -24,38 +24,37 @@
+     </style>
+ </head>
+ <body>
+-    <h1>Informações</h1>
+-        <h2>Granjas</h2>
+-        <c:if test="${empty granjas}">
+-            <p>Nenhuma granja cadastrada.</p>
+-        </c:if>
++    <h2>Granjas</h2>
++    <c:if test="${empty granjas}">
++        <p>Nenhuma granja cadastrada.</p>
++    </c:if>
+ 
+-        <c:if test="${not empty granjas}">
+-            <table>
+-                <thead>
+-                <tr>
+-                    <th>ID</th>
+-                    <th>Nome</th>
+-                    <th>Região</th>
+-                    <th>Area da propriedade</th>
+-                    <th>Capacidade de aves</th>
+-                    <th>ID_Empresa</th>
+-                </tr>
+-                </thead>
+-                <tbody>
+-                <c:forEach var="granjas" items="${granjas}">
+-                    <tr>
+-                        <td><c:out value ="${granjas.id}"></c:out></td>
+-                        <td><c:out value="${granjas.nome}"></c:out></td>
+-                        <td><c:out value="${granjas.regiao}"></c:out></td>
+-                        <td><c:out value="${granjas.areaPropriedade}"></c:out></td>
+-                        <td><c:out value="${granjas.capacidadeDeAves}"></c:out></td>
+-                        <td><c:out value="${granjas.idEmpresa}"></c:out></td>
+-                    </tr>
+-                </c:forEach>
+-                </tbody>
+-            </table>
+-        </c:if>
++    <c:if test="${not empty granjas}">
++        <table>
++            <thead>
++            <tr>
++                <th>ID</th>
++                <th>Nome</th>
++                <th>Região</th>
++                <th>Area da propriedade</th>
++                <th>Capacidade de aves</th>
++                <th>ID_Empresa</th>
++            </tr>
++            </thead>
++            <tbody>
++            <c:forEach var="granjas" items="${granjas}">
++                <tr>
++                    <td><c:out value ="${granjas.id}"></c:out></td>
++                    <td><c:out value="${granjas.nome}"></c:out></td>
++                    <td><c:out value="${granjas.regiao}"></c:out></td>
++                    <td><c:out value="${granjas.areaPropriedade}"></c:out></td>
++                    <td><c:out value="${granjas.capacidadeDeAves}"></c:out></td>
++                    <td><c:out value="${granjas.idEmpresa}"></c:out></td>
++                </tr>
++            </c:forEach>
++            </tbody>
++        </table>
++    </c:if>
+     <h2>Funcionário</h2>
+     <c:if test="${empty funcionarios}">
+         <p>Nenhum funcionário cadastrado.</p>
+Index: src/main/java/primeirobd/controller/ServletPrincipal.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/ServletPrincipal.java b/src/main/java/primeirobd/controller/ServletPrincipal.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/controller/ServletPrincipal.java	(revision 120444ead041d0a3494232a2892476605b0c2abb)
++++ /dev/null	(revision 120444ead041d0a3494232a2892476605b0c2abb)
+@@ -1,81 +0,0 @@
+-package primeirobd.controller;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import primeirobd.DAO.*;
+-import primeirobd.model.*;
+-
+-import java.io.IOException;
+-import java.util.List;
+-
+-@WebServlet(name = "Administradores", value = "/servlet-principal")
+-public class ServletPrincipal extends HttpServlet {
+-    private AdministradorDAO administrador;
+-    private EmpresaDAO empresa;
+-    private EnderecoEmpresaDAO enderecoEmpresa;
+-    private EnderecoGranjaDAO enderecoGranja;
+-    private EnderecoProprietarioDAO enderecoProprietario;
+-    private FuncionarioDAO funcionario;
+-    private GranjaDAO granja;
+-    private LoteDAO lote;
+-    private MetaDAO meta;
+-    private ProprietarioGranjaDAO proprietarioGranja;
+-    private RegistroAguaDAO registroAgua;
+-    private RegistroEnergiaDAO registroEnergia;
+-    private TelefoneFuncionarioDAO telefoneFuncionario;
+-    private TelefoneProprietarioDAO telefoneProprietario;
+-
+-    @Override
+-    public void init(){
+-        administrador = new AdministradorDAO();
+-        empresa = new EmpresaDAO();
+-        enderecoEmpresa = new EnderecoEmpresaDAO();
+-        enderecoGranja = new EnderecoGranjaDAO();
+-        enderecoProprietario = new EnderecoProprietarioDAO();
+-        funcionario = new FuncionarioDAO();
+-        granja = new GranjaDAO();
+-        lote = new LoteDAO();
+-        meta = new MetaDAO();
+-        proprietarioGranja = new ProprietarioGranjaDAO();
+-        registroAgua = new RegistroAguaDAO();
+-        registroEnergia = new RegistroEnergiaDAO();
+-        telefoneFuncionario = new TelefoneFuncionarioDAO();
+-        telefoneProprietario = new TelefoneProprietarioDAO();
+-    }
+-
+-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+-        // um servlet por tabela
+-        String selectFuncionario = "SELECT * FROM funcionario;";
+-        List<Funcionario> funcionarios = funcionario.select(selectFuncionario);
+-        request.setAttribute("funcionarios", funcionarios);
+-
+-        String selectGranja = "SELECT * FROM granja;";
+-        List<Granja> granjas = granja.select(selectGranja);
+-        request.setAttribute("granjas", granjas);
+-
+-        String selectLote = "SELECT * FROM lote;";
+-        List<Lote> lotes = lote.select(selectLote);
+-        request.setAttribute("lotes", lotes);
+-
+-        String selectMeta = "SELECT * FROM meta;";
+-        List<Meta> metas = meta.select(selectMeta);
+-        request.setAttribute("metas", metas);
+-
+-        String selectRegistroAgua = "SELECT * FROM registro_agua;";
+-        List<RegistroAgua> registroAguas = registroAgua.select(selectRegistroAgua);
+-        request.setAttribute("registroAguas", registroAguas);
+-
+-        String selectRegistroEnergia = "SELECT * FROM registro_energia;";
+-        List<RegistroEnergia> registroEnergias = registroEnergia.select(selectRegistroEnergia);
+-        request.setAttribute("registroEnergias", registroEnergias);
+-
+-        request.getServletContext().getRequestDispatcher("/TabelaInterface.jsp").forward(request, response);
+-    }
+-
+-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+-
+-    }
+-}

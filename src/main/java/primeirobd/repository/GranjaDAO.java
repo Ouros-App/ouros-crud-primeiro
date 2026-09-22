@@ -1,6 +1,5 @@
 package primeirobd.repository;
 
-import primeirobd.model.Administrador;
 import primeirobd.model.Granja;
 
 import java.util.List;
