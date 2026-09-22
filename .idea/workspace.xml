@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/LoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/LoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainDeleteTestes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainDeleteTestes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainInsertTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainInsertTeste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainSelectTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainSelectTeste.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainTestesTodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainTestesTodos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainUpdateTestes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainUpdateTestes.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000000000002" />
+      <entry key="S5" value="1.0000008408990144" />
+      <entry key="S10" value="1.0016582024842118" />
+      <entry key="S30" value="1.3089317848742998" />
+      <entry key="S60" value="2.22116919467756" />
+      <entry key="M2" value="3.6252045971308235" />
+      <entry key="M5" value="7.205206584435462" />
+      <entry key="M10" value="13.419778428359418" />
+      <entry key="M15" value="18.406963132662707" />
+      <entry key="M30" value="26.941693727400718" />
+      <entry key="H1" value="33.386675321013705" />
+      <entry key="H2" value="37.37860776188542" />
+      <entry key="H4" value="39.60436622791349" />
+      <entry key="D1" value="41.58835810752228" />
+      <entry key="W1" value="41.9408833190871" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="5.7238E-320" />
+      <entry key="MS500" value="1.4175484768266451E-64" />
+      <entry key="S2" value="1.0911500575808107E-16" />
+      <entry key="S5" value="4.1224357305532643E-7" />
+      <entry key="S10" value="6.42372567588139E-4" />
+      <entry key="S30" value="0.09304262781568902" />
+      <entry key="S60" value="0.37601425483358664" />
+      <entry key="M2" value="0.8288873222055211" />
+      <entry key="M5" value="1.4094356288004282" />
+      <entry key="M10" value="1.8047947600785617" />
+      <entry key="M15" value="2.039227509090569" />
+      <entry key="M30" value="2.4007132400939097" />
+      <entry key="H1" value="2.6605484189883346" />
+      <entry key="H2" value="2.818674695990886" />
+      <entry key="H4" value="2.9062010292180127" />
+      <entry key="D1" value="2.983909563948795" />
+      <entry key="W1" value="2.9976898735789046" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.23325824788420185" />
+      <entry key="MS500" value="0.7474246243174691" />
+      <entry key="S2" value="0.929804942613162" />
+      <entry key="S5" value="0.9713086093789688" />
+      <entry key="S10" value="0.9877238955496592" />
+      <entry key="S30" value="1.3898725321190886" />
+      <entry key="S60" value="2.5795675740913557" />
+      <entry key="M2" value="4.435780558462179" />
+      <entry key="M5" value="8.600458118325971" />
+      <entry key="M10" value="15.214177115102672" />
+      <entry key="M15" value="20.437991717365666" />
+      <entry key="M30" value="29.337419526081135" />
+      <entry key="H1" value="36.044439365410355" />
+      <entry key="H2" value="40.19580642061172" />
+      <entry key="H4" value="42.50980667047138" />
+      <entry key="D1" value="44.572137625328594" />
+      <entry key="W1" value="44.938554532278424" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
+  <component name="ProjectId" id="3JaiaOIYNHXTOBmToWQUvHwc7vJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.MainSelectTeste.executor": "Run",
+    "Application.MainTestesTodos.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "DAO-INTERFACES",
+    "kotlin-language-version-configured": "true",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="" />
+      <created>1789905646319</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1789905646319</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
