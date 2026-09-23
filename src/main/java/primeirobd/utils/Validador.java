@@ -10,6 +10,9 @@ public class Validador {
     private static final Pattern TELEFONE_PATTERN =
             Pattern.compile("^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$");
 
+    public static final Pattern SENHA_PATTERN =
+            Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!.\\-_*]).{8,}$");
+
 
     public static boolean isEmailValido(String email) {
         if (email == null) return false;
@@ -19,6 +22,11 @@ public class Validador {
     public static boolean isTelefoneValido(String telefone) {
         if (telefone == null) return false;
         return TELEFONE_PATTERN.matcher(telefone).matches();
+    }
+
+    public static boolean isSenhaValida(String senha) {
+        if (senha == null) return false;
+        return SENHA_PATTERN.matcher(senha).matches();
     }
 
     /**
