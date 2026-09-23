@@ -21,11 +21,19 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -40,61 +48,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0881548341762526" />
-      <entry key="MS500" value="1.8642146558853638" />
-      <entry key="S2" value="2.5926130971851866" />
-      <entry key="S5" value="2.979159844126724" />
-      <entry key="S10" value="5.3460318058502185" />
-      <entry key="S30" value="21.61713021515824" />
-      <entry key="S60" value="35.250503860624555" />
-      <entry key="M2" value="46.40934501877719" />
-      <entry key="M5" value="57.559113483201045" />
-      <entry key="M10" value="66.57840449047671" />
-      <entry key="M15" value="72.71386739653782" />
-      <entry key="M30" value="82.90482177589703" />
-      <entry key="H1" value="90.60420326676739" />
-      <entry key="H2" value="95.40491941145967" />
-      <entry key="H4" value="98.09443026290812" />
-      <entry key="D1" value="100.49992806740758" />
-      <entry key="W1" value="100.92816297974059" />
+      <entry key="MS100" value="9.617001219148095E-117" />
+      <entry key="MS500" value="6.260484349831631E-24" />
+      <entry key="S2" value="1.581829017121629E-6" />
+      <entry key="S5" value="0.004889424915714683" />
+      <entry key="S10" value="0.08891364278199969" />
+      <entry key="S30" value="1.2670505435316017" />
+      <entry key="S60" value="3.372404793829634" />
+      <entry key="M2" value="7.653633160992719" />
+      <entry key="M5" value="17.856843142915274" />
+      <entry key="M10" value="27.719505814274587" />
+      <entry key="M15" value="36.247020027582714" />
+      <entry key="M30" value="56.874761608879915" />
+      <entry key="H1" value="78.49277173291206" />
+      <entry key="H2" value="94.63694289239278" />
+      <entry key="H4" value="104.62280407525601" />
+      <entry key="D1" value="142.95704334859866" />
+      <entry key="W1" value="200.20781665166797" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.1282569624014316E-88" />
-      <entry key="MS500" value="2.9214927477497834E-18" />
-      <entry key="S2" value="4.13429253382986E-5" />
-      <entry key="S5" value="0.017642514427402323" />
-      <entry key="S10" value="0.1328251278970641" />
-      <entry key="S30" value="0.5111585850021486" />
-      <entry key="S60" value="0.7520033764427959" />
-      <entry key="M2" value="1.1076378974725143" />
-      <entry key="M5" value="1.824703566965899" />
-      <entry key="M10" value="2.4009058248907746" />
-      <entry key="M15" value="2.7271753708767426" />
-      <entry key="M30" value="3.212395678543694" />
-      <entry key="H1" value="3.5549052533841485" />
-      <entry key="H2" value="3.7623681261868565" />
-      <entry key="H4" value="3.8770838454489605" />
-      <entry key="D1" value="3.9789140890320147" />
-      <entry key="W1" value="3.996972621493209" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000000113676" />
+      <entry key="S5" value="1.000051505553592" />
+      <entry key="S10" value="1.010647225710266" />
+      <entry key="S30" value="1.5496737114492078" />
+      <entry key="S60" value="2.872051319220304" />
+      <entry key="M2" value="5.766005008791989" />
+      <entry key="M5" value="11.759834697054002" />
+      <entry key="M10" value="15.877877618019024" />
+      <entry key="M15" value="17.71757053168277" />
+      <entry key="M30" value="19.966236984724848" />
+      <entry key="H1" value="21.342504168924272" />
+      <entry key="H2" value="22.127848949633076" />
+      <entry key="H4" value="22.553994459164127" />
+      <entry key="D1" value="24.0707059893506" />
+      <entry key="W1" value="26.33537593655617" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.0284662509515292" />
-      <entry key="MS500" value="1.8146827753141799" />
-      <entry key="S2" value="2.56419877431812" />
-      <entry key="S5" value="2.9783296769358785" />
-      <entry key="S10" value="5.450497809682327" />
-      <entry key="S30" value="22.093915781997598" />
-      <entry key="S60" value="35.97596494676079" />
-      <entry key="M2" value="47.496186367484555" />
-      <entry key="M5" value="59.368119446247114" />
-      <entry key="M10" value="68.96754330585864" />
-      <entry key="M15" value="75.43164043699466" />
-      <entry key="M30" value="86.11139792751665" />
-      <entry key="H1" value="94.15582481037272" />
-      <entry key="H2" value="99.16553649996959" />
-      <entry key="H4" value="101.97060901510511" />
-      <entry key="D1" value="104.47868698963026" />
-      <entry key="W1" value="104.92511332593537" />
+      <entry key="MS100" value="4.2507351723443555E-4" />
+      <entry key="MS500" value="0.21168632809063181" />
+      <entry key="S2" value="0.6783036980424557" />
+      <entry key="S5" value="0.861056554021407" />
+      <entry key="S10" value="1.0228658153720618" />
+      <entry key="S30" value="2.762209748388776" />
+      <entry key="S60" value="6.181568836969821" />
+      <entry key="M2" value="13.346083427003745" />
+      <entry key="M5" value="29.548241237779536" />
+      <entry key="M10" value="43.5488462039788" />
+      <entry key="M15" value="53.92786274730094" />
+      <entry key="M30" value="76.81993408589554" />
+      <entry key="H1" value="99.82391220127052" />
+      <entry key="H2" value="116.75887234843987" />
+      <entry key="H4" value="127.17377409949202" />
+      <entry key="D1" value="167.027191234479" />
+      <entry key="W1" value="226.5431003647718" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -111,6 +119,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.MainRegexTeste.executor": "Run",
     "Application.MainSelectTeste.executor": "Run",
     "Application.MainTestesTodos.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -120,7 +129,7 @@
     "TomEE Server.inter modulo.executor": "Run",
     "Tomcat Server.interModulo.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "DAO-INTERFACES",
+    "git-widget-placeholder": "feat/regex",
     "kotlin-language-version-configured": "true",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -129,6 +138,19 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RunDashboard">
+    <option name="configurationStatuses">
+      <map>
+        <entry key="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
+          <value>
+            <map>
+              <entry key="interModulo" value="STOPPED" />
+            </map>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <deployment />
