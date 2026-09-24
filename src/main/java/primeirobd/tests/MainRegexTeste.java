@@ -1,6 +1,6 @@
 package primeirobd.tests;
 
-import primeirobd.utils.Validador;
+import primeirobd.validadorREGEX.Validador;
 
 
 

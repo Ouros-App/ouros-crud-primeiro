@@ -1,4 +1,4 @@
-package primeirobd.utils;
+package primeirobd.validadorREGEX;
 import java.util.regex.Pattern;
 
 public class Validador {
