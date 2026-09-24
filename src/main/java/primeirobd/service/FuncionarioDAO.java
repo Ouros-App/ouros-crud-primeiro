@@ -14,12 +14,12 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String SELECT_NOME = "SELECT nome FROM funcionario";
     public static final String SELECT_SETOR = "SELECT setor FROM funcionario";
     public static final String SELECT_EMAIL = "SELECT email FROM funcionario";
-    public static final String DELETE_BY_ID = "DELETE FROM funcionario where id = ?";
+    public static final String DELETE_BY_ID = "DELETE FROM funcionario WHERE id = ?";
     public static final String INSERT = "INSERT INTO funcionario (id,nome,cpf,email,setor,id_empresa) VALUES (?,?,?,?,?,?)";
-    public static final String UPDATE_ID = "UPDATE funcionario SET id = ? where id = ?";
-    public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? where email = ?";
-    public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? where nome = ?";
-    public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? where setor = ?";
+    public static final String UPDATE_ID = "UPDATE funcionario SET id = ? WHERE id = ?";
+    public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? WHERE email = ?";
+    public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
+    public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? WHERE setor = ?";
 
     // metodo select :D
     public List<Funcionario> select_all() {
