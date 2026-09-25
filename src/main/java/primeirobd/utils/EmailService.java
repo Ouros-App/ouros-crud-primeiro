@@ -53,8 +53,7 @@ public class EmailService {
 
         try {
             // Monta o link que o usuário vai clicar.
-            // troque "localhost:8080/seuapp" pelo domínio real.
-            String link = "http://localhost:8080/seuapp/verificar?token=" + token;
+            String link = "http://localhost:8080/InterModulo/verificar?token=" + token;
 
             // "MimeMessage" é o objeto que representa o email em si:
             // remetente, destinatário, assunto e corpo da mensagem.

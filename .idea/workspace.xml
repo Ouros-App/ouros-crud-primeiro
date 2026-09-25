@@ -10,27 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/Administrador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/Empresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/EnderecoEmpresa.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/EnderecoGranja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/EnderecoProprietario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/ProprietarioGranja.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/Status.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/TelefoneFuncionario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/model/TelefoneProprietario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/AdministradorDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/GranjaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/GranjaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/EmpresaDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/EnderecoEmpresaDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/EnderecoGranjaDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/EnderecoProprietarioDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/ProprietarioGranjaDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/TelefoneFuncionarioDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/TelefoneProprietarioDAO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/ServletPrincipal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/CadastroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/CadastroServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,61 +56,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0" />
-      <entry key="S60" value="1.000000000000037" />
-      <entry key="M2" value="1.0000002672057364" />
-      <entry key="M5" value="1.0072964255063726" />
-      <entry key="M10" value="1.3397479557747798" />
-      <entry key="M15" value="2.6691949450854477" />
-      <entry key="M30" value="12.716119485901304" />
-      <entry key="H1" value="38.49176672360525" />
-      <entry key="H2" value="74.4348148926027" />
-      <entry key="H4" value="109.61978430194782" />
-      <entry key="D1" value="280.40438503201733" />
-      <entry key="W1" value="486.5102662618829" />
+      <entry key="MS100" value="1.006675865661892" />
+      <entry key="MS500" value="2.397339277355388" />
+      <entry key="S2" value="9.987114799516979" />
+      <entry key="S5" value="19.705034743702253" />
+      <entry key="S10" value="27.914683573700042" />
+      <entry key="S30" value="38.059070625847184" />
+      <entry key="S60" value="41.72431256988503" />
+      <entry key="M2" value="43.974127498776014" />
+      <entry key="M5" value="46.077044645601326" />
+      <entry key="M10" value="47.42665665153916" />
+      <entry key="M15" value="48.830626510654305" />
+      <entry key="M30" value="57.747784440485326" />
+      <entry key="H1" value="82.26650305968998" />
+      <entry key="H2" value="118.35664082624126" />
+      <entry key="H4" value="154.60596208160612" />
+      <entry key="D1" value="327.1213406705264" />
+      <entry key="W1" value="534.1927349308984" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="0.0" />
-      <entry key="S5" value="4.766525546354434E-190" />
-      <entry key="S10" value="2.1832374129383318E-95" />
-      <entry key="S30" value="2.8052422191016395E-32" />
-      <entry key="S60" value="1.8477251951947143E-16" />
-      <entry key="M2" value="2.019286396176324E-8" />
-      <entry key="M5" value="0.0017754532675230365" />
-      <entry key="M10" value="0.08895693087878707" />
-      <entry key="M15" value="0.3777326145994223" />
-      <entry key="M30" value="2.1529551422349904" />
-      <entry key="H1" value="6.164425730196434" />
-      <entry key="H2" value="11.173696171654552" />
-      <entry key="H4" value="15.86057521458342" />
-      <entry key="D1" value="34.038828949898324" />
-      <entry key="W1" value="51.29302852350533" />
+      <entry key="MS500" value="7.169312073851245E-197" />
+      <entry key="S2" value="9.201727571893576E-50" />
+      <entry key="S5" value="2.429672557789738E-20" />
+      <entry key="S10" value="1.558740696135741E-10" />
+      <entry key="S30" value="5.38176369640415E-4" />
+      <entry key="S60" value="0.023198628615511186" />
+      <entry key="M2" value="0.15231096102427463" />
+      <entry key="M5" value="0.4715566691336374" />
+      <entry key="M10" value="0.7325592375245122" />
+      <entry key="M15" value="1.0221787508086344" />
+      <entry key="M30" value="2.6127682198409095" />
+      <entry key="H1" value="6.466112557503161" />
+      <entry key="H2" value="11.549274107500247" />
+      <entry key="H4" value="16.41801203386324" />
+      <entry key="D1" value="34.88174258086113" />
+      <entry key="W1" value="52.25933611072595" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.034434534871144076" />
-      <entry key="MS500" value="0.5097988414990953" />
-      <entry key="S2" value="0.8449863844125135" />
-      <entry key="S5" value="0.9348455916508304" />
-      <entry key="S10" value="0.9668741343374692" />
-      <entry key="S30" value="0.9888338254031045" />
-      <entry key="S60" value="0.9944012396428206" />
-      <entry key="M2" value="0.9971969772018355" />
-      <entry key="M5" value="1.007933680470074" />
-      <entry key="M10" value="1.4277896949854632" />
-      <entry key="M15" value="3.045509156656451" />
-      <entry key="M30" value="14.865369893397745" />
-      <entry key="H1" value="44.650434439435195" />
-      <entry key="H2" value="85.60301688285877" />
-      <entry key="H4" value="125.47636779533752" />
-      <entry key="D1" value="314.44187284116543" />
-      <entry key="W1" value="537.8030176376637" />
+      <entry key="MS100" value="0.9656100349681112" />
+      <entry key="MS500" value="2.375960929717948" />
+      <entry key="S2" value="9.96445625430397" />
+      <entry key="S5" value="19.6860426765387" />
+      <entry key="S10" value="27.899213242441796" />
+      <entry key="S30" value="38.051110077568914" />
+      <entry key="S60" value="41.741716679105366" />
+      <entry key="M2" value="44.119887415806964" />
+      <entry key="M5" value="46.54059788128038" />
+      <entry key="M10" value="48.15260813696243" />
+      <entry key="M15" value="49.847070145820595" />
+      <entry key="M30" value="60.35472341692234" />
+      <entry key="H1" value="88.7259000609189" />
+      <entry key="H2" value="129.89990184636915" />
+      <entry key="H4" value="171.01967560591353" />
+      <entry key="D1" value="362.00167789401837" />
+      <entry key="W1" value="586.4517839994023" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -148,21 +131,27 @@
     "Application.MainSelectTeste.executor": "Run",
     "Application.MainTestesTodos.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "TomEE Server.inter modulo.executor": "Run",
     "Tomcat Server.interModulo.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "feat/validacao-email",
+    "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
     "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "to.speed.mode.migration.done": "true"
   }
 }]]></component>
   <component name="RunDashboard">
@@ -179,18 +168,6 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
-      <deployment />
-      <server-settings />
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="interModulo" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.26" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterModulo/servlet-principal" />
       <option name="UPDATING_POLICY" value="restart-server" />
@@ -283,8 +260,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
-        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
       </set>
     </attachedChunks>
   </component>

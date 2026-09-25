@@ -11,13 +11,8 @@ import primeirobd.model.*;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "Administradores", value = "/servlet-principal")
+@WebServlet(name = "ServletPrincipal", value = "/servlet-principal")
 public class ServletPrincipal extends HttpServlet {
-    private AdministradorDAO administrador;
-    private EmpresaDAO empresa;
-    private EnderecoEmpresaDAO enderecoEmpresa;
-    private EnderecoGranjaDAO enderecoGranja;
-    private EnderecoProprietarioDAO enderecoProprietario;
     private FuncionarioDAO funcionario;
     private GranjaDAO granja;
     private LoteDAO lote;
@@ -25,16 +20,9 @@ public class ServletPrincipal extends HttpServlet {
     private ProprietarioGranjaDAO proprietarioGranja;
     private RegistroAguaDAO registroAgua;
     private RegistroEnergiaDAO registroEnergia;
-    private TelefoneFuncionarioDAO telefoneFuncionario;
-    private TelefoneProprietarioDAO telefoneProprietario;
 
     @Override
     public void init(){
-        administrador = new AdministradorDAO();
-        empresa = new EmpresaDAO();
-        enderecoEmpresa = new EnderecoEmpresaDAO();
-        enderecoGranja = new EnderecoGranjaDAO();
-        enderecoProprietario = new EnderecoProprietarioDAO();
         funcionario = new FuncionarioDAO();
         granja = new GranjaDAO();
         lote = new LoteDAO();
@@ -42,8 +30,6 @@ public class ServletPrincipal extends HttpServlet {
         proprietarioGranja = new ProprietarioGranjaDAO();
         registroAgua = new RegistroAguaDAO();
         registroEnergia = new RegistroEnergiaDAO();
-        telefoneFuncionario = new TelefoneFuncionarioDAO();
-        telefoneProprietario = new TelefoneProprietarioDAO();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
