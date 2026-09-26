@@ -4,7 +4,7 @@ import java.util.regex.Pattern;
 public class Validador {
     // E-mail: padrão comum
     private static final Pattern EMAIL_PATTERN =
-            Pattern.compile("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$");
+            Pattern.compile("^[\\w.+-]+@[\\w-]+(\\.[\\w-]+)*\\.[a-zA-Z]{2,}$");
 
     // Telefone BR: aceita (11) 91234-5678, 11912345678, (11) 1234-5678, 1134567890, com/sem DDD e 9º dígito
     private static final Pattern TELEFONE_PATTERN =
