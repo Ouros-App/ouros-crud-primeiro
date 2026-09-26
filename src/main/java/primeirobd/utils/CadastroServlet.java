@@ -2,11 +2,13 @@ package primeirobd.utils;
 
 import primeirobd.model.ProprietarioGranja;
 import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.service.VerificacaoEmailDAO;
 import primeirobd.utils.EmailService;
 import primeirobd.utils.TokenUtil;
 import primeirobd.validadorREGEX.Validador;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -104,9 +106,9 @@ public class CadastroServlet extends HttpServlet {
         String token = TokenUtil.gerarToken();
 
 
-        // classes de verificar email, n ta pronta ainda
-        // VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
-        // verificacaoDao.salvarToken(usuarioId, token, LocalDateTime.now().plusHours(24));
+
+        VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
+        verificacaoDao.salvarToken(usuarioId, token, LocalDateTime.now().plusHours(24));
 
         // envia o emial (hell yeah)
         EmailService.enviarEmailVerificacao(email, token);

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="InterBack:war exploded" />
+      <artifact name="InterBack (1):war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -11,6 +11,8 @@
   <component name="ChangeListManager">
     <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/CadastroServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/CadastroServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,23 +56,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="7.512436799911132E-10" />
-      <entry key="MS500" value="0.015030961717480867" />
-      <entry key="S2" value="0.7093435443627074" />
-      <entry key="S5" value="2.778196234887005" />
-      <entry key="S10" value="4.6597225727462375" />
-      <entry key="S30" value="6.665817095500555" />
-      <entry key="S60" value="7.3005486395116685" />
-      <entry key="M2" value="7.641775517270754" />
-      <entry key="M5" value="7.854615747826677" />
-      <entry key="M10" value="7.926954130540121" />
-      <entry key="M15" value="7.951223794557618" />
-      <entry key="M30" value="7.975572427478918" />
-      <entry key="H1" value="7.99206068112961" />
-      <entry key="H2" value="9.009542893881372" />
-      <entry key="H4" value="24.764728244642452" />
-      <entry key="D1" value="270.1536913019466" />
-      <entry key="W1" value="584.7436238552964" />
+      <entry key="MS100" value="1.447474931524952E-7" />
+      <entry key="MS500" value="0.059218609833603185" />
+      <entry key="S2" value="1.9065252814725844" />
+      <entry key="S5" value="6.1591981029311285" />
+      <entry key="S10" value="14.119811825737878" />
+      <entry key="S30" value="31.33134491328033" />
+      <entry key="S60" value="39.37578250033397" />
+      <entry key="M2" value="44.31598805032264" />
+      <entry key="M5" value="47.62990072995521" />
+      <entry key="M10" value="48.79822215850164" />
+      <entry key="M15" value="49.195047971067076" />
+      <entry key="M30" value="49.59608998634673" />
+      <entry key="H1" value="49.858161717056944" />
+      <entry key="H2" value="50.68452859799651" />
+      <entry key="H4" value="57.26379630172664" />
+      <entry key="D1" value="270.45498435559426" />
+      <entry key="W1" value="618.0073486779553" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
@@ -82,33 +84,33 @@
       <entry key="S60" value="1.0" />
       <entry key="M2" value="1.0" />
       <entry key="M5" value="1.0" />
-      <entry key="M10" value="1.0" />
-      <entry key="M15" value="1.0" />
-      <entry key="M30" value="1.0000000016940318" />
-      <entry key="H1" value="1.0001646469109797" />
-      <entry key="H2" value="1.05827869956713" />
-      <entry key="H4" value="2.1662674407174" />
-      <entry key="D1" value="23.448005998031327" />
-      <entry key="W1" value="50.070232576476606" />
+      <entry key="M10" value="1.0000000000001943" />
+      <entry key="M15" value="1.000000003354796" />
+      <entry key="M30" value="1.00005792060163" />
+      <entry key="H1" value="1.0076118116108046" />
+      <entry key="H2" value="1.0923226625487148" />
+      <entry key="H4" value="1.6398323660903293" />
+      <entry key="D1" value="20.135138295353894" />
+      <entry key="W1" value="49.63724790776892" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.714410263893771E-4" />
-      <entry key="MS500" value="0.18091904217527222" />
-      <entry key="S2" value="1.2581071326803932" />
-      <entry key="S5" value="3.528217440870104" />
-      <entry key="S10" value="5.515270674050777" />
-      <entry key="S30" value="7.612026113782544" />
-      <entry key="S60" value="8.272841144029309" />
-      <entry key="M2" value="8.627709568345011" />
-      <entry key="M5" value="8.84893720651358" />
-      <entry key="M10" value="8.924106061045332" />
-      <entry key="M15" value="8.949323118381717" />
-      <entry key="M30" value="8.974621107512124" />
-      <entry key="H1" value="8.991749243965" />
-      <entry key="H2" value="10.067552662033826" />
-      <entry key="H4" value="26.930567341815202" />
-      <entry key="D1" value="293.60076713145463" />
-      <entry key="W1" value="634.8135828414411" />
+      <entry key="MS100" value="1.5133154086616676E-4" />
+      <entry key="MS500" value="0.19606702543347235" />
+      <entry key="S2" value="2.385678058753229" />
+      <entry key="S5" value="6.874043707165348" />
+      <entry key="S10" value="14.954906101220438" />
+      <entry key="S30" value="32.2673548699585" />
+      <entry key="S60" value="40.342026400511145" />
+      <entry key="M2" value="45.2985906791432" />
+      <entry key="M5" value="48.62280498794462" />
+      <entry key="M10" value="49.794650376594895" />
+      <entry key="M15" value="50.19266138676713" />
+      <entry key="M30" value="50.594951836243226" />
+      <entry key="H1" value="50.865171213007926" />
+      <entry key="H2" value="51.77652828150123" />
+      <entry key="H4" value="58.90335234963676" />
+      <entry key="D1" value="290.5893385983733" />
+      <entry key="W1" value="667.6443272576968" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -134,6 +136,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "TomEE Server.inter modulo.executor": "Run",
+    "Tomcat Server.InterModulo.executor": "Run",
     "Tomcat Server.interModulo.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
@@ -146,7 +149,7 @@
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
     "to.speed.mode.migration.done": "true"
@@ -158,6 +161,7 @@
         <entry key="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
           <value>
             <map>
+              <entry key="InterModulo" value="STOPPED" />
               <entry key="interModulo" value="STOPPED" />
             </map>
           </value>
@@ -166,18 +170,17 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration name="interModulo" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.26" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterModulo/servlet-principal" />
+    <configuration name="InterModulo" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.26" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="InterBack:war exploded">
+        <artifact name="InterBack (1):war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/InterModulo" />
+            <option name="CONTEXT_PATH" value="/InterBack" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="957b4ab1-65d3-4727-a519-77ed62cd86a3" />
+        <option name="BASE_DIRECTORY_NAME" value="c2be8384-6ba5-4e9e-860c-823d89ef22dd" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
@@ -185,7 +188,7 @@
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="58913" />
+        <option name="DEBUG_PORT" value="56006" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -250,7 +253,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="InterBack:war exploded" />
+          <artifact name="InterBack (1):war exploded" />
         </option>
       </method>
     </configuration>
