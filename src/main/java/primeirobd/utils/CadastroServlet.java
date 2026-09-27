@@ -1,5 +1,6 @@
 package primeirobd.utils;
 
+import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.ProprietarioGranja;
 import primeirobd.service.ProprietarioGranjaDAO;
 import primeirobd.service.VerificacaoEmailDAO;
@@ -90,7 +91,7 @@ public class CadastroServlet extends HttpServlet {
         }
 
         //senha criptogradada
-        String senhaHash = senha;
+        String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
 
         // salva o usuario
         ProprietarioGranja prg = new ProprietarioGranja();
