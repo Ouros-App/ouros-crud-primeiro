@@ -1,75 +1,21 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 20260083-ieg
-  Date: 30/08/2026
-  Time: 15:05
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" type="image/png" href="/img/inicio.svg">
+    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
-<div class="Layout">
-    <main>
-    <aside class="Sidebar">
-        <div class="SidebarTopo">
-            <span class="Crud">| CRUD</span>
-            <div class="LogoSidebar">
-                <img src="/img/Ouros.png" alt="logo do ouros">
-            </div>
-        </div>
+<a href="inicio.jsp" class="MenuItem inicio">
+    <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+    <a href="login.jsp" class="MenuItem">
+        <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
 
-        <nav class="Menu">
-
-            <a href="index.html" class="MenuItem inicio">
-                <span class="Icone"><img src="/img/inicio.svg" alt=""></span> Início
-            </a>
-            <a href="granjas.html" class="MenuItem">
-                <span class="Icone"><img src="/img/granja.svg" alt=""></span> Granjas
-            </a>
-            <a href="lotes.html" class="MenuItem">
-                <span class="Icone"><img src="/img/lotes.svg" alt=""></span> Lotes
-            </a>
-            <a href="funcionarios.html" class="MenuItem">
-                <span class="Icone"><img src="/img/fucionarios.svg" alt=""></span> Funcionários
-            </a>
-            <!-- <a href="vacinas.html" class="MenuItem">
-                <span class="Icone"><img src="/img/vacinas.svg" alt=""></span> Vacinas -->
-            </a>
-            <a href="registros.html" class="MenuItem">
-                <span class="Icone"><img src="/img/registros.svg" alt=""></span> Registros
-            </a>
-            <a href="metas.html" class="MenuItem">
-                <span class="Icone"><img src="/img/metas.svg" alt=""></span> Metas
-            </a>
-        </nav>
-
-        <div class="Usuario">
-            <img src="/img/vera-marcelina.svg" alt="foto do usuário">
-            <div class="UsuarioInfo">
-                <strong>User</strong>
-                <span>Admin</span>
-            </div>
-        </div>
-    </aside>
-
-
-    <div class="hero">
-        <div class="Titulo">
-            <h1></h1>
-        </div>
-        <div class="subtitulo">
-            <p></p>
-        </div>
-    </div>
-
-    </main>
-</div>
+</a>
+</a>
 </body>
 </html>
