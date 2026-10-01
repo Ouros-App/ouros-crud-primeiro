@@ -19,7 +19,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     public static final String DELETE_BY_ID =
             "DELETE FROM registro_energia WHERE id = ?";
     public static final String INSERT =
-            "INSERT INTO registro_energia (id,dt_registro,consumo,id_lote) VALUES (?,?,?,?)";
+            "INSERT INTO registro_energia (dt_registro,consumo,id_lote) VALUES (?,?,?)";
     public static final String UPDATE_ID =
             "UPDATE registro_energia SET id = ? WHERE id = ?";
     public static final String UPDATE_ID_LOTE =
@@ -105,11 +105,9 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     public String insert(RegistroEnergia ree) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-
-            preparoConsultaSQL.setInt(1, ree.getId());
-            preparoConsultaSQL.setDate(2, ree.getDtRegistro());
-            preparoConsultaSQL.setInt(3, ree.getConsumo());
-            preparoConsultaSQL.setInt(4, ree.getIdLote());
+            preparoConsultaSQL.setDate(1, ree.getDtRegistro());
+            preparoConsultaSQL.setInt(2, ree.getConsumo());
+            preparoConsultaSQL.setInt(3, ree.getIdLote());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {

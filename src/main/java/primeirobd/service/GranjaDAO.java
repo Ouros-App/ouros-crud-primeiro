@@ -15,7 +15,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String SELECT_REGIAO = "SELECT regiao FROM granja";
     public static final String SELECT_CAPACIDADE = "SELECT capacidade_aves FROM granja";
     public static final String DELETE_BY_ID = "DELETE FROM granja where id = ?";
-    public static final String INSERT = "INSERT INTO granja (id,nome,capacidade_aves,regiao,area_propriedade,id_empresa) values (?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO granja (nome,capacidade_aves,regiao,area_propriedade,id_empresa) values (?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE granja SET id = ? WHERE id = ?";
     public static final String UPDATE_NOME = "UPDATE granja SET nome = ? WHERE nome = ?";
     public static final String UPDATE_CAPACIDADE = "UPDATE granja SET capacidade_aves = ? WHERE capacidade_aves = ?";
@@ -120,12 +120,11 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public String insert(Granja gra){
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setInt(1, gra.getId());
-            preparoConsultaSQL.setString(2, gra.getNome());
-            preparoConsultaSQL.setInt(3, gra.getCapacidadeDeAves());
-            preparoConsultaSQL.setString(4, gra.getRegiao());
-            preparoConsultaSQL.setInt(5, gra.getAreaPropriedade());
-            preparoConsultaSQL.setInt(6, gra.getIdEmpresa());
+            preparoConsultaSQL.setString(1, gra.getNome());
+            preparoConsultaSQL.setInt(2, gra.getCapacidadeDeAves());
+            preparoConsultaSQL.setString(3, gra.getRegiao());
+            preparoConsultaSQL.setInt(4, gra.getAreaPropriedade());
+            preparoConsultaSQL.setInt(5, gra.getIdEmpresa());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 

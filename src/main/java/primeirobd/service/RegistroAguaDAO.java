@@ -20,7 +20,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     public static final String DELETE_BY_ID =
             "DELETE FROM registro_agua WHERE id = ?";
     public static final String INSERT =
-            "INSERT INTO registro_agua (id,dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?,?)";
+            "INSERT INTO registro_agua (dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?)";
     public static final String UPDATE_ID =
             "UPDATE registro_agua SET id = ? WHERE id = ?";
     public static final String UPDATE_ID_LOTE =
@@ -128,12 +128,10 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     public String insert(RegistroAgua rea) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-
-            preparoConsultaSQL.setInt(1, rea.getId());
-            preparoConsultaSQL.setDate(2, rea.getDtRegistro());
-            preparoConsultaSQL.setInt(3, rea.getHidrometroInicio());
-            preparoConsultaSQL.setInt(4, rea.getHidrometroFinal());
-            preparoConsultaSQL.setInt(5, rea.getIdLote());
+            preparoConsultaSQL.setDate(1, rea.getDtRegistro());
+            preparoConsultaSQL.setInt(2, rea.getHidrometroInicio());
+            preparoConsultaSQL.setInt(3, rea.getHidrometroFinal());
+            preparoConsultaSQL.setInt(4, rea.getIdLote());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {

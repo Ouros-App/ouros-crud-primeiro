@@ -37,6 +37,7 @@ public class VerificarEmailServlet extends HttpServlet {
                 && !registro.isUsado()
                 && registro.getExpiraEm().isAfter(LocalDateTime.now());
 
+
         if (tokenValido) {
             // marca o token como usado, pra impedir reaproveitamento do mesmo link
             verificacaoDao.marcarComoUsado(token);

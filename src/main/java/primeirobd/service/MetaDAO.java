@@ -17,7 +17,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
     public static final String DELETE_BY_ID = "DELETE FROM meta WHERE id = ?";
     public static final String INSERT =
-            "INSERT INTO meta (id,titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?,?)";
+            "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE meta SET id = ? WHERE id = ?";
     public static final String UPDATE_TITULO = "UPDATE meta SET titulo = ? WHERE titulo = ?";
     public static final String UPDATE_ID_GRANJA = "UPDATE meta SET id_granja = ? WHERE id_granja = ?";
@@ -122,17 +122,15 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     public String insert(Meta met) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-
-            preparoConsultaSQL.setInt(1, met.getId());
-            preparoConsultaSQL.setString(2, met.getTitulo());
-            preparoConsultaSQL.setString(3, met.getDescricao());
-            preparoConsultaSQL.setString(4, met.getTipoMeta());
-            preparoConsultaSQL.setString(5, met.getStatus());
-            preparoConsultaSQL.setFloat(6, met.getValorAlvo());
-            preparoConsultaSQL.setString(7, met.getRegiao());
-            preparoConsultaSQL.setString(8, met.getEstado());
-            preparoConsultaSQL.setBoolean(9, met.isIndividual());
-            preparoConsultaSQL.setInt(10, met.getIdGranja());
+            preparoConsultaSQL.setString(1, met.getTitulo());
+            preparoConsultaSQL.setString(2, met.getDescricao());
+            preparoConsultaSQL.setString(3, met.getTipoMeta());
+            preparoConsultaSQL.setString(4, met.getStatus());
+            preparoConsultaSQL.setFloat(5, met.getValorAlvo());
+            preparoConsultaSQL.setString(6, met.getRegiao());
+            preparoConsultaSQL.setString(7, met.getEstado());
+            preparoConsultaSQL.setBoolean(8, met.isIndividual());
+            preparoConsultaSQL.setInt(9, met.getIdGranja());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 

@@ -1,30 +1,32 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="Style.css?v=4">
-    <link rel="icon" type="image/png" href="img/granja.svg">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+
+    <base href="${pageContext.request.contextPath}/">
+    <link rel="stylesheet" href="Style.css?v=5">
+    <link rel="icon" type="image/svg+xml" href="img/granja.svg">
 </head>
 <body>
-
 <div class="LoginPage">
     <div class="LoginShell">
 
         <div class="LoginMarca">
-            <link rel="icon" type="image/png" href="img/Asa-icon.png">
             <div class="LoginDivisor"></div>
+
             <p class="LoginTagline">
-                CRUD para monitoramento de dados de forma mais <span class="destaque">eficiente.</span>
+                CRUD para monitoramento de dados de forma mais
+                <span class="destaque">eficiente.</span>
             </p>
 
             <ul class="LoginRecursos">
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M12 2.5c-3.5 4-6 7.4-6 10.7a6 6 0 0 0 12 0c0-3.3-2.5-6.7-6-10.7Z"></path>
                         </svg>
                     </span>
@@ -36,7 +38,7 @@
 
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M8 21h8"></path>
                             <path d="M12 17v4"></path>
                             <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"></path>
@@ -52,7 +54,7 @@
 
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M3 3v18h18"></path>
                             <path d="M7 15l4-4 3 3 5-6"></path>
                         </svg>
@@ -65,37 +67,50 @@
             </ul>
 
             <div class="MascoteLoginBox">
-                <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="mascote do Ouros">
+                <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
             </div>
         </div>
 
         <div class="LoginFormulario">
             <div class="LoginCabecalho">
-                <h1 class="LoginTitulo">Bem-vindo de volta !</h1>
+                <h1 class="LoginTitulo">Bem-vindo de volta!</h1>
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
 
-            <form action="login.jsp" method="post">
+            <form action="login" method="post">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
-                    <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
+                    <input class="LoginCampoInput" type="email" id="email" name="email"
+                           placeholder="seuemail@email.com" autocomplete="email" required>
                 </div>
 
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="senha">Senha</label>
-                    <input class="LoginCampoInput" type="password" id="senha" name="senha" placeholder="••••••••" required>
+                    <input class="LoginCampoInput" type="password" id="senha" name="senha"
+                           placeholder="••••••••" autocomplete="current-password" required>
                 </div>
 
                 <div class="LoginUtilitario">
                     <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
                 </div>
 
+                <br>
+                <br>
                 <button type="submit" class="LoginBotao">Continuar</button>
+
+                <c:if test="${param.erro == 'credenciais'}">
+                    <p class="LoginErro" role="alert">Email ou senha incorretos.</p>
+                </c:if>
+
+                <c:if test="${param.erro == 'naoverificado'}">
+                    <p class="LoginErro" role="alert">
+                        Confirme seu email antes de entrar. Verifique sua caixa de entrada.
+                    </p>
+                </c:if>
             </form>
         </div>
 
     </div>
 </div>
-
 </body>
 </html>

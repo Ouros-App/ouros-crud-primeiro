@@ -15,7 +15,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String SELECT_SETOR = "SELECT setor FROM funcionario";
     public static final String SELECT_EMAIL = "SELECT email FROM funcionario";
     public static final String DELETE_BY_ID = "DELETE FROM funcionario WHERE id = ?";
-    public static final String INSERT = "INSERT INTO funcionario (id,nome,cpf,email,setor,id_empresa) VALUES (?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO funcionario (nome,cpf,email,setor,id_empresa) VALUES (?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE funcionario SET id = ? WHERE id = ?";
     public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
@@ -112,12 +112,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public String insert(Funcionario fun) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setInt(1, fun.getId());
-            preparoConsultaSQL.setString(2, fun.getNome());
-            preparoConsultaSQL.setString(3, fun.getCpf());
-            preparoConsultaSQL.setString(4, fun.getEmail());
-            preparoConsultaSQL.setString(5, fun.getSetor());
-            preparoConsultaSQL.setInt(6, fun.getIdEmpresa());
+            preparoConsultaSQL.setString(1, fun.getNome());
+            preparoConsultaSQL.setString(2, fun.getCpf());
+            preparoConsultaSQL.setString(3, fun.getEmail());
+            preparoConsultaSQL.setString(4, fun.getSetor());
+            preparoConsultaSQL.setInt(5, fun.getIdEmpresa());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {

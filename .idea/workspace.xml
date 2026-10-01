@@ -10,12 +10,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef4e75ac-0ffa-4fbd-997f-542c0d7e3c5e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/ProprietarioGranjaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/ProprietarioGranjaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/GranjaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/GranjaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/ProprietarioGranjaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/ProprietarioGranjaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroAguaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroAguaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroEnergiaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/RegistroEnergiaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/VerificarEmailServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/VerificarEmailServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,74 +52,95 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.8975597571247067" />
-      <entry key="MS500" value="4.600858783644865" />
-      <entry key="S2" value="9.746987489829834" />
-      <entry key="S5" value="13.2477248854892" />
-      <entry key="S10" value="15.02559981391548" />
-      <entry key="S30" value="18.261498177691138" />
-      <entry key="S60" value="21.997126982445412" />
-      <entry key="M2" value="28.367590578251768" />
-      <entry key="M5" value="38.18664625324109" />
-      <entry key="M10" value="43.692015771520566" />
-      <entry key="M15" value="45.900023539502776" />
-      <entry key="M30" value="48.32816516018108" />
-      <entry key="H1" value="49.63205101777429" />
-      <entry key="H2" value="50.30781235274544" />
-      <entry key="H4" value="50.65182664256772" />
-      <entry key="D1" value="50.941680027563045" />
-      <entry key="W1" value="50.991661417288476" />
+      <entry key="MS100" value="1.0000000000179154" />
+      <entry key="MS500" value="1.0070899934009152" />
+      <entry key="S2" value="1.29017597859593" />
+      <entry key="S5" value="1.6096275470381516" />
+      <entry key="S10" value="1.780786492607391" />
+      <entry key="S30" value="1.92082569720504" />
+      <entry key="S60" value="1.959596632551949" />
+      <entry key="M2" value="1.9795900340357804" />
+      <entry key="M5" value="1.9922969011614469" />
+      <entry key="M10" value="2.0350565293190606" />
+      <entry key="M15" value="2.1638975059445134" />
+      <entry key="M30" value="2.743288981725333" />
+      <entry key="H1" value="3.8911461414526243" />
+      <entry key="H2" value="5.567039216931549" />
+      <entry key="H4" value="7.6191837552267145" />
+      <entry key="D1" value="55.33832999600662" />
+      <entry key="W1" value="125.17836656001163" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
       <entry key="S2" value="0.0" />
-      <entry key="S5" value="0.0" />
-      <entry key="S10" value="0.0" />
-      <entry key="S30" value="0.0" />
-      <entry key="S60" value="0.0" />
-      <entry key="M2" value="0.0" />
-      <entry key="M5" value="0.0" />
-      <entry key="M10" value="0.0" />
-      <entry key="M15" value="0.0" />
-      <entry key="M30" value="0.0" />
-      <entry key="H1" value="0.0" />
-      <entry key="H2" value="0.0" />
-      <entry key="H4" value="0.0" />
-      <entry key="D1" value="0.0" />
-      <entry key="W1" value="0.0" />
+      <entry key="S5" value="2.361902554741291E-226" />
+      <entry key="S10" value="1.5368482536481247E-113" />
+      <entry key="S30" value="2.486243511059384E-38" />
+      <entry key="S60" value="1.5767826454712722E-19" />
+      <entry key="M2" value="3.970872253638076E-10" />
+      <entry key="M5" value="1.736018574146466E-4" />
+      <entry key="M10" value="0.01317650914390762" />
+      <entry key="M15" value="0.055864180605810804" />
+      <entry key="M30" value="0.24508207563181605" />
+      <entry key="H1" value="0.5802973295292635" />
+      <entry key="H2" value="1.0048471706719382" />
+      <entry key="H4" value="1.5091846482006366" />
+      <entry key="D1" value="11.702067454553971" />
+      <entry key="W1" value="23.095571984995505" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.79090993768916" />
-      <entry key="MS500" value="4.550091070473455" />
-      <entry key="S2" value="9.718786220657606" />
-      <entry key="S5" value="13.231729591467817" />
-      <entry key="S10" value="15.016290892478102" />
-      <entry key="S30" value="18.25720293353128" />
-      <entry key="S60" value="21.994262801449928" />
-      <entry key="M2" value="28.365628159276174" />
-      <entry key="M5" value="38.18555606115179" />
-      <entry key="M10" value="43.69138686288302" />
-      <entry key="M15" value="45.89958197052016" />
-      <entry key="M30" value="48.3279321426353" />
-      <entry key="H1" value="49.631931229313594" />
-      <entry key="H2" value="50.3077516092201" />
-      <entry key="H4" value="50.65179605469843" />
-      <entry key="D1" value="50.94167489924363" />
-      <entry key="W1" value="50.991660683924096" />
+      <entry key="MS100" value="6.317247931971781E-10" />
+      <entry key="MS500" value="0.01591972054238117" />
+      <entry key="S2" value="0.5422929086478017" />
+      <entry key="S5" value="1.1752349131824946" />
+      <entry key="S10" value="1.530620002246936" />
+      <entry key="S30" value="1.8287354268023357" />
+      <entry key="S60" value="1.912364365471022" />
+      <entry key="M2" value="1.9556690846450213" />
+      <entry key="M5" value="1.9828247615378822" />
+      <entry key="M10" value="2.0432790761795148" />
+      <entry key="M15" value="2.216196210145788" />
+      <entry key="M30" value="2.9860155068515106" />
+      <entry key="H1" value="4.469777637429391" />
+      <entry key="H2" value="6.5707551326674025" />
+      <entry key="H4" value="9.127647139868412" />
+      <entry key="D1" value="67.0399532980401" />
+      <entry key="W1" value="148.27382528041204" />
     </decayedShown>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="3K5cwRtjnZavHChB1V08guejVdA" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Tomcat Server.InterBack.executor": "Run",
-    "git-widget-placeholder": "fix/cadastro",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feat/login",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "project.structure.side.proportion": "0.0",
+    "to.speed.mode.migration.done": "true"
   }
 }]]></component>
   <component name="RunDashboard">
@@ -205,7 +245,25 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.337" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.337" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ef4e75ac-0ffa-4fbd-997f-542c0d7e3c5e" name="Changes" comment="" />
+      <created>1790851142164</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1790851142164</updated>
+    </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

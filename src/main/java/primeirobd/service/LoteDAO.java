@@ -14,7 +14,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String SELECT_GANHO = "SELECT ganho FROM lote";
     //----------------------------------------------------------------------------------------
     public static final String DELETE_BY_ID = "DELETE FROM lote WHERE id = ?";
-    public static final String INSERT = "INSERT INTO lote (id, galinhas_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO lote (galinhas_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?)";
     //----------------------------------------------------------------------------------------
     public static final String UPDATE_ID = "UPDATE lote SET id = ? WHERE id = ?";
     public static final String UPDATE_ENTREGUES = "UPDATE lote SET galinhas_entregadas = ? WHERE galinhas_entregadas = ?";
@@ -130,15 +130,13 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     public String insert(Lote lot) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-
-            preparoConsultaSQL.setInt(1, lot.getId());
-            preparoConsultaSQL.setInt(2, lot.getGalinhasEntregadas());
-            preparoConsultaSQL.setInt(3, lot.getGalinhasRecebidas());
-            preparoConsultaSQL.setDate(4, lot.getDtNascimento());
-            preparoConsultaSQL.setDate(5, lot.getDtChegada());
-            preparoConsultaSQL.setDate(6, lot.getDtEntrega());
-            preparoConsultaSQL.setFloat(7, lot.getGanho());
-            preparoConsultaSQL.setInt(8, lot.getIdGranja());
+            preparoConsultaSQL.setInt(1, lot.getGalinhasEntregadas());
+            preparoConsultaSQL.setInt(2, lot.getGalinhasRecebidas());
+            preparoConsultaSQL.setDate(3, lot.getDtNascimento());
+            preparoConsultaSQL.setDate(4, lot.getDtChegada());
+            preparoConsultaSQL.setDate(5, lot.getDtEntrega());
+            preparoConsultaSQL.setFloat(6, lot.getGanho());
+            preparoConsultaSQL.setInt(7, lot.getIdGranja());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {

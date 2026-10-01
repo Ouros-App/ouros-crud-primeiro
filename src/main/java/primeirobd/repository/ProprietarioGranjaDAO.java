@@ -16,6 +16,7 @@ public interface ProprietarioGranjaDAO {
     boolean existsByEmail(String email);
     boolean existsByCpf(String cpf);
     void marcarEmailComoVerificado(int usuarioId);
+    ProprietarioGranja buscarPorEmail(String email);
     //-------------------------------------------
     String update_id(int idNew, int idOld);
     String update_email(String emailNew, String emailOld);
