@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ouros | Eficiência e Sustentabilidade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=7">
+    <link rel="stylesheet" href="landing.css?v=15">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -27,6 +27,8 @@
     </header>
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <img class="circulo hero-brilho-roxo" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="circulo hero-brilho-dourado" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
         <div class="decor" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
         <div class="hero-container">
 
@@ -49,10 +51,10 @@
             <h2 class="part2Title" id="desafios-title"><span>DESAFIOS</span><small>invisíveis na sua rede de produtores<br> integrados</small></h2>
 
             <div class="cards">
-                <article class="card card-1"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
-                <article class="card card-2"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
-                <article class="card card-3"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
-                <article class="card card-4"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
+                <article class="card card-1"><img class="card-linha" src="assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
+                <article class="card card-2"><img class="card-linha" src="assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
+                <article class="card card-3"><img class="card-linha" src="assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
+                <article class="card card-4"><img class="card-linha" src="assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
             </div>
 
         </div>
@@ -60,8 +62,10 @@
 
     <!-- FUNCIONAMENTO -->
     <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
+        <img class="circulo funcionamento-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="funcionamento-detalhes" src="assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
         <div class="landing-container">
-            <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo">FUNCIONAMENTO</h2>
+            <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
             <div class="funcionamento-grid">
                 <div class="funcionamento-visual" id="funcionamentoVisual" aria-live="polite">
                     <img id="funcionamentoImagem" src="assets/funcionamento-celular.svg" alt="Tela 1 do funcionamento para empresas">
@@ -73,17 +77,19 @@
                     </div>
                     <ol class="funcionamento-passos">
                         <li class="passo-destaque" data-passo="1">
-                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 1" aria-pressed="true"></button>
+                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 1" aria-pressed="true">1</button>
                             <h3 data-empresa="Substitua estimativas por dados primários reais" data-integrado="Registre dados reais da sua propriedade">Substitua estimativas por dados primários reais</h3>
                             <p data-empresa="Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural." data-integrado="Registre o consumo da sua propriedade e compartilhe dados reais com a empresa integradora.">Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural.</p>
+                            <span class="passo-ligacao" aria-hidden="true"></span>
                         </li>
                         <li data-passo="2">
-                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 2" aria-pressed="false"></button>
+                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 2" aria-pressed="false">2</button>
                             <h3 data-empresa="Identifique e priorize os fornecedores mais eficientes" data-integrado="Acompanhe seu desempenho entre os integrados">Identifique e priorize os fornecedores mais eficientes</h3>
                             <p data-empresa="Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras." data-integrado="Consulte seus indicadores e veja oportunidades para melhorar seus resultados.">Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras.</p>
+                            <span class="passo-ligacao" aria-hidden="true"></span>
                         </li>
                         <li data-passo="3">
-                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 3" aria-pressed="false"></button>
+                            <button class="passo-botao" type="button" aria-label="Selecionar etapa 3" aria-pressed="false">3</button>
                             <h3 data-empresa="Monitore suas metas ESG com precisão" data-integrado="Acompanhe metas de sustentabilidade">Monitore suas metas ESG com precisão</h3>
                             <p data-empresa="Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores." data-integrado="Visualize o progresso dos indicadores ambientais e de consumo da sua granja.">Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores.</p>
                         </li>
@@ -201,7 +207,7 @@
     <!-- PLANOS -->
     <section class="planos" id="planos" aria-labelledby="planos-titulo">
         <div class="landing-container">
-            <h2 class="secao-titulo secao-titulo--dourado" id="planos-titulo">PLANOS</h2>
+            <h2 class="secao-titulo secao-titulo--dourado" id="planos-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>PLANOS</h2>
 
             <div class="planos-grid">
                 <article class="plano-card">
@@ -253,6 +259,9 @@
 
     <!-- PERGUNTAS FREQUENTES -->
     <section class="faq" id="faq" aria-labelledby="faqTitulo">
+        <img class="circulo faq-brilho faq-brilho-um" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="circulo faq-brilho faq-brilho-dois" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="circulo faq-brilho faq-brilho-tres" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <div class="landing-container faq-container">
             <p class="faq-kicker">DÚVIDAS FREQUENTES</p>
             <h2 class="secao-titulo faq-titulo" id="faqTitulo">FAQ</h2>
@@ -294,7 +303,6 @@
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
                 <span class="faq-ajuda-icone" aria-hidden="true"><img src="assets/balao-falas.png" alt=""></span>
                 <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudar, garantindo que você tenha a melhor experiência possível.</span></span>
-                <span class="faq-ajuda-mascote"><img src="assets/midas%20-%20d%C3%BAvidas_.png" alt="Mascote Midas com uma placa de dúvidas"></span>
             </aside>
         </div>
     </section>
@@ -327,7 +335,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js" defer></script>
+    <script src="landing.js?v=8" defer></script>
 </body>
 
 </html>

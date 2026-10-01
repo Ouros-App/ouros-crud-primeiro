@@ -116,6 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let pointerStart = 0;
         let scrollStart = 0;
         let dragging = false;
+        let animationFrame = 0;
+        let animationStartedAt = 0;
+        let animationFrom = 0;
+        let animationTo = 0;
 
         const initializeInfiniteSlider = () => {
             featureSlider.querySelectorAll('[data-loop-clone="true"]').forEach((clone) => clone.remove());
@@ -157,18 +161,48 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
+        const animateSlider = (time) => {
+            if (!animationStartedAt) {
+                animationStartedAt = time;
+            }
+
+            const progress = Math.min((time - animationStartedAt) / 850, 1);
+            const easedProgress = progress * progress * (3 - 2 * progress);
+            featureSlider.scrollLeft = animationFrom + (animationTo - animationFrom) * easedProgress;
+
+            if (progress < 1) {
+                animationFrame = window.requestAnimationFrame(animateSlider);
+                return;
+            }
+
+            animationFrame = 0;
+            animationStartedAt = 0;
+            normalizeInfiniteSlider();
+        };
+
+        const slideBy = (distance) => {
+            window.cancelAnimationFrame(animationFrame);
+            animationStartedAt = 0;
+            animationFrom = featureSlider.scrollLeft;
+            animationTo = animationFrom + distance;
+            animationFrame = window.requestAnimationFrame(animateSlider);
+        };
+
         featureSlider.addEventListener('scroll', () => {
-            if (!cycleWidth || dragging) {
+            if (!cycleWidth || dragging || animationFrame) {
                 return;
             }
             normalizeInfiniteSlider();
         }, { passive: true });
 
         featureSlider.addEventListener('pointerdown', (event) => {
-            if (event.pointerType !== 'mouse' || event.button !== 0) {
+            if (event.pointerType === 'mouse' && event.button !== 0) {
                 return;
             }
 
+            window.cancelAnimationFrame(animationFrame);
+            animationFrame = 0;
+            animationStartedAt = 0;
             dragging = true;
             pointerStart = event.clientX;
             scrollStart = featureSlider.scrollLeft;
@@ -178,7 +212,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         featureSlider.addEventListener('pointermove', (event) => {
             if (dragging) {
-                featureSlider.scrollLeft = scrollStart - (event.clientX - pointerStart);
+                featureSlider.scrollLeft = scrollStart - (event.clientX - pointerStart) * 0.7;
             }
         });
 
@@ -200,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const firstCard = originalCards[0];
             const gap = parseFloat(getComputedStyle(featureSlider).columnGap) || 20;
             const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : featureSlider.clientWidth;
-            featureSlider.scrollBy({ left: event.key === 'ArrowRight' ? distance : -distance, behavior: 'smooth' });
+            slideBy(event.key === 'ArrowRight' ? distance : -distance);
         });
 
         document.addEventListener('click', (event) => {
@@ -213,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const gap = parseFloat(getComputedStyle(featureSlider).columnGap) || 20;
             const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : featureSlider.clientWidth;
             const direction = arrow.dataset.sliderDirecao === 'anterior' ? -1 : 1;
-            featureSlider.scrollBy({ left: distance * direction, behavior: 'smooth' });
+            slideBy(distance * direction);
         });
 
         let resizeTimer;

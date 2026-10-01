@@ -1,14 +1,4 @@
-/* CORES */
-
-:root {
-    --azul: #0e0c23;
-    --azul-2: #151230;
-    --creme: #faf7ec;
-    --dourado: #cf9d23;
-    --dourado-claro: #dba72d;
-}
-
-/* ESTILOS GERAIS */
+/* Geral */
 
 * {
     box-sizing: border-box;
@@ -22,16 +12,16 @@ html {
 body {
     overflow-x: hidden;
     margin: 0;
-    background: var(--creme);
-    font-family: Arial,sans-serif;
-    color: var(--azul);
+    background: #faf7ec;
+    font-family: Arial, sans-serif;
+    color: #0e0c23;
 }
 
 a {
     text-decoration: none;
 }
 
-/* CABEÇALHO E NAVEGAÇÃO */
+/* Header */
 
 #header {
     position: absolute;
@@ -51,7 +41,7 @@ a {
 
 .logo img {
     display: block;
-    width: 195px;
+    width: 150px;
     height: auto;
 }
 
@@ -64,14 +54,14 @@ a {
 
 #header nav a,
 .acoes a {
-    color: #fff;
+    color: #ffffff;
     font-size: 15px;
     white-space: nowrap;
 }
 
 #header nav a:hover,
 .entrar:hover {
-    color: var(--dourado);
+    color: #cf9d23;
 }
 
 #header .sobre {
@@ -87,13 +77,13 @@ a {
 }
 
 .acoes .btcadastro {
-    background: var(--dourado);
-    color: var(--azul);
+    background: #cf9d23;
+    color: #0e0c23;
     border-radius: 5px;
     padding: 7px 12px;
 }
 
-/* BOTÃO DO MENU MOBILE */
+/* Menu */
 
 .menu-mobile {
     display: none;
@@ -106,24 +96,52 @@ a {
     display: block;
     width: 24px;
     height: 2px;
-    background: #fff;
+    background: #ffffff;
     margin: 5px 0;
 }
 
-/* SEÇÃO PRINCIPAL */
+/* Hero */
 
 .hero {
     position: relative;
     isolation: isolate;
-    height: max(720px, calc(100vh + 100px));
+    height: calc(100vh + 100px);
+    min-height: 720px;
     overflow: hidden;
-    background: radial-gradient(ellipse at 76% 77%,#9c742d55, transparent 34%)
-    ,radial-gradient(ellipse at 75% 48%,#261b45aa,transparent 45%)
-    ,var(--azul);
+    background-color: #0e0c23;
+}
+
+/* Círculos desfocados dos fundos */
+
+.circulo {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    object-fit: contain;
+    filter: blur(55px) opacity(.34);
+}
+
+.hero-brilho-roxo {
+    z-index: 0;
+    top: 4%;
+    right: 2%;
+    width: min(70vw, 920px);
+    height: 92%;
+    filter: blur(55px) opacity(.38);
+}
+
+.hero-brilho-dourado {
+    z-index: 0;
+    top: 14%;
+    right: -4%;
+    width: min(48vw, 620px);
+    height: 70%;
+    filter: blur(55px) opacity(.18);
 }
 
 .hero-container {
     position: relative;
+    z-index: 2;
     width: 100%;
     max-width: 1600px;
     height: 100%;
@@ -134,7 +152,7 @@ a {
     padding: clamp(150px,13vw,205px) 4% 80px;
 }
 
-/* TEXTO DA SEÇÃO PRINCIPAL */
+/* Texto do hero */
 
 .hero-content {
     position: relative;
@@ -143,7 +161,7 @@ a {
 
 .hero-content h1 {
     margin: 0;
-    color: #fff;
+    color: #ffffff;
     font-size: clamp(44px,4.65vw,74px);
     line-height: 1.04;
     font-weight: 850;
@@ -156,18 +174,18 @@ a {
 }
 
 .hero-content h1 strong {
-    color: var(--dourado);
+    color: #cf9d23;
     font-weight: 900;
 }
 
 .subTitle {
     margin: 38px 0 0;
-    color: #fff;
+    color: #ffffff;
     font-size: clamp(14px,1.35vw,20px);
     line-height: 1.5;
 }
 
-/* CELULAR E ELEMENTOS VISUAIS */
+/* Imagens do hero */
 
 .hero-visual {
     position: relative;
@@ -196,11 +214,12 @@ a {
     opacity: .85;
 }
 
-/* ESTRELAS DECORATIVAS */
+/* Estrelinhas decorativas do hero */
 
 .decor {
     position: absolute;
     inset: 0;
+    z-index: 1;
     pointer-events: none;
 }
 
@@ -210,7 +229,8 @@ a {
     height: 5px;
     border-radius: 50%;
     background: #c49514;
-    filter: blur(3px);
+    filter: blur(2px);
+    opacity: .65;
 }
 
 .star-1 {
@@ -243,7 +263,7 @@ a {
     top: 79%;
 }
 
-/* ONDA DE TRANSIÇÃO */
+/* Onda abaixo do hero */
 
 .hero-wave {
     position: absolute;
@@ -260,10 +280,10 @@ a {
     display: block;
 }
 
-/* SEÇÃO DE DESAFIOS */
+/* Desafios */
 
 .part2 {
-    background: var(--creme);
+    background: #faf7ec;
     padding: 70px 4% 110px;
     min-height: 700px;
 }
@@ -293,7 +313,7 @@ a {
     font-weight: 750;
 }
 
-/* CARDS DE DESAFIOS */
+/* Cards de desafios */
 
 .cards {
     display: grid;
@@ -308,20 +328,29 @@ a {
     border: 0;
     border-radius: 12px;
     overflow: hidden;
-    background: linear-gradient(135deg,#686c70 0%,#41464d 49.5%,#16132c 50%);
 }
 
-.cards .card::after {
-    content: '';
+.card-linha {
     position: absolute;
-    inset: 0;
-    background: url('assets/linhaGold.svg') center/130% auto no-repeat;
+    top: 50%;
+    left: -15%;
+    z-index: 1;
+    width: 130%;
+    height: auto;
+    object-fit: contain;
     opacity: .65;
     pointer-events: none;
+    transform: translateY(-50%);
 }
 
-.cards .card:nth-child(even) {
-    background: linear-gradient(45deg,#686c70 0%,#41464d 49.5%,#16132c 50%);
+.card-diagonal {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
 .card-content {
@@ -329,9 +358,9 @@ a {
     right: 7%;
     bottom: 7%;
     width: 70%;
-    z-index: 1;
+    z-index: 2;
     text-align: right;
-    color: white;
+    color: #ffffff;
 }
 
 .card:nth-child(even) .card-content {
@@ -352,15 +381,15 @@ a {
     margin: 0 0 4px;
 }
 
-/* FOCO DA NAVEGAÇÃO */
+/* Destaque ao navegar pelo teclado */
 
 #header a:focus-visible,
 .menu-mobile:focus-visible {
-    outline: 2px solid var(--dourado);
+    outline: 2px solid #cf9d23;
     outline-offset: 5px;
 }
 
-/* RESPONSIVIDADE — TABLET */
+/* Ajustes para telas médias */
 
 @media (max-width:1100px) {
     #header {
@@ -388,10 +417,6 @@ a {
         padding-top: 155px;
     }
 
-    .hero {
-        height: max(720px, calc(100vh + 100px));
-    }
-
     .hero-visual {
         margin-top: 0;
     }
@@ -406,7 +431,7 @@ a {
 
 }
 
-/* RESPONSIVIDADE — CELULAR */
+/* Ajustes para celulares */
 
 @media (max-width:760px) {
     #header {
@@ -436,7 +461,7 @@ a {
         align-items: stretch;
         padding: 22px;
         background: #19162f;
-        border: 1px solid #ffffff24;
+        border: 1px solid #39364a;
         border-radius: 12px;
         gap: 18px;
     }
@@ -458,8 +483,8 @@ a {
     }
 
     .hero {
-        height: auto;
-        min-height: max(850px, calc(100vh + 100px));
+        height: calc(100vh + 100px);
+        min-height: 850px;
     }
 
     .hero-container {
@@ -523,7 +548,7 @@ a {
 
 }
 
-/* ACESSIBILIDADE — MOVIMENTO REDUZIDO */
+/* Respeita a preferência por menos movimento */
 
 @media (prefers-reduced-motion:reduce) {
     html {
@@ -532,25 +557,25 @@ a {
 
 }
 
-/* Substitua os arquivos provisórios em assets pelas imagens finais. */
+/* Imagens provisórias dos desafios */
 
 .cards .card.card-1 {
-    background: linear-gradient(135deg,transparent 49.5%,#16132c 50%),url('assets/gastos.svg') center/cover;
+    background: url('assets/gastos.svg') center/cover;
 }
 
 .cards .card.card-2 {
-    background: linear-gradient(45deg,transparent 49.5%,#16132c 50%),url('assets/desperdicio.svg') center/cover;
+    background: url('assets/desperdicio.svg') center/cover;
 }
 
 .cards .card.card-3 {
-    background: linear-gradient(135deg,transparent 49.5%,#16132c 50%),url('assets/estimativas.svg') center/cover;
+    background: url('assets/estimativas.svg') center/cover;
 }
 
 .cards .card.card-4 {
-    background: linear-gradient(45deg,transparent 49.5%,#16132c 50%),url('assets/papel.svg') center/cover;
+    background: url('assets/papel.svg') center/cover;
 }
 
-/* ESTRUTURA DAS SEÇÕES INFERIORES */
+/* Container e títulos das seções inferiores */
 
 .landing-container {
     width: 92%;
@@ -560,55 +585,55 @@ a {
 
 .secao-titulo {
     margin: 0;
-    color: var(--azul);
+    color: #0e0c23;
     font-size: clamp(28px, 3.4vw, 52px);
     font-weight: 900;
     line-height: 1.1;
 }
 
 .secao-titulo--dourado {
-    color: var(--dourado);
+    color: #cf9d23;
 }
 
-.secao-titulo--dourado::before {
-    content: "";
+.secao-titulo-linha {
     display: block;
     width: 108px;
     height: 1px;
     margin-bottom: 20px;
-    background: var(--dourado);
+    background: #cf9d23;
 }
 
-/* FUNCIONAMENTO */
+/* Funcionamento */
 
 .funcionamento {
     position: relative;
     overflow: hidden;
     padding: 60px 0 50px;
-    color: #fff;
-    background: radial-gradient(ellipse at 28% 60%, #30236688, transparent 38%), var(--azul);
+    color: #ffffff;
+    background-color: #0e0c23;
 }
 
-.funcionamento::before,
-.funcionamento::after {
-    content: "";
+.funcionamento-brilho {
+    z-index: 0;
+    top: 0;
+    left: 12%;
+    width: min(70vw, 900px);
+    height: 100%;
+}
+
+.funcionamento-detalhes {
     position: absolute;
-    width: 400px;
-    height: 190px;
-    border: 1px solid var(--dourado);
-    border-radius: 50%;
-    transform: rotate(24deg);
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
     pointer-events: none;
 }
 
-.funcionamento::before {
-    top: -125px;
-    right: -75px;
-}
-
-.funcionamento::after {
-    bottom: -80px;
-    left: -250px;
+.funcionamento > .landing-container {
+    position: relative;
+    z-index: 1;
 }
 
 .funcionamento-grid {
@@ -643,7 +668,7 @@ a {
     max-width: 440px;
 }
 
-/* SELETOR DE PERFIL — VISUAL ESTÁTICO */
+/* Botões Empresa e Integrado */
 
 .perfil-opcoes {
     display: flex;
@@ -661,35 +686,32 @@ a {
     border: 0;
     border-radius: 30px;
     background: transparent;
-    color: #fff;
+    color: #ffffff;
     font: inherit;
     font-size: 17px;
 }
 
 .perfil-opcao.selecionado {
-    background: var(--dourado);
-    color: var(--azul);
+    background: #cf9d23;
+    color: #0e0c23;
     font-weight: 700;
 }
 
-/* ETAPAS DO FUNCIONAMENTO */
+/* Etapas clicáveis do funcionamento */
 
 .funcionamento-passos {
     list-style: none;
-    counter-reset: etapa;
     padding: 0;
     margin: 0;
 }
 
 .funcionamento-passos li {
     position: relative;
-    counter-increment: etapa;
     padding: 0 0 36px 64px;
     color: #a6a3b6;
 }
 
-.funcionamento-passos li:not(:last-child)::after {
-    content: "";
+.passo-ligacao {
     position: absolute;
     top: 34px;
     bottom: 0;
@@ -699,7 +721,7 @@ a {
 }
 
 .funcionamento-passos .passo-destaque {
-    color: #fff;
+    color: #ffffff;
 }
 
 .passo-botao {
@@ -712,9 +734,9 @@ a {
     width: 34px;
     height: 34px;
     padding: 0;
-    border: 1px solid var(--dourado);
+    border: 1px solid #cf9d23;
     border-radius: 50%;
-    color: #fff;
+    color: #ffffff;
     background: transparent;
     font: inherit;
     font-size: 16px;
@@ -722,17 +744,13 @@ a {
 }
 
 .passo-botao:focus-visible {
-    outline: 2px solid var(--dourado);
+    outline: 2px solid #cf9d23;
     outline-offset: 4px;
 }
 
-.passo-botao::before {
-    content: counter(etapa);
-}
-
 .funcionamento-passos .passo-destaque .passo-botao {
-    background: var(--dourado);
-    color: var(--azul);
+    background: #cf9d23;
+    color: #0e0c23;
 }
 
 .funcionamento-passos h3 {
@@ -748,11 +766,11 @@ a {
     line-height: 1.5;
 }
 
-/* FUNCIONALIDADES */
+/* Funcionalidades */
 
 .funcionalidades {
     padding: 90px 0 60px;
-    background: var(--creme);
+    background: #faf7ec;
 }
 
 .funcionalidades-faixa {
@@ -766,10 +784,7 @@ a {
     -ms-overflow-style: none;
     cursor: grab;
     user-select: none;
-}
-
-.funcionalidades-faixa::-webkit-scrollbar {
-    display: none;
+    touch-action: pan-y;
 }
 
 .funcionalidades-faixa.arrastando {
@@ -814,11 +829,11 @@ a {
     color: #252331;
 }
 
-/* RANKING E SUSTENTABILIDADE */
+/* Seção do ranking */
 
 .ranking {
     padding: 110px 0 140px;
-    background: var(--creme);
+    background: #faf7ec;
 }
 
 .ranking-grid {
@@ -854,7 +869,7 @@ a {
     line-height: 1.5;
 }
 
-/* CÁLCULO DO RANKING */
+/* Bloco de cálculo do ranking */
 
 .ranking-calculo {
     display: grid;
@@ -864,13 +879,13 @@ a {
     margin-top: 100px;
     padding: 30px 40px;
     border-radius: 30px;
-    background: var(--azul);
-    color: #fff;
+    background: #0e0c23;
+    color: #ffffff;
 }
 
 .calculo-explicacao h3 {
     margin: 0 0 30px;
-    color: var(--dourado);
+    color: #cf9d23;
     font-size: 28px;
     font-weight: 800;
 }
@@ -903,16 +918,16 @@ a {
     padding: 5px 8px;
     border: 1px solid #927431;
     border-radius: 3px;
-    color: var(--dourado);
+    color: #cf9d23;
     font-size: 13px;
 }
 
-/* PLANOS */
+/* Planos */
 
 .planos {
     padding: 55px 0 85px;
-    background: var(--azul);
-    color: #fff;
+    background: #0e0c23;
+    color: #ffffff;
 }
 
 .planos-grid {
@@ -936,7 +951,7 @@ a {
 
 .plano-card h3 {
     margin: 0 0 12px;
-    color: var(--dourado);
+    color: #cf9d23;
     font-size: 29px;
     font-weight: 800;
 }
@@ -960,28 +975,28 @@ a {
     padding: 14px 18px;
     border: 1px solid #343366;
     border-radius: 6px;
-    color: #fff;
+    color: #ffffff;
     background: #10152e;
     font: inherit;
     font-size: 13px;
 }
 
-/* DESTAQUE DOS PLANOS COM MOUSE E TECLADO */
+/* Destaque de um plano ao passar o mouse ou focar */
 
 .plano-card:hover,
 .plano-card:focus-within,
 .plano-card.plano-selecionado {
     transform: scale(1.035);
-    border-color: var(--dourado);
-    background: linear-gradient(120deg, #0e142c, #09214d, #0e142c);
+    border-color: #cf9d23;
+    background: linear-gradient(120deg, #0e142c 0%, #09214d 100%);
 }
 
 .plano-card:hover .plano-agendar,
 .plano-card:focus-within .plano-agendar,
 .plano-card.plano-selecionado .plano-agendar {
-    background: var(--dourado);
-    border-color: var(--dourado);
-    color: var(--azul);
+    background: #cf9d23;
+    border-color: #cf9d23;
+    color: #0e0c23;
 }
 
 .plano-agendar:focus-visible,
@@ -989,7 +1004,7 @@ a {
 .faq-pergunta:focus-visible,
 .calculadora-planos button:focus-visible,
 .rodape a:focus-visible {
-    outline: 2px solid var(--dourado);
+    outline: 2px solid #cf9d23;
     outline-offset: 5px;
 }
 
@@ -999,7 +1014,7 @@ a {
     }
 }
 
-/* SIMULADOR DE PLANOS */
+/* Calculadora de preço */
 
 .calculadora-planos {
     margin-top: 38px;
@@ -1007,7 +1022,7 @@ a {
     border: 1px solid #282444;
     border-radius: 20px;
     background: #17152f;
-    color: #fff;
+    color: #ffffff;
 }
 
 .calculadora-cabecalho {
@@ -1019,7 +1034,7 @@ a {
 
 .calculadora-kicker {
     margin: 0 0 7px;
-    color: var(--dourado);
+    color: #cf9d23;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -1049,7 +1064,7 @@ a {
     padding: 10px 13px;
     border: 1px solid #514b6d;
     border-radius: 8px;
-    color: #fff;
+    color: #ffffff;
     background: #0e0c23;
     font: inherit;
 }
@@ -1057,10 +1072,10 @@ a {
 .calcular-preco {
     min-height: 46px;
     padding: 10px 18px;
-    border: 1px solid var(--dourado);
+    border: 1px solid #cf9d23;
     border-radius: 8px;
-    color: var(--azul);
-    background: var(--dourado);
+    color: #0e0c23;
+    background: #cf9d23;
     font: inherit;
     font-weight: 700;
     cursor: pointer;
@@ -1069,38 +1084,69 @@ a {
 .resultado-preco {
     margin: 20px 0 0;
     padding-top: 16px;
-    border-top: 1px solid #ffffff20;
+    border-top: 1px solid #403e50;
     color: #e2dfeb;
     font-size: 15px;
     line-height: 1.6;
 }
 
 .resultado-preco strong {
-    color: var(--dourado-claro);
+    color: #dba72d;
 }
 
-/* FAQ E JANELA DE AJUDA */
+/* FAQ */
 
 .faq {
+    position: relative;
+    overflow: hidden;
     padding: 94px 0 100px;
-    color: #fff;
-    background: radial-gradient(ellipse at 50% 20%, #1d1940 0%, #0e0c23 66%);
+    color: #ffffff;
+    background: linear-gradient(120deg, #1d1940 0%, #0e0c23 100%);
 }
 
 .faq-container {
+    position: relative;
+    z-index: 1;
     max-width: 980px;
+}
+
+.faq-brilho {
+    z-index: 0;
+    width: min(66vw, 820px);
+    height: 680px;
+}
+
+.faq-brilho-um {
+    top: -8%;
+    right: -18%;
+}
+
+.faq-brilho-dois {
+    top: 34%;
+    left: -25%;
+    width: min(56vw, 680px);
+    height: 600px;
+    filter: blur(55px) opacity(.25);
+}
+
+.faq-brilho-tres {
+    right: -23%;
+    bottom: -14%;
+    width: min(62vw, 760px);
+    height: 680px;
+    filter: blur(55px) opacity(.23);
 }
 
 .faq-kicker {
     margin: 0 0 8px;
-    color: var(--dourado);
+    color: #cf9d23;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 1.8px;
 }
 
 .faq-titulo {
-    color: #fff;
+    color: #ffffff;
 }
 
 .faq-lista {
@@ -1111,9 +1157,9 @@ a {
 
 .faq-item {
     overflow: hidden;
-    border: 1px solid #ffffff32;
+    border: 1px solid #514f60;
     border-radius: 9px;
-    background: #ffffff12;
+    background: #2d2a43;
 }
 
 .faq-item h3 {
@@ -1129,7 +1175,7 @@ a {
     gap: 20px;
     padding: 13px 18px;
     border: 0;
-    color: #fff;
+    color: #ffffff;
     background: transparent;
     font: inherit;
     font-size: 15px;
@@ -1153,7 +1199,7 @@ a {
 }
 
 .faq-pergunta[aria-expanded="true"] {
-    color: var(--dourado-claro);
+    color: #dba72d;
 }
 
 .faq-pergunta[aria-expanded="true"] span {
@@ -1186,16 +1232,8 @@ a {
     border: 1px solid #282342;
     border-radius: 20px;
     color: #211704;
-    background: linear-gradient(135deg, #8e652b 0%, #c69543 55%, #dda94f 100%);
+    background: linear-gradient(135deg, #80541f 0%, #b17a2c 38%, #d9aa53 54%, #a6722c 76%, #80541f 100%);
     text-align: center;
-}
-
-.faq-ajuda::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, transparent 45%, #f8d47733 55%, transparent 74%);
-    pointer-events: none;
 }
 
 .faq-ajuda-icone {
@@ -1204,7 +1242,7 @@ a {
     grid-row: 1;
     justify-self: center;
     width: 62px;
-    color: var(--dourado);
+    color: #cf9d23;
 }
 
 .faq-ajuda-icone img {
@@ -1250,11 +1288,11 @@ a {
 
 
 
-/* RODAPÉ */
+/* Rodapé */
 
 .rodape {
     padding: 66px 0 26px;
-    color: #fff;
+    color: #ffffff;
     background: #05050b;
 }
 
@@ -1286,7 +1324,7 @@ a {
 
 .rodape-coluna h2 {
     margin: 0 0 5px;
-    color: #fff;
+    color: #ffffff;
     font-size: 15px;
     font-weight: 600;
 }
@@ -1305,7 +1343,7 @@ a {
 
 .rodape-coluna a:hover,
 .rodape-base a:hover {
-    color: var(--dourado-claro);
+    color: #dba72d;
 }
 
 .rodape-base {
@@ -1313,7 +1351,7 @@ a {
     justify-content: space-between;
     gap: 20px;
     padding-top: 22px;
-    border-top: 1px solid #ffffff28;
+    border-top: 1px solid #45434f;
     color: #8e8b96;
     font-size: 13px;
 }
@@ -1322,7 +1360,7 @@ a {
     color: #c3c0ca;
 }
 
-/* RESPONSIVIDADE DAS SEÇÕES INFERIORES */
+/* Ajustes responsivos das seções inferiores */
 
 @media (max-width: 900px) {
     .funcionamento-grid,
