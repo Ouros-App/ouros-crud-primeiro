@@ -23,11 +23,10 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     public static final String UPDATE_ID = "UPDATE proprietario_granja SET id = ? WHERE id = ?";
     public static final String UPDATE_EMAIL = "UPDATE proprietario_granja SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE proprietario_granja SET nome = ? WHERE nome = ?";
-    public static final String UPDATE_SENHA = "UPDATE proprietario_granja SET senha = ? WHERE senha = ?";
-    public static final String UPDATE_ID_GRANJA = "UPDATE proprietario_granja SET id_granja = ? WHERE id_granja = ?";
+     public static final String UPDATE_ID_GRANJA = "UPDATE proprietario_granja SET id_granja = ? WHERE id_granja = ?";
     public static final String UPDATE_EMAIL_VERIFICADO = "UPDATE proprietario_granja SET email_verificado = true WHERE id = ?";
     public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,id_granja,email_verificado FROM proprietario_granja WHERE email = ?";
-
+    private static final String UPDATE_SENHA = "UPDATE proprietario_granja SET senha = ? WHERE id = ?";
 
     public List<ProprietarioGranja> select_all() {
         List<ProprietarioGranja> informacoes = new ArrayList<>();
@@ -282,6 +281,18 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar usuário por email.\n" + e.getMessage());
+        }
+    }
+    public void atualizarSenha(int usuarioId, String senhaHash) {
+        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(UPDATE_SENHA)) {
+
+            stmt.setString(1, senhaHash);
+            stmt.setInt(2, usuarioId);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar senha.\n" + e.getMessage());
         }
     }
 }

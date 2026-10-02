@@ -1,13 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esqueci minha senha</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+
+    <base href="${pageContext.request.contextPath}/">
+    <link rel="stylesheet" href="Style.css?v=5">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
 
@@ -24,7 +26,7 @@
             <ul class="LoginRecursos">
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M12 2.5c-3.5 4-6 7.4-6 10.7a6 6 0 0 0 12 0c0-3.3-2.5-6.7-6-10.7Z"></path>
                         </svg>
                     </span>
@@ -36,7 +38,7 @@
 
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M8 21h8"></path>
                             <path d="M12 17v4"></path>
                             <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"></path>
@@ -52,7 +54,7 @@
 
                 <li class="LoginRecursoItem">
                     <span class="LoginRecursoIcone">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <path d="M3 3v18h18"></path>
                             <path d="M7 15l4-4 3 3 5-6"></path>
                         </svg>
@@ -73,13 +75,32 @@
                 <p class="LoginSubtitulo">Digite seu e-mail e enviaremos um link para redefinir sua senha</p>
             </div>
 
-            <form action="RecuperarSenha.jsp" method="post">
+
+            <form action="RecuperarSenha" method="post">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
-                    <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
+                    <input class="LoginCampoInput" type="email" id="email" name="email"
+                           placeholder="seuemail@email.com" autocomplete="email" required>
                 </div>
 
                 <button type="submit" class="LoginBotao">Enviar link</button>
+
+                <%-- mensagens vindas do servlet (?status=... e ?erro=...) --%>
+                <c:if test="${param.status == 'enviado'}">
+                    <p class="LoginSubtitulo" role="status">
+                        Se esse e-mail estiver cadastrado, enviamos um link para redefinir sua senha.
+                    </p>
+                </c:if>
+
+                <c:if test="${param.erro == 'email'}">
+                    <p class="LoginErro" role="alert">Digite um e-mail válido.</p>
+                </c:if>
+
+                <c:if test="${param.erro == 'falha'}">
+                    <p class="LoginErro" role="alert">
+                        Não foi possível enviar agora. Tente novamente em instantes.
+                    </p>
+                </c:if>
             </form>
 
             <div class="LoginRodape">

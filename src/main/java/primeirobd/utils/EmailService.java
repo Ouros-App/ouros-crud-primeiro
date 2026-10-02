@@ -7,7 +7,8 @@ import jakarta.mail.internet.MimeMessage;
 import java.util.Properties;
 
 /*
-Classe responsável por enviar o email de verificação de cadastro.
+Classe responsável por enviar os emails do sistema:
+verificação de cadastro e recuperação de senha.
 
  * <dependency>
  *     <groupId>org.eclipse.angus</groupId>
@@ -27,11 +28,45 @@ public class EmailService {
     private static final String USUARIO = dotenv.get("EMAIL_USUARIO");
     private static final String SENHA = dotenv.get("EMAIL_SENHA");
 
+    // Endereço público do sistema (ngrok)
+    private static final String BASE_URL = "https://alkaline-numerate-conjoined.ngrok-free.dev/InterBack";
+
     /*
       Envia o email de verificação para o destinatário, contendo
       um link com o token gerado para aquele cadastro.
      */
     public static void enviarEmailVerificacao(String destinatario, String token) {
+
+        // Monta o link que o usuário vai clicar.
+        String link = BASE_URL + "/verificar?token=" + token;
+
+        enviar(destinatario,
+                "Confirme seu email",
+                "Clique no link para confirmar seu cadastro:\n\n" + link +
+                        "\n\nEsse link expira em 24 horas.");
+    }
+
+    /*
+      Envia o email de recuperação de senha, com o link que abre
+      a página para criar uma nova senha.
+     */
+    public static void enviarEmailRecuperacao(String destinatario, String token, int validadeMinutos) {
+
+        String link = BASE_URL + "/RedefinirSenha?token=" + token;
+
+        enviar(destinatario,
+                "Redefinição de senha",
+                "Recebemos um pedido para redefinir a sua senha.\n\n" +
+                        "Clique no link para criar uma nova senha:\n\n" + link +
+                        "\n\nEsse link expira em " + validadeMinutos + " minutos e só pode ser usado uma vez." +
+                        "\n\nSe você não pediu isso, ignore este email.");
+    }
+
+    /*
+      Código de envio compartilhado pelos dois emails acima:
+      só muda o destinatário, o assunto e o texto.
+     */
+    private static void enviar(String destinatario, String assunto, String texto) {
 
         // "Properties" configura como a conexão com o servidor SMTP deve se comportar
         Properties props = new Properties();
@@ -52,9 +87,6 @@ public class EmailService {
         });
 
         try {
-            // Monta o link que o usuário vai clicar.
-            String link = "https://alkaline-numerate-conjoined.ngrok-free.dev/InterBack/verificar?token=" + token;
-
             // "MimeMessage" é o objeto que representa o email em si:
             // remetente, destinatário, assunto e corpo da mensagem.
             Message message = new MimeMessage(session);
@@ -67,12 +99,8 @@ public class EmailService {
                     InternetAddress.parse(destinatario)
             );
 
-            message.setSubject("Confirme seu email");
-
-            message.setText(
-                    "Clique no link para confirmar seu cadastro:\n\n" + link +
-                            "\n\nEsse link expira em 24 horas."
-            );
+            message.setSubject(assunto);
+            message.setText(texto);
 
             // Envia o email de fato, conectando no servidor SMTP configurado.
             Transport.send(message);
@@ -80,7 +108,7 @@ public class EmailService {
         } catch (MessagingException e) {
 
             e.printStackTrace();
-            throw new RuntimeException("Erro ao enviar email de verificação", e);
+            throw new RuntimeException("Erro ao enviar email: " + assunto, e);
         }
     }
 }
