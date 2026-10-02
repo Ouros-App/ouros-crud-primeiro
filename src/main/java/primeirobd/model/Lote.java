@@ -10,6 +10,7 @@ public class Lote {
     private Date dtNascimento;
     private int galinhasEntregadas;
     private int galinhasRecebidas;
+    private String nomeGranja;
     private float ganho;
     private int idGranja;
 
@@ -42,6 +43,11 @@ public class Lote {
     public int getGalinhasRecebidas() {
         return galinhasRecebidas;
     }
+
+    public String getNomeGranja() {
+        return nomeGranja;
+    }
+
 
     public float getGanho() {
         return ganho;
@@ -77,6 +83,10 @@ public class Lote {
         this.galinhasRecebidas = galinhasRecebidas;
     }
 
+    public void setNomeGranja(String nomeGranja) {
+        this.nomeGranja = nomeGranja;
+    }
+
     public void setGanho(float ganho) {
         this.ganho = ganho;
     }
@@ -88,14 +98,15 @@ public class Lote {
     @Override
     public String toString() {
         return "\nLOTE" +
-                "\nId:" + this.id +
-                "\nDt_Chegada:" + this.dtChegada +
-                "\nDt_Entrega:" + this.dtEntrega +
-                "\nDt_Nascimento:" + this.dtNascimento +
-                "\nGalinhas_Entregadas:" + this.galinhasEntregadas +
-                "\nGalinhas_Recebidas:" + this.galinhasRecebidas +
-                "\nGanho:" + this.ganho +
-                "\nId_Granja:" + this.idGranja+
+                "\nId: " + this.id +
+                "\nDt_Chegada: " + this.dtChegada +
+                "\nDt_Entrega: " + this.dtEntrega +
+                "\nDt_Nascimento: " + this.dtNascimento +
+                "\nGalinhas_Entregadas: " + this.galinhasEntregadas +
+                "\nGalinhas_Recebidas: " + this.galinhasRecebidas +
+                "\nNome granja: " + this.nomeGranja +
+                "\nGanho: " + this.ganho +
+                "\nId_Granja: " + this.idGranja+
                 "\n-------------------------------------------------------------";
     }
 }

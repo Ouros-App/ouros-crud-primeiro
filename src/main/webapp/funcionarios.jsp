@@ -28,9 +28,9 @@
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
                 <a href="lotes.jsp" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotess
+                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem funcionarios">
+                <a href="funcionarios" class="MenuItem funcionarios">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
                 <a href="registros.jsp" class="MenuItem">
@@ -42,7 +42,7 @@
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
           <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
@@ -94,15 +94,20 @@
                     <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Setor</th>
                         <th>E-mail</th>
-                        <th>Telefone</th>
-                        <th>Ações</th>
+                        <th>CPF</th>
+                        <th>Setor</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-funcionarios">
+                    <c:forEach var="funcionarios" items="${funcionarios}">
                         <tr>
+                            <td><c:out value="${funcionarios.nome}"/></td>
+                            <td><c:out value="${funcionarios.email}"/></td>
+                            <td><c:out value="${funcionarios.cpf}"/></td>
+                            <td><c:out value="${funcionarios.setor}"/></td>
                         </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -128,14 +133,6 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var funcionarios = [
-        { nome: "Cleber", setor: "Dev", email: "cleber.serio@gmail.com", telefone: "(11) 95743-8743" },
-        { nome: "Jonas", setor: "RH", email: "jonas@gmail.com", telefone: "(11) 95743-8743" },
-        { nome: "Gabriel Nogueira", setor: "back-end", email: "gabriel@gmail.com", telefone: "(11) 95743-8743" },
-        { nome: "Vlad Io engineer", setor: "Manejo", email: "vlad@gmail.com", telefone: "(11) 95743-8743" },
-        { nome: "Lucola", setor: "Manejo", email: "lucola@gmail.com", telefone: "(11) 95743-8743" }
-    ];
-
     function renderizarFuncionarios(lista) {
         var corpoTabela = document.getElementById("tabela-funcionarios");
         corpoTabela.innerHTML = "";
@@ -169,10 +166,6 @@
 
             linha.querySelector('.editar').addEventListener('click', function () {
                 var dados = Object.assign({}, f);
-
-
-
-
                 ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
                 sessionStorage.setItem('ouros-editor-funcionario', JSON.stringify(dados));
                 abrirFormulario('funcionario-novo.jsp?acao=editar');

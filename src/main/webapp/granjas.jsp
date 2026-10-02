@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,28 +21,28 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
                 </a>
-                <a href="granjas.jsp" class="MenuItem granjas">
+                <a href="granjas" class="MenuItem granjas">
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
-                <a href="lotes.jsp" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotess
+                <a href="lotes" class="MenuItem">
+                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros.jsp" class="MenuItem">
+                <a href="registros" class="MenuItem">
                     <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas.jsp" class="MenuItem">
+                <a href="metas" class="MenuItem">
                     <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
            <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
@@ -105,7 +106,15 @@
                     </tr>
                     </thead>
                     <tbody id="tabela-granjas">
-                    <!-- linhas preenchidas dinamicamente -->
+                        <c:forEach var="granja" items="${granjas}">
+                            <tr>
+                                <td><c:out value="${granja.nome}"/></td>
+                                <td><c:out value="${granja.email}"/></td>
+                                <td><c:out value="${granja.idEmpresa}"/></td>
+                                <td><c:out value="${granja.nome}"/></td>
+                                <td><c:out value="${granja.setor}"/></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -131,14 +140,6 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var granjas = [
-        { granja: "Granja Da favela", responsavel: "Cleber", localizacao: "Osaco - SP", capacidade: "3000", sustentabilidade: "6,4" },
-        { granja: "Granja alicia", responsavel: "Jonas", localizacao: "MT", capacidade: "3000", sustentabilidade: "4,5" },
-        { granja: "Granja sofia", responsavel: "Gabriel Nogueira", localizacao: "São Paulo - SP", capacidade: "3000", sustentabilidade: "1,3" },
-        { granja: "Granja andré", responsavel: "Vlad Io enginer", localizacao: "BA", capacidade: "3000", sustentabilidade: "23,4" },
-        { granja: "Granja pudim", responsavel: "Lucola", localizacao: "MT", capacidade: "3000", sustentabilidade: "21,4" }
-    ];
-
     function renderizarGranjas(lista) {
         var corpoTabela = document.getElementById("tabela-granjas");
         corpoTabela.innerHTML = "";

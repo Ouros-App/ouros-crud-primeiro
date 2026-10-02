@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,28 +21,28 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
                 </a>
-                <a href="granjas.jsp" class="MenuItem">
+                <a href="granjas" class="MenuItem">
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
-                <a href="lotes.jsp" class="MenuItem lotes">
+                <a href="lotes" class="MenuItem lotes">
                       <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros.jsp" class="MenuItem">
+                <a href="registros" class="MenuItem">
                     <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas.jsp" class="MenuItem">
+                <a href="metas" class="MenuItem">
                     <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
           <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
@@ -104,7 +105,16 @@
                     </tr>
                     </thead>
                     <tbody id="tabela-lotes">
-                    <!-- linhas preenchidas dinamicamente -->
+                        <c:forEach var="lote" items="${lotes}">
+                                ><tr>
+                                    <td><c:out value="${lote.id}"/></td>
+                                    <td><c:out value="${lote.nomeGranja}"/></td>
+                                    <td><c:out value="${lote.galinhasEntregadas}"/></td>
+                                    <td><c:out value="${lote.galinhasRecebidas}"/></td>
+                                    <td><c:out value="${lote.dtChegada}"/></td>
+                                    <td><c:out value="${lote.ganho}"/></td>
+                                </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -130,14 +140,6 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var lotes = [
-        { lote: "#14", granja: "Granja sedentária", entregues: "5000", recebidas: "4.980", chegada: "05/09/2026", ganho: "6,4 kg", status: "Recebido" },
-        { lote: "#13", granja: "Granja Ouro Branco", entregues: "4000", recebidas: "---", chegada: "---", ganho: "---", status: "Em processo" },
-        { lote: "#12", granja: "Granja Sonho de Valça", entregues: "3000", recebidas: "2789", chegada: "05/09/2026", ganho: "1,3 kg", status: "Recebido" },
-        { lote: "#11", granja: "Sonho diamante negro", entregues: "1200", recebidas: "---", chegada: "---", ganho: "---", status: "Em processo" },
-        { lote: "#10", granja: "Granja preguiça", entregues: "10.000", recebidas: "9.000", chegada: "05/09/2026", ganho: "21,4 kg", status: "Recebido" }
-    ];
-
     function classeStatus(status) {
         if (status === "Recebido") return "positivo";
         return "neutro";
