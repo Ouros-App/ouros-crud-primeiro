@@ -9,76 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/TabelaInterface.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/AdministradorDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/ConexaoBancoPrimeiro.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/EmpresaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/EnderecoEmpresaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/EnderecoGranjaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/EnderecoProprietarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/FuncionarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/GranjaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/LoteDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/MetaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/ProprietarioGranjaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/RegistroAguaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/RegistroEnergiaDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/TelefoneFuncionarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/DAO/TelefoneProprietarioDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/controller/ServletPrincipal.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Administrador.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Empresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/EnderecoEmpresa.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/EnderecoGranja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/EnderecoProprietario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Funcionario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Granja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Lote.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Meta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/ProprietarioGranja.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/RegistroAgua.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/RegistroEnergia.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/Status.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/TelefoneFuncionario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/model/TelefoneProprietario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/testes/MainDeleteTestes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/testes/MainInsertTeste.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/testes/MainSelectTeste.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/testes/MainTestesTodos.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/classes/primeirobd/testes/MainUpdateTestes.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/checker-qual-3.42.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/dotenv-java-3.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/jakarta.el-api-5.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/jakarta.servlet-api-6.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/postgresql-42.7.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/lib/tomcat-servlet-api-11.0.24.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/funcionarios.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/funcionarios.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/granjas.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/granjas.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/index.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/lotes.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/lotes.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/metas.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/metas.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/registros.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_artifact/registros.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/checker-qual-3.42.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/dotenv-java-3.2.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/jakarta.el-api-5.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/jakarta.servlet-api-6.1.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/jakarta.servlet.jsp.jstl-3.0.1.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/jakarta.servlet.jsp.jstl-api-3.0.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/postgresql-42.7.3.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/inter_modulo/WEB-INF/lib/tomcat-servlet-api-11.0.24.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Login.java" beforeDir="false" />
-    </list>
+    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,61 +67,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.750413977037006" />
-      <entry key="MS500" value="4.177114835341795" />
-      <entry key="S2" value="8.151455779719964" />
-      <entry key="S5" value="11.37478396403382" />
-      <entry key="S10" value="14.70759432084454" />
-      <entry key="S30" value="20.776332757933115" />
-      <entry key="S60" value="23.54926361146204" />
-      <entry key="M2" value="25.38742609761101" />
-      <entry key="M5" value="26.81070151904001" />
-      <entry key="M10" value="27.63111848328866" />
-      <entry key="M15" value="28.97050856571032" />
-      <entry key="M30" value="38.5042771011994" />
-      <entry key="H1" value="63.75621807854125" />
-      <entry key="H2" value="99.76995172834349" />
-      <entry key="H4" value="135.395092491634" />
-      <entry key="D1" value="306.88421900466267" />
-      <entry key="W1" value="513.3815280093623" />
+      <entry key="MS100" value="1.0000096569564358" />
+      <entry key="MS500" value="1.0993107439302852" />
+      <entry key="S2" value="1.868593560252581" />
+      <entry key="S5" value="5.4530124070143025" />
+      <entry key="S10" value="11.94653840971525" />
+      <entry key="S30" value="24.001841799312366" />
+      <entry key="S60" value="29.256739816999573" />
+      <entry key="M2" value="32.43606307914507" />
+      <entry key="M5" value="36.061027496341836" />
+      <entry key="M10" value="41.8892027532724" />
+      <entry key="M15" value="46.69659990908994" />
+      <entry key="M30" value="59.68882855513028" />
+      <entry key="H1" value="86.14784083251924" />
+      <entry key="H2" value="124.53236904237451" />
+      <entry key="H4" value="163.55623076855872" />
+      <entry key="D1" value="339.8562298076258" />
+      <entry key="W1" value="548.6553305409485" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="2.1412132216558476E-300" />
-      <entry key="MS500" value="1.1644798642661273E-60" />
-      <entry key="S2" value="1.0388025231584176E-15" />
-      <entry key="S5" value="1.0153439802588913E-6" />
-      <entry key="S10" value="0.001007642784055387" />
-      <entry key="S30" value="0.10025411318643165" />
-      <entry key="S60" value="0.3166292993177219" />
-      <entry key="M2" value="0.5626982364728609" />
-      <entry key="M5" value="0.7955729245747968" />
-      <entry key="M10" value="0.9595479831746138" />
-      <entry key="M15" value="1.2425603287392806" />
-      <entry key="M30" value="2.9327067401914437" />
-      <entry key="H1" value="6.878176811246605" />
-      <entry key="H2" value="11.919251495985563" />
-      <entry key="H4" value="16.681014533471068" />
-      <entry key="D1" value="34.97522478953172" />
-      <entry key="W1" value="52.27938345315954" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="2.02728240344147E-201" />
+      <entry key="S5" value="5.281602351059314E-81" />
+      <entry key="S10" value="7.267463347729601E-41" />
+      <entry key="S30" value="4.1731207381706845E-14" />
+      <entry key="S60" value="2.0428217587862818E-7" />
+      <entry key="M2" value="4.519758619189763E-4" />
+      <entry key="M5" value="0.04598496598361353" />
+      <entry key="M10" value="0.23069311564040124" />
+      <entry key="M15" value="0.48042925154833294" />
+      <entry key="M30" value="1.8235791435254065" />
+      <entry key="H1" value="5.4237707574790655" />
+      <entry key="H2" value="10.58432040682345" />
+      <entry key="H4" value="15.719164474826442" />
+      <entry key="D1" value="34.630732734076844" />
+      <entry key="W1" value="52.20550943291732" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.6622673178417744" />
-      <entry key="MS500" value="4.131073782968328" />
-      <entry key="S2" value="8.127965418953256" />
-      <entry key="S5" value="11.35904434541766" />
-      <entry key="S10" value="14.69644777741002" />
-      <entry key="S30" value="20.86298069017736" />
-      <entry key="S60" value="23.850293993142948" />
-      <entry key="M2" value="25.937071252885172" />
-      <entry key="M5" value="27.59891263953553" />
-      <entry key="M10" value="28.586249223163" />
-      <entry key="M15" value="30.20931521686" />
-      <entry key="M30" value="41.43226452399191" />
-      <entry key="H1" value="70.62821025158476" />
-      <entry key="H2" value="111.68348832940603" />
-      <entry key="H4" value="152.0719879680198" />
-      <entry key="D1" value="341.85807646858655" />
-      <entry key="W1" value="565.6606302911163" />
+      <entry key="MS100" value="0.9526430665780792" />
+      <entry key="MS500" value="1.077641651539415" />
+      <entry key="S2" value="1.8474679156978668" />
+      <entry key="S5" value="5.436742545404062" />
+      <entry key="S10" value="11.93163143411148" />
+      <entry key="S30" value="23.99197467309196" />
+      <entry key="S60" value="29.250646973214884" />
+      <entry key="M2" value="32.43310004305947" />
+      <entry key="M5" value="36.105128766719496" />
+      <entry key="M10" value="42.118087780095074" />
+      <entry key="M15" value="47.17507656565213" />
+      <entry key="M30" value="61.509220617554725" />
+      <entry key="H1" value="91.56660793047186" />
+      <entry key="H2" value="135.11155109898303" />
+      <entry key="H4" value="179.27148191020518" />
+      <entry key="D1" value="374.48560338166834" />
+      <entry key="W1" value="600.860558442233" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
