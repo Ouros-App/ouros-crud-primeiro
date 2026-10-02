@@ -17,7 +17,7 @@ public class Granjas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         granja = new GranjaDAO();
-        List<Granja> granjas = granja.select_all();
+        List<Granja> granjas = granja.select_all_join_endereco_proprietario_proprietario_granja();
         request.setAttribute("granjas", granjas);
         getServletContext().getRequestDispatcher("/granjas.jsp").forward(request, response);
     }
