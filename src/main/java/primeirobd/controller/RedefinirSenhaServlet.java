@@ -1,4 +1,4 @@
-package primeirobd.utils;
+package primeirobd.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package primeirobd.utils;
+package primeirobd.controller;
 
 import primeirobd.model.VerificacaoEmail;
 import primeirobd.service.ProprietarioGranjaDAO;

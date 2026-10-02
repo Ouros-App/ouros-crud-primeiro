@@ -1,4 +1,4 @@
-package primeirobd.utils;
+package primeirobd.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,7 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import primeirobd.model.ProprietarioGranja;
 import primeirobd.service.ProprietarioGranjaDAO;
 import primeirobd.service.RecuperarSenhaDAO;
-import primeirobd.service.RecuperarSenhaDAO;
+import primeirobd.utils.EmailService;
+import primeirobd.utils.TokenUtil;
 import primeirobd.validadorREGEX.Validador;
 
 import java.io.IOException;

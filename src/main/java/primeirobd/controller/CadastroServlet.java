@@ -1,4 +1,4 @@
-package primeirobd.utils;
+package primeirobd.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.ProprietarioGranja;
