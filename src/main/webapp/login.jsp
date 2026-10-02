@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="Style.css?v=5">
-    <link rel="icon" type="image/png" href="img/granja.svg">
+    <title>Entrar | Ouros</title>
+    <link rel="stylesheet" href="Style.css?v=6">
+    <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
@@ -15,10 +15,10 @@
     <div class="LoginShell">
 
         <div class="LoginMarca">
-            <link rel="icon" type="image/png" href="img/Asa-icon.png">
+            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
-                CRUD para monitoramento de dados de forma mais <span class="destaque">eficiente.</span>
+                Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
             </p>
 
             <ul class="LoginRecursos">
@@ -92,6 +92,11 @@
 
                 <button type="submit" class="LoginBotao">Continuar</button>
             </form>
+
+            <div class="LoginRodape">
+                <span>Ainda não tem uma conta?</span>
+                <a class="LoginLinkEsqueci" href="Cadastro.jsp">Cadastre-se</a>
+            </div>
         </div>
 
     </div>

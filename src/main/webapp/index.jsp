@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ouros | Eficiência e Sustentabilidade</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=15">
+    <link rel="stylesheet" href="landing.css?v=18">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -22,13 +22,13 @@
             <a class="sobre" href="#sobre">Sobre nós</a>
         </nav>
 
-        <div class="acoes"><a class="entrar" href="login.jsp">Entrar</a><a class="btcadastro" href="#funcionamento">Cadastro</a></div>
+        <div class="acoes"><a class="entrar" href="login.jsp">Entrar</a><a class="btcadastro" href="Cadastro.jsp">Cadastro</a></div>
         <button type="button" class="menu-mobile" id="menuMobile" aria-label="Abrir menu" aria-controls="navegacao" aria-expanded="false"><span></span><span></span><span></span></button>
     </header>
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <img class="circulo hero-brilho-roxo" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
-        <img class="circulo hero-brilho-dourado" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho hero-brilho-roxo" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho hero-brilho-dourado" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
         <div class="decor" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
         <div class="hero-container">
 
@@ -62,7 +62,6 @@
 
     <!-- FUNCIONAMENTO -->
     <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
-        <img class="circulo funcionamento-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <img class="funcionamento-detalhes" src="assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
@@ -206,11 +205,13 @@
 
     <!-- PLANOS -->
     <section class="planos" id="planos" aria-labelledby="planos-titulo">
+        <img class="fundo-brilho planos-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="planos-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>PLANOS</h2>
 
             <div class="planos-grid">
                 <article class="plano-card">
+                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
                     <h3>Trimestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -220,6 +221,7 @@
                 </article>
 
                 <article class="plano-card">
+                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
                     <h3>Semestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -229,6 +231,7 @@
                 </article>
 
                 <article class="plano-card">
+                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
                     <h3>Anual</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -259,9 +262,7 @@
 
     <!-- PERGUNTAS FREQUENTES -->
     <section class="faq" id="faq" aria-labelledby="faqTitulo">
-        <img class="circulo faq-brilho faq-brilho-um" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
-        <img class="circulo faq-brilho faq-brilho-dois" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
-        <img class="circulo faq-brilho faq-brilho-tres" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho faq-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <div class="landing-container faq-container">
             <p class="faq-kicker">DÚVIDAS FREQUENTES</p>
             <h2 class="secao-titulo faq-titulo" id="faqTitulo">FAQ</h2>
@@ -301,6 +302,7 @@
             </div>
 
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
+                <img class="fundo-brilho faq-ajuda-brilho" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
                 <span class="faq-ajuda-icone" aria-hidden="true"><img src="assets/balao-falas.png" alt=""></span>
                 <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudar, garantindo que você tenha a melhor experiência possível.</span></span>
             </aside>

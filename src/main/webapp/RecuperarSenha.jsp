@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esqueci minha senha</title>
-    <link rel="stylesheet" href="Style.css?v=5">
+    <title>Recuperação de conta | Ouros</title>
+    <link rel="stylesheet" href="Style.css?v=6">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -18,7 +18,7 @@
             <div class="LoginLogo"><img src="img/Ouros.png" alt="logo"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
-                CRUD para monitoramento de dados de forma mais <span class="destaque">eficiente.</span>
+                Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
             </p>
 
             <ul class="LoginRecursos">
@@ -64,16 +64,19 @@
                 </li>
             </ul>
 
-            <img class="MascoteSenha" src="img/midas.png" alt="mascote do Ouros">
+            <img class="MascoteSenha" src="assets/midas%20-%20d%C3%BAvidas_.png" alt="Midas, mascote do Ouros, com uma placa de dúvidas">
         </div>
 
         <div class="LoginFormulario">
             <div class="LoginCabecalho">
-                <h1 class="LoginTitulo">Esqueceu sua senha?</h1>
-                <p class="LoginSubtitulo">Digite seu e-mail e enviaremos um link para redefinir sua senha</p>
+                <h1 class="LoginTitulo">Recuperação de Conta</h1>
+                <p class="LoginSubtitulo">Redefina sua senha para continuar sendo um OUROS</p>
             </div>
 
             <form action="RecuperarSenha.jsp" method="post">
+                <h2 class="LoginPergunta">Esqueceu sua senha?</h2>
+                <p class="LoginInstrucao">Digite seu e-mail e enviaremos um link para redefinir sua senha.</p>
+
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
@@ -83,7 +86,8 @@
             </form>
 
             <div class="LoginRodape">
-                <a class="LoginLinkEsqueci" href="login.jsp">Lembrou sua senha? Voltar ao login</a>
+                <span>Lembrou sua senha?</span>
+                <a class="LoginLinkEsqueci" href="login.jsp">Voltar ao login</a>
             </div>
         </div>
 
