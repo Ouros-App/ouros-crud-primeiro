@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="InterBack (1):war exploded" />
+      <artifact name="InterBack:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="" />
+    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/Paginacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/Paginacao.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,61 +70,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000096569564358" />
-      <entry key="MS500" value="1.0993107439302852" />
-      <entry key="S2" value="1.868593560252581" />
-      <entry key="S5" value="5.4530124070143025" />
-      <entry key="S10" value="11.94653840971525" />
-      <entry key="S30" value="24.001841799312366" />
-      <entry key="S60" value="29.256739816999573" />
-      <entry key="M2" value="32.43606307914507" />
-      <entry key="M5" value="36.061027496341836" />
-      <entry key="M10" value="41.8892027532724" />
-      <entry key="M15" value="46.69659990908994" />
-      <entry key="M30" value="59.68882855513028" />
-      <entry key="H1" value="86.14784083251924" />
-      <entry key="H2" value="124.53236904237451" />
-      <entry key="H4" value="163.55623076855872" />
-      <entry key="D1" value="339.8562298076258" />
-      <entry key="W1" value="548.6553305409485" />
+      <entry key="MS100" value="1.0476177637061694" />
+      <entry key="MS500" value="2.046222324483743" />
+      <entry key="S2" value="4.008387314604921" />
+      <entry key="S5" value="6.405395108445532" />
+      <entry key="S10" value="8.970836005646724" />
+      <entry key="S30" value="13.178516057527379" />
+      <entry key="S60" value="16.329694055729114" />
+      <entry key="M2" value="22.205550236002974" />
+      <entry key="M5" value="36.563182838098896" />
+      <entry key="M10" value="51.42553945492132" />
+      <entry key="M15" value="61.515763707264945" />
+      <entry key="M30" value="84.09774436679456" />
+      <entry key="H1" value="118.86606164310992" />
+      <entry key="H2" value="167.27314567447849" />
+      <entry key="H4" value="218.13029890468934" />
+      <entry key="D1" value="411.4507057447177" />
+      <entry key="W1" value="627.4896112610521" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
       <entry key="MS500" value="0.0" />
-      <entry key="S2" value="2.02728240344147E-201" />
-      <entry key="S5" value="5.281602351059314E-81" />
-      <entry key="S10" value="7.267463347729601E-41" />
-      <entry key="S30" value="4.1731207381706845E-14" />
-      <entry key="S60" value="2.0428217587862818E-7" />
-      <entry key="M2" value="4.519758619189763E-4" />
-      <entry key="M5" value="0.04598496598361353" />
-      <entry key="M10" value="0.23069311564040124" />
-      <entry key="M15" value="0.48042925154833294" />
-      <entry key="M30" value="1.8235791435254065" />
-      <entry key="H1" value="5.4237707574790655" />
-      <entry key="H2" value="10.58432040682345" />
-      <entry key="H4" value="15.719164474826442" />
-      <entry key="D1" value="34.630732734076844" />
-      <entry key="W1" value="52.20550943291732" />
+      <entry key="S2" value="1.7944193094998724E-264" />
+      <entry key="S5" value="3.1737270513907357E-106" />
+      <entry key="S10" value="1.7814957343173005E-53" />
+      <entry key="S30" value="2.611729907375525E-18" />
+      <entry key="S60" value="1.6160847463470252E-9" />
+      <entry key="M2" value="4.0200558059462534E-5" />
+      <entry key="M5" value="0.017464624762609245" />
+      <entry key="M10" value="0.13674076537695073" />
+      <entry key="M15" value="0.29498010459615237" />
+      <entry key="M30" value="1.0058369800750038" />
+      <entry key="H1" value="3.5439002065922507" />
+      <entry key="H2" value="8.49062327534104" />
+      <entry key="H4" value="14.279252670411317" />
+      <entry key="D1" value="34.690855002457134" />
+      <entry key="W1" value="53.0017778639019" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9526430665780792" />
-      <entry key="MS500" value="1.077641651539415" />
-      <entry key="S2" value="1.8474679156978668" />
-      <entry key="S5" value="5.436742545404062" />
-      <entry key="S10" value="11.93163143411148" />
-      <entry key="S30" value="23.99197467309196" />
-      <entry key="S60" value="29.250646973214884" />
-      <entry key="M2" value="32.43310004305947" />
-      <entry key="M5" value="36.105128766719496" />
-      <entry key="M10" value="42.118087780095074" />
-      <entry key="M15" value="47.17507656565213" />
-      <entry key="M30" value="61.509220617554725" />
-      <entry key="H1" value="91.56660793047186" />
-      <entry key="H2" value="135.11155109898303" />
-      <entry key="H4" value="179.27148191020518" />
-      <entry key="D1" value="374.48560338166834" />
-      <entry key="W1" value="600.860558442233" />
+      <entry key="MS100" value="0.10829718222897662" />
+      <entry key="MS500" value="1.2851267074141115" />
+      <entry key="S2" value="3.4807827546042005" />
+      <entry key="S5" value="6.038741963410931" />
+      <entry key="S10" value="8.705093150659016" />
+      <entry key="S30" value="13.046052025458877" />
+      <entry key="S60" value="16.246374398785637" />
+      <entry key="M2" value="22.14835737159125" />
+      <entry key="M5" value="36.54789325216422" />
+      <entry key="M10" value="51.54292627407308" />
+      <entry key="M15" value="61.796862045502365" />
+      <entry key="M30" value="85.09532763622846" />
+      <entry key="H1" value="122.4035049514473" />
+      <entry key="H2" value="175.75809209045335" />
+      <entry key="H4" value="232.4052319171923" />
+      <entry key="D1" value="446.1400707326743" />
+      <entry key="W1" value="680.491084756588" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -158,9 +161,10 @@
     "node.js.selected.package.jshint": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Artifacts",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -190,7 +194,7 @@
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterBack/login" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="InterBack (1):war exploded">
+        <artifact name="InterBack:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/InterBack" />
           </settings>
@@ -270,7 +274,7 @@
       <method v="2">
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="InterBack (1):war exploded" />
+          <artifact name="InterBack:war exploded" />
         </option>
       </method>
     </configuration>
