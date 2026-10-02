@@ -1,0 +1,1413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+}
+
+/* LAYOUT */
+
+.Layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.Sidebar {
+    width: 220px;
+    background: linear-gradient(#071228,#071531,#091f4d,#06173a,#071228);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 16px;
+    flex-shrink: 0;
+}
+
+.SidebarTopo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.LogoSidebar img {
+    width: 150px;
+    max-width: 100%;
+}
+
+.Menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 24px;
+    flex: 1;
+}
+
+.MenuItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.2s;
+}
+
+.MenuItem:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.MenuItem.inicio,
+.MenuItem.granjas,
+.MenuItem.lotes,
+.MenuItem.fucionarios,
+.MenuItem.funcionarios,
+.MenuItem.registro,
+.MenuItem.registros,
+.MenuItem.metas {
+    font-weight: 600;
+    background: linear-gradient(to right, #b98407, #bb830227);
+}
+
+.Icone {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.Icone img {
+    width: 20px;
+    height: 20px;
+}
+
+.Voltar {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+}
+
+.empresa {
+    color: #6b7280;
+    font-size: small;
+    font-family: 'Poppins', sans-serif;
+    padding: 8px 4px;
+}
+
+.Usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.Usuario:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.Usuario img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.UsuarioInfo {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.UsuarioInfo span {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* CONTEÚDO */
+
+.Conteudo {
+    flex: 1;
+    padding: 40px;
+    min-width: 0;
+    background-color: #f4f4f7;
+}
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.Titulo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.subtitulo p {
+    font-size: 14px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+.BotaoNovo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f4a900;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.BotaoNovo:hover {
+    background-color: #d99400;
+}
+
+/* PAINEL */
+
+.Painel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.Filtros {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.CampoBusca {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.CampoBusca img,
+.CampoBusca svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.CampoBusca input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+    color: #111827;
+}
+
+.CampoBusca input::placeholder {
+    color: #9ca3af;
+}
+
+.CampoSetor {
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    min-width: 160px;
+}
+
+.OrdenarPor {
+    position: relative;
+    display: inline-flex;
+}
+
+.OrdenarPor select {
+    appearance: none;
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 32px 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    cursor: pointer;
+}
+
+.OrdenarPor::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #6b7280;
+    border-bottom: 2px solid #6b7280;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+}
+
+/* TABELA */
+
+.tabela {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.tabela table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.tabela th,
+.tabela td {
+    padding: 16px;
+    text-align: left;
+}
+
+.tabela th {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.tabela td {
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.tabela tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela tbody tr:hover {
+    background-color: #fafafa;
+}
+
+.ColunaAcoes {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.BotaoAcao {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.BotaoAcao.editar:hover {
+    color: #f4a900;
+}
+
+.BotaoAcao.excluir:hover {
+    color: #dc2626;
+}
+
+.BotaoAcao svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* RODAPÉ */
+
+.RodapeTabela {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.Contagem {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.Paginacao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.Paginacao button {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.Paginacao button:hover {
+    background-color: #f4f4f7;
+}
+
+.Paginacao button.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.Paginacao button.seta {
+    color: #9ca3af;
+}
+
+/* TOPBAR */
+
+.Topbar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.TopbarBotao {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #0E0C23;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.TopbarBotao svg {
+    width: 18px;
+    height: 18px;
+}
+
+.TopbarBotao .Bolinha {
+    position: absolute;
+    top: 8px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #f4a900;
+    border: 1.5px solid #ffffff;
+}
+
+.TopbarAvatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #f4a900, #b98407);
+}
+
+/* ALTERNADOR (ABAS) */
+
+.Alternador {
+    display: inline-flex;
+    background-color: #eceaf3;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.AlternadorItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.AlternadorItem.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+}
+
+/* BADGES DE STATUS */
+
+.Status {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.Status.positivo {
+    background-color: #d5f2d8;
+    color: #1a7a35;
+}
+
+.Status.neutro {
+    background-color: #faf0bd;
+    color: #8a6d00;
+}
+
+.Status.negativo {
+    background-color: #f7d2d2;
+    color: #b32424;
+}
+
+/* DASHBOARD */
+
+.BannerInicio {
+    position: relative;
+    background: linear-gradient(135deg, #17143a, #0E0C23);
+    color: #ffffff;
+    border-radius: 16px;
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.BannerInicio h2 {
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.BannerInicio .SubtituloBanner {
+    font-size: 14px;
+    color: #c7c5d6;
+    margin-top: 4px;
+    margin-bottom: 28px;
+}
+
+.BannerAsa {
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    width: 220px;
+    height: 220px;
+    opacity: 0.12;
+    pointer-events: none;
+}
+
+.BannerStats {
+    display: flex;
+    gap: 56px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.BannerStatItem strong {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: #f4a900;
+}
+
+.BannerStatItem span {
+    font-size: 13px;
+    color: #c7c5d6;
+}
+
+.CardsMetricas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.CardMetrica {
+    background-color: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.IconeMetrica {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.IconeMetrica.laranja {
+    background-color: #fde3d0;
+}
+
+.IconeMetrica.azul {
+    background-color: #dbe6fc;
+}
+
+.IconeMetrica.amarelo {
+    background-color: #faf0bd;
+}
+
+.IconeMetrica.verde {
+    background-color: #d5f2d8;
+}
+
+.LabelMetrica {
+    font-size: 13px;
+    color: #6b7280;
+    margin-bottom: 8px;
+}
+
+.ValorMetrica {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.VariacaoMetrica {
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.VariacaoMetrica.positiva {
+    color: #1a7a35;
+}
+
+.VariacaoMetrica.negativa {
+    color: #c62828;
+}
+
+.SecaoTabela h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+@media (max-width: 1024px) {
+    .CardsMetricas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .CardsMetricas {
+        grid-template-columns: 1fr;
+    }
+
+    .BannerStats {
+        gap: 28px;
+    }
+}
+
+/* ============================================
+   PÁGINA DE LOGIN
+   Reaproveita a mesma paleta do sistema:
+   #0E0C23 (navy), #f4a900 (laranja/dourado),
+   #f4f4f7 (fundo claro), #6b7280 / #9ca3af (texto neutro)
+============================================ */
+
+.LoginPage {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: #f4f4f7;
+    overflow: hidden;
+}
+
+.LoginShell {
+    width: 100%;
+    max-width: 860px;
+    height: min(600px, 90vh);
+    background-color: #0E0C23;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 25px 60px rgba(14, 12, 35, 0.35);
+}
+
+/* Painel de marca (lado esquerdo) */
+
+.LoginMarca {
+    position: relative;
+    padding: 32px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: linear-gradient(135deg, #17143a, #0E0C23);
+}
+
+.LoginLogo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.LoginLogo img {
+    width: 120px;
+    max-width: 100%;
+}
+
+.LoginDivisor {
+    width: 40px;
+    height: 3px;
+    background-color: #f4a900;
+    border-radius: 2px;
+    margin: 16px 0 10px;
+}
+
+.LoginTagline {
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    max-width: 22ch;
+}
+
+.LoginTagline .destaque {
+    color: #f4a900;
+}
+
+.LoginRecursos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 24px;
+    list-style: none;
+}
+
+.LoginRecursoItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.LoginRecursoIcone {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(244, 169, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LoginRecursoIcone svg {
+    width: 15px;
+    height: 15px;
+    stroke: #f4a900;
+}
+
+.LoginRecursoTitulo {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.LoginRecursoTexto {
+    color: #9ca3af;
+    font-size: 0.78rem;
+    line-height: 1.3;
+    max-width: 28ch;
+}
+
+/* Mascote das telas de login e "esqueci minha senha" */
+
+
+/* Mascote da tela de login */
+.MascoteLogin {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: clamp(80px, 28%, 150px);
+    height: auto;
+    pointer-events: none;
+}
+/*mascote da tela esqueci minha senha */
+.MascoteSenha {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: clamp(80px, 28%, 150px);
+    height: auto;
+    pointer-events: none;
+}
+
+/* Painel de formulário (lado direito) */
+
+.LoginFormulario {
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #f4a900;
+    overflow-y: auto;
+}
+
+.LoginCabecalho {
+    margin-bottom: 24px;
+}
+
+.LoginTitulo {
+    color: #111827;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.LoginSubtitulo {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+.LoginCampoGrupo {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.LoginCampoLabel {
+    position: absolute;
+    top: -9px;
+    left: 14px;
+    background-color: #ffffff;
+    padding: 0 6px;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.LoginCampoInput {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.LoginCampoInput::placeholder {
+    color: #9ca3af;
+}
+
+.LoginCampoInput:focus {
+    border-color: #f4a900;
+}
+
+.LoginUtilitario {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+}
+
+.LoginLinkEsqueci {
+    font-size: 0.82rem;
+    color: #f4a900;
+    text-decoration: none;
+}
+
+.LoginLinkEsqueci:hover {
+    text-decoration: underline;
+}
+
+.LoginBotao {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.LoginBotao:hover {
+    background-color: #17143a;
+}
+
+@media (max-width: 860px) {
+    .LoginPage {
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+    }
+
+    .LoginShell {
+        grid-template-columns: 1fr;
+        max-height: none;
+    }
+
+    .LoginRecursos,
+    .MascoteSenha {
+        display: none;
+    }
+
+    .LoginMarca {
+        padding: 28px 24px;
+    }
+
+    .LoginFormulario {
+        margin: 8px;
+        padding: 28px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .LoginPage {
+        padding: 12px;
+    }
+}
+
+/* ============================================
+   FORMULÁRIO DE CADASTRO
+   Usado nas páginas "Nova granja", "Novo lote",
+   "Novo funcionário", "Novo registro" e "Nova meta".
+   Label sempre em cima do campo, com espaço de
+   sobra — evita o visual apertado.
+============================================ */
+
+.FormPainel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    max-width: 720px;
+}
+
+.FormGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+    gap: 24px 28px;
+    margin-bottom: 36px;
+}
+
+.Campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.Campo.full {
+    grid-column: 1 / -1;
+}
+
+.CampoLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+.CampoInput,
+.CampoSelect {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    background-color: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.CampoInput::placeholder {
+    color: #9ca3af;
+}
+
+.CampoInput:focus,
+.CampoSelect:focus {
+    border-color: #f4a900;
+    box-shadow: 0 0 0 3px rgba(244, 169, 0, 0.15);
+}
+
+.CampoSelect {
+    appearance: none;
+    cursor: pointer;
+}
+
+.FormAcoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.BotaoSecundario {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #374151;
+    border: 1.5px solid #e5e7eb;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.BotaoSecundario:hover {
+    background-color: #f4f4f7;
+}
+
+@media (max-width: 640px) {
+    .FormGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .FormPainel {
+        padding: 24px;
+    }
+}
+
+/* ============================================
+   PERFIL
+   Área do avatar no topo da página de perfil
+============================================ */
+
+.PerfilAvatarArea {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding-bottom: 28px;
+    margin-bottom: 28px;
+    border-bottom: 1px solid #e5e7eb;
+    flex-wrap: wrap;
+}
+
+.PerfilFoto {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #f4a900;
+    flex-shrink: 0;
+}
+
+.PerfilAvatarAcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.PerfilAvatarAcoes p {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.PerfilAvatarBotoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.BotaoPequeno {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.SecaoTitulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+/* Rodapé de link centralizado, usado na tela de "Esqueceu sua senha" */
+
+.LoginRodape {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 0.85rem;
+    color: #6b7280;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+    .Layout {
+        flex-direction: column;
+    }
+
+    .Sidebar {
+        width: 100dvw;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 12px 16px;
+    }
+
+    .Menu {
+        display: none;
+    }
+
+    .Conteudo {
+        padding: 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .BotaoNovo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .RodapeTabela {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .Paginacao {
+        justify-content: center;
+    }
+
+    .ColunaAcoes {
+        gap: 16px;
+    }
+
+    .FormAcoes {
+        flex-direction: column-reverse;
+    }
+
+    .FormAcoes .BotaoNovo,
+    .FormAcoes .BotaoSecundario {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .Sidebar {
+        position: fixed;
+        height: 100dvh;
+    }
+
+    .Conteudo {
+        margin-left: 220px;
+    }
+}
+
+/* FORMULÁRIOS DE CADASTRO E EDIÇÃO */
+.EditorPagina {
+    min-height:100dvh;
+    background:#c6cad4;
+    display:grid;
+    place-items:center;
+    padding:40px 20px;
+    color:#101016;
+    font-family:'Poppins','Segoe UI',sans-serif
+}
+.EditorCartao {
+    width:100%;
+    max-width:560px;
+    background:#e4e7f1;
+    border-radius:10px;
+    padding:36px 40px 32px
+}
+.EditorCabecalho {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-bottom:22px
+}
+.EditorCabecalho h1 {
+    font-size:24px;
+    font-weight:500;
+    line-height:1.4
+}
+.EditorFechar {
+    display:grid;
+    place-items:center;
+    background:white;
+    color:#929292;
+    width:24px;
+    height:24px;
+    font:21px/1 Arial;
+    text-decoration:none;
+    flex-shrink:0
+}
+.EditorGrid {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    gap:14px 20px
+}
+.EditorCampo {
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+    min-width:0
+}
+.EditorCampo--full {
+    grid-column:1/-1
+}
+.EditorCampo label,.EditorLabel {
+    font-size:12px;
+    line-height:1.4;
+    color:#333342
+}
+.EditorCampo input,.EditorCampo select {
+    width:100%;
+    min-width:0;
+    height:44px;
+    border:1px solid #dce0ec;
+    border-radius:7px;
+    background:white;
+    padding:0 9px;
+    font:13px 'Poppins','Segoe UI',sans-serif;
+    color:#19191e;
+    color-scheme:light
+}
+.EditorCampo input::placeholder {
+    color:#939393;
+    opacity:1
+}
+.EditorCampo input:focus,.EditorCampo select:focus {
+    outline:2px solid #b88319;
+    outline-offset:1px
+}
+.EditorAbas {
+    display:flex;
+    gap:12px;
+    margin-bottom:12px;
+    flex-wrap:wrap
+}
+.EditorCampo .EditorAbas {
+    margin-bottom:0;
+    gap:10px;
+    flex-wrap:nowrap
+}
+.EditorAba {
+    border:1px solid #d8dce7;
+    border-radius:6px;
+    padding:5px 10px;
+    background:white;
+    color:#15151c;
+    font:13px 'Poppins','Segoe UI',sans-serif;
+    cursor:pointer;
+    white-space:nowrap
+}
+.EditorAba.ativa {
+    background:#100d25;
+    color:white
+}
+.EditorCampo .EditorAba {
+    padding:6px 10px
+}
+.agua {
+    color:#3715d8;
+    font-size:15px
+}
+.energia {
+    color:#e0cc00;
+    font-size:18px;
+    line-height:1
+}
+.EditorAcoes {
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+    margin-top:26px
+}
+.EditorCancelar,.EditorSalvar {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:116px;
+    min-height:44px;
+    padding:8px 16px;
+    border-radius:7px;
+    font:13px 'Poppins','Segoe UI',sans-serif;
+    text-decoration:none;
+    cursor:pointer;
+    color:#111;
+    border:1px solid #dce0ec;
+    background:white
+}
+.EditorSalvar {
+    background:#dba32f;
+    border-color:#dba32f
+}
+.EditorSalvar:hover {
+    background:#c58f22
+}
+.EditorCancelar:hover {
+    background:#f5f5fa
+}
+.EditorAviso {
+    margin-top:16px;
+    font-size:12px;
+    line-height:1.5;
+    color:#702e14
+}
+.EditorFechar:focus-visible,.EditorAba:focus-visible,.EditorCancelar:focus-visible,.EditorSalvar:focus-visible {
+    outline:2px solid #946700;
+    outline-offset:3px
+}
+@media(max-width:420px) {
+    .EditorPagina {
+    padding:20px 12px
+}
+.EditorCartao {
+    padding:24px 20px
+}
+.EditorGrid {
+    gap:10px
+}
+.EditorCampo .EditorAbas {
+    gap:4px
+}
+.EditorCampo .EditorAba {
+    padding:6px
+}
+.EditorCabecalho h1 {
+    font-size:18px
+}
+
+}
+@media(max-width:420px) {
+    .EditorGrid {
+    grid-template-columns:1fr
+}
+.EditorCampo--full {
+    grid-column:auto
+}
+
+}
+
+.EditorAba {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px
+}
+.EditorIcone {
+    width:12px;
+    height:16px;
+    flex-shrink:0
+}
+
+
+
+/* Pop-ups sobre a listagem — referência Figma */
+.FormularioModal {
+    margin: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 16px;
+    width: min(708px, calc(100vw - 32px));
+    max-width: none;
+    max-height: calc(100dvh - 40px);
+    background: #e4e7f1;
+    overflow: auto;
+}
+.FormularioModal::backdrop { background: rgba(14, 12, 35, 0.65); }
+.FormularioFrame { display: block; border: 0; width: 100%; height: 710px; max-height: calc(100dvh - 40px); }
+.EditorCartao { max-width: 708px; padding: 56px; border-radius: 16px; }
+.EditorCabecalho { margin-bottom: 20px; }
+.EditorCabecalho h1 { font-size: 28px; }
+.EditorCabecalho .EditorFechar { width: 28px; height: 28px; font-size: 28px; }
+.EditorGrid { gap: 12px 24px; }
+.EditorCampo label, .EditorLabel { font-size: 14px; }
+.EditorCampo input, .EditorCampo select { height: 60px; font-size: 14px; padding: 0 12px; border-radius: 11px; }
+.EditorAbas { margin-bottom: 20px; gap: 20px; }
+.EditorAba { font-size: 17px; padding: 8px 14px; border-radius: 10px; }
+.EditorCampo .EditorAbas { gap: 12px; }
+.EditorCampo .EditorAba { padding: 12px; flex: 1; }
+.EditorIcone { width: 18px; height: 24px; }
+.EditorAcoes { margin-top: 30px; gap: 16px; }
+.EditorCancelar, .EditorSalvar { min-width: 150px; min-height: 60px; font-size: 18px; border-radius: 11px; }
+.EditorEmModal { display: block; min-height: 0; padding: 0; background: transparent; }
+.EditorEmModal .EditorCartao { max-width: none; }
+@media (max-width: 600px) {
+    .EditorCartao { padding: 28px 22px; }
+    .EditorCabecalho h1 { font-size: 23px; }
+    .EditorGrid { gap: 12px; }
+    .EditorCampo input, .EditorCampo select { height: 48px; }
+    .EditorAba { font-size: 14px; }
+    .EditorCampo .EditorAba { padding: 9px 7px; }
+    .EditorCancelar, .EditorSalvar { min-width: 110px; min-height: 48px; font-size: 15px; }
+}
