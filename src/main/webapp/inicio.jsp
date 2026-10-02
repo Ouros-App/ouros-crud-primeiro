@@ -20,28 +20,28 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem inicio">
+                <a href="inicio" class="MenuItem inicio">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
                 </a>
-                <a href="granjas.jsp" class="MenuItem">
+                <a href="granjas" class="MenuItem">
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
-                <a href="lotes.jsp" class="MenuItem">
+                <a href="lotes" class="MenuItem">
                         <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros.jsp" class="MenuItem">
+                <a href="registros" class="MenuItem">
                     <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas.jsp" class="MenuItem">
+                <a href="metas" class="MenuItem">
                     <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
           <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>

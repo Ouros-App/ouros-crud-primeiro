@@ -18,6 +18,4 @@ public interface LoteDAO {
     String update_recebidas(int recebidasNew, int recebidasOld);
     String update_chegada(Date dataNew, Date dataOld);
     String update_ganho(double ganhoNew, double ganhoOld);
-
-
 }

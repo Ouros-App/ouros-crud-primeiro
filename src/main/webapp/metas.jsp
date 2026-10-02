@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,28 +21,28 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
                 </a>
-                <a href="granjas.jsp" class="MenuItem">
+                <a href="granjas" class="MenuItem">
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
-                <a href="lotes.jsp" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotess
+                <a href="lotes" class="MenuItem">
+                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros.jsp" class="MenuItem">
+                <a href="registros" class="MenuItem">
                     <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas.jsp" class="MenuItem metas">
+                <a href="metas" class="MenuItem metas">
                     <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
           <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
@@ -131,20 +132,6 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var metasIndividual = [
-        { titulo: "Desafio desafiador difícil", granja: "Granja Da favela", alvo: "<= 3000 kWh", status: "Feito" },
-        { titulo: "Energia renovável muito noa top tpo", granja: "Granja alicia", alvo: "<= 300 L", status: "Em processo" },
-        { titulo: "Meta 2", granja: "Granja sofia", alvo: "<= 300 L", status: "Falha" },
-        { titulo: "Desafio legal", granja: "Granja andré", alvo: "<= 300 L", status: "Falha" },
-        { titulo: "Desafio top", granja: "Granja pudim", alvo: "<= 300 L", status: "Em processo" }
-    ];
-
-    var metasEstadual = [
-        { titulo: "Redução geral de energia", granja: "Todas as granjas - SP", alvo: "<= 15% consumo", status: "Em processo" },
-        { titulo: "Meta hídrica estadual", granja: "Todas as granjas - MT", alvo: "<= 10% consumo", status: "Feito" },
-        { titulo: "Sustentabilidade regional", granja: "Todas as granjas - BA", alvo: ">= 20 pontos", status: "Falha" }
-    ];
-
     var tipoAtual = "Individual";
 
     function classeStatus(status) {

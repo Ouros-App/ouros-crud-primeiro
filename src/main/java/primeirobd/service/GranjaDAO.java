@@ -12,6 +12,7 @@ import java.util.List;
 public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String SELECT_ALL = "SELECT id,area_propriedade, capacidade_aves,id_empresa,nome,regiao FROM granja";
     public static final String SELECT_NOME = "SELECT nome FROM granja";
+    public static final String SELECT_ALL_JOIN_ENDERECO_PROPRIETARIO_PROPRIETARIO_GRANJA = "SELECT *, CONCAT(endereco_proprietario.municipio, ' ', '-', ' ', endereco_proprietario.estado) as localizacao, proprietario_granja.nome as responsavel FROM granja JOIN proprietario_granja ON granja.id = proprietario_granja.id_granja JOIN endereco_proprietario ON proprietario_granja.id = endereco_proprietario.id_proprietario;";
     public static final String SELECT_REGIAO = "SELECT regiao FROM granja";
     public static final String SELECT_CAPACIDADE = "SELECT capacidade_aves FROM granja";
     public static final String DELETE_BY_ID = "DELETE FROM granja where id = ?";
@@ -46,9 +47,34 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nOcorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
+
+    public List<Granja> select_all_join_endereco_proprietario_proprietario_granja(){
+        List<Granja> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_ENDERECO_PROPRIETARIO_PROPRIETARIO_GRANJA);
+             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+            while (resultadoConsulta.next()) {
+                Granja gra = new Granja();
+                gra.setId(resultadoConsulta.getInt("id"));
+                gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
+                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
+                gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
+                gra.setNome(resultadoConsulta.getString("nome"));
+                gra.setRegiao(resultadoConsulta.getString("regiao"));
+                gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
+                gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
+                resultado.add(gra);
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("\nOcorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+        }
+    }
+
     public List<Granja> select_nome() {
         List<Granja> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();

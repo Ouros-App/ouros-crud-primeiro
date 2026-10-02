@@ -42,23 +42,23 @@ public class MainSelectTeste {
         //======================================================
 
 
-        // realizando comando select
-        System.out.println(funDAO.select_all());
+//        // realizando comando select
+//        System.out.println(funDAO.select_all());
+//        System.out.println("======================================================================");
+//        // realizando comando select
+        System.out.println(graDAO.select_all_join_endereco_proprietario_proprietario_granja());
         System.out.println("======================================================================");
-        // realizando comando select
-        System.out.println(graDAO.select_all());
-        System.out.println("======================================================================");
-        //realizando comando select
-        System.out.println(lotDAO.select_all());
-        System.out.println("======================================================================");
-        //realizando comando select
-        System.out.println(metDAO.select_all());
-        System.out.println("======================================================================");
-        // realizando comando select
-        System.out.println(reADAO.select_all());
-        System.out.println("======================================================================");
-        // realizando comando select
-        System.out.println(reEDAO.select_all());
-        System.out.println("======================================================================");
+//        //realizando comando select
+//        System.out.println(lotDAO.select_all());
+//        System.out.println("======================================================================");
+//        //realizando comando select
+//        System.out.println(metDAO.select_all());
+//        System.out.println("======================================================================");
+//        // realizando comando select
+//        System.out.println(reADAO.select_all());
+//        System.out.println("======================================================================");
+//        // realizando comando select
+//        System.out.println(reEDAO.select_all());
+//        System.out.println("======================================================================");
     }
 }

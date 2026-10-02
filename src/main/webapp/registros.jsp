@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -20,28 +21,28 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
                 </a>
-                <a href="granjas.jsp" class="MenuItem">
+                <a href="granjas" class="MenuItem">
                     <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
                 </a>
-                <a href="lotes.jsp" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotess
+                <a href="lotes" class="MenuItem">
+                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros.jsp" class="MenuItem registros">
+                <a href="registros" class="MenuItem registros">
                     <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas.jsp" class="MenuItem">
+                <a href="metas" class="MenuItem">
                     <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario">
+        <a href="perfil" class="Usuario">
           <img src="img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
@@ -108,7 +109,7 @@
                     </tr>
                     </thead>
                     <tbody id="tabela-registros">
-                    <!-- linhas preenchidas dinamicamente -->
+
                     </tbody>
                 </table>
             </div>
@@ -134,22 +135,6 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var registrosAgua = [
-        { granja: "Granja Da favela", lote: "#14", data: "05/09/2026", inicial: "23.670", final: "24.000", consumo: "330 L", status: "Abaixo" },
-        { granja: "Granja alicia", lote: "#13", data: "05/09/2026", inicial: "23.670", final: "24.000", consumo: "330 L", status: "Normal" },
-        { granja: "Granja sofia", lote: "#12", data: "05/09/2026", inicial: "23.670", final: "24.000", consumo: "330 L", status: "Acima" },
-        { granja: "Granja andre", lote: "#11", data: "05/09/2026", inicial: "23.670", final: "24.000", consumo: "330 L", status: "Acima" },
-        { granja: "Granja pudim", lote: "#10", data: "05/09/2026", inicial: "23.670", final: "24.000", consumo: "330 L", status: "Normal" }
-    ];
-
-    var registrosEnergia = [
-        { granja: "Granja Da favela", lote: "#14", data: "05/09/2026", inicial: "12.400", final: "12.900", consumo: "500 kWh", status: "Normal" },
-        { granja: "Granja alicia", lote: "#13", data: "05/09/2026", inicial: "12.400", final: "13.100", consumo: "700 kWh", status: "Acima" },
-        { granja: "Granja sofia", lote: "#12", data: "05/09/2026", inicial: "12.400", final: "12.650", consumo: "250 kWh", status: "Abaixo" },
-        { granja: "Granja andre", lote: "#11", data: "05/09/2026", inicial: "12.400", final: "12.800", consumo: "400 kWh", status: "Normal" },
-        { granja: "Granja pudim", lote: "#10", data: "05/09/2026", inicial: "12.400", final: "12.950", consumo: "550 kWh", status: "Acima" }
-    ];
-
     var tipoAtual = "Agua";
 
     function classeStatus(status) {

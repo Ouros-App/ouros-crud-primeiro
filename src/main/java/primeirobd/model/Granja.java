@@ -7,6 +7,8 @@ public class Granja {
     private int capacidadeDeAves;
     private int idEmpresa;
     private String nome;
+    private String nomeResponsavel;
+    private String localizacao;
     private String regiao;
 
     //construtor
@@ -40,6 +42,14 @@ public class Granja {
         return regiao;
     }
 
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public String getNomeResponsavel() {
+        return nomeResponsavel;
+    }
+
 
     //metodos setters
 
@@ -67,6 +77,14 @@ public class Granja {
         this.regiao = regiao;
     }
 
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public void setNomeResponsavel(String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
+    }
+
     @Override
     public String toString() {
         return "\nGRANJA" +
@@ -74,8 +92,10 @@ public class Granja {
                 "\nArea_Propriedade: " + this.areaPropriedade +
                 "\nCapacidade_De_Aves: " + this.capacidadeDeAves +
                 "\nId_Empresa: " + this.idEmpresa +
-                "\nMome: " + this.nome +
-                "Regiao: " + this.regiao+
+                "\nNome: " + this.nome +
+                "\nResponsável: " + this.nomeResponsavel +
+                "\nLocalização: " + this.localizacao +
+                "\nRegiao: " + this.regiao+
                 "\n-------------------------------------------------------------";
     }
 }
