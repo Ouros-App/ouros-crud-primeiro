@@ -261,18 +261,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const integratedCount = document.getElementById('quantidadeIntegrados');
     const selectedPlanLabel = document.getElementById('planoSelecionado');
     const pricingResult = document.getElementById('resultadoPreco');
-    const planButtons = document.querySelectorAll('.plano-agendar');
+    const planOptions = document.querySelectorAll('input[name="plano"]');
     let selectedPlan = { name: 'Trimestral', months: 3, discount: 0 };
+
+    const updateSelectedPlan = () => {
+        if (selectedPlanLabel) {
+            const discountText = selectedPlan.discount ? `, ${selectedPlan.discount}% de desconto` : '';
+            selectedPlanLabel.textContent = `Plano selecionado: ${selectedPlan.name} (${selectedPlan.months} meses${discountText})`;
+        }
+
+        planOptions.forEach((option) => {
+            option.checked = option.value === selectedPlan.name;
+        });
+
+    };
 
     const updatePricingResult = () => {
         if (!pricingResult || !integratedCount) {
-            return;
+            return false;
         }
 
+        const enteredCount = integratedCount.value.trim();
         const count = Number(integratedCount.value);
-        if (!Number.isInteger(count) || count < 0) {
+        if (enteredCount === '' || !Number.isInteger(count) || count < 0) {
             pricingResult.textContent = 'Informe um número inteiro igual ou maior que zero.';
-            return;
+            return false;
         }
 
         const monthly = 3500 + (count * 5);
@@ -280,34 +293,35 @@ document.addEventListener('DOMContentLoaded', () => {
         const total = beforeDiscount * (1 - selectedPlan.discount / 100);
         const money = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
         pricingResult.innerHTML = `Estimativa para <strong>${selectedPlan.name.toLowerCase()}</strong>: <strong>${money.format(total)}</strong> no período, equivalente a ${money.format(total / selectedPlan.months)} por mês. Inclui ${money.format(monthly)} mensais antes do desconto.`;
+        return true;
     };
 
-    planButtons.forEach((button) => {
-        button.addEventListener('click', () => {
+    planOptions.forEach((option) => {
+        option.addEventListener('change', () => {
+            if (!option.checked) {
+                return;
+            }
+
             selectedPlan = {
-                name: button.dataset.plano,
-                months: Number(button.dataset.meses),
-                discount: Number(button.dataset.desconto)
+                name: option.value,
+                months: Number(option.dataset.meses),
+                discount: Number(option.dataset.desconto)
             };
-
-            planButtons.forEach((planButton) => {
-                const selected = planButton === button;
-                planButton.setAttribute('aria-pressed', String(selected));
-                planButton.closest('.plano-card')?.classList.toggle('plano-selecionado', selected);
-            });
-
-            if (selectedPlanLabel) {
-                selectedPlanLabel.textContent = `Plano selecionado: ${selectedPlan.name} (${selectedPlan.months} meses${selectedPlan.discount ? `, ${selectedPlan.discount}% de desconto` : ''})`;
-            }
-
-            if (pricingResult) {
-                pricingResult.textContent = 'Informe a quantidade de integrados e calcule o investimento estimado.';
-            }
-
-            document.getElementById('calculadoraPlanos')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            integratedCount?.focus({ preventScroll: true });
+            updateSelectedPlan();
+            updatePricingResult();
         });
     });
+
+    planOptions.forEach((option) => {
+        if (option.checked) {
+            selectedPlan = {
+                name: option.value,
+                months: Number(option.dataset.meses),
+                discount: Number(option.dataset.desconto)
+            };
+        }
+    });
+    updateSelectedPlan();
 
     if (pricingForm) {
         pricingForm.addEventListener('submit', (event) => {
@@ -316,8 +330,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    integratedCount?.addEventListener('input', () => {
+        if (pricingResult?.textContent.startsWith('Estimativa para')) {
+            updatePricingResult();
+        }
+    });
+
     const currentYear = document.getElementById('anoAtual');
     if (currentYear) {
         currentYear.textContent = String(new Date().getFullYear());
     }
 });
+
+

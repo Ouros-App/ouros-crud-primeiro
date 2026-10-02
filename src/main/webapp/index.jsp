@@ -1,12 +1,15 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ouros | Eficiência e Sustentabilidade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=18">
+    <link rel="stylesheet" href="landing.css?v=20">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -27,7 +30,6 @@
     </header>
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <img class="fundo-brilho hero-brilho-roxo" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <img class="fundo-brilho hero-brilho-dourado" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
         <div class="decor" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
         <div class="hero-container">
@@ -62,6 +64,7 @@
 
     <!-- FUNCIONAMENTO -->
     <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
+        <img class="fundo-brilho funcionamento-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <img class="funcionamento-detalhes" src="assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
@@ -102,7 +105,7 @@
 
     <section class="funcionalidades" id="funcionalidades" aria-labelledby="funcionalidades-titulo">
         <div class="landing-container">
-            <h2 class="secao-titulo" id="funcionalidades-titulo">FUNCIONALIDADES</h2>
+            <h2 class="secao-titulo" id="funcionalidades-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONALIDADES</h2>
             <div class="funcionalidades-faixa" data-slider="funcionalidades" tabindex="0" role="region" aria-label="Funcionalidades da plataforma; deslize horizontalmente para ver todos os cards">
 
                 <article class="funcionalidade-card">
@@ -216,8 +219,8 @@
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês.</p>
-                    <!-- Seleciona o período no simulador de preço. -->
-                    <button type="button" class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" aria-pressed="false">Agendar planejamento</button>
+                    <!-- Abre um rascunho de e-mail para agendar este plano. -->
+                    <a class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
@@ -226,8 +229,8 @@
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês, com 5% de desconto sobre o total.</p>
-                    <!-- Seleciona o período no simulador de preço. -->
-                    <button type="button" class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" aria-pressed="false">Agendar planejamento</button>
+                    <!-- Abre um rascunho de e-mail para agendar este plano. -->
+                    <a class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
@@ -236,8 +239,8 @@
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês, com 10% de desconto sobre o total.</p>
-                    <!-- Seleciona o período no simulador de preço. -->
-                    <button type="button" class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" aria-pressed="false">Agendar planejamento</button>
+                    <!-- Abre um rascunho de e-mail para agendar este plano. -->
+                    <a class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
                 </article>
 
             </div>
@@ -247,13 +250,19 @@
                     <div>
                         <p class="calculadora-kicker">PLANEJE SEU INVESTIMENTO</p>
                         <h3>Simule seu preço</h3>
+                        <fieldset class="opcoes-plano">
+                            <legend>Escolha um plano</legend>
+                            <label class="opcao-plano"><input type="radio" name="plano" value="Trimestral" data-meses="3" data-desconto="0" checked><span>Trimestral</span></label>
+                            <label class="opcao-plano"><input type="radio" name="plano" value="Semestral" data-meses="6" data-desconto="5"><span>Semestral</span></label>
+                            <label class="opcao-plano"><input type="radio" name="plano" value="Anual" data-meses="12" data-desconto="10"><span>Anual</span></label>
+                        </fieldset>
                         <p id="planoSelecionado">Plano selecionado: Trimestral</p>
                     </div>
                     <label class="integrados-campo" for="quantidadeIntegrados">
                         Quantidade de integrados
                         <input id="quantidadeIntegrados" name="integrados" type="number" min="0" step="1" value="0" inputmode="numeric" required>
                     </label>
-                    <button class="calcular-preco" type="submit">Calcular estimativa</button>
+                    <button class="calcular-preco" type="submit">Simular preço</button>
                 </div>
                 <p class="resultado-preco" id="resultadoPreco" aria-live="polite">Informe a quantidade de integrados para calcular o investimento estimado.</p>
             </form>
@@ -262,9 +271,10 @@
 
     <!-- PERGUNTAS FREQUENTES -->
     <section class="faq" id="faq" aria-labelledby="faqTitulo">
-        <img class="fundo-brilho faq-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho faq-brilho faq-brilho-1" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho faq-brilho faq-brilho-2" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <img class="fundo-brilho faq-brilho faq-brilho-3" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
         <div class="landing-container faq-container">
-            <p class="faq-kicker">DÚVIDAS FREQUENTES</p>
             <h2 class="secao-titulo faq-titulo" id="faqTitulo">FAQ</h2>
             <div class="faq-lista">
                 <article class="faq-item">
@@ -337,7 +347,8 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js?v=8" defer></script>
+    <script src="landing.js?v=9" defer></script>
 </body>
 
 </html>
+
