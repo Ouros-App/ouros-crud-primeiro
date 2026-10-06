@@ -50,7 +50,6 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
             try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
                 while (resultadoConsulta.next()) {
-                    Meta lot = new Meta();
                     Meta met = new Meta();
                     met.setId(resultadoConsulta.getInt("id"));
                     met.setDescricao(resultadoConsulta.getString("descricao"));

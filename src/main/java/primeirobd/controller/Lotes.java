@@ -30,8 +30,7 @@ public class Lotes extends HttpServlet{
         int total = lote.contar();
 
         // 4. Cria o objeto de paginação
-        Paginacao paginacao =
-                new Paginacao(pagina, tamanho, total);
+        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
         // 5. Busca somente os resultados daquela página >_<
         List<Lote> lotes =

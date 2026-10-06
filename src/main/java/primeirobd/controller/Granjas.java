@@ -33,8 +33,7 @@ public class Granjas extends HttpServlet{
         int total = granja.contar();
 
         // 4. Cria o objeto de paginação
-        Paginacao paginacao =
-                new Paginacao(pagina, tamanho, total);
+        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
         // 5. Busca somente os dados daquela página >_<
         List<Granja> granjas =

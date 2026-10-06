@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.Lote;
 import primeirobd.model.RegistroAgua;
 
 import java.sql.*;
@@ -20,5 +21,8 @@ public interface RegistroAguaDAO {
     String update_data(Date dataNew, Date dataOld);
     String update_hidroInic(double hidroNew, double hidroOld);
     String update_hidroFim(double hidroNew, double hidroOld);
+
+    int contar();
+    List<RegistroAgua> select_paginado(int tamanho, int offset);
 
 }

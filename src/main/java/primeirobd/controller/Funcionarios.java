@@ -33,8 +33,7 @@ public class Funcionarios extends HttpServlet{
         int total = funcionario.contar();
 
         // 4. Cria o objeto de paginação
-        Paginacao paginacao =
-                new Paginacao(pagina, tamanho, total);
+        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
         // 5. Busca somente os funcionários daquela página >_<
         List<Funcionario> funcionarios =
