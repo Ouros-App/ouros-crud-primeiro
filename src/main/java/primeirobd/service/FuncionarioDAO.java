@@ -20,6 +20,50 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
     public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? WHERE setor = ?";
+    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM funcionario";
+    public static final String SELECT_PAGINADO = "SELECT * FROM funcionario LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado(int tamanho, int offset){
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)){
+            preparoConsultaSQL.setInt(1,tamanho);
+            preparoConsultaSQL.setInt(2,offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
+                    fun.setCpf(resultadoConsulta.getString("cpf"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    resultado.add(fun);
+                }
+                return resultado;
+            } catch (SQLException e) {
+                throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+            }
+
+        }
+    }
 
     // metodo select :D
     public List<Funcionario> select_all() {

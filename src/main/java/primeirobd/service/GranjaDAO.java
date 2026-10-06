@@ -23,8 +23,71 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String UPDATE_REGIAO = "UPDATE granja SET regiao = ? where capacidade_aves = ?";
     public static final String UPDATE_AREA = "UPDATE granja SET area_propriedade = ? WHERE area_propriedade = ?";
     public static final String UPDATE_IDEMPRESA = "UPDATE granja SET id_empresa = ? WHERE id_empresa = ?";
+    public static final String SELECT_COUNT = "SELECT COUNT(*) FROM granja";
+    // a mesma coisa do outro select, mas esse tem offset ¬_¬
+    public static final String SELECT_PAGINADO_JOIN =
+            "SELECT granja.id, " +
+                    "granja.area_propriedade, " +
+                    "granja.capacidade_aves, " +
+                    "granja.id_empresa, " +
+                    "granja.nome, " +
+                    "granja.regiao, " +
+                    "CONCAT(endereco_proprietario.municipio, ' - ', endereco_proprietario.estado) AS localizacao, " +
+                    "proprietario_granja.nome AS responsavel " +
+                    "FROM granja " +
+                    "JOIN proprietario_granja " +
+                    "ON granja.id = proprietario_granja.id_granja " +
+                    "JOIN endereco_proprietario " +
+                    "ON proprietario_granja.id = endereco_proprietario.id_proprietario " +
+                    "LIMIT ? OFFSET ?";
 
 
+    // metodo de continhas (ﾉ´ヮ´)ﾉ
+    public int contar(){
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+        ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()) {
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+        }catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    // metodo do select soq paginado uau
+
+    public List<Granja> select_paginado(int tamanho, int offset) {
+
+        List<Granja> resultado = new ArrayList<>();
+
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_JOIN)) {
+
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    Granja gra = new Granja();
+                    gra.setId(resultadoConsulta.getInt("id"));
+                    gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
+                    gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
+                    gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
+                    gra.setNome(resultadoConsulta.getString("nome"));
+                    gra.setRegiao(resultadoConsulta.getString("regiao"));
+                    gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
+                    gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
+                    resultado.add(gra);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
 
     // metodo select :D
     public List<Granja> select_all() {
