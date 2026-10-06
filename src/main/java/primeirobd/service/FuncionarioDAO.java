@@ -38,12 +38,12 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado(int tamanho, int offset){
+    public List<Funcionario> select_paginado(int tamanho, int offset) {
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)){
-            preparoConsultaSQL.setInt(1,tamanho);
-            preparoConsultaSQL.setInt(2,offset);
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
 
             try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
@@ -57,11 +57,10 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     resultado.add(fun);
                 }
-                return resultado;
-            } catch (SQLException e) {
-                throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
             }
-
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
         }
     }
 

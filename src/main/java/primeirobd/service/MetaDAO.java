@@ -1,6 +1,7 @@
 package primeirobd.service;
 
 import primeirobd.model.Meta;
+import primeirobd.model.Meta;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,12 +17,59 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String SELECT_VALOR_ALVO = "SELECT valor_alvo FROM meta";
 
     public static final String DELETE_BY_ID = "DELETE FROM meta WHERE id = ?";
-    public static final String INSERT =
-            "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE meta SET id = ? WHERE id = ?";
     public static final String UPDATE_TITULO = "UPDATE meta SET titulo = ? WHERE titulo = ?";
     public static final String UPDATE_ID_GRANJA = "UPDATE meta SET id_granja = ? WHERE id_granja = ?";
     public static final String UPDATE_VALOR_ALVO = "UPDATE meta SET valor_alvo = ? WHERE valor_alvo = ?";
+
+    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM meta";
+    public static final String SELECT_PAGINADO = "SELECT * FROM meta LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<Meta> select_paginado(int tamanho, int offset) {
+        List<Meta> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    Meta lot = new Meta();
+                    Meta met = new Meta();
+                    met.setId(resultadoConsulta.getInt("id"));
+                    met.setDescricao(resultadoConsulta.getString("descricao"));
+                    met.setEstado(resultadoConsulta.getString("estado"));
+                    met.setIdGranja(resultadoConsulta.getInt("id_granja"));
+                    met.setIndividual(resultadoConsulta.getBoolean("is_individual"));
+                    met.setRegiao(resultadoConsulta.getString("regiao"));
+                    met.setStatus(resultadoConsulta.getString("status"));
+                    met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
+                    met.setTitulo(resultadoConsulta.getString("titulo"));
+                    met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                    resultado.add(met);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
 
     // metodo select :D
     public List<Meta> select_all() {

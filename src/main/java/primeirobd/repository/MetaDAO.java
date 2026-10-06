@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.Lote;
 import primeirobd.model.Meta;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public interface MetaDAO {
     String update_titulo(String tituloNew, String tituloOld);
     String update_idGranja(int idGranjaNew, int idGranjaOld);
     String update_valorAlvo(double valorAlvoNew, double valorAlvoOld);
+
+    int contar();
+    List<Meta> select_paginado(int tamanho, int offset);
 
 
 }
