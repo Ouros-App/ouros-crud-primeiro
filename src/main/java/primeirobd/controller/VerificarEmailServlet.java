@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/verificar")
+@WebServlet(name = "VerificarEmailServlet", value = "/verificar")
 public class VerificarEmailServlet extends HttpServlet {
 
     private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();

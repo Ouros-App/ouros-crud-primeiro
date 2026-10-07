@@ -5,9 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metas</title>
-    <link rel="stylesheet" href="Style.css?v=4">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+    <title>Registros</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
@@ -17,33 +17,33 @@
     <aside class="Sidebar">
         <div class="SidebarTopo">
             <div class="LogoSidebar">
-                <img src="img/Ouros.png" alt="logo do ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="logo do ouros">
             </div>
 
             <nav class="Menu">
                 <a href="inicio" class="MenuItem">
-                    <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/inicio.svg" alt=""></span> Início
                 </a>
                 <a href="granjas" class="MenuItem">
-                    <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/granja.svg" alt=""></span> Granjas
                 </a>
                 <a href="lotes" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
+                        <span class="Icone"><img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
                 <a href="funcionarios" class="MenuItem">
-                    <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
-                <a href="registros" class="MenuItem">
-                    <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
+                <a href="registros" class="MenuItem registros">
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/registros.svg" alt=""></span> Registros
                 </a>
-                <a href="metas" class="MenuItem metas">
-                    <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
+                <a href="metas" class="MenuItem">
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
         <a href="perfil" class="Usuario">
-          <img src="img/imagemDefault.png" alt="foto do usuário">
+          <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
                 <span>Admin</span>
@@ -56,10 +56,10 @@
         <div class="hero">
             <div>
                 <div class="Titulo">
-                    <h1>Metas</h1>
+                    <h1>Registros</h1>
                 </div>
                 <div class="subtitulo">
-                    <p>Veja todas suas metas para as granjas</p>
+                    <p>Veja todos os registros das granjas</p>
                 </div>
             </div>
         </div>
@@ -67,8 +67,8 @@
         <div class="Painel">
 
             <div class="Alternador">
-                <button type="button" class="AlternadorItem ativo" data-tipo="Individual">Individual</button>
-                <button type="button" class="AlternadorItem" data-tipo="Estadual">Estadual</button>
+                <button type="button" class="AlternadorItem ativo" data-tipo="Agua">💧 Água</button>
+                <button type="button" class="AlternadorItem" data-tipo="Energia">⚡ Energia</button>
             </div>
 
             <div class="Filtros">
@@ -77,20 +77,20 @@
                         <circle cx="11" cy="11" r="7"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="buscaMeta" placeholder="Buscar...">
+                    <input type="text" id="buscaRegistro" placeholder="Buscar...">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroGranja" placeholder="">
+                <input type="text" class="CampoSetor" id="filtroLote" placeholder="">
 
                 <div class="OrdenarPor">
                     <select id="ordenarPor">
-                        <option value="titulo">Ordenar por: Título</option>
-                        <option value="status">Ordenar por: Status</option>
+                        <option value="data">Ordenar por: Data</option>
+                        <option value="consumo">Ordenar por: Consumo</option>
                     </select>
                 </div>
 
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('meta-nova.jsp')">
-                    + Nova meta
+                <button type="button" class="BotaoNovo" onclick="abrirFormulario('registro-novo.jsp')">
+                    + Novo registro
                 </button>
             </div>
 
@@ -98,21 +98,24 @@
                 <table>
                     <thead>
                     <tr>
-                        <th>Título</th>
                         <th>Granja</th>
-                        <th>Alvo</th>
+                        <th>Lote</th>
+                        <th>Data</th>
+                        <th>Hidrômetro inicial</th>
+                        <th>Hidrômetro final</th>
+                        <th>Consumo</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
                     </thead>
-                    <tbody id="tabela-metas">
-                    <!-- linhas preenchidas dinamicamente -->
+                    <tbody id="tabela-registros">
+
                     </tbody>
                 </table>
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemMetas">mostrando 1 a 5 de 25 granjas</span>
+                <span class="Contagem" id="contagemRegistros">mostrando 1 a 5 de 25 registros de água</span>
 
                 <div class="Paginacao" id="paginacao">
                     <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
@@ -132,29 +135,32 @@
 
 <script>
     // Exemplo de dados - substitua pela chamada real ao backend
-    var tipoAtual = "Individual";
+    var tipoAtual = "Agua";
 
     function classeStatus(status) {
-        if (status === "Feito") return "positivo";
-        if (status === "Falha") return "negativo";
+        if (status === "Abaixo") return "positivo";
+        if (status === "Acima") return "negativo";
         return "neutro";
     }
 
     function listaAtual() {
-        return tipoAtual === "Individual" ? metasIndividual : metasEstadual;
+        return tipoAtual === "Agua" ? registrosAgua : registrosEnergia;
     }
 
-    function renderizarMetas(lista) {
-        var corpoTabela = document.getElementById("tabela-metas");
+    function renderizarRegistros(lista) {
+        var corpoTabela = document.getElementById("tabela-registros");
         corpoTabela.innerHTML = "";
 
-        lista.forEach(function (m) {
+        lista.forEach(function (r) {
             var linha = document.createElement("tr");
             linha.innerHTML =
-                "<td>" + m.titulo + "</td>" +
-                "<td>" + m.granja + "</td>" +
-                "<td>" + m.alvo + "</td>" +
-                "<td><span class='Status " + classeStatus(m.status) + "'>" + m.status + "</span></td>" +
+                "<td>" + r.granja + "</td>" +
+                "<td>" + r.lote + "</td>" +
+                "<td>" + r.data + "</td>" +
+                "<td>" + r.inicial + "</td>" +
+                "<td>" + r.final + "</td>" +
+                "<td>" + r.consumo + "</td>" +
+                "<td><span class='Status " + classeStatus(r.status) + "'>" + r.status + "</span></td>" +
                 "<td>" +
                 "<div class='ColunaAcoes'>" +
                 "<button type='button' class='BotaoAcao editar' title='Editar'>" +
@@ -176,28 +182,32 @@
                 "</td>";
 
             linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, m);
+                var dados = Object.assign({}, r);
 
+                dados.tipo = tipoAtual; dados.medidorInicial = r.inicial.replace(/\./g, ''); dados.medidorFinal = r.final.replace(/\./g, '');
 
-                dados.tipo = tipoAtual; dados.tipoValor = m.alvo.includes('kWh') ? 'Energia' : 'Agua'; dados.alvo = (m.alvo.match(/[\d,.]+/) || [''])[0].replace(',', '.');
 
                 ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-meta', JSON.stringify(dados));
-                abrirFormulario('meta-nova.jsp?acao=editar');
+                sessionStorage.setItem('ouros-editor-registro', JSON.stringify(dados));
+                abrirFormulario('registro-novo.jsp?acao=editar');
             });
             corpoTabela.appendChild(linha);
         });
+
+        var contagem = document.getElementById("contagemRegistros");
+        var rotulo = tipoAtual === "Agua" ? "água" : "energia";
+        contagem.textContent = "mostrando 1 a " + lista.length + " de 25 registros de " + rotulo;
     }
 
-    document.getElementById("buscaMeta").addEventListener("input", function (e) {
+    document.getElementById("buscaRegistro").addEventListener("input", function (e) {
         var termo = e.target.value.toLowerCase();
-        var filtradas = listaAtual().filter(function (m) {
-            return m.titulo.toLowerCase().includes(termo) || m.granja.toLowerCase().includes(termo);
+        var filtrados = listaAtual().filter(function (r) {
+            return r.granja.toLowerCase().includes(termo) || r.lote.toLowerCase().includes(termo);
         });
-        renderizarMetas(filtradas);
+        renderizarRegistros(filtrados);
     });
 
-    // Alterna entre Individual e Estadual
+    // Alterna entre Água e Energia
     document.querySelectorAll(".AlternadorItem").forEach(function (botao) {
         botao.addEventListener("click", function () {
             document.querySelectorAll(".AlternadorItem").forEach(function (b) {
@@ -205,8 +215,8 @@
             });
             botao.classList.add("ativo");
             tipoAtual = botao.getAttribute("data-tipo");
-            document.getElementById("buscaMeta").value = "";
-            renderizarMetas(listaAtual());
+            document.getElementById("buscaRegistro").value = "";
+            renderizarRegistros(listaAtual());
         });
     });
 
@@ -244,10 +254,10 @@
     });
 
     marcarPaginaAtiva(1);
-    renderizarMetas(listaAtual());
+    renderizarRegistros(listaAtual());
 </script>
 
-<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de metas" class="FormularioFrame"></iframe></dialog>
+<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de registros" class="FormularioFrame"></iframe></dialog>
 <script>
 (function () {
     const dialog = document.getElementById('formularioModal');

@@ -12,10 +12,10 @@ import java.util.List;
 
 public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String SELECT_ALL = "SELECT * FROM meta";
+    public static final String SELECT_PAGINADO = "SELECT m.titulo, g.nome, m.valor_alvo FROM meta m JOIN granja g ON m.id_granja = g.id;";
     public static final String SELECT_TITULO = "SELECT titulo FROM meta";
     public static final String SELECT_ID_GRANJA= "SELECT id_granja FROM meta";
     public static final String SELECT_VALOR_ALVO = "SELECT valor_alvo FROM meta";
-
     public static final String DELETE_BY_ID = "DELETE FROM meta WHERE id = ?";
     public static final String INSERT = "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE meta SET id = ? WHERE id = ?";
@@ -95,6 +95,26 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+        }
+    }
+
+    public List<Meta> select_paginado(){
+        List<Meta> informacoes = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
+             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+            while (resultadoConsulta.next()) {
+                Meta met = new Meta();
+                met.setTitulo(resultadoConsulta.getString("titulo"));
+                met.setNomeGranja(resultadoConsulta.getString("nome"));
+                met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                informacoes.add(met);
+            }
+            return informacoes;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro: " + e.getMessage());
         }
     }
 

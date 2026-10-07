@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil</title>
-    <link rel="stylesheet" href="Style.css?v=4">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
@@ -16,33 +16,33 @@
     <aside class="Sidebar">
         <div class="SidebarTopo">
             <div class="LogoSidebar">
-                <img src="img/Ouros.png" alt="logo do ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="logo do ouros">
             </div>
 
             <nav class="Menu">
                 <a href="inicio.jsp" class="MenuItem">
-                    <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/inicio.svg" alt=""></span> Início
                 </a>
                 <a href="granjas.jsp" class="MenuItem">
-                    <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/granja.svg" alt=""></span> Granjas
                 </a>
                 <a href="lotes.jsp" class="MenuItem">
-                        <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotess
+                        <span class="Icone"><img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="Pintinho"></span> Lotess
                 </a>
                 <a href="funcionarios.jsp" class="MenuItem">
-                    <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
                 <a href="registros.jsp" class="MenuItem">
-                    <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/registros.svg" alt=""></span> Registros
                 </a>
                 <a href="metas.jsp" class="MenuItem">
-                    <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
         <a href="perfil.jsp" class="Usuario">
-            <img src="img/imagemDefault.png" alt="foto do usuário">
+            <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
                 <span>Admin</span>
@@ -67,7 +67,7 @@
             <form class="FormPainel" action="perfil" method="post" enctype="multipart/form-data" style="max-width: 100%;">
 
                 <div class="PerfilAvatarArea">
-                    <img class="PerfilFoto" src="img/imagemDefault.png" alt="foto do usuário" id="previewFoto">
+                    <img class="PerfilFoto" src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário" id="previewFoto">
 
                     <div class="PerfilAvatarAcoes">
                         <div class="PerfilAvatarBotoes">

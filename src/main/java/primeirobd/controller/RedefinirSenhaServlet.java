@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
     ProprietarioGranjaDAO -> atualiza a senha do usuário
     Validador             -> regra de senha (a mesma do cadastro)
  */
-@WebServlet(name = "RedefinirSenha", value = "/RedefinirSenha")
+@WebServlet(name = "RedefinirSenha", value = "/redefinir-senha")
 public class RedefinirSenhaServlet extends HttpServlet {
 
     private static final String PAGINA_REDEFINIR = "/RedefinirSenha.jsp";

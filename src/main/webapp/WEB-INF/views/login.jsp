@@ -8,8 +8,8 @@
     <title>Login</title>
 
     <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="Style.css?v=5">
-    <link rel="icon" type="image/svg+xml" href="img/granja.svg">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/svg+xml" href="${pageContext.request.contextPath}/img/granja.svg">
 </head>
 <body>
 <div class="LoginPage">
@@ -67,7 +67,7 @@
             </ul>
 
             <div class="MascoteLoginBox">
-                <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+                <img class="MascoteLogin" src="${pageContext.request.contextPath}/img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
             </div>
         </div>
 
@@ -91,7 +91,7 @@
                 </div>
 
                 <div class="LoginUtilitario">
-                    <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
+                    <a class="LoginLinkEsqueci" href="${pageContext.request.contextPath}/RecuperarSenha.jsp">Esqueceu sua senha?</a>
                 </div>
 
                 <br>

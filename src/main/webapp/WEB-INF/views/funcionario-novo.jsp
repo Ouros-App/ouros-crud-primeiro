@@ -4,70 +4,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Novo Registro de água</title>
-<link rel="stylesheet" href="Style.css?v=4">
-<link rel="icon" href="img/Asa-icon.png">
+<title>Novo Funcionário</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
-<h1 id="editorTitulo">Novo Registro de água</h1>
-<a class="EditorFechar" href="registros.jsp" aria-label="Fechar">×</a>
+<h1 id="editorTitulo">Novo Funcionário</h1>
+<a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
-<form action="registros" method="post" data-editor="registro">
+<form action="funcionarios" method="post" target="_top" data-editor="funcionario">
 <input type="hidden" name="acao" value="criar">
 <input type="hidden" name="id" value="">
-<div class="EditorAbas" role="group" aria-label="Tipo">
-<button type="button" data-group="tipo" data-value="Agua" aria-pressed="true" class="EditorAba ativa">
-<svg class="EditorIcone agua" viewBox="0 0 16 20" aria-hidden="true">
-<path fill="currentColor" d="M8 0C6 4 1 9 1 13a7 7 0 0 0 14 0C15 9 10 4 8 0Z"/>
-</svg> Água</button>
-<button type="button" data-group="tipo" data-value="Energia" aria-pressed="false" class="EditorAba">
-<svg class="EditorIcone energia" viewBox="0 0 16 20" aria-hidden="true">
-<path fill="currentColor" d="M9 0 1 12h6l-1 8 9-13H9Z"/>
-</svg> Energia</button>
-<input type="hidden" name="tipo" value="Agua">
-</div>
 <div class="EditorGrid">
-<div class="EditorCampo">
-<label for="granja">Granja</label>
-<input id="granja" name="granja" type="text" placeholder="Granja Exemplo"  required>
+<div class="EditorCampo EditorCampo--full">
+<label for="nome">Nome completo</label>
+<input id="nome" name="nome" type="text" placeholder="Rafael Santos"  required>
 </div>
 <div class="EditorCampo">
-<label for="lote">Lote</label>
-<select id="lote" name="lote">
-<option>Selecione...</option>
-<option>#067</option>
-<option>#14</option>
-<option>#13</option>
-<option>#12</option>
-<option>#11</option>
-<option>#10</option>
-</select>
+<label for="cpf">CPF</label>
+<input id="cpf" name="cpf" type="text" placeholder="000.000.000-00"  >
 </div>
 <div class="EditorCampo">
-<label for="data">Data do registro</label>
-<input id="data" name="data" type="date" placeholder=""  >
+<label for="setor">Setor</label>
+<input id="setor" name="setor" type="text" placeholder="Manejo"  >
 </div>
 <div class="EditorCampo">
-<label for="status">Status</label>
-<select id="status" name="status">
-<option>Normal</option>
-<option>Abaixo</option>
-<option>Acima</option>
-</select>
+<label for="email">E-mail</label>
+<input id="email" name="email" type="email" placeholder="exemplo@gmail.com"  required>
 </div>
 <div class="EditorCampo">
-<label for="medidorInicial">Hidrômetro inicial (água)</label>
-<input id="medidorInicial" name="medidorInicial" type="number" placeholder="1234" min="0" step="any" >
-</div>
-<div class="EditorCampo">
-<label for="medidorFinal">Hidrômetro final (água)</label>
-<input id="medidorFinal" name="medidorFinal" type="number" placeholder="4321" min="0" step="any" >
+<label for="telefone">Telefone</label>
+<input id="telefone" name="telefone" type="tel" placeholder="+55 11 12345-6789"  >
 </div>
 </div>
 <footer class="EditorAcoes">
-<a href="registros.jsp" class="EditorCancelar">Cancelar</a>
+<a href="${pageContext.request.contextPath}/funcionarios" class="EditorCancelar">Cancelar</a>
 <button type="submit" class="EditorSalvar">Salvar</button>
 </footer>
 <p class="EditorAviso" role="status" hidden>
