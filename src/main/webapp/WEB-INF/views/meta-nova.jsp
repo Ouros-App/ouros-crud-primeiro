@@ -4,43 +4,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Novo Funcionário</title>
-<link rel="stylesheet" href="Style.css?v=4">
-<link rel="icon" href="img/Asa-icon.png">
+<title>Nova Meta</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
-<h1 id="editorTitulo">Novo Funcionário</h1>
-<a class="EditorFechar" href="funcionarios.jsp" aria-label="Fechar">×</a>
+<h1 id="editorTitulo">Nova Meta</h1>
+<a class="EditorFechar" href="metas.jsp" aria-label="Fechar">×</a>
 </header>
-<form action="funcionarios" method="post" data-editor="funcionario">
+<form action="metas" method="post" data-editor="meta">
 <input type="hidden" name="acao" value="criar">
 <input type="hidden" name="id" value="">
+<div class="EditorAbas" role="group" aria-label="Tipo">
+<button type="button" data-group="tipo" data-value="Individual" aria-pressed="true" class="EditorAba ativa">Individual</button>
+<button type="button" data-group="tipo" data-value="Estadual" aria-pressed="false" class="EditorAba">Estadual</button>
+<input type="hidden" name="tipo" value="Individual">
+</div>
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
-<label for="nome">Nome completo</label>
-<input id="nome" name="nome" type="text" placeholder="Rafael Santos"  required>
+<label for="titulo">Título</label>
+<input id="titulo" name="titulo" type="text" placeholder="Diminuindo água"  required>
+</div>
+<div class="EditorCampo EditorCampo--full">
+<label for="descricao">Descrição</label>
+<input id="descricao" name="descricao" type="text" placeholder="Granja Ouro Branco"  >
 </div>
 <div class="EditorCampo">
-<label for="cpf">CPF</label>
-<input id="cpf" name="cpf" type="text" placeholder="000.000.000-00"  >
+<span class="EditorLabel">Tipo de valor</span>
+<div class="EditorAbas" role="group" aria-label="Tipo de valor">
+<button type="button" data-group="tipoValor" data-value="Agua" aria-pressed="true" class="EditorAba ativa">
+<svg class="EditorIcone agua" viewBox="0 0 16 20" aria-hidden="true">
+<path fill="currentColor" d="M8 0C6 4 1 9 1 13a7 7 0 0 0 14 0C15 9 10 4 8 0Z"/>
+</svg> Água</button>
+<button type="button" data-group="tipoValor" data-value="Energia" aria-pressed="false" class="EditorAba">
+<svg class="EditorIcone energia" viewBox="0 0 16 20" aria-hidden="true">
+<path fill="currentColor" d="M9 0 1 12h6l-1 8 9-13H9Z"/>
+</svg> Energia</button>
+<input type="hidden" name="tipoValor" value="Agua">
+</div>
 </div>
 <div class="EditorCampo">
-<label for="setor">Setor</label>
-<input id="setor" name="setor" type="text" placeholder="Manejo"  >
+<label for="alvo">Valor alvo (litros)</label>
+<input id="alvo" name="alvo" type="number" placeholder="1100" min="0" step="any" >
 </div>
 <div class="EditorCampo">
-<label for="email">E-mail</label>
-<input id="email" name="email" type="email" placeholder="exemplo@gmail.com"  required>
+<label for="status">Status</label>
+<select id="status" name="status">
+<option>Em processo</option>
+<option>Feito</option>
+<option>Falha</option>
+</select>
 </div>
 <div class="EditorCampo">
-<label for="telefone">Telefone</label>
-<input id="telefone" name="telefone" type="tel" placeholder="+55 11 12345-6789"  >
+<label for="granja">Granja</label>
+<input id="granja" name="granja" type="text" placeholder="Granja Ouro Branco"  required>
 </div>
 </div>
 <footer class="EditorAcoes">
-<a href="funcionarios.jsp" class="EditorCancelar">Cancelar</a>
+<a href="metas.jsp" class="EditorCancelar">Cancelar</a>
 <button type="submit" class="EditorSalvar">Salvar</button>
 </footer>
 <p class="EditorAviso" role="status" hidden>

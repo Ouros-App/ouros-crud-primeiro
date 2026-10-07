@@ -11,21 +11,22 @@ import primeirobd.service.*;
 import primeirobd.model.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name ="Lotes", value ="/lotes")
-public class Lotes extends HttpServlet{
-    private LoteDAO lote;
+@WebServlet(name ="Metas", value ="/metas")
+public class Metas extends HttpServlet{
+    private MetaDAO meta;
 
     @Override
-    public void init() throws ServletException {
-        lote = new LoteDAO();
+    public void init() {
+        meta = new MetaDAO();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Lote> lotes = lote.select_all_join_paginado();
-        request.setAttribute("lotes", new Gson().toJson(lotes));
-        getServletContext().getRequestDispatcher("/WEB-INF/views/lotes.jsp").forward(request, response);
+        List<Meta> metas = new ArrayList<>();
+        request.setAttribute("metas", new Gson().toJson(metas));
+        getServletContext().getRequestDispatcher("/WEB-INF/views/metas.jsp").forward(request, response);
     }
 }

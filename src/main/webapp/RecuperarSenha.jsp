@@ -104,7 +104,7 @@
             </form>
 
             <div class="LoginRodape">
-                <a class="LoginLinkEsqueci" href="login.jsp">Lembrou sua senha? Voltar ao login</a>
+                <a class="LoginLinkEsqueci" href="WEB-INF/views/login.jsp">Lembrou sua senha? Voltar ao login</a>
             </div>
         </div>
 

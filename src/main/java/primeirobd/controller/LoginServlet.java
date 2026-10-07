@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
     private final ProprietarioGranjaDAO dao = new ProprietarioGranjaDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        request.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+        request.getServletContext().getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
     @Override

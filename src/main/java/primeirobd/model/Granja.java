@@ -10,6 +10,7 @@ public class Granja {
     private String nomeResponsavel;
     private String localizacao;
     private String regiao;
+    private double cgi;
 
     //construtor
 
@@ -50,6 +51,10 @@ public class Granja {
         return nomeResponsavel;
     }
 
+    public double getCgi() {
+        return cgi;
+    }
+
 
     //metodos setters
 
@@ -85,6 +90,10 @@ public class Granja {
         this.nomeResponsavel = nomeResponsavel;
     }
 
+    public void setCgi(double cgi) {
+        this.cgi = cgi;
+    }
+
     @Override
     public String toString() {
         return "\nGRANJA" +
@@ -95,7 +104,8 @@ public class Granja {
                 "\nNome: " + this.nome +
                 "\nResponsável: " + this.nomeResponsavel +
                 "\nLocalização: " + this.localizacao +
-                "\nRegiao: " + this.regiao+
+                "\nRegiao: " + this.regiao +
+                "\nCGI: " + this.cgi +
                 "\n-------------------------------------------------------------";
     }
 }

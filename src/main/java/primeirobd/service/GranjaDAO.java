@@ -1,6 +1,9 @@
 package primeirobd.service;
 
+import primeirobd.model.CGI;
 import primeirobd.model.Granja;
+import primeirobd.model.RegistroAgua;
+import primeirobd.utils.CalculoCGI;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +15,8 @@ import java.util.List;
 public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String SELECT_ALL = "SELECT id,area_propriedade, capacidade_aves,id_empresa,nome,regiao FROM granja";
     public static final String SELECT_NOME = "SELECT nome FROM granja";
-    public static final String SELECT_ALL_JOIN_ENDERECO_PROPRIETARIO_PROPRIETARIO_GRANJA = "SELECT *, CONCAT(endereco_proprietario.municipio, ' ', '-', ' ', endereco_proprietario.estado) as localizacao, proprietario_granja.nome as responsavel FROM granja JOIN proprietario_granja ON granja.id = proprietario_granja.id_granja JOIN endereco_proprietario ON proprietario_granja.id = endereco_proprietario.id_proprietario;";
+    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, CONCAT(endereco_proprietario.municipio, ' ', '-', ' ', endereco_proprietario.estado) as localizacao, proprietario_granja.nome as responsavel FROM granja JOIN proprietario_granja ON granja.id = proprietario_granja.id_granja JOIN endereco_proprietario ON proprietario_granja.id = endereco_proprietario.id_proprietario;";
+    public static final String SELECT_CGI = "SELECT registro_agua.hidrometro_inicio, registro_agua.hidrometro_final, lote.galinhas_entregadas, registro_energia.consumo FROM registro_agua JOIN lote ON registro_agua.id_lote = lote.id JOIN registro_energia ON registro_energia.id_lote = registro_agua.id_lote";
     public static final String SELECT_REGIAO = "SELECT regiao FROM granja";
     public static final String SELECT_CAPACIDADE = "SELECT capacidade_aves FROM granja";
     public static final String DELETE_BY_ID = "DELETE FROM granja where id = ?";
@@ -47,18 +51,19 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("\nOcorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\n\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
-    public List<Granja> select_all_join_endereco_proprietario_proprietario_granja(){
+    public List<Granja> select_all_join_paginado(){
         List<Granja> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_ENDERECO_PROPRIETARIO_PROPRIETARIO_GRANJA);
+        int contador = 0;
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_PAGINADO);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-
             while (resultadoConsulta.next()) {
                 Granja gra = new Granja();
+                int id = resultadoConsulta.getInt("id");
                 gra.setId(resultadoConsulta.getInt("id"));
                 gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
                 gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
@@ -67,11 +72,32 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                 gra.setRegiao(resultadoConsulta.getString("regiao"));
                 gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
                 gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
+                gra.setCgi(CalculoCGI.calcularCGI(gra, select_cgi(), contador));
+                contador++;
                 resultado.add(gra);
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("\nOcorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\n\nErro ao tentar: \n" + e.getMessage());
+        }
+    }
+
+    public List<CGI> select_cgi() {
+        List<CGI> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_CGI);
+             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+            while (resultadoConsulta.next()) {
+                CGI cgi = new CGI();
+                cgi.setHidrometroInicio(resultadoConsulta.getDouble("hidrometro_inicio"));
+                cgi.setHidrometroFinal(resultadoConsulta.getDouble("hidrometro_final"));
+                cgi.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
+                cgi.setConsumoEnergetico(resultadoConsulta.getDouble("consumo"));
+                resultado.add(cgi);
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -88,7 +114,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -107,7 +133,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -126,7 +152,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             }
             return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -138,7 +164,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -155,7 +181,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             return "Item inserido com sucesso no banco de dados";
 
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -168,7 +194,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -180,7 +206,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -192,7 +218,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -204,7 +230,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -216,7 +242,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 
@@ -228,7 +254,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             preparoConsultaSQL.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("\nErro ao tentar: \n" + e.getMessage());
         }
     }
 }

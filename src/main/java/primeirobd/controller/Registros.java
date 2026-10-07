@@ -19,15 +19,24 @@ public class Registros extends HttpServlet {
     private RegistroEnergiaDAO registroEnergia;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void init() {
         registroAgua = new RegistroAguaDAO();
         registroEnergia = new RegistroEnergiaDAO();
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<RegistroAgua> registrosDeAgua = registroAgua.select_all();
         List<RegistroEnergia> registrosDeEnergia = registroEnergia.select_all();
 
         request.setAttribute("registrosAgua", registrosDeAgua);
         request.setAttribute("registrosEnergia", registrosDeEnergia);
 
-        getServletContext().getRequestDispatcher("/registros.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/WEB-INF/views/registros.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
     }
 }

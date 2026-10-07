@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotes</title>
-    <link rel="stylesheet" href="Style.css?v=4">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
 <body>
@@ -17,33 +17,33 @@
     <aside class="Sidebar">
         <div class="SidebarTopo">
             <div class="LogoSidebar">
-                <img src="img/Ouros.png" alt="logo do ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="logo do ouros">
             </div>
 
             <nav class="Menu">
                 <a href="inicio" class="MenuItem">
-                    <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/inicio.svg" alt=""></span> Início
                 </a>
                 <a href="granjas" class="MenuItem">
-                    <span class="Icone"><img src="img/granja.svg" alt=""></span> Granjas
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/granja.svg" alt=""></span> Granjas
                 </a>
                 <a href="lotes" class="MenuItem lotes">
-                      <span class="Icone"><img src="img/pintinho.svg" alt="Pintinho"></span> Lotes
+                      <span class="Icone"><img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
                 <a href="funcionarios" class="MenuItem">
-                    <span class="Icone"><img src="img/fucionarios.svg" alt=""></span> Funcionários
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/fucionarios.svg" alt=""></span> Funcionários
                 </a>
                 <a href="registros" class="MenuItem">
-                    <span class="Icone"><img src="img/registros.svg" alt=""></span> Registros
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/registros.svg" alt=""></span> Registros
                 </a>
                 <a href="metas" class="MenuItem">
-                    <span class="Icone"><img src="img/metas.svg" alt=""></span> Metas
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
             </nav>
         </div>
 
         <a href="perfil" class="Usuario">
-          <img src="img/imagemDefault.png" alt="foto do usuário">
+          <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
                 <span>Admin</span>
@@ -100,22 +100,10 @@
                         <th>Recebidas</th>
                         <th>Chegada</th>
                         <th>Ganho</th>
-                        <th>Status</th>
                         <th>Ações</th>
                     </tr>
                     </thead>
-                    <tbody id="tabela-lotes">
-                        <c:forEach var="lote" items="${lotes}">
-                                ><tr>
-                                    <td><c:out value="${lote.id}"/></td>
-                                    <td><c:out value="${lote.nomeGranja}"/></td>
-                                    <td><c:out value="${lote.galinhasEntregadas}"/></td>
-                                    <td><c:out value="${lote.galinhasRecebidas}"/></td>
-                                    <td><c:out value="${lote.dtChegada}"/></td>
-                                    <td><c:out value="${lote.ganho}"/></td>
-                                </tr>
-                        </c:forEach>
-                    </tbody>
+                    <tbody id="tabela-lotes"></tbody>
                 </table>
             </div>
 
@@ -139,10 +127,12 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    function classeStatus(status) {
-        if (status === "Recebido") return "positivo";
-        return "neutro";
+    var lotes = ${empty lotes ? '[]' : lotes};
+
+    function esc(t) {
+        return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
+            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
+        });
     }
 
     function renderizarLotes(lista) {
@@ -152,41 +142,30 @@
         lista.forEach(function (l) {
             var linha = document.createElement("tr");
             linha.innerHTML =
-                "<td>" + l.lote + "</td>" +
-                "<td>" + l.granja + "</td>" +
-                "<td>" + l.entregues + "</td>" +
-                "<td>" + l.recebidas + "</td>" +
-                "<td>" + l.chegada + "</td>" +
-                "<td>" + l.ganho + "</td>" +
-                "<td><span class='Status " + classeStatus(l.status) + "'>" + l.status + "</span></td>" +
+                "<td>" + esc(l.id) + "</td>" +
+                "<td>" + esc(l.nomeGranja) + "</td>" +
+                "<td>" + esc(l.galinhasEntregadas) + "</td>" +
+                "<td>" + esc(l.galinhasRecebidas) + "</td>" +
+                "<td>" + esc(l.dtChegada) + "</td>" +
+                "<td>" + esc(l.ganho) + "</td>" +
                 "<td>" +
                 "<div class='ColunaAcoes'>" +
                 "<button type='button' class='BotaoAcao editar' title='Editar'>" +
                 "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
                 "<path d='M12 20h9'></path>" +
                 "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg>" +
-                "</button>" +
+                "</svg></button>" +
                 "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
                 "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
                 "<polyline points='3 6 5 6 21 6'></polyline>" +
                 "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path>" +
-                "<path d='M14 11v6'></path>" +
+                "<path d='M10 11v6'></path><path d='M14 11v6'></path>" +
                 "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg>" +
-                "</button>" +
-                "</div>" +
-                "</td>";
+                "</svg></button>" +
+                "</div></td>";
 
             linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, l);
-
-
-
-                ['entregues','recebidas'].forEach(function (key) { dados[key] = l[key].replace(/\./g, '').replace(/[^0-9]/g, ''); }); dados.ganho = l.ganho.replace(' kg','').replace(',','.').replace(/[^0-9.]/g,'');
-                ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-lote', JSON.stringify(dados));
+                sessionStorage.setItem('ouros-editor-lote', JSON.stringify(l));
                 abrirFormulario('lote-novo.jsp?acao=editar');
             });
             corpoTabela.appendChild(linha);
@@ -195,13 +174,13 @@
 
     document.getElementById("buscaLote").addEventListener("input", function (e) {
         var termo = e.target.value.toLowerCase();
-        var filtrados = lotes.filter(function (l) {
-            return l.granja.toLowerCase().includes(termo) || l.lote.toLowerCase().includes(termo);
+        var filtradas = lotes.filter(function (l) {
+            return (l.nomeGranja || "").toLowerCase().includes(termo);
         });
-        renderizarLotes(filtrados);
+        renderizarLotes(filtradas);
     });
 
-    // ================== CONTROLE DE PÁGINAS (visual, tabela fictícia não muda) ==================
+    // ===== paginação (visual) =====
     var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
     var botaoAnterior = document.getElementById("botaoAnterior");
     var botaoProximo = document.getElementById("botaoProximo");
@@ -215,53 +194,48 @@
         botaoAnterior.disabled = numeroPagina === 1;
         botaoProximo.disabled = numeroPagina === totalPaginas;
     }
-
     botoesPagina.forEach(function (botao) {
         botao.addEventListener("click", function () {
             marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
         });
     });
-
     botaoAnterior.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina > 1) marcarPaginaAtiva(pagina - 1);
+        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
+        if (p > 1) marcarPaginaAtiva(p - 1);
     });
-
     botaoProximo.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina < totalPaginas) marcarPaginaAtiva(pagina + 1);
+        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
+        if (p < totalPaginas) marcarPaginaAtiva(p + 1);
     });
-
     marcarPaginaAtiva(1);
+
     renderizarLotes(lotes);
 </script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de lotes" class="FormularioFrame"></iframe></dialog>
 <script>
-(function () {
-    const dialog = document.getElementById('formularioModal');
-    const frame = dialog.querySelector('iframe');
-    let previousOverflow = '';
-    window.abrirFormulario = function (url) {
-        frame.src = url;
-        previousOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
-        dialog.showModal();
-    };
-    dialog.addEventListener('close', function () {
-        document.body.style.overflow = previousOverflow;
-        frame.removeAttribute('src');
-    });
-    window.addEventListener('message', function (event) {
-        if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
-        if (event.data === 'ouros:fechar-formulario') dialog.close();
-        if (event.data && event.data.type === 'ouros:altura-formulario' && Number.isFinite(event.data.height)) {
-            frame.style.height = Math.min(Math.max(event.data.height, 300), 1200) + 'px';
-        }
-    });
-})();
+    (function () {
+        const dialog = document.getElementById('formularioModal');
+        const frame = dialog.querySelector('iframe');
+        let previousOverflow = '';
+        window.abrirFormulario = function (url) {
+            frame.src = url;
+            previousOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+            dialog.showModal();
+        };
+        dialog.addEventListener('close', function () {
+            document.body.style.overflow = previousOverflow;
+            frame.removeAttribute('src');
+        });
+        window.addEventListener('message', function (event) {
+            if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
+            if (event.data === 'ouros:fechar-formulario') dialog.close();
+            if (event.data && event.data.type === 'ouros:altura-formulario' && Number.isFinite(event.data.height)) {
+                frame.style.height = Math.min(Math.max(event.data.height, 300), 1200) + 'px';
+            }
+        });
+    })();
 </script>
 </body>
 </html>

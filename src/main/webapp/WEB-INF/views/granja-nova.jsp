@@ -4,51 +4,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Novo Lote</title>
-<link rel="stylesheet" href="Style.css?v=4">
-<link rel="icon" href="img/Asa-icon.png">
+<title>Nova Granja</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
-<h1 id="editorTitulo">Novo Lote</h1>
-<a class="EditorFechar" href="lotes.jsp" aria-label="Fechar">×</a>
+<h1 id="editorTitulo">Nova Granja</h1>
+<a class="EditorFechar" href="granjas.jsp" aria-label="Fechar">×</a>
 </header>
-<form action="lotes" method="post" data-editor="lote">
+<form action="granjas" method="post" data-editor="granja">
 <input type="hidden" name="acao" value="criar">
 <input type="hidden" name="id" value="">
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
-<label for="granja">Nome da Granja</label>
-<input id="granja" name="granja" type="text" placeholder="Granja Ouro Branco"  required>
+<label for="nome">Nome da Granja</label>
+<input id="nome" name="nome" type="text" placeholder="Granja Ouro Branco"  required>
 </div>
 <div class="EditorCampo">
-<label for="entregues">Galinhas entregues</label>
-<input id="entregues" name="entregues" type="number" placeholder="5000" min="0" step="any" >
+<label for="capacidade">Capacidade de aves</label>
+<input id="capacidade" name="capacidade" type="number" placeholder="5000" min="0" step="any" required>
 </div>
 <div class="EditorCampo">
-<label for="recebidas">Galinhas recebidas</label>
-<input id="recebidas" name="recebidas" type="number" placeholder="4980" min="0" step="any" >
+<label for="area">Área da propriedade (HA)</label>
+<input id="area" name="area" type="number" placeholder="2,4" min="0" step="any" >
 </div>
 <div class="EditorCampo">
-<label for="nascimento">Data de nascimento</label>
-<input id="nascimento" name="nascimento" type="date" placeholder=""  >
+<label for="regiao">Região</label>
+<select id="regiao" name="regiao">
+<option>Sudeste</option>
+<option>Sul</option>
+<option>Centro-Oeste</option>
+<option>Nordeste</option>
+<option>Norte</option>
+</select>
 </div>
 <div class="EditorCampo">
-<label for="chegada">Data de chegada</label>
-<input id="chegada" name="chegada" type="date" placeholder=""  >
+<label for="empresa">Empresa</label>
+<select id="empresa" name="empresa">
+<option>Selecione...</option>
+<option>Seara</option>
+</select>
 </div>
 <div class="EditorCampo">
-<label for="entrega">Data de entrega</label>
-<input id="entrega" name="entrega" type="date" placeholder=""  >
+<label for="cep">CEP</label>
+<input id="cep" name="cep" type="text" placeholder="00000-000"  >
 </div>
 <div class="EditorCampo">
-<label for="ganho">Ganho (kg)</label>
-<input id="ganho" name="ganho" type="number" placeholder="—" min="0" step="any" >
+<label for="municipio">Município</label>
+<input id="municipio" name="municipio" type="text" placeholder="Arujá"  >
+</div>
+<div class="EditorCampo">
+<label for="cidade">Cidade</label>
+<input id="cidade" name="cidade" type="text" placeholder="São Paulo"  >
+</div>
+<div class="EditorCampo">
+<label for="estado">Estado</label>
+<input id="estado" name="estado" type="text" placeholder="SP"  >
+</div>
+<div class="EditorCampo EditorCampo--full">
+<label for="logradouro">Logradouro</label>
+<input id="logradouro" name="logradouro" type="text" placeholder="Estrada Rural, km 12, nº 480"  >
 </div>
 </div>
 <footer class="EditorAcoes">
-<a href="lotes.jsp" class="EditorCancelar">Cancelar</a>
+<a href="granjas.jsp" class="EditorCancelar">Cancelar</a>
 <button type="submit" class="EditorSalvar">Salvar</button>
 </footer>
 <p class="EditorAviso" role="status" hidden>

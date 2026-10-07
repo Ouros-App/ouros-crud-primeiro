@@ -4,72 +4,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Nova Granja</title>
-<link rel="stylesheet" href="Style.css?v=4">
-<link rel="icon" href="img/Asa-icon.png">
+<title>Novo Registro de água</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+<link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
-<h1 id="editorTitulo">Nova Granja</h1>
-<a class="EditorFechar" href="granjas.jsp" aria-label="Fechar">×</a>
+<h1 id="editorTitulo">Novo Registro de água</h1>
+<a class="EditorFechar" href="registros.jsp" aria-label="Fechar">×</a>
 </header>
-<form action="granjas" method="post" data-editor="granja">
+<form action="registros" method="post" data-editor="registro">
 <input type="hidden" name="acao" value="criar">
 <input type="hidden" name="id" value="">
+<div class="EditorAbas" role="group" aria-label="Tipo">
+<button type="button" data-group="tipo" data-value="Agua" aria-pressed="true" class="EditorAba ativa">
+<svg class="EditorIcone agua" viewBox="0 0 16 20" aria-hidden="true">
+<path fill="currentColor" d="M8 0C6 4 1 9 1 13a7 7 0 0 0 14 0C15 9 10 4 8 0Z"/>
+</svg> Água</button>
+<button type="button" data-group="tipo" data-value="Energia" aria-pressed="false" class="EditorAba">
+<svg class="EditorIcone energia" viewBox="0 0 16 20" aria-hidden="true">
+<path fill="currentColor" d="M9 0 1 12h6l-1 8 9-13H9Z"/>
+</svg> Energia</button>
+<input type="hidden" name="tipo" value="Agua">
+</div>
 <div class="EditorGrid">
-<div class="EditorCampo EditorCampo--full">
-<label for="nome">Nome da Granja</label>
-<input id="nome" name="nome" type="text" placeholder="Granja Ouro Branco"  required>
+<div class="EditorCampo">
+<label for="granja">Granja</label>
+<input id="granja" name="granja" type="text" placeholder="Granja Exemplo"  required>
 </div>
 <div class="EditorCampo">
-<label for="capacidade">Capacidade de aves</label>
-<input id="capacidade" name="capacidade" type="number" placeholder="5000" min="0" step="any" required>
-</div>
-<div class="EditorCampo">
-<label for="area">Área da propriedade (HA)</label>
-<input id="area" name="area" type="number" placeholder="2,4" min="0" step="any" >
-</div>
-<div class="EditorCampo">
-<label for="regiao">Região</label>
-<select id="regiao" name="regiao">
-<option>Sudeste</option>
-<option>Sul</option>
-<option>Centro-Oeste</option>
-<option>Nordeste</option>
-<option>Norte</option>
-</select>
-</div>
-<div class="EditorCampo">
-<label for="empresa">Empresa</label>
-<select id="empresa" name="empresa">
+<label for="lote">Lote</label>
+<select id="lote" name="lote">
 <option>Selecione...</option>
-<option>Seara</option>
+<option>#067</option>
+<option>#14</option>
+<option>#13</option>
+<option>#12</option>
+<option>#11</option>
+<option>#10</option>
 </select>
 </div>
 <div class="EditorCampo">
-<label for="cep">CEP</label>
-<input id="cep" name="cep" type="text" placeholder="00000-000"  >
+<label for="data">Data do registro</label>
+<input id="data" name="data" type="date" placeholder=""  >
 </div>
 <div class="EditorCampo">
-<label for="municipio">Município</label>
-<input id="municipio" name="municipio" type="text" placeholder="Arujá"  >
+<label for="status">Status</label>
+<select id="status" name="status">
+<option>Normal</option>
+<option>Abaixo</option>
+<option>Acima</option>
+</select>
 </div>
 <div class="EditorCampo">
-<label for="cidade">Cidade</label>
-<input id="cidade" name="cidade" type="text" placeholder="São Paulo"  >
+<label for="medidorInicial">Hidrômetro inicial (água)</label>
+<input id="medidorInicial" name="medidorInicial" type="number" placeholder="1234" min="0" step="any" >
 </div>
 <div class="EditorCampo">
-<label for="estado">Estado</label>
-<input id="estado" name="estado" type="text" placeholder="SP"  >
-</div>
-<div class="EditorCampo EditorCampo--full">
-<label for="logradouro">Logradouro</label>
-<input id="logradouro" name="logradouro" type="text" placeholder="Estrada Rural, km 12, nº 480"  >
+<label for="medidorFinal">Hidrômetro final (água)</label>
+<input id="medidorFinal" name="medidorFinal" type="number" placeholder="4321" min="0" step="any" >
 </div>
 </div>
 <footer class="EditorAcoes">
-<a href="granjas.jsp" class="EditorCancelar">Cancelar</a>
+<a href="registros.jsp" class="EditorCancelar">Cancelar</a>
 <button type="submit" class="EditorSalvar">Salvar</button>
 </footer>
 <p class="EditorAviso" role="status" hidden>

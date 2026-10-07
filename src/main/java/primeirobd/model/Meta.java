@@ -12,6 +12,7 @@ public class Meta {
     private String tipoMeta;
     private String titulo;
     private float valorAlvo;
+    private String nomeGranja;
 
     //construtor
 
@@ -61,7 +62,11 @@ public class Meta {
         return valorAlvo;
     }
 
-    //metodos setters
+    public String getNomeGranja() {
+        return nomeGranja;
+    }
+
+//metodos setters
 
     public void setId(int id) {
         this.id = id;
@@ -103,6 +108,10 @@ public class Meta {
         this.valorAlvo = valorAlvo;
     }
 
+    public void setNomeGranja(String nomeGranja) {
+        this.nomeGranja = nomeGranja;
+    }
+
     @Override
     public String toString() {
         return "\nMETA" +
@@ -115,7 +124,8 @@ public class Meta {
                 "\nStatus: " + this.status +
                 "\nTipo_Meta: " + this.tipoMeta +
                 "\nTitulo: " + this.titulo +
-                "\nValor_Alvo: " + this.valorAlvo+
+                "\nValor_Alvo: " + this.valorAlvo +
+                "\nNome_granja: " + this.nomeGranja +
                 "\n-------------------------------------------------------------";
     }
 }
