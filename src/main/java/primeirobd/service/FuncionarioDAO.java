@@ -11,15 +11,59 @@ import java.util.List;
 
 public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String SELECT_ALL = "SELECT * FROM funcionario";
+    public static final String SELECT_ALL_PAGINADO = "SELECT f.nome, f.setor, e.email_corporativo, e.telefone_corporativo FROM funcionario f JOIN empresa e ON f.id_empresa = e.id;";
     public static final String SELECT_NOME = "SELECT nome FROM funcionario";
     public static final String SELECT_SETOR = "SELECT setor FROM funcionario";
     public static final String SELECT_EMAIL = "SELECT email FROM funcionario";
     public static final String DELETE_BY_ID = "DELETE FROM funcionario WHERE id = ?";
-    public static final String INSERT = "INSERT INTO funcionario (nome,cpf,email,setor,id_empresa) VALUES (?,?,?,?,?)";
+    public static final String INSERT = "INSERT INTO funcionario (nome,cpf,email,setor,telefone_corporativo) VALUES (?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE funcionario SET id = ? WHERE id = ?";
     public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
     public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? WHERE setor = ?";
+    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM funcionario";
+    public static final String SELECT_PAGINADO = "SELECT * FROM funcionario LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado(int tamanho, int offset) {
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
+                    fun.setCpf(resultadoConsulta.getString("cpf"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    resultado.add(fun);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
 
     // metodo select :D
     public List<Funcionario> select_all() {
@@ -44,6 +88,25 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
+    public List<Funcionario> select_all_paginado(){
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_PAGINADO);
+             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+            while (resultadoConsulta.next()) {
+                Funcionario fun = new Funcionario();
+                fun.setNome(resultadoConsulta.getString("nome"));
+                fun.setSetor(resultadoConsulta.getString("setor"));
+                fun.setEmail(resultadoConsulta.getString("email_corporativo"));
+                fun.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
+                resultado.add(fun);
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro: " + e.getMessage());
+        }
+    }
 
     public List<Funcionario> select_nome() {
         List<Funcionario> resultado = new ArrayList<>();
@@ -116,7 +179,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             preparoConsultaSQL.setString(2, fun.getCpf());
             preparoConsultaSQL.setString(3, fun.getEmail());
             preparoConsultaSQL.setString(4, fun.getSetor());
-            preparoConsultaSQL.setInt(5, fun.getIdEmpresa());
+            preparoConsultaSQL.setString(5, fun.getTelefoneCorporativo());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {

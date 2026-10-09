@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.Funcionario;
 import primeirobd.model.Lote;
 
 import java.sql.*;
@@ -18,4 +19,7 @@ public interface LoteDAO {
     String update_recebidas(int recebidasNew, int recebidasOld);
     String update_chegada(Date dataNew, Date dataOld);
     String update_ganho(double ganhoNew, double ganhoOld);
+
+    int contar();
+    List<Lote> select_paginado(int tamanho, int offset);
 }

@@ -1,24 +1,55 @@
 package primeirobd.controller;
+import primeirobd.utils.Paginacao;
 
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import primeirobd.model.Granja;
-import primeirobd.service.GranjaDAO;
+import primeirobd.service.*;
+import primeirobd.model.*;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name ="Granjas", value ="/granjas")
-public class Granjas extends HttpServlet {
+@WebServlet(name = "Granjas", value = "/granjas")
+public class Granjas extends HttpServlet{
     private GranjaDAO granja;
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
         granja = new GranjaDAO();
-        List<Granja> granjas = granja.select_all_join_endereco_proprietario_proprietario_granja();
+
+        // 1. Descobre qual página foi pedida .-.
+        int pagina = Paginacao.lerPagina(request);
+
+        // 2. Quantos registros serão mostrados por página ._.
+        int tamanho = 5;
+
+        // 3. Descobre quantos dados existem O_O
+        int total = granja.contar();
+
+        // 4. Cria o objeto de paginação
+        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
+
+        // 5. Busca somente os dados daquela página >_<
+        List<Granja> granjas =
+                granja.select_paginado(
+                        paginacao.getTamanho(),
+                        paginacao.getOffset()
+                );
+
+        // 6. Envia os dados para o JSP ¹_¹
         request.setAttribute("granjas", granjas);
-        getServletContext().getRequestDispatcher("/granjas.jsp").forward(request, response);
+
+        // 7. Envia a paginação para o JSP :D
+        request.setAttribute("paginacao", paginacao);
+
+        getServletContext()
+                .getRequestDispatcher("/granjas.jsp")
+                .forward(request, response);
     }
 }

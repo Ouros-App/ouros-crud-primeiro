@@ -39,7 +39,7 @@
     <c:otherwise>
         <h1>Link inválido</h1>
         <p>Esse link expirou ou já foi usado.</p>
-        <a href="RecuperarSenha.jsp">Pedir novo link</a>
+        <a href="../../RecuperarSenha.jsp">Pedir novo link</a>
     </c:otherwise>
 
 </c:choose>

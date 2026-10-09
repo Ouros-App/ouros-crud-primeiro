@@ -17,5 +17,7 @@ public interface FuncionarioDAO {
     String update_email(String emailNew, String emailOld);
     String update_nome(String nomeNew, String nomeOld);
     String update_setor(String setorNew, String setorOld);
-
+    //-------------------------------------------
+    int contar();
+    List<Funcionario> select_paginado(int tamanho, int offset);
 }

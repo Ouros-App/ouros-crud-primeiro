@@ -1,5 +1,6 @@
 package primeirobd.service;
 
+import primeirobd.model.Lote;
 import primeirobd.model.RegistroAgua;
 
 import java.sql.*;
@@ -31,6 +32,49 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
             "UPDATE registro_agua SET hidrometro_inicio = ? WHERE hidrometro_inicio = ?";
     public static final String UPDATE_HIDRO_FIM =
             "UPDATE registro_agua SET hidrometro_final = ? WHERE hidrometro_final = ?";
+    public static final String SELECT_COUNT =
+            "SELECT COUNT(*) FROM registro_agua";
+    public static final String SELECT_PAGINADO =
+            "SELECT * FROM registro_agua LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<RegistroAgua> select_paginado(int tamanho, int offset) {
+        List<RegistroAgua> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    RegistroAgua rea = new RegistroAgua();
+                    rea.setId(resultadoConsulta.getInt("id"));
+                    rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
+                    rea.setHidrometroInicio(resultadoConsulta.getInt("hidrometro_inicio"));
+                    rea.setHidrometroFinal(resultadoConsulta.getInt("hidrometro_final"));
+                    rea.setIdLote(resultadoConsulta.getInt("id_lote"));
+                    resultado.add(rea);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
 
 
 

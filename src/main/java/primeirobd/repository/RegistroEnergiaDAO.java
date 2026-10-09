@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.Lote;
 import primeirobd.model.RegistroEnergia;
 
 import java.sql.*;
@@ -18,6 +19,9 @@ public interface RegistroEnergiaDAO {
     String update_idLote(String lotNew, String lotOld);
     String update_data(Date dataNew, Date dataOld);
     String update_consumo(double consNew, double consOld);
+
+    int contar();
+    List<RegistroEnergia> select_paginado(int tamanho, int offset);
 
 
 }

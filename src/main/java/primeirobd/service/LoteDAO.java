@@ -1,6 +1,7 @@
 package primeirobd.service;
 
 import primeirobd.model.Lote;
+import primeirobd.model.Lote;
 
 import java.util.ArrayList;
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.List;
 
 public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String SELECT_ALL = "SELECT * FROM lote;";
-    public static final String SELECT_ALL_JOIN_GRANJA = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id";
+    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id";
     public static final String SELECT_ENTREGUES = "SELECT galinhas_entregadas FROM lote";
     public static final String SELECT_RECEBIDAS = "SELECT galinhas_recebidas FROM lote";
     public static final String SELECT_CHEGADA = "SELECT dt_chegada FROM lote";
@@ -22,6 +23,51 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String UPDATE_RECEBIDAS = "UPDATE lote SET galinhas_recebidas = ? WHERE galinhas_recebidas = ?";
     public static final String UPDATE_CHEGADA = "UPDATE lote SET dt_chegada = ? WHERE dt_chegada = ?";
     public static final String UPDATE_GANHO = "UPDATE lote SET ganho = ? WHERE ganho = ?";
+    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM lote";
+    public static final String SELECT_PAGINADO = "SELECT * FROM lote LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<Lote> select_paginado(int tamanho, int offset) {
+        List<Lote> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    Lote lot = new Lote();
+                    lot.setId(resultadoConsulta.getInt("id"));
+                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
+                    lot.setDtEntrega(resultadoConsulta.getDate("dt_entrega"));
+                    lot.setDtNascimento(resultadoConsulta.getDate("dt_nascimento"));
+                    lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
+                    lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
+                    lot.setGanho(resultadoConsulta.getFloat("ganho"));
+                    lot.setIdGranja(resultadoConsulta.getInt("id_granja"));
+                    resultado.add(lot);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
 
     // metodo select :D
     public List<Lote> select_all() {
@@ -48,23 +94,21 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    public List<Lote> select_all_join_granja(){
+    public List<Lote> select_all_join_paginado(){
         List<Lote> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_PAGINADO);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
                 Lote lot = new Lote();
                 lot.setId(resultadoConsulta.getInt("id"));
-                lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                lot.setDtEntrega(resultadoConsulta.getDate("dt_entrega"));
-                lot.setDtNascimento(resultadoConsulta.getDate("dt_nascimento"));
+                lot.setNomeGranja(resultadoConsulta.getString("nome"));
                 lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
                 lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
-                lot.setNomeGranja(resultadoConsulta.getString("nome"));
+                lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
                 lot.setGanho(resultadoConsulta.getFloat("ganho"));
-                lot.setIdGranja(resultadoConsulta.getInt("id_granja"));
+                // falta  o status aqui
                 informacoes.add(lot);
             }
             return informacoes;

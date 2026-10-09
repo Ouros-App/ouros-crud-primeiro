@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
     EmailService          -> envia o email com o link
  */
 
-@WebServlet(name = "RecuperarSenha", value = "/RecuperarSenha")
+@WebServlet(name = "RecuperarSenha", value = "/recuperar-senha")
 public class RecuperarSenhaServlet extends HttpServlet {
 
     private static final String PAGINA_ESQUECI = "RecuperarSenha.jsp";

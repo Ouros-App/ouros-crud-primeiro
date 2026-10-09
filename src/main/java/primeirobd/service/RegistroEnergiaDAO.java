@@ -1,5 +1,6 @@
 package primeirobd.service;
 
+import primeirobd.model.Lote;
 import primeirobd.model.RegistroEnergia;
 
 
@@ -28,6 +29,49 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
             "UPDATE registro_energia SET dt_registro = ? WHERE dt_registro = ?";
     public static final String UPDATE_CONSUMO =
             "UPDATE registro_energia SET consumo = ? WHERE consumo = ?";
+    public static final String SELECT_COUNT =
+            "SELECT COUNT(*) FROM registro_energia";
+    public static final String SELECT_PAGINADO =
+            "SELECT * FROM registro_energia LIMIT ? OFFSET ?";
+
+    public int contar() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
+    public List<RegistroEnergia> select_paginado(int tamanho, int offset) {
+        List<RegistroEnergia> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
+            preparoConsultaSQL.setInt(1, tamanho);
+            preparoConsultaSQL.setInt(2, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    RegistroEnergia ree = new RegistroEnergia();
+                    ree.setId(resultadoConsulta.getInt("id"));
+                    ree.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
+                    ree.setConsumo(resultadoConsulta.getInt("consumo"));
+                    ree.setIdLote(resultadoConsulta.getInt("id_lote"));
+                    resultado.add(ree);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
     // metodo select :D
     public List<RegistroEnergia> select_all() {
         List<RegistroEnergia> resultado = new ArrayList<>();
