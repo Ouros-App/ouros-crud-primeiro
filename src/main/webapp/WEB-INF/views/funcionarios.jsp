@@ -75,14 +75,25 @@
                         </svg>
                         <input type="text" name="buscaFuncionario" id="buscaFuncionario" placeholder="Buscar...">
                     </div>
+
+                    <div class="OrdenarPor">
+                        <select id="buscarEm" name="buscarEm">
+                                <option value="tudo" ${param.buscarEm == 'tudo' ? 'selected' : ''} >Buscar em: tudo</option>
+                                <option value="nome" ${param.buscarEm == 'nome' ? 'selected' : ''}>Buscar em: nome</option>
+                                <option value="setor" ${param.buscarEm == 'setor' ? 'selected' : ''}>Buscar em: setor</option>
+                                <option value="email" ${param.buscarEm == 'email' ? 'selected' : ''}>Buscar em: email</option>
+                                <option value="telefone" ${param.buscarEm == 'telefone' ? 'selected' : ''}>Buscar em: telefone</option>
+                        </select>
+                    </div>
+
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor">
+                            <option value="nome">Ordenar por: Nome</option>
+                            <option value="setor">Ordenar por: Setor</option>
+                        </select>
+                    </div>
                 </form>
 
-                <div class="OrdenarPor">
-                    <select id="ordenarPor">
-                        <option value="nome">Ordenar por: Nome</option>
-                        <option value="setor">Ordenar por: Setor</option>
-                    </select>
-                </div>
 
                 <button type="button" class="BotaoNovo" onclick="abrirFormulario('funcionarios?acao=novo')">
                     + Novo funcionário
@@ -97,6 +108,7 @@
                         <th>Setor</th>
                         <th>Email</th>
                         <th>Telefone</th>
+                        <th>Ações</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-funcionarios">
@@ -106,6 +118,7 @@
                             <td><c:out value="${funcionario.setor}"/></td>
                             <td><c:out value="${funcionario.email}"/></td>
                             <td><c:out value="${funcionario.telefone}"/></td>
+                            <td></td>
                         </tr>
                     </c:forEach>
                     </tbody>

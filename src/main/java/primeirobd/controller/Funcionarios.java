@@ -39,24 +39,95 @@ public class Funcionarios extends HttpServlet{
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
         String buscaUsuario = request.getParameter("buscaFuncionario");
-        // 5. Busca somente os funcionários daquela página >_<
 
-        List<Funcionario> funcionarios;
+        List<Funcionario> funcionarios = null;
 
         // 5. Busca somente os dados daquela página >_<
-        if(buscaUsuario == null){
-            funcionarios =
-                    funcionario.select_paginado(
-                            paginacao.getTamanho(),
-                            paginacao.getOffset()
-                    );
-        }else {
-            funcionarios =
-                    funcionario.select_paginado_filtro_pesquisa(
-                            "%" + buscaUsuario + "%",
-                            paginacao.getTamanho(),
-                            paginacao.getOffset()
-                    );
+        String filtro = request.getParameter("buscarEm");
+
+        if (filtro == null || filtro.isBlank()) {
+            filtro = "tudo"; // valor padrão na primeira visita
+        }
+
+        if(filtro.equals("tudo")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_tudo(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("nome")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_nome(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("setor")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_setor(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("email")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_email(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("telefone")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_telefone(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
         }
 
         // 6. Envia os funcionários para o JSP ¹_¹

@@ -29,15 +29,53 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
             "LIMIT ? OFFSET ?";
-    public static final String SELECT_PAGINADO_FILTROS =
+    public static final String SELECT_PAGINADO_FILTRO_TUDO =
+            "SELECT funcionario.nome, " +
+                    "funcionario.setor, " +
+                    "funcionario.email, " +
+                    "telefone_funcionario.telefone " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.nome LIKE ? OR funcionario.setor LIKE ? OR funcionario.email LIKE ? OR telefone_funcionario.telefone LIKE ? " +
+                    "LIMIT ? OFFSET ?";
+    public static final String SELECT_PAGINADO_FILTRO_NOME =
             "SELECT funcionario.nome, " +
             "funcionario.setor, " +
             "funcionario.email, " +
             "telefone_funcionario.telefone " +
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
-            "WHERE funcionario.nome LIKE ? OR funcionario.setor LIKE ? OR funcionario.email LIKE ? OR telefone_funcionario.telefone LIKE ? " +
+            "WHERE funcionario.nome LIKE ? " +
             "LIMIT ? OFFSET ?";
+    public static final String SELECT_PAGINADO_FILTRO_SETOR =
+            "SELECT funcionario.nome, " +
+                    "funcionario.setor, " +
+                    "funcionario.email, " +
+                    "telefone_funcionario.telefone " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.setor LIKE ? " +
+                    "LIMIT ? OFFSET ?";
+
+    public static final String SELECT_PAGINADO_FILTRO_EMAIL =
+            "SELECT funcionario.nome, " +
+                    "funcionario.setor, " +
+                    "funcionario.email, " +
+                    "telefone_funcionario.telefone " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.email LIKE ? " +
+                    "LIMIT ? OFFSET ?";
+
+    public static final String SELECT_PAGINADO_FILTRO_TELEFONE =
+            "SELECT funcionario.nome, " +
+                    "funcionario.setor, " +
+                    "funcionario.email, " +
+                    "telefone_funcionario.telefone " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE telefone_funcionario.telefone LIKE ? " +
+                    "LIMIT ? OFFSET ?";
 
     public int contar() {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -78,10 +116,10 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset) {
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTROS)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_TUDO)) {
 
             preparoConsultaSQL.setString(1, busca);
             preparoConsultaSQL.setString(2, busca);
@@ -89,6 +127,110 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             preparoConsultaSQL.setString(4, busca);
             preparoConsultaSQL.setInt(5, tamanho);
             preparoConsultaSQL.setInt(6, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setTelefone(resultadoConsulta.getString("telefone"));
+                    resultado.add(fun);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset) {
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_NOME)) {
+
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setInt(2, tamanho);
+            preparoConsultaSQL.setInt(3, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setTelefone(resultadoConsulta.getString("telefone"));
+                    resultado.add(fun);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset) {
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_SETOR)) {
+
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setInt(2, tamanho);
+            preparoConsultaSQL.setInt(3, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setTelefone(resultadoConsulta.getString("telefone"));
+                    resultado.add(fun);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset) {
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_EMAIL)) {
+
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setInt(2, tamanho);
+            preparoConsultaSQL.setInt(3, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+
+                while (resultadoConsulta.next()) {
+                    Funcionario fun = new Funcionario();
+                    fun.setNome(resultadoConsulta.getString("nome"));
+                    fun.setSetor(resultadoConsulta.getString("setor"));
+                    fun.setEmail(resultadoConsulta.getString("email"));
+                    fun.setTelefone(resultadoConsulta.getString("telefone"));
+                    resultado.add(fun);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
+    public List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset) {
+        List<Funcionario> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_TELEFONE)) {
+
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setInt(2, tamanho);
+            preparoConsultaSQL.setInt(3, offset);
 
             try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
