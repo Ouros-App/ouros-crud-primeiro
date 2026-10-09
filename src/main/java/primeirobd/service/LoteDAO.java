@@ -24,7 +24,27 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String UPDATE_CHEGADA = "UPDATE lote SET dt_chegada = ? WHERE dt_chegada = ?";
     public static final String UPDATE_GANHO = "UPDATE lote SET ganho = ? WHERE ganho = ?";
     public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM lote";
-    public static final String SELECT_PAGINADO = "SELECT * FROM lote LIMIT ? OFFSET ?";
+    public static final String SELECT_PAGINADO =
+            "SELECT lote.id, " +
+                    "granja.nome, " +
+                    "lote.galinhas_entregadas, " +
+                    "lote.galinhas_recebidas, " +
+                    "lote.dt_chegada, " +
+                    "lote.ganho " +
+                    "FROM lote " +
+                    "JOIN granja ON granja.id = lote.id_granja " +
+                    "LIMIT ? OFFSET ?";
+    public static final String SELECT_PAGINADO_FILTROS =
+            "SELECT lote.id, " +
+                    "granja.nome, " +
+                    "lote.galinhas_entregadas, " +
+                    "lote.galinhas_recebidas, " +
+                    "lote.dt_chegada, " +
+                    "lote.ganho " +
+                    "FROM lote " +
+                    "JOIN granja ON granja.id = lote.id_granja " +
+                    "WHERE granja.nome LIKE ? " +
+                    "LIMIT ? OFFSET ?";
 
     public int contar() {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -52,13 +72,11 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                 while (resultadoConsulta.next()) {
                     Lote lot = new Lote();
                     lot.setId(resultadoConsulta.getInt("id"));
-                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                    lot.setDtEntrega(resultadoConsulta.getDate("dt_entrega"));
-                    lot.setDtNascimento(resultadoConsulta.getDate("dt_nascimento"));
+                    lot.setNomeGranja(resultadoConsulta.getString("nome"));
                     lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
                     lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
+                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
                     lot.setGanho(resultadoConsulta.getFloat("ganho"));
-                    lot.setIdGranja(resultadoConsulta.getInt("id_granja"));
                     resultado.add(lot);
                 }
             }
@@ -68,6 +86,31 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
+    public List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset) {
+        List<Lote> resultado = new ArrayList<>();
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTROS);) {
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setInt(2, tamanho);
+            preparoConsultaSQL.setInt(3, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                while (resultadoConsulta.next()) {
+                    Lote lot = new Lote();
+                    lot.setId(resultadoConsulta.getInt("id"));
+                    lot.setNomeGranja(resultadoConsulta.getString("nome"));
+                    lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
+                    lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
+                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
+                    lot.setGanho(resultadoConsulta.getFloat("ganho"));
+                    resultado.add(lot);
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
 
     // metodo select :D
     public List<Lote> select_all() {

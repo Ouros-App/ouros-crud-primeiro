@@ -46,7 +46,7 @@ public class MainSelectTeste {
 //        System.out.println(funDAO.select_all());
 //        System.out.println("======================================================================");
 //        // realizando comando select
-        System.out.println(graDAO.select_all_join_paginado());
+        System.out.println(graDAO.select_all());
         System.out.println("======================================================================");
 //        //realizando comando select
 //        System.out.println(lotDAO.select_all());
