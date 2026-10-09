@@ -24,7 +24,6 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String UPDATE_VALOR_ALVO = "UPDATE meta SET valor_alvo = ? WHERE valor_alvo = ?";
 
     public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM meta";
-    public static final String SELECT_PAGINADO = "SELECT * FROM meta LIMIT ? OFFSET ?";
 
     public int contar() {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
