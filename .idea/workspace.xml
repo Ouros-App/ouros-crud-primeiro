@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="InterBack:war exploded" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="">
+    <list default="true" id="189e3dad-bd30-4cf0-ae36-5ebbbe2cfa7a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/utils/Paginacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/utils/Paginacao.java" afterDir="false" />
     </list>
@@ -18,44 +14,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="feat/regex" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;fnzaia&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Ouros-App/ouros-crud-primeiro/&quot;,
-    &quot;accountId&quot;: &quot;0e5b9163-fd16-4d7b-afa8-dec310e9ad6f&quot;
-  }
-}</component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="LogFilters">
-    <option name="FILTER_ERRORS" value="false" />
-    <option name="FILTER_WARNINGS" value="false" />
-    <option name="FILTER_INFO" value="true" />
-    <option name="FILTER_DEBUG" value="true" />
-    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -64,267 +24,56 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
-  </component>
-  <component name="NextEditCompletionFeaturesState">
-    <decayedCancelled>
-      <entry key="MS100" value="1.0476177637061694" />
-      <entry key="MS500" value="2.046222324483743" />
-      <entry key="S2" value="4.008387314604921" />
-      <entry key="S5" value="6.405395108445532" />
-      <entry key="S10" value="8.970836005646724" />
-      <entry key="S30" value="13.178516057527379" />
-      <entry key="S60" value="16.329694055729114" />
-      <entry key="M2" value="22.205550236002974" />
-      <entry key="M5" value="36.563182838098896" />
-      <entry key="M10" value="51.42553945492132" />
-      <entry key="M15" value="61.515763707264945" />
-      <entry key="M30" value="84.09774436679456" />
-      <entry key="H1" value="118.86606164310992" />
-      <entry key="H2" value="167.27314567447849" />
-      <entry key="H4" value="218.13029890468934" />
-      <entry key="D1" value="411.4507057447177" />
-      <entry key="W1" value="627.4896112610521" />
-    </decayedCancelled>
-    <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="1.7944193094998724E-264" />
-      <entry key="S5" value="3.1737270513907357E-106" />
-      <entry key="S10" value="1.7814957343173005E-53" />
-      <entry key="S30" value="2.611729907375525E-18" />
-      <entry key="S60" value="1.6160847463470252E-9" />
-      <entry key="M2" value="4.0200558059462534E-5" />
-      <entry key="M5" value="0.017464624762609245" />
-      <entry key="M10" value="0.13674076537695073" />
-      <entry key="M15" value="0.29498010459615237" />
-      <entry key="M30" value="1.0058369800750038" />
-      <entry key="H1" value="3.5439002065922507" />
-      <entry key="H2" value="8.49062327534104" />
-      <entry key="H4" value="14.279252670411317" />
-      <entry key="D1" value="34.690855002457134" />
-      <entry key="W1" value="53.0017778639019" />
-    </decayedSelected>
-    <decayedShown>
-      <entry key="MS100" value="0.10829718222897662" />
-      <entry key="MS500" value="1.2851267074141115" />
-      <entry key="S2" value="3.4807827546042005" />
-      <entry key="S5" value="6.038741963410931" />
-      <entry key="S10" value="8.705093150659016" />
-      <entry key="S30" value="13.046052025458877" />
-      <entry key="S60" value="16.246374398785637" />
-      <entry key="M2" value="22.14835737159125" />
-      <entry key="M5" value="36.54789325216422" />
-      <entry key="M10" value="51.54292627407308" />
-      <entry key="M15" value="61.796862045502365" />
-      <entry key="M30" value="85.09532763622846" />
-      <entry key="H1" value="122.4035049514473" />
-      <entry key="H2" value="175.75809209045335" />
-      <entry key="H4" value="232.4052319171923" />
-      <entry key="D1" value="446.1400707326743" />
-      <entry key="W1" value="680.491084756588" />
-    </decayedShown>
-  </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2,
+  &quot;associatedIndex&quot;: 4,
   &quot;fromUser&quot;: false
 }</component>
-  <component name="ProjectId" id="3JaiaOIYNHXTOBmToWQUvHwc7vJ" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="3KERylU5DiEiwvpqu3NynJ8RFlY" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.MainRegexTeste.executor": "Run",
-    "Application.MainSelectTeste.executor": "Run",
-    "Application.MainTestesTodos.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "TomEE Server.inter modulo.executor": "Run",
-    "Tomcat Server.InterBack.executor": "Run",
-    "Tomcat Server.interModulo.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "feat/pages",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/20260083-ieg/Documents/Inter_pratico/inter/src/main/webapp",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+    "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\20260083-ieg\Documents\Inter_pratico\inter\src\main\webapp" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\20260083-ieg\Documents\Inter_pratico\inter\src\main" />
-    </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="configurationStatuses">
-      <map>
-        <entry key="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
-          <value>
-            <map>
-              <entry key="InterBack" value="STOPPED" />
-            </map>
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
   <component name="RunManager">
-    <configuration name="InterBack" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.26" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterBack/login" />
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="InterBack:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/InterBack" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="967b14bf-601b-4b77-b624-f39ea46b0459" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="64566" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
+    <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="InterBack:war exploded" />
-        </option>
       </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
     </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
-        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
+        <option value="bundled-jdk-30f59d01ecdd-a203e0a19954-intellij.indexing.shared.core-IU-262.10315.125" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.10315.125" />
       </set>
     </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="261044ee-edb8-4d2a-97bd-f185a54381f8" name="Changes" comment="" />
-      <created>1789905646319</created>
+      <changelist id="189e3dad-bd30-4cf0-ae36-5ebbbe2cfa7a" name="Changes" comment="" />
+      <created>1791120999611</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1789905646319</updated>
-      <workItem from="1790338263917" duration="5000" />
-      <workItem from="1790338353237" duration="557000" />
-      <workItem from="1790347839545" duration="11000" />
-      <workItem from="1790356946031" duration="2111000" />
-      <workItem from="1790378055529" duration="1132000" />
-      <workItem from="1790589458457" duration="21000" />
-      <workItem from="1790599905302" duration="1563000" />
-      <workItem from="1790610352430" duration="2235000" />
-      <workItem from="1790615282510" duration="3195000" />
-      <workItem from="1790674799168" duration="1317000" />
-      <workItem from="1790681930479" duration="4830000" />
-      <workItem from="1790784205229" duration="601000" />
-      <workItem from="1790848285730" duration="476000" />
-      <workItem from="1790850972210" duration="5238000" />
-      <workItem from="1790868756757" duration="164000" />
-      <workItem from="1790934606036" duration="7840000" />
+      <updated>1791120999611</updated>
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
 </project>
