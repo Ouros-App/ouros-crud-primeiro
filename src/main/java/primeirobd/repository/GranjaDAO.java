@@ -22,5 +22,5 @@ public interface GranjaDAO {
     String update_idEmpresa(int idEmpresaNew, int idEmpresaOld);
     //-------------------------------------------
     int contar();
-    List<Granja> select_paginado(int tamanho, int offset);
+    List<Granja> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset);
 }

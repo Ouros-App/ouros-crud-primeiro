@@ -70,27 +70,28 @@
         <div class="Painel">
 
             <div class="Filtros">
-                <div class="CampoBusca">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" id="buscaGranja" placeholder="Buscar...">
-                </div>
+                <form action="granjas" method="get" class="FormBusca">
+                    <div class="CampoBusca">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" name="buscaGranja" id="buscaGranja" value="${param.buscaGranja}" placeholder="Buscar...">
+                    </div>
+                </form>
 
-                <input type="text" class="CampoSetor" id="filtroLocalizacao" placeholder="">
 
-                <div class="OrdenarPor">
-                    <select id="ordenarPor">
-                        <option value="granja">Ordenar por: Granja</option>
-                        <option value="capacidade">Ordenar por: Capacidade</option>
-                        <option value="sustentabilidade">Ordenar por: Sustentabilidade</option>
-                    </select>
-                </div>
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor">
+                            <option value="granja">Ordenar por: Granja</option>
+                            <option value="capacidade">Ordenar por: Capacidade</option>
+                            <option value="sustentabilidade">Ordenar por: Sustentabilidade</option>
+                        </select>
+                    </div>
 
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('granja-nova.jsp')">
-                    + Nova granja
-                </button>
+                    <button type="button" class="BotaoNovo" onclick="abrirFormulario('granja-nova.jsp')">
+                        + Nova granja
+                    </button>
             </div>
 
             <div class="tabela">
@@ -105,7 +106,16 @@
                         <th>Ações</th>
                     </tr>
                     </thead>
-                    <tbody id="tabela-granjas"></tbody>
+                    <tbody id="tabela-granjas">
+                        <c:forEach var="granja" items="${granjas}">
+                            <tr>
+                                <td><c:out value="${granja.nome}"/></td>
+                                <td><c:out value="${granja.nomeResponsavel}"/></td>
+                                <td><c:out value="${granja.localizacao}"/></td>
+                                <td><c:out value="${granja.capacidadeDeAves}"/></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
@@ -127,91 +137,6 @@
     </div>
 
 </div>
-
-<script>
-    var granjas = ${empty granjas ? '[]' : granjas};
-
-    function esc(t) {
-        return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
-            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-        });
-    }
-
-    function renderizarGranjas(lista) {
-        var corpoTabela = document.getElementById("tabela-granjas");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (g) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + esc(g.nome) + "</td>" +
-                "<td>" + esc(g.nomeResponsavel) + "</td>" +
-                "<td>" + esc(g.localizacao) + "</td>" +
-                "<td>" + esc(g.capacidadeDeAves) + "</td>" +
-                "<td>" + esc(g.cgi) + "</td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg></button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path><path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg></button>" +
-                "</div></td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                sessionStorage.setItem('ouros-editor-granja', JSON.stringify(g));
-                abrirFormulario('granja-nova.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.getElementById("buscaGranja").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtradas = granjas.filter(function (g) {
-            return (g.nome || "").toLowerCase().includes(termo);
-        });
-        renderizarGranjas(filtradas);
-    });
-
-    // ===== paginação (visual) =====
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
-    var botaoAnterior = document.getElementById("botaoAnterior");
-    var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
-
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
-        });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
-    }
-    botoesPagina.forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
-        });
-    });
-    botaoAnterior.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p > 1) marcarPaginaAtiva(p - 1);
-    });
-    botaoProximo.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p < totalPaginas) marcarPaginaAtiva(p + 1);
-    });
-    marcarPaginaAtiva(1);
-
-    renderizarGranjas(granjas);
-</script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de granjas" class="FormularioFrame"></iframe></dialog>
 <script>

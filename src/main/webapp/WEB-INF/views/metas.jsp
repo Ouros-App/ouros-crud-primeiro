@@ -80,8 +80,6 @@
                     <input type="text" id="buscaMeta" placeholder="Buscar...">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroGranja" placeholder="">
-
                 <div class="OrdenarPor">
                     <select id="ordenarPor">
                         <option value="titulo">Ordenar por: Título</option>

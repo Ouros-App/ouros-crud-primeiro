@@ -49,7 +49,7 @@ public class RegistrosEnergia extends HttpServlet {
         request.setAttribute("paginacao", paginacao);
 
         getServletContext()
-                .getRequestDispatcher("/registroEnergias.jsp")
+                .getRequestDispatcher("/WEB-INF/views/registroEnergias.jsp")
                 .forward(request, response);
 
     }

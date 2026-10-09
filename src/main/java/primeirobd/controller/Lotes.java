@@ -16,9 +16,14 @@ import java.util.List;
 @WebServlet(name ="Lotes", value ="/lotes")
 public class Lotes extends HttpServlet{
     private LoteDAO lote;
+
+    @Override
+    public void init() throws ServletException {
+        lote = new LoteDAO();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        lote = new LoteDAO();
 
         // 1. Descobre qual página foi pedida .-.
         int pagina = Paginacao.lerPagina(request);
@@ -32,12 +37,26 @@ public class Lotes extends HttpServlet{
         // 4. Cria o objeto de paginação
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
-        // 5. Busca somente os resultados daquela página >_<
-        List<Lote> lotes =
-                lote.select_paginado(
-                        paginacao.getTamanho(),
-                        paginacao.getOffset()
-                );
+        String buscaUsuario = request.getParameter("buscaLote");
+        // 5. Busca somente os funcionários daquela página >_<
+
+        List<Lote> lotes;
+
+        // 5. Busca somente os dados daquela página >_<
+        if(buscaUsuario == null){
+            lotes =
+                    lote.select_paginado(
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }else {
+            lotes =
+                    lote.select_paginado_filtro_pesquisa(
+                            "%" + buscaUsuario + "%",
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }
 
         // 6. Envia os resultados para o JSP ¹_¹
         request.setAttribute("lotes", lotes);
@@ -46,7 +65,7 @@ public class Lotes extends HttpServlet{
         request.setAttribute("paginacao", paginacao);
 
         getServletContext()
-                .getRequestDispatcher("/lotes.jsp")
+                .getRequestDispatcher("/WEB-INF/views/lotes.jsp")
                 .forward(request, response);
     }
 }

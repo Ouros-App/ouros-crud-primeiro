@@ -18,10 +18,13 @@ public class Granjas extends HttpServlet{
     private GranjaDAO granja;
 
     @Override
+    public void init() throws ServletException {
+        granja = new GranjaDAO();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        granja = new GranjaDAO();
 
         // 1. Descobre qual página foi pedida .-.
         int pagina = Paginacao.lerPagina(request);
@@ -35,12 +38,25 @@ public class Granjas extends HttpServlet{
         // 4. Cria o objeto de paginação
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
+        String buscaUsuario = request.getParameter("buscaGranja");
+
+        List<Granja> granjas;
+
         // 5. Busca somente os dados daquela página >_<
-        List<Granja> granjas =
-                granja.select_paginado(
-                        paginacao.getTamanho(),
-                        paginacao.getOffset()
-                );
+        if(buscaUsuario == null){
+            granjas =
+                    granja.select_paginado(
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }else {
+            granjas =
+                    granja.select_paginado_filtro_pesquisa(
+                            "%" + buscaUsuario + "%",
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }
 
         // 6. Envia os dados para o JSP ¹_¹
         request.setAttribute("granjas", granjas);
@@ -49,7 +65,7 @@ public class Granjas extends HttpServlet{
         request.setAttribute("paginacao", paginacao);
 
         getServletContext()
-                .getRequestDispatcher("/granjas.jsp")
+                .getRequestDispatcher("/WEB-INF/views/granjas.jsp")
                 .forward(request, response);
     }
 }

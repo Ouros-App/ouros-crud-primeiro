@@ -15,10 +15,10 @@ import java.util.List;
 public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String SELECT_ALL = "SELECT id,area_propriedade, capacidade_aves,id_empresa,nome,regiao FROM granja";
     public static final String SELECT_NOME = "SELECT nome FROM granja";
-    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, CONCAT(endereco_proprietario.municipio, ' ', '-', ' ', endereco_proprietario.estado) as localizacao, proprietario_granja.nome as responsavel FROM granja JOIN proprietario_granja ON granja.id = proprietario_granja.id_granja JOIN endereco_proprietario ON proprietario_granja.id = endereco_proprietario.id_proprietario;";
     public static final String SELECT_CGI = "SELECT registro_agua.hidrometro_inicio, registro_agua.hidrometro_final, lote.galinhas_entregadas, registro_energia.consumo FROM registro_agua JOIN lote ON registro_agua.id_lote = lote.id JOIN registro_energia ON registro_energia.id_lote = registro_agua.id_lote";
     public static final String SELECT_REGIAO = "SELECT regiao FROM granja";
     public static final String SELECT_CAPACIDADE = "SELECT capacidade_aves FROM granja";
+    public static final String SELECT_COUNT = "SELECT COUNT(*) FROM granja";
     public static final String DELETE_BY_ID = "DELETE FROM granja where id = ?";
     public static final String INSERT = "INSERT INTO granja (nome,capacidade_aves,regiao,area_propriedade,id_empresa) values (?,?,?,?,?)";
     public static final String UPDATE_ID = "UPDATE granja SET id = ? WHERE id = ?";
@@ -26,24 +26,32 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String UPDATE_CAPACIDADE = "UPDATE granja SET capacidade_aves = ? WHERE capacidade_aves = ?";
     public static final String UPDATE_REGIAO = "UPDATE granja SET regiao = ? where capacidade_aves = ?";
     public static final String UPDATE_AREA = "UPDATE granja SET area_propriedade = ? WHERE area_propriedade = ?";
-    public static final String UPDATE_IDEMPRESA = "UPDATE granja SET id_empresa = ? WHERE id_empresa = ?";
-    public static final String SELECT_COUNT = "SELECT COUNT(*) FROM granja";
-    // a mesma coisa do outro select, mas esse tem offset ¬_¬
-    public static final String SELECT_PAGINADO_JOIN =
-            "SELECT granja.id, " +
-                    "granja.area_propriedade, " +
-                    "granja.capacidade_aves, " +
-                    "granja.id_empresa, " +
-                    "granja.nome, " +
-                    "granja.regiao, " +
+    public static final String UPDATE_ID_EMPRESA = "UPDATE granja SET id_empresa = ? WHERE id_empresa = ?";
+    public static final String SELECT_PAGINADO =
+            "SELECT granja.nome, " +
+                    "proprietario_granja.nome AS responsavel, " +
                     "CONCAT(endereco_proprietario.municipio, ' - ', endereco_proprietario.estado) AS localizacao, " +
-                    "proprietario_granja.nome AS responsavel " +
+                    "granja.capacidade_aves " +
                     "FROM granja " +
                     "JOIN proprietario_granja " +
                     "ON granja.id = proprietario_granja.id_granja " +
                     "JOIN endereco_proprietario " +
                     "ON proprietario_granja.id = endereco_proprietario.id_proprietario " +
                     "LIMIT ? OFFSET ?";
+    // a mesma coisa do outro select, mas esse tem offset ¬_¬
+    public static final String SELECT_PAGINADO_JOIN_FILTROS =
+            "SELECT granja.nome, " +
+                    "proprietario_granja.nome AS responsavel, " +
+                    "CONCAT(endereco_proprietario.municipio, ' - ', endereco_proprietario.estado) AS localizacao, " +
+                    "granja.capacidade_aves " +
+                    "FROM granja " +
+                    "JOIN proprietario_granja " +
+                    "ON granja.id = proprietario_granja.id_granja " +
+                    "JOIN endereco_proprietario " +
+                    "ON proprietario_granja.id = endereco_proprietario.id_proprietario " +
+                    "WHERE granja.nome LIKE ? OR proprietario_granja.nome LIKE ? OR CONCAT(endereco_proprietario.municipio, ' - ', endereco_proprietario.estado) LIKE ? " +
+                    "LIMIT ? OFFSET ?";
+
 
 
     // metodo de continhas (ﾉ´ヮ´)ﾉ
@@ -60,31 +68,64 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
         }
     }
 
-    // metodo do select soq paginado uau
-
     public List<Granja> select_paginado(int tamanho, int offset) {
 
         List<Granja> resultado = new ArrayList<>();
 
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_JOIN)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)) {
 
             preparoConsultaSQL.setInt(1, tamanho);
             preparoConsultaSQL.setInt(2, offset);
 
             try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                int contador = 0;
                 while (resultadoConsulta.next()) {
                     Granja gra = new Granja();
-                    gra.setId(resultadoConsulta.getInt("id"));
-                    gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                    gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                    gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
                     gra.setNome(resultadoConsulta.getString("nome"));
-                    gra.setRegiao(resultadoConsulta.getString("regiao"));
                     gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
                     gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
+                    gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
+                    gra.setCgi(CalculoCGI.calcularCGI(gra, select_cgi(), contador));
                     resultado.add(gra);
+                    contador++;
+                }
+            }
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+        }
+    }
+
+
+    // metodo do select soq paginado uau
+
+    public List<Granja> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset) {
+
+        List<Granja> resultado = new ArrayList<>();
+
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_JOIN_FILTROS)) {
+
+            preparoConsultaSQL.setString(1, busca);
+            preparoConsultaSQL.setString(2, busca);
+            preparoConsultaSQL.setString(3, busca);
+            preparoConsultaSQL.setInt(4, tamanho);
+            preparoConsultaSQL.setInt(5, offset);
+
+            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+                int contador = 0;
+                while (resultadoConsulta.next()) {
+                    Granja gra = new Granja();
+                    gra.setNome(resultadoConsulta.getString("nome"));
+                    gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
+                    gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
+                    gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
+                    gra.setCgi(CalculoCGI.calcularCGI(gra, select_cgi(), contador));
+                    resultado.add(gra);
+                    contador++;
                 }
             }
             return resultado;
@@ -110,33 +151,6 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                 gra.setNome(resultadoConsulta.getString("nome"));
                 gra.setRegiao(resultadoConsulta.getString("regiao"));
 
-                resultado.add(gra);
-            }
-            return resultado;
-        } catch (SQLException e) {
-            throw new RuntimeException("\n\nErro ao tentar: \n" + e.getMessage());
-        }
-    }
-
-    public List<Granja> select_all_join_paginado(){
-        List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        int contador = 0;
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_PAGINADO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-            while (resultadoConsulta.next()) {
-                Granja gra = new Granja();
-                int id = resultadoConsulta.getInt("id");
-                gra.setId(resultadoConsulta.getInt("id"));
-                gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
-                gra.setNome(resultadoConsulta.getString("nome"));
-                gra.setRegiao(resultadoConsulta.getString("regiao"));
-                gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
-                gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
-                gra.setCgi(CalculoCGI.calcularCGI(gra, select_cgi(), contador));
-                contador++;
                 resultado.add(gra);
             }
             return resultado;
@@ -311,7 +325,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
     public String update_idEmpresa(int idEmpresaNew, int idEmpresaOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_IDEMPRESA)) {
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID_EMPRESA)) {
             preparoConsultaSQL.setInt(1, idEmpresaNew);
             preparoConsultaSQL.setInt(2, idEmpresaOld);
             preparoConsultaSQL.execute();

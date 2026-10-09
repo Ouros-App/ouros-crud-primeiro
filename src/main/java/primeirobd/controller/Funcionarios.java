@@ -18,10 +18,13 @@ public class Funcionarios extends HttpServlet{
     private FuncionarioDAO funcionario;
 
     @Override
+    public void init() throws ServletException {
+        funcionario = new FuncionarioDAO();
+    }
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        funcionario = new FuncionarioDAO();
 
         // 1. Descobre qual página foi pedida .-.
         int pagina = Paginacao.lerPagina(request);
@@ -35,12 +38,26 @@ public class Funcionarios extends HttpServlet{
         // 4. Cria o objeto de paginação
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
+        String buscaUsuario = request.getParameter("buscaFuncionario");
         // 5. Busca somente os funcionários daquela página >_<
-        List<Funcionario> funcionarios =
-                funcionario.select_paginado(
-                        paginacao.getTamanho(),
-                        paginacao.getOffset()
-                );
+
+        List<Funcionario> funcionarios;
+
+        // 5. Busca somente os dados daquela página >_<
+        if(buscaUsuario == null){
+            funcionarios =
+                    funcionario.select_paginado(
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }else {
+            funcionarios =
+                    funcionario.select_paginado_filtro_pesquisa(
+                            "%" + buscaUsuario + "%",
+                            paginacao.getTamanho(),
+                            paginacao.getOffset()
+                    );
+        }
 
         // 6. Envia os funcionários para o JSP ¹_¹
         request.setAttribute("funcionarios", funcionarios);
@@ -49,7 +66,7 @@ public class Funcionarios extends HttpServlet{
         request.setAttribute("paginacao", paginacao);
 
         getServletContext()
-                .getRequestDispatcher("/funcionarios.jsp")
+                .getRequestDispatcher("/WEB-INF/views/funcionarios.jsp")
                 .forward(request, response);
     }
 }

@@ -80,8 +80,6 @@
                     <input type="text" id="buscaRegistro" placeholder="Buscar...">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroLote" placeholder="">
-
                 <div class="OrdenarPor">
                     <select id="ordenarPor">
                         <option value="data">Ordenar por: Data</option>

@@ -12,7 +12,7 @@ import java.util.List;
 
 public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String SELECT_ALL = "SELECT * FROM meta";
-    public static final String SELECT_PAGINADO = "SELECT m.titulo, g.nome, m.valor_alvo FROM meta m JOIN granja g ON m.id_granja = g.id;";
+//    public static final String SELECT_PAGINADO = "SELECT m.titulo, g.nome, m.valor_alvo FROM meta m JOIN granja g ON m.id_granja = g.id;";
     public static final String SELECT_TITULO = "SELECT titulo FROM meta";
     public static final String SELECT_ID_GRANJA= "SELECT id_granja FROM meta";
     public static final String SELECT_VALOR_ALVO = "SELECT valor_alvo FROM meta";

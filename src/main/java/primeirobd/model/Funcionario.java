@@ -8,19 +8,19 @@ public class Funcionario {
     private int idEmpresa;
     private String nome;
     private String setor;
-    private String telefoneCorporativo;
+    private String telefone;
 
     //construtores
 
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String cpf, String email, String setor, String telefoneCorporativo) {
+    public Funcionario(String nome, String cpf, String email, String setor, String telefone) {
         this.email = email;
         this.cpf = cpf;
         this.nome = nome;
         this.setor = setor;
-        this.telefoneCorporativo = telefoneCorporativo;
+        this.telefone = telefone;
     }
 
     //metodos getters
@@ -49,8 +49,8 @@ public class Funcionario {
         return setor;
     }
 
-    public String getTelefoneCorporativo() {
-        return telefoneCorporativo;
+    public String getTelefone() {
+        return telefone;
     }
 
 
@@ -80,8 +80,8 @@ public class Funcionario {
         this.setor = setor;
     }
 
-    public void setTelefoneCorporativo(String telefoneCorporativo) {
-        this.telefoneCorporativo = telefoneCorporativo;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class Funcionario {
                 "\nId_Empresa: " + this.idEmpresa +
                 "\nNome: " + this.nome +
                 "\nSetor: " + this.setor +
-                "\nTelefone: " + this.telefoneCorporativo +
+                "\nTelefone: " + this.telefone +
                 "\n-------------------------------------------------------------";
     }
 }

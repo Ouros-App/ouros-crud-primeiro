@@ -67,15 +67,15 @@
         <div class="Painel">
 
             <div class="Filtros">
-                <div class="CampoBusca">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" id="buscaFuncionario" placeholder="Buscar...">
-                </div>
-
-                <input type="text" class="CampoSetor" id="filtroSetor" placeholder="">
+                <form action="funcionarios" method="get" class="FormBusca">
+                    <div class="CampoBusca">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" name="buscaFuncionario" id="buscaFuncionario" placeholder="Buscar...">
+                    </div>
+                </form>
 
                 <div class="OrdenarPor">
                     <select id="ordenarPor">
@@ -99,7 +99,16 @@
                         <th>Telefone</th>
                     </tr>
                     </thead>
-                    <tbody id="tabela-funcionarios"></tbody>
+                    <tbody id="tabela-funcionarios">
+                    <c:forEach var="funcionario" items="${funcionarios}">
+                        <tr>
+                            <td><c:out value="${funcionario.nome}"/></td>
+                            <td><c:out value="${funcionario.setor}"/></td>
+                            <td><c:out value="${funcionario.email}"/></td>
+                            <td><c:out value="${funcionario.telefone}"/></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
@@ -121,90 +130,6 @@
     </div>
 
 </div>
-
-<script>
-    var funcionarios = ${empty funcionarios ? '[]' : funcionarios};
-
-    function esc(t) {
-        return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
-            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-        });
-    }
-
-    function renderizarFuncionarios(lista) {
-        var corpoTabela = document.getElementById("tabela-funcionarios");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (f) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + esc(f.nome) + "</td>" +
-                "<td>" + esc(f.setor) + "</td>" +
-                "<td>" + esc(f.email) + "</td>" +
-                "<td>" + esc(f.telefoneCorporativo) + "</td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg></button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path><path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg></button>" +
-                "</div></td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                sessionStorage.setItem('ouros-editor-funcionario', JSON.stringify(f));
-                abrirFormulario('/WEB-INF/views/funcionario-novo.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.getElementById("buscaFuncionario").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtradas = funcionarios.filter(function (f) {
-            return (f.nome || "").toLowerCase().includes(termo);
-        });
-        renderizarFuncionarios(filtradas);
-    });
-
-    // ===== paginação (visual) =====
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
-    var botaoAnterior = document.getElementById("botaoAnterior");
-    var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
-
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
-        });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
-    }
-    botoesPagina.forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
-        });
-    });
-    botaoAnterior.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p > 1) marcarPaginaAtiva(p - 1);
-    });
-    botaoProximo.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p < totalPaginas) marcarPaginaAtiva(p + 1);
-    });
-    marcarPaginaAtiva(1);
-
-    renderizarFuncionarios(funcionarios);
-</script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog>
 <script>

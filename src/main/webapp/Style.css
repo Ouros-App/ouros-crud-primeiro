@@ -216,6 +216,16 @@ body {
     padding: 10px 14px;
 }
 
+.FormBusca {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+}
+
+.FormBusca .CampoBusca {
+    flex: 1;
+}
+
 .CampoBusca img,
 .CampoBusca svg {
     width: 16px;
