@@ -1,22 +1,20 @@
-
 package primeirobd.controller;
-
 import primeirobd.utils.Paginacao;
-import primeirobd.service.FuncionarioDAO;
-import primeirobd.model.Funcionario;
 
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import primeirobd.service.*;
+import primeirobd.model.*;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "Funcionarios", value = "/funcionarios")
-public class Funcionarios extends HttpServlet {
-
+public class Funcionarios extends HttpServlet{
     private FuncionarioDAO funcionario;
 
     @Override
@@ -25,66 +23,121 @@ public class Funcionarios extends HttpServlet {
     }
 
     @Override
-    protected void doGet(
-            HttpServletRequest request,
-            HttpServletResponse response
-    ) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
-
-        // 1. Recebe os parâmetros de busca e filtro.
-        String busca = request.getParameter("busca");
-        String setor = request.getParameter("setor");
-        String ordenarPor = request.getParameter("ordenarPor");
-
-        if (busca == null) {
-            busca = "";
-        }
-
-        if (setor == null) {
-            setor = "";
-        }
-
-        if (ordenarPor == null || ordenarPor.isBlank()) {
-            ordenarPor = "nome";
-        }
-
-        // 2. Descobre qual página foi solicitada.
+        // 1. Descobre qual página foi pedida .-.
         int pagina = Paginacao.lerPagina(request);
 
-        // 3. Define quantos funcionários serão exibidos.
+        // 2. Quantos registros serão mostrados por página ._.
         int tamanho = 5;
 
-        // 4. Conta somente os funcionários filtrados.
-        int total = funcionario.contar(busca, setor);
+        // 3. Descobre quantos funcionários existem O_O
+        int total = funcionario.contar();
 
-        // 5. Calcula a paginação com o total filtrado.
+        // 4. Cria o objeto de paginação
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
-        // 6. Busca somente os funcionários da página atual,
-        // aplicando a busca, o filtro e a ordenação.
-        List<Funcionario> funcionarios =
-                funcionario.select_paginado(
-                        paginacao.getTamanho(),
-                        paginacao.getOffset(),
-                        busca,
-                        setor,
-                        ordenarPor);
+        String buscaUsuario = request.getParameter("buscaFuncionario");
 
-        // 7. Envia os resultados para o JSP.
+        List<Funcionario> funcionarios = null;
+
+        // 5. Busca somente os dados daquela página >_<
+        String filtro = request.getParameter("buscarEm");
+
+        if (filtro == null || filtro.isBlank()) {
+            filtro = "tudo"; // valor padrão na primeira visita
+        }
+
+        if(filtro.equals("tudo")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_tudo(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("nome")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_nome(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("setor")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_setor(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("email")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_email(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+        if(filtro.equals("telefone")){
+            if(buscaUsuario == null){
+                funcionarios =
+                        funcionario.select_paginado(
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }else {
+                funcionarios =
+                        funcionario.select_paginado_filtro_telefone(
+                                "%" + buscaUsuario + "%",
+                                paginacao.getTamanho(),
+                                paginacao.getOffset()
+                        );
+            }
+        }
+
+        // 6. Envia os funcionários para o JSP ¹_¹
         request.setAttribute("funcionarios", funcionarios);
 
-        // 8. Envia os dados da paginação.
+        // 7. Envia a paginação para o JSP :D
         request.setAttribute("paginacao", paginacao);
 
-        // 9. Mantém os filtros disponíveis no JSP.
-        request.setAttribute("busca", busca);
-        request.setAttribute("setor", setor);
-        request.setAttribute("ordenarPor", ordenarPor);
-
-        // 10. Encaminha para a página de funcionários.
-        request.getRequestDispatcher(
-                "/WEB-INF/views/funcionarios.jsp"
-        ).forward(request, response);
+        getServletContext()
+                .getRequestDispatcher("/WEB-INF/views/funcionarios.jsp")
+                .forward(request, response);
     }
 }
