@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=20">
+    <link rel="stylesheet" href="landing.css?v=26">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -30,7 +30,10 @@
     </header>
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <img class="fundo-brilho hero-brilho-dourado" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
+        <div class="circulo hero-brilho-roxo" aria-hidden="true"></div>
+        <div class="circulo hero-brilho-roxo-right" aria-hidden="true"></div>
+        <div class="circulo hero-brilho-dourado" aria-hidden="true"></div>
+        <div class="circulo hero-brilho-dourado-left" aria-hidden="true"></div>
         <div class="decor" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
         <div class="hero-container">
 
@@ -41,11 +44,11 @@
 
             <div class="hero-visual">
                 <img src="assets/linhaGold.svg" class="linha-gold" alt="" aria-hidden="true">
-                <img src="assets/celular.png" class="celular" alt="Celular com a asa dourada do Ouros">
+                <img src="assets/celular-asa-azul.svg?v=2" class="celular" alt="Celular Ouros com tela azul-marinho e uma asa dourada">
             </div>
 
         </div>
-        <div class="hero-wave" aria-hidden="true"><img src="assets/onda.svg?v=4" alt=""></div>
+        <div class="hero-wave" aria-hidden="true"><img src="assets/onda.svg?v=5" alt=""></div>
     </section>
 
     <section class="part2" id="desafios" aria-labelledby="desafios-title">
@@ -64,13 +67,18 @@
 
     <!-- FUNCIONAMENTO -->
     <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
-        <img class="fundo-brilho funcionamento-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <div class="circulo funcionamento-brilho" aria-hidden="true"></div>
         <img class="funcionamento-detalhes" src="assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
             <div class="funcionamento-grid">
                 <div class="funcionamento-visual" id="funcionamentoVisual" aria-live="polite">
-                    <img id="funcionamentoImagem" src="assets/funcionamento-celular.svg" alt="Tela 1 do funcionamento para empresas">
+                    <img id="funcionamentoImagem" src="assets/funcionamento-notebook-figma.png" alt="Painel da plataforma exibido em um notebook">
+                    <div class="funcionamento-duplo" id="funcionamentoDuplo" role="img" aria-label="Dois celulares com as telas de acompanhamento da plataforma" style="display: none;">
+                        <img class="funcionamento-duplo-base" src="assets/funcionamento-duplo-base-figma.png" alt="">
+                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-4" src="assets/funcionamento-tela-4-figma.png" alt="">
+                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-3" src="assets/funcionamento-tela-3-figma.png" alt="">
+                    </div>
                 </div>
                 <div class="funcionamento-conteudo">
                     <div class="perfil-opcoes" role="group" aria-label="Perfil de uso">
@@ -109,7 +117,7 @@
             <div class="funcionalidades-faixa" data-slider="funcionalidades" tabindex="0" role="region" aria-label="Funcionalidades da plataforma; deslize horizontalmente para ver todos os cards">
 
                 <article class="funcionalidade-card">
-                    <img src="assets/gerenciamento-lote.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gerenciamento de lote</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -117,7 +125,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="assets/simulador-lucro.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Simulador de lucro</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
@@ -125,7 +133,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="assets/gestao-agua-energia.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gestão de água e energia</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
@@ -133,7 +141,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="assets/ranking-granjas.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Ranking entre as granjas</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
@@ -141,7 +149,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="assets/notificacoes.svg" alt="" loading="lazy">
+                    <div class="funcionalidade-imagem-sem-foto" aria-hidden="true"></div>
                     <div class="funcionalidade-texto">
                         <h3>Notificações inteligentes</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor et posuere consectetur est at lobortis.</p>
@@ -150,7 +158,7 @@
 
 
                 <article class="funcionalidade-card">
-                    <img src="assets/metas-sustentabilidade.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Metas de sustentabilidade</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
@@ -158,7 +166,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="assets/dashboards-intuitivos.svg" alt="" loading="lazy">
+                    <img src="assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Dashboards intuitivos</h3>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur, donec ullamcorper.</p>
@@ -172,14 +180,30 @@
     <!-- RANKING E SUSTENTABILIDADE -->
     <section class="ranking" id="ranking" aria-labelledby="ranking-titulo">
         <div class="landing-container ranking-grid">
-            <!-- Imagem provisória: substituir pelo pódio com os cinco troféus. -->
-            <img class="ranking-podio" src="assets/ligas.png" alt="Ranking de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
-
-            <div class="ranking-texto">
-                <h2 id="ranking-titulo">A Liderança em<br>Sustentabilidade</h2>
-                <p>Utilize rankings para gerenciar seus integrados e ter uma melhor visualização de seus gastos. Cada estado brasileiro possui seu próprio ranking.</p>
-                <p>Visualize a eficiência real de cada fornecedor, sem estimar gastos irreais, identifique quem gasta mais e traz maior prejuízo ambiental, priorize decisões de compra com base em dados primários, reconheça publicamente os integrados mais eficientes.</p>
+            <div class="ranking-apresentacao">
+                <span class="ranking-titulo-linha" aria-hidden="true"></span>
+                <h2 class="ranking-titulo" id="ranking-titulo">A Liderança em<br>Sustentabilidade</h2>
+                <img class="ranking-podio" src="assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
             </div>
+
+            <ul class="ranking-beneficios" aria-label="Benefícios do ranking de sustentabilidade">
+                <li class="ranking-beneficio">
+                    <span class="ranking-beneficio-icone"><img src="assets/ranking-icone-olho.svg" alt=""></span>
+                    <p>Visualize a eficiência real de cada fornecedor, sem estimar gastos indiretos.</p>
+                </li>
+                <li class="ranking-beneficio">
+                    <span class="ranking-beneficio-icone"><img src="assets/ranking-icone-lupa.svg" alt=""></span>
+                    <p>Identifique quem gasta mais e traz maior prejuízo ambiental.</p>
+                </li>
+                <li class="ranking-beneficio">
+                    <span class="ranking-beneficio-icone"><img src="assets/ranking-icone-dados.svg" alt=""></span>
+                    <p>Priorize decisões de compra com base em dados primários.</p>
+                </li>
+                <li class="ranking-beneficio">
+                    <span class="ranking-beneficio-icone"><img src="assets/ranking-icone-trofeu.svg" alt=""></span>
+                    <p>Reconheça publicamente os integrados mais eficientes.</p>
+                </li>
+            </ul>
 
         </div>
         <div class="landing-container">
@@ -208,13 +232,13 @@
 
     <!-- PLANOS -->
     <section class="planos" id="planos" aria-labelledby="planos-titulo">
-        <img class="fundo-brilho planos-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <div class="circulo planos-brilho" aria-hidden="true"></div>
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="planos-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>PLANOS</h2>
 
             <div class="planos-grid">
                 <article class="plano-card">
-                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Trimestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -224,7 +248,7 @@
                 </article>
 
                 <article class="plano-card">
-                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Semestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -234,7 +258,7 @@
                 </article>
 
                 <article class="plano-card">
-                    <img class="fundo-brilho plano-brilho" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Anual</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
@@ -271,11 +295,11 @@
 
     <!-- PERGUNTAS FREQUENTES -->
     <section class="faq" id="faq" aria-labelledby="faqTitulo">
-        <img class="fundo-brilho faq-brilho faq-brilho-1" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
-        <img class="fundo-brilho faq-brilho faq-brilho-2" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
-        <img class="fundo-brilho faq-brilho faq-brilho-3" src="assets/circulo-roxo-blur.svg" alt="" aria-hidden="true">
+        <div class="circulo faq-brilho faq-brilho-1" aria-hidden="true"></div>
+        <div class="circulo faq-brilho faq-brilho-2" aria-hidden="true"></div>
+        <div class="circulo faq-brilho faq-brilho-3" aria-hidden="true"></div>
         <div class="landing-container faq-container">
-            <h2 class="secao-titulo faq-titulo" id="faqTitulo">FAQ</h2>
+            <h2 class="secao-titulo faq-titulo" id="faqTitulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FAQ</h2>
             <div class="faq-lista">
                 <article class="faq-item">
                     <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta1" id="faqPergunta1">O sistema funciona offline?<span aria-hidden="true">+</span></button></h3>
@@ -312,7 +336,7 @@
             </div>
 
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
-                <img class="fundo-brilho faq-ajuda-brilho" src="assets/circulo-dourado-blur.svg" alt="" aria-hidden="true">
+                <div class="circulo faq-ajuda-brilho" aria-hidden="true"></div>
                 <span class="faq-ajuda-icone" aria-hidden="true"><img src="assets/balao-falas.png" alt=""></span>
                 <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudar, garantindo que você tenha a melhor experiência possível.</span></span>
             </aside>
@@ -347,7 +371,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js?v=9" defer></script>
+    <script src="landing.js?v=11" defer></script>
 </body>
 
 </html>

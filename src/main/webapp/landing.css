@@ -4,16 +4,11 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 90px;
-}
-
 body {
     overflow-x: hidden;
     margin: 0;
     background: #faf7ec;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
     color: #0e0c23;
 }
 
@@ -64,6 +59,7 @@ a {
     color: #cf9d23;
 }
 
+
 #header .sobre {
     margin-left: 8px;
     text-decoration: underline;
@@ -83,6 +79,11 @@ a {
     padding: 7px 18px;
 }
 
+.btcadastro:hover{
+    background-color: #8a6d00;
+
+}
+
 /* Menu */
 
 .menu-mobile {
@@ -100,34 +101,46 @@ a {
     margin: 5px 0;
 }
 
-/* Hero */
-
-.hero {
-    position: relative;
-    isolation: isolate;
-    height: 100vh;
-    min-height: 720px;
-    overflow: hidden;
-    background-color: #0e0c23;
+.hero-brilho-roxo {
+    z-index: 0;
+    top: 12vh;
+    left: 10vh;
+    width: min(44vw, 630px);
+    height: min(44vw, 630px);
+    background-color: #3928A6;
+    opacity: .2;
 }
 
-/* Círculos desfocados dos fundos */
-
-.fundo-brilho {
-    position: absolute;
-    display: block;
-    pointer-events: none;
-    object-fit: contain;
+.hero-brilho-roxo-rigth {
+    z-index: 0;
+    top: 12vh;
+    left: 10vh;
+    width: min(44vw, 630px);
+    height: min(44vw, 630px);
+    background-color: #3928A6;
+    opacity: .2;
 }
 
 .hero-brilho-dourado {
     z-index: 0;
-    top: 21%;
-    right: 6%;
+    top: 13%;
+    right: 5%;
     width: min(42vw, 600px);
-    height: 66%;
-    opacity: .3;
+    height: min(42vw, 600px);
+    background-color: #A65F27;
+    opacity: .16;
 }
+
+.hero-brilho-dourado-left {
+    z-index: 0;
+    top: 13%;
+    left: 5%;
+    width: min(42vw, 600px);
+    height: min(42vw, 600px);
+    background-color: #A65F27;
+    opacity: .10;
+}
+
 
 .hero-container {
     position: relative;
@@ -139,7 +152,7 @@ a {
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
     align-items: start;
-    padding: clamp(150px,13vw,205px) 4% 80px;
+    padding: clamp(114px,13vw,205px) 4% 80px;
 }
 
 /* Texto do hero */
@@ -152,10 +165,10 @@ a {
 .hero-content h1 {
     margin: 0;
     color: #ffffff;
-    font-size: clamp(44px,5.5vw,82px);
+    font-size: clamp(36px,4.5vw,82px);
     line-height: 1.04;
-    font-weight: 850;
-    letter-spacing: -1.8px;
+    letter-spacing: -1.3px;
+    text-shadow: 0 0 18px rgba(255, 255, 255, .18);
 }
 
 .hero-content h1 span,
@@ -166,6 +179,7 @@ a {
 .hero-content h1 strong {
     color: #cf9d23;
     font-weight: 900;
+    text-shadow: 0 0 20px rgba(207, 157, 35, .26);
 }
 
 .subTitle {
@@ -219,7 +233,7 @@ a {
     height: 5px;
     border-radius: 50%;
     background: #c49514;
-    filter: blur(3px);
+    filter: blur(1px);
 }
 
 .star-1 {
@@ -256,16 +270,17 @@ a {
 
 .hero-wave {
     position: absolute;
-    bottom: -1px;
+    top: 0;
     left: 0;
     right: 0;
-    height: clamp(70px,5vw,90px);
+    bottom: 0;
     z-index: 3;
+    pointer-events: none;
 }
 
 .hero-wave img {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: block;
 }
 
@@ -402,10 +417,6 @@ a {
         margin-left: 6px;
     }
 
-    .hero-container {
-        padding-top: 155px;
-    }
-
     .hero-visual {
         margin-top: 0;
     }
@@ -476,6 +487,30 @@ a {
         min-height: 850px;
     }
 
+    .hero-brilho-roxo {
+        top: 18%;
+        left: -25%;
+        width: min(78vw, 400px);
+        height: min(78vw, 400px);
+        opacity: .17;
+    }
+
+    .hero-brilho-dourado {
+        top: 49%;
+        right: 8%;
+        width: min(78vw, 390px);
+        height: min(78vw, 390px);
+        opacity: .18;
+    }
+
+    .funcionamento-brilho {
+        top: 20%;
+        left: 3%;
+        width: min(84vw, 500px);
+        height: min(84vw, 500px);
+        opacity: .15;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         padding: 125px 6% 110px;
@@ -506,10 +541,6 @@ a {
 
     .linha-gold {
         height: 100%;
-    }
-
-    .hero-wave {
-        height: 35px;
     }
 
     .part2 {
@@ -614,11 +645,12 @@ a {
 
 .funcionamento-brilho {
     z-index: 0;
-    top: 5%;
-    left: -16%;
-    width: min(68vw, 900px);
-    height: 100%;
-    opacity: .1;
+    top: 12%;
+    left: 4%;
+    width: min(55vw, 790px);
+    height: min(55vw, 790px);
+    background-color: #3928A6;
+    opacity: .16;
 }
 
 .funcionamento > .landing-container {
@@ -641,20 +673,58 @@ a {
 .funcionamento-visual {
     display: grid;
     place-items: center;
-    min-height: 580px;
+    min-height: 566px;
 }
 
-.funcionamento-visual img {
+.funcionamento-visual > #funcionamentoImagem {
     display: block;
     width: 100%;
-    max-width: 720px;
-    height: 580px;
+    max-width: 756px;
+    height: 566px;
     object-fit: contain;
-    transform: scale(1.08);
+    transform: none;
     transition: opacity 240ms ease, transform 240ms ease;
 }
 
-.funcionamento-visual.trocando-imagem img {
+.funcionamento-duplo {
+    position: relative;
+    width: min(100%, 446px);
+    aspect-ratio: 446 / 451;
+    transition: opacity 240ms ease, transform 240ms ease;
+}
+
+.funcionamento-visual .funcionamento-duplo img {
+    position: absolute;
+    display: block;
+    max-width: none;
+    height: auto;
+    object-fit: fill;
+    transform: none;
+    transition: opacity 240ms ease;
+}
+
+.funcionamento-visual .funcionamento-duplo-base {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.funcionamento-visual .funcionamento-duplo-tela-4 {
+    top: 0.89%;
+    left: 3.36%;
+    width: 43.95%;
+    height: 72.95%;
+}
+
+.funcionamento-visual .funcionamento-duplo-tela-3 {
+    top: 15.96%;
+    left: 46.86%;
+    width: 49.78%;
+    height: 80.93%;
+}
+
+.funcionamento-visual.trocando-imagem > #funcionamentoImagem,
+.funcionamento-visual.trocando-imagem .funcionamento-duplo {
     opacity: 0;
     transform: translateY(8px) scale(.98);
 }
@@ -817,9 +887,17 @@ a {
 
 .funcionalidade-card img {
     display: block;
+    flex: 0 0 150px;
     width: 100%;
-    height: 160px;
+    height: 150px;
     object-fit: cover;
+}
+
+.funcionalidade-imagem-sem-foto {
+    flex: 0 0 150px;
+    width: 100%;
+    height: 150px;
+    background-color: #905d5d;
 }
 
 .funcionalidade-texto {
@@ -843,41 +921,94 @@ a {
 /* Seção do ranking */
 
 .ranking {
-    padding: 110px 0 140px;
+    padding: 32px 0 48px;
     background: #faf7ec;
 }
 
 .ranking-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
-    align-items: end;
-    gap: 42px;
+    width: 98%;
+    grid-template-columns: minmax(0, 1.34fr) minmax(250px, 0.86fr);
+    align-items: center;
+    gap: clamp(28px, 6vw, 68px);
+}
+
+/* Título e pódio */
+
+.ranking-apresentacao {
+    min-width: 0;
+}
+
+.ranking-titulo-linha {
+    display: block;
+    width: 70px;
+    height: 2px;
+    margin-bottom: 8px;
+    background: #0e0c23;
+}
+
+.ranking-titulo {
+    margin: 0;
+    color: #0e0c23;
+    font-size: clamp(28px, 3.5vw, 50px);
+    font-weight: 900;
+    line-height: 1.05;
+    text-transform: uppercase;
 }
 
 .ranking-podio {
     display: block;
     width: 100%;
     height: auto;
-    max-height: 460px;
+    object-fit: contain;
+    margin-top: 48px;
+}
+
+/* Cartão com os benefícios e seus ícones */
+
+.ranking-beneficios {
+    display: grid;
+    gap: 15px;
+    min-width: 0;
+    min-height: 270px;
+    margin: 0;
+    padding: 24px 20px;
+    list-style: none;
+    border: 1px solid #f0e5bd;
+    border-radius: 20px;
+    background: #fffef5;
+    box-shadow: 0 10px 30px rgba(185, 145, 42, 0.14);
+}
+
+.ranking-beneficio {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ranking-beneficio-icone {
+    display: grid;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 1px solid #eedda8;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.ranking-beneficio-icone img {
+    display: block;
+    width: 22px;
+    height: 22px;
     object-fit: contain;
 }
 
-.ranking-texto {
-    padding-right: 30px;
-}
-
-.ranking-texto h2 {
-    margin: 0 0 30px;
+.ranking-beneficio p {
+    margin: 0;
     color: #211b3c;
-    font-size: clamp(36px, 5vw, 72px);
-    font-weight: 900;
-    line-height: 1.05;
-}
-
-.ranking-texto p {
-    margin: 0 0 10px;
-    font-size: 20px;
-    line-height: 1.5;
+    font-size: clamp(13px, 1.3vw, 16px);
+    line-height: 1.4;
 }
 
 /* Bloco de cálculo do ranking */
@@ -950,11 +1081,12 @@ a {
 
 .planos-brilho {
     z-index: 0;
-    top: -28%;
-    right: -18%;
-    width: min(78vw, 1100px);
-    height: 125%;
-    opacity: .22;
+    top: -24%;
+    right: -17%;
+    width: min(62vw, 760px);
+    height: min(62vw, 760px);
+    background-color: #3928A6;
+    opacity: .12;
 }
 
 .planos .secao-titulo {
@@ -985,11 +1117,13 @@ a {
 
 .plano-brilho {
     z-index: 0;
-    top: -45%;
-    left: -40%;
-    width: 115%;
-    height: 105%;
-    opacity: .18;
+    top: -30%;
+    left: -25%;
+    width: min(90%, 340px);
+    height: auto;
+    aspect-ratio: 1;
+    background-color: #3928A6;
+    opacity: .1;
     transition: opacity 200ms ease, transform 200ms ease;
 }
 
@@ -1044,7 +1178,7 @@ a {
 
 .plano-card:hover .plano-brilho,
 .plano-card:focus-within .plano-brilho {
-    opacity: .5;
+    opacity: .28;
     transform: translate(9%, 7%);
 }
 
@@ -1214,41 +1348,47 @@ a {
 .faq-brilho {
     z-index: 0;
     pointer-events: none;
+    background-color: #3928A6;
 }
 
 .faq-brilho-1 {
-    top: -10%;
-    left: -18%;
-    width: min(54vw, 760px);
-    height: 62%;
-    opacity: .3;
+    top: -12%;
+    left: -20%;
+    width: min(52vw, 700px);
+    height: min(52vw, 700px);
+    opacity: .14;
 }
 
 .faq-brilho-2 {
-    top: 24%;
-    right: -18%;
-    width: min(54vw, 760px);
-    height: 58%;
-    opacity: .32;
+    top: 22%;
+    right: -22%;
+    width: min(54vw, 720px);
+    height: min(54vw, 720px);
+    opacity: .13;
 }
 
 .faq-brilho-3 {
-    bottom: -16%;
-    left: 20%;
-    width: min(42vw, 600px);
-    height: 52%;
-    opacity: .22;
+    bottom: -20%;
+    left: 17%;
+    width: min(46vw, 600px);
+    height: min(46vw, 600px);
+    opacity: .1;
 }
 
 .faq-titulo {
-    color: #ffffff;
-    font-size: clamp(34px, 3.8vw, 52px);
+    color: #cf9d23;
+    font-size: clamp(22px, 2.4vw, 34px);
+}
+
+.faq-titulo .secao-titulo-linha {
+    width: 70px;
+    margin-bottom: 10px;
 }
 
 .faq-lista {
     display: grid;
     gap: 11px;
-    margin-top: 74px;
+    margin-top: 42px;
 }
 
 .faq-item {
@@ -1334,10 +1474,11 @@ a {
 
 .faq-ajuda-brilho {
     z-index: 0;
-    top: -68%;
-    right: -20%;
-    width: 115%;
-    height: 230%;
+    top: -20%;
+    right: -10%;
+    width: 320px;
+    height: 320px;
+    background-color: #A65F27;
     opacity: .04;
 }
 
@@ -1458,13 +1599,21 @@ a {
         gap: 24px;
     }
 
+    .ranking-grid {
+        grid-template-columns: minmax(0, 1.2fr) minmax(230px, 0.8fr);
+    }
+
     .funcionamento-visual {
         min-height: 350px;
     }
 
-    .funcionamento-visual img {
+    .funcionamento-visual > #funcionamentoImagem {
         width: 95%;
         height: 410px;
+    }
+
+    .funcionamento-duplo {
+        width: min(95%, 446px);
     }
 
     .funcionamento-passos li {
@@ -1487,8 +1636,24 @@ a {
         flex-basis: 280px;
     }
 
-    .ranking-texto p {
-        font-size: 16px;
+    .ranking-beneficios {
+        gap: 12px;
+        padding: 20px 16px;
+    }
+
+    .ranking-beneficio {
+        gap: 10px;
+    }
+
+    .ranking-beneficio-icone {
+        flex-basis: 34px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .ranking-beneficio-icone img {
+        width: 19px;
+        height: 19px;
     }
 
     .ranking-calculo {
@@ -1539,11 +1704,15 @@ a {
     }
 
     .faq-titulo {
-        font-size: 36px;
+        font-size: 24px;
+    }
+
+    .faq-titulo .secao-titulo-linha {
+        margin-bottom: 8px;
     }
 
     .faq-lista {
-        margin-top: 30px;
+        margin-top: 28px;
     }
 
     .faq-pergunta {
@@ -1667,12 +1836,34 @@ a {
         padding: 50px 0 60px;
     }
 
-    .ranking-texto {
-        padding: 15px 0 0;
+    .ranking-grid {
+        width: 92%;
+        gap: 24px;
     }
 
-    .ranking-texto h2 {
-        margin-bottom: 24px;
+    .ranking-podio {
+        margin-top: 24px;
+    }
+
+    .ranking-beneficios {
+        min-height: 0;
+        gap: 16px;
+        padding: 22px 18px;
+    }
+
+    .ranking-beneficio {
+        gap: 14px;
+    }
+
+    .ranking-beneficio-icone {
+        flex-basis: 40px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .ranking-beneficio-icone img {
+        width: 22px;
+        height: 22px;
     }
 
     .ranking-calculo {
@@ -1695,4 +1886,26 @@ a {
     }
 }
 
+
+
+/* Hero */
+
+.hero {
+    position: relative;
+    isolation: isolate;
+    height: 100vh;
+    min-height: 720px;
+    overflow: hidden;
+    background-color: #0e0c23;
+}
+
+/* Círculos desfocados dos fundos */
+
+.circulo {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(72px);
+}
 

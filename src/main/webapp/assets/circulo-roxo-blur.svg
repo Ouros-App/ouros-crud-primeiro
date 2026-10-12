@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
-  <defs>
-    <filter id="desfoque" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="72" />
-    </filter>
-  </defs>
-  <circle cx="400" cy="400" r="210" fill="#3928A6" opacity="0.82" filter="url(#desfoque)" />
-</svg>

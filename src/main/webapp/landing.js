@@ -43,31 +43,41 @@ document.addEventListener('DOMContentLoaded', () => {
     const funcionamentoVisual = document.getElementById('funcionamentoVisual');
     const funcionamentoViews = {
         empresa: [
-            { src: 'assets/funcionamento-celular.svg', alt: 'Tela provisória 1 do funcionamento para empresas' },
-            { src: 'assets/funcionamento-empresa-2.svg', alt: 'Tela provisória 2 do funcionamento para empresas' },
-            { src: 'assets/funcionamento-empresa-3.svg', alt: 'Tela provisória 3 do funcionamento para empresas' }
+            { src: 'assets/funcionamento-notebook-figma.png', alt: 'Painel da plataforma exibido em um notebook' },
+            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
+            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ],
         integrado: [
-            { src: 'assets/funcionamento-integrado-1.svg', alt: 'Tela provisória 1 do funcionamento para integrados' },
-            { src: 'assets/funcionamento-integrado-2.svg', alt: 'Tela provisória 2 do funcionamento para integrados' },
-            { src: 'assets/funcionamento-integrado-3.svg', alt: 'Tela provisória 3 do funcionamento para integrados' }
+            { src: 'assets/funcionamento-integrado-figma.png', alt: 'Tela de cadastro da plataforma em um celular' },
+            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
+            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ]
     };
+    const funcionamentoDuplo = document.getElementById('funcionamentoDuplo');
     let selectedProfile = 'empresa';
     let selectedStep = 0;
     let imageTransitionTimer;
 
     const showFunctioningView = () => {
         const view = funcionamentoViews[selectedProfile]?.[selectedStep];
-        if (!view || !funcionamentoImage || !funcionamentoVisual) {
+        if (!view || !funcionamentoImage || !funcionamentoVisual || !funcionamentoDuplo) {
             return;
         }
 
         window.clearTimeout(imageTransitionTimer);
         funcionamentoVisual.classList.add('trocando-imagem');
         imageTransitionTimer = window.setTimeout(() => {
-            funcionamentoImage.src = view.src;
-            funcionamentoImage.alt = view.alt;
+            const mostrarDuplo = view.duplo === true;
+            funcionamentoVisual.classList.toggle('mostrando-duplo', mostrarDuplo);
+            funcionamentoImage.style.display = mostrarDuplo ? 'none' : 'block';
+            funcionamentoDuplo.style.display = mostrarDuplo ? 'block' : 'none';
+
+            if (!mostrarDuplo) {
+                funcionamentoImage.src = view.src;
+                funcionamentoImage.alt = view.alt;
+            }
+
+            funcionamentoDuplo.setAttribute('aria-label', view.alt);
             window.requestAnimationFrame(() => {
                 window.requestAnimationFrame(() => funcionamentoVisual.classList.remove('trocando-imagem'));
             });

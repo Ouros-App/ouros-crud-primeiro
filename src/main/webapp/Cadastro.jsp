@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | Ouros</title>
-    <link rel="stylesheet" href="Style.css?v=6">
+    <link rel="stylesheet" href="Style.css?v=7">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -93,7 +93,7 @@
             </div>
 
             <button type="button" class="LoginGoogle" aria-label="Entrar com Google">
-                <span class="LoginGoogleIcone" aria-hidden="true">G</span>
+                <span class="LoginGoogleIcone" aria-hidden="true"></span>
                 Entrar com Google
             </button>
 
