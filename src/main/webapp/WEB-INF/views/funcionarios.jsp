@@ -9,6 +9,59 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <style>
+        /* Paginação padronizada com o restante do sistema */
+        .RodapeTabela .Paginacao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .RodapeTabela .Paginacao a,
+        .RodapeTabela .Paginacao .seta {
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 36px;
+            padding: 0 8px;
+            border: none;
+            border-radius: 9px;
+            background: transparent;
+            color: #17172f;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+
+        .RodapeTabela .Paginacao a:hover:not(.ativo) {
+            background: #f0f1f5;
+        }
+
+        .RodapeTabela .Paginacao a.ativo {
+            background: #111025;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .RodapeTabela .Paginacao .seta {
+            min-width: 28px;
+            width: 28px;
+            padding: 0;
+            color: #9aa7bd;
+            font-size: 13px;
+        }
+
+        .RodapeTabela .Paginacao .seta.desabilitada {
+            cursor: default;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -67,13 +120,13 @@
         <div class="Painel">
 
             <div class="Filtros">
-                <form action="funcionarios" method="get" class="FormBusca">
+                <form action="${pageContext.request.contextPath}/funcionarios" method="get" class="FormBusca">
                     <div class="CampoBusca">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" name="buscaFuncionario" id="buscaFuncionario" placeholder="Buscar...">
+                        <input type="text" name="buscaFuncionario" id="buscaFuncionario" value="${param.buscaFuncionario}" placeholder="Buscar...">
                     </div>
 
                     <div class="OrdenarPor">
@@ -126,16 +179,51 @@
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemFuncionarios">mostrando 1 a 5 de 25 funcionários</span>
+                <span class="Contagem">
+                    Mostrando ${paginacao.inicio} a ${paginacao.fim}
+                    de ${paginacao.total} funcionários
+                </span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
+                <div class="Paginacao">
+                    <c:url var="urlAnterior" value="/funcionarios">
+                        <c:param name="pagina" value="${paginacao.pagina - 1}" />
+                        <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
+                        <c:param name="buscarEm" value="${param.buscarEm}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temAnterior}">
+                            <a class="seta" href="${urlAnterior}" aria-label="Página anterior">&#9664;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-label="Não há página anterior" aria-disabled="true">&#9664;</span>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="${paginacao.janelaInicio}" end="${paginacao.janelaFim}" var="numero">
+                        <c:url var="urlPagina" value="/funcionarios">
+                            <c:param name="pagina" value="${numero}" />
+                            <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
+                            <c:param name="buscarEm" value="${param.buscarEm}" />
+                        </c:url>
+                        <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
+                           href="${urlPagina}"
+                           aria-label="Página ${numero}"
+                           ${numero == paginacao.pagina ? 'aria-current="page"' : ''}><c:out value="${numero}"/></a>
+                    </c:forEach>
+
+                    <c:url var="urlProxima" value="/funcionarios">
+                        <c:param name="pagina" value="${paginacao.pagina + 1}" />
+                        <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
+                        <c:param name="buscarEm" value="${param.buscarEm}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temProxima}">
+                            <a class="seta" href="${urlProxima}" aria-label="Próxima página">&#9654;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-label="Não há próxima página" aria-disabled="true">&#9654;</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 

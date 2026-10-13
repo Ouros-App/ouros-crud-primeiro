@@ -3,7 +3,6 @@ import primeirobd.utils.Paginacao;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,25 +31,58 @@ public class Funcionarios extends HttpServlet{
         // 2. Quantos registros serão mostrados por página ._.
         int tamanho = 5;
 
-        // 3. Descobre quantos funcionários existem O_O
-        int total = funcionario.contar();
 
-        // 4. Cria o objeto de paginação
-        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
         String buscaUsuario = request.getParameter("buscaFuncionario");
-
-        List<Funcionario> funcionarios = null;
-
-        // 5. Busca somente os dados daquela página >_<
         String filtro = request.getParameter("buscarEm");
 
         if (filtro == null || filtro.isBlank()) {
-            filtro = "tudo"; // valor padrão na primeira visita
+            filtro = "tudo";
         }
 
+        if (buscaUsuario == null) {
+            buscaUsuario = "";
+        }
+
+        buscaUsuario = buscaUsuario.trim();
+
+
+        int total;
+
+        if (buscaUsuario.isEmpty()) {
+            total = funcionario.contar_paginado();
+        } else {
+            String busca = "%" + buscaUsuario + "%";
+
+            switch (filtro) {
+                case "nome":
+                    total = funcionario.contar_paginado_filtro_nome(busca);
+                    break;
+
+                case "setor":
+                    total = funcionario.contar_paginado_filtro_setor(busca);
+                    break;
+
+                case "email":
+                    total = funcionario.contar_paginado_filtro_email(busca);
+                    break;
+
+                case "telefone":
+                    total = funcionario.contar_paginado_filtro_telefone(busca);
+                    break;
+
+                default:
+                    total = funcionario.contar_paginado_filtro_tudo(busca);
+                    break;
+            }
+        }
+
+        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
+
+        List<Funcionario> funcionarios = null;
+
         if(filtro.equals("tudo")){
-            if(buscaUsuario == null){
+            if(buscaUsuario.isEmpty()){
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
@@ -66,7 +98,7 @@ public class Funcionarios extends HttpServlet{
             }
         }
         if(filtro.equals("nome")){
-            if(buscaUsuario == null){
+            if(buscaUsuario.isEmpty()){
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
@@ -82,7 +114,7 @@ public class Funcionarios extends HttpServlet{
             }
         }
         if(filtro.equals("setor")){
-            if(buscaUsuario == null){
+            if(buscaUsuario.isEmpty()){
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
@@ -98,7 +130,7 @@ public class Funcionarios extends HttpServlet{
             }
         }
         if(filtro.equals("email")){
-            if(buscaUsuario == null){
+            if(buscaUsuario.isEmpty()){
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
@@ -114,7 +146,7 @@ public class Funcionarios extends HttpServlet{
             }
         }
         if(filtro.equals("telefone")){
-            if(buscaUsuario == null){
+            if(buscaUsuario.isEmpty()){
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),

@@ -21,6 +21,46 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
     public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? WHERE setor = ?";
     public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM funcionario";
+    public static final String SELECT_COUNT_PAGINADO =
+            "SELECT COUNT(*) " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario";
+
+    public static final String SELECT_COUNT_FILTRO_TUDO =
+            "SELECT COUNT(*) " +
+                    "FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.nome LIKE ? " +
+                    "OR funcionario.setor LIKE ? " +
+                    "OR funcionario.email LIKE ? " +
+                    "OR telefone_funcionario.telefone LIKE ?";
+
+    public static final String SELECT_COUNT_FILTRO_NOME =
+            "SELECT COUNT(*) FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.nome LIKE ?";
+
+    public static final String SELECT_COUNT_FILTRO_SETOR =
+            "SELECT COUNT(*) FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.setor LIKE ?";
+
+    public static final String SELECT_COUNT_FILTRO_EMAIL =
+            "SELECT COUNT(*) FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE funcionario.email LIKE ?";
+
+    public static final String SELECT_COUNT_FILTRO_TELEFONE =
+            "SELECT COUNT(*) FROM funcionario " +
+                    "JOIN telefone_funcionario " +
+                    "ON funcionario.id = telefone_funcionario.id_funcionario " +
+                    "WHERE telefone_funcionario.telefone LIKE ?";
+
     public static final String SELECT_PAGINADO =
             "SELECT funcionario.nome, " +
             "funcionario.setor, " +
@@ -403,4 +443,66 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
+
+
+    @Override
+    public int contar_paginado() {
+        return executarContagem(SELECT_COUNT_PAGINADO, null);
+    }
+
+    @Override
+    public int contar_paginado_filtro_tudo(String busca) {
+        return executarContagem(SELECT_COUNT_FILTRO_TUDO, busca);
+    }
+
+    @Override
+    public int contar_paginado_filtro_nome(String busca) {
+        return executarContagem(SELECT_COUNT_FILTRO_NOME, busca);
+    }
+
+    @Override
+    public int contar_paginado_filtro_setor(String busca) {
+        return executarContagem(SELECT_COUNT_FILTRO_SETOR, busca);
+    }
+
+    @Override
+    public int contar_paginado_filtro_email(String busca) {
+        return executarContagem(SELECT_COUNT_FILTRO_EMAIL, busca);
+    }
+
+    @Override
+    public int contar_paginado_filtro_telefone(String busca) {
+        return executarContagem(SELECT_COUNT_FILTRO_TELEFONE, busca);
+    }
+
+    private int executarContagem(String sql, String busca) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try (PreparedStatement ps = conexao.prepareStatement(sql)) {
+
+            if (busca != null) {
+                if (sql.equals(SELECT_COUNT_FILTRO_TUDO)) {
+                    ps.setString(1, busca);
+                    ps.setString(2, busca);
+                    ps.setString(3, busca);
+                    ps.setString(4, busca);
+                } else {
+                    ps.setString(1, busca);
+                }
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+                return 0;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Erro ao contar funcionários: " + e.getMessage(), e
+            );
+        }
+    }
+
 }
