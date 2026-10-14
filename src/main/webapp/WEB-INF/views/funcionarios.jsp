@@ -9,59 +9,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
-    <style>
-        /* Paginação padronizada com o restante do sistema */
-        .RodapeTabela .Paginacao {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .RodapeTabela .Paginacao a,
-        .RodapeTabela .Paginacao .seta {
-            box-sizing: border-box;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 34px;
-            height: 36px;
-            padding: 0 8px;
-            border: none;
-            border-radius: 9px;
-            background: transparent;
-            color: #17172f;
-            font-family: inherit;
-            font-size: 16px;
-            font-weight: 500;
-            line-height: 1;
-            text-decoration: none !important;
-            cursor: pointer;
-        }
-
-        .RodapeTabela .Paginacao a:hover:not(.ativo) {
-            background: #f0f1f5;
-        }
-
-        .RodapeTabela .Paginacao a.ativo {
-            background: #111025;
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .RodapeTabela .Paginacao .seta {
-            min-width: 28px;
-            width: 28px;
-            padding: 0;
-            color: #9aa7bd;
-            font-size: 13px;
-        }
-
-        .RodapeTabela .Paginacao .seta.desabilitada {
-            cursor: default;
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body>
 
@@ -74,7 +21,7 @@
             </div>
 
             <nav class="Menu">
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/inicio.svg" alt=""></span> Início
                 </a>
                 <a href="granjas" class="MenuItem">

@@ -19,8 +19,8 @@ public interface MetaDAO {
     String update_idGranja(int idGranjaNew, int idGranjaOld);
     String update_valorAlvo(double valorAlvoNew, double valorAlvoOld);
 
-    int contar();
-    List<Meta> select_paginado(int tamanho, int offset);
+    int contar(boolean individual, String busca);
+    List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset);
 
 
 }

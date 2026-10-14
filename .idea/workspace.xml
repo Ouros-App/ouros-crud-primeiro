@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="inter_modulo:war exploded" />
+      <artifact name="InterBack:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
@@ -10,25 +10,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa8f1fa8-b505-44ee-b77d-90274e1cba8d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Registros.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Funcionarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Funcionarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Granjas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Granjas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/interback/HelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Lotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Lotes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Metas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/controller/Metas.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/FuncionarioDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/FuncionarioDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/RegistrosAgua.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/controller/RegistrosEnergia.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/LoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/LoteDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/repository/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/repository/MetaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/GranjaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/GranjaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/LoteDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/MetaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainDeleteTestes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainDeleteTestes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainInsertTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainInsertTeste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainSelectTeste.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainSelectTeste.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainTestesTodos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainTestesTodos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainUpdateTestes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/tests/MainUpdateTestes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/funcionarios.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/funcionarios.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/granjas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/granjas.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lotes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/lotes.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/metas.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/metas.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registros.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/registros.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,6 +51,76 @@
     <option name="FILTER_DEBUG" value="true" />
     <option name="CUSTOM_FILTER" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.5034777750283594" />
+      <entry key="MS500" value="1.8717582406098412" />
+      <entry key="S2" value="1.9719942052554198" />
+      <entry key="S5" value="2.113155393191776" />
+      <entry key="S10" value="2.3537552849624985" />
+      <entry key="S30" value="3.222214722916705" />
+      <entry key="S60" value="4.588964773767748" />
+      <entry key="M2" value="6.195370142106952" />
+      <entry key="M5" value="12.249613220622754" />
+      <entry key="M10" value="35.96021511902179" />
+      <entry key="M15" value="59.685391190263616" />
+      <entry key="M30" value="103.94743543892801" />
+      <entry key="H1" value="138.97111347907506" />
+      <entry key="H2" value="161.09062549879727" />
+      <entry key="H4" value="173.53300222329742" />
+      <entry key="D1" value="184.68081322584433" />
+      <entry key="W1" value="186.66681060976882" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="5.66210895416103E-37" />
+      <entry key="MS500" value="5.631131178123985E-8" />
+      <entry key="S2" value="0.015404546273548108" />
+      <entry key="S5" value="0.18839074538165496" />
+      <entry key="S10" value="0.4340400273956941" />
+      <entry key="S30" value="0.7571407031702675" />
+      <entry key="S60" value="0.8701383678757003" />
+      <entry key="M2" value="0.9330986782644375" />
+      <entry key="M5" value="1.0301207137236317" />
+      <entry key="M10" value="1.3250192665355849" />
+      <entry key="M15" value="1.60293815729125" />
+      <entry key="M30" value="2.101706848830986" />
+      <entry key="H1" value="2.485132015718697" />
+      <entry key="H2" value="2.7236139115018245" />
+      <entry key="H4" value="2.856711281124748" />
+      <entry key="D1" value="2.9753782483289064" />
+      <entry key="W1" value="2.996464036735698" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.7219648024591995" />
+      <entry key="MS500" value="0.982864807353165" />
+      <entry key="S2" value="1.460126820109508" />
+      <entry key="S5" value="1.9945272665220004" />
+      <entry key="S10" value="2.5850658510224878" />
+      <entry key="S30" value="3.8455037645298846" />
+      <entry key="S60" value="5.338960431886295" />
+      <entry key="M2" value="7.039110501530968" />
+      <entry key="M5" value="13.232433685856657" />
+      <entry key="M10" value="37.257781621099284" />
+      <entry key="M15" value="61.26846746715161" />
+      <entry key="M30" value="106.03799086056284" />
+      <entry key="H1" value="141.45022924115693" />
+      <entry key="H2" value="163.81109724767424" />
+      <entry key="H4" value="176.3881053495479" />
+      <entry key="D1" value="187.65591796553568" />
+      <entry key="W1" value="189.66323543499078" />
+    </decayedShown>
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -49,22 +130,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;Tomcat Server.Tomcat 11.0.26.executor&quot;: &quot;Run&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fix/filtro-pesquisa&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Tomcat Server.Tomcat 11.0.26.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "fix/filtro-pesquisa",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ferna\OneDrive\Documents\InterBack\src\main" />
@@ -85,9 +167,10 @@
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 11.0.26" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.26" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/InterBack" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="inter_modulo:war exploded">
+        <artifact name="InterBack:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/InterBack" />
           </settings>
@@ -168,6 +251,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="inter_modulo:war exploded" />
+          <artifact name="InterBack:war exploded" />
         </option>
       </method>
     </configuration>

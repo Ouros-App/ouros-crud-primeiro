@@ -12,8 +12,10 @@ public interface LoteDAO {
     List<Lote> select_recebida();
     List<Lote> select_chegada();
     List<Lote> select_ganho();
+
     String delete(int id);
     String insert(Lote lot);
+
     String update_id(int idNew, int idOld);
     String update_entregues(int entreguesNew, int entreguesOld);
     String update_recebidas(int recebidasNew, int recebidasOld);
@@ -23,4 +25,5 @@ public interface LoteDAO {
     int contar();
     List<Lote> select_paginado(int tamanho, int offset);
     List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset);
+    int contar_filtro_pesquisa(String busca);
 }

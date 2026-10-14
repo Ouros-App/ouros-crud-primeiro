@@ -242,6 +242,23 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
+    // Método exigido pela interface: busca por nome com paginação.
+    @Override
+    public List<Granja> select_paginado_filtro_pesquisa(
+            String busca,
+            int tamanho,
+            int offset) {
+
+        return select_paginado(
+                tamanho,
+                offset,
+                busca,
+                "",
+                "granja"
+        );
+    }
+
+
     // Select de todas as granjas sem os dados relacionados.
     public List<Granja> select_all() {
         List<Granja> resultado = new ArrayList<>();

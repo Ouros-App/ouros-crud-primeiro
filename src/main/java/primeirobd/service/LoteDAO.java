@@ -33,6 +33,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                     "lote.ganho " +
                     "FROM lote " +
                     "JOIN granja ON granja.id = lote.id_granja " +
+                    "ORDER BY lote.id "+
                     "LIMIT ? OFFSET ?";
     public static final String SELECT_PAGINADO_FILTROS =
             "SELECT lote.id, " +
@@ -44,7 +45,27 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                     "FROM lote " +
                     "JOIN granja ON granja.id = lote.id_granja " +
                     "WHERE granja.nome LIKE ? " +
+                    "ORDER BY lote.id "+
                     "LIMIT ? OFFSET ?";
+
+    public static final String SELECT_COUNT_FILTRO =
+            "SELECT COUNT(*) FROM lote " +
+                    "JOIN granja ON granja.id = lote.id_granja " +
+                    "WHERE granja.nome LIKE ?";
+
+    public int contar_filtro_pesquisa(String busca) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT_FILTRO)) {
+            preparoConsultaSQL.setString(1, busca);
+
+            try (ResultSet resultado = preparoConsultaSQL.executeQuery()) {
+                return resultado.next() ? resultado.getInt(1) : 0;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n" + e.getMessage());
+        }
+    }
 
     public int contar() {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();

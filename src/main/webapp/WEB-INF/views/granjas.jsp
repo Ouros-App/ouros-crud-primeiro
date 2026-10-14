@@ -75,7 +75,7 @@
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/granja.svg" alt=""></span> Granjas
                 </a>
                 <a href="lotes" class="MenuItem">
-                        <span class="Icone"><img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="Pintinho"></span> Lotes
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="Pintinho"></span> Lotes
                 </a>
                 <a href="funcionarios" class="MenuItem">
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/fucionarios.svg" alt=""></span> Funcionários
@@ -90,7 +90,7 @@
         </div>
 
         <a href="perfil" class="Usuario">
-           <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
+            <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
             <div class="UsuarioInfo">
                 <strong>User</strong>
                 <span>Admin</span>
@@ -155,16 +155,16 @@
                     </tr>
                     </thead>
                     <tbody id="tabela-granjas">
-                        <c:forEach var="granja" items="${granjas}">
-                            <tr>
-                                <td><c:out value="${granja.nome}"/></td>
-                                <td><c:out value="${granja.nomeResponsavel}"/></td>
-                                <td><c:out value="${granja.localizacao}"/></td>
-                                <td><c:out value="${granja.capacidadeDeAves}"/></td>
-                                <td><c:out value="${granja.cgi}"/></td>
-                                <td></td>
-                            </tr>
-                        </c:forEach>
+                    <c:forEach var="granja" items="${granjas}">
+                        <tr>
+                            <td><c:out value="${granja.nome}"/></td>
+                            <td><c:out value="${granja.nomeResponsavel}"/></td>
+                            <td><c:out value="${granja.localizacao}"/></td>
+                            <td><c:out value="${granja.capacidadeDeAves}"/></td>
+                            <td><c:out value="${granja.cgi}"/></td>
+                            <td></td>
+                        </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>

@@ -1402,6 +1402,60 @@ body {
     background: #e4e7f1;
     overflow: auto;
 }
+
+
+.RodapeTabela .Paginacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.RodapeTabela .Paginacao a,
+.RodapeTabela .Paginacao .seta {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 36px;
+    padding: 0 8px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: #17172f;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.RodapeTabela .Paginacao a:hover:not(.ativo) {
+    background: #f0f1f5;
+}
+
+.RodapeTabela .Paginacao a.ativo {
+    background: #111025;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.RodapeTabela .Paginacao .seta {
+    min-width: 28px;
+    width: 28px;
+    padding: 0;
+    color: #9aa7bd;
+    font-size: 13px;
+}
+
+.RodapeTabela .Paginacao .seta.desabilitada {
+    cursor: default;
+    pointer-events: none;
+}
+
+
 .FormularioModal::backdrop { background: rgba(14, 12, 35, 0.65); }
 .FormularioFrame { display: block; border: 0; width: 100%; height: 710px; max-height: calc(100dvh - 40px); }
 .EditorCartao { max-width: 708px; padding: 56px; border-radius: 16px; }

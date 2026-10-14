@@ -73,7 +73,7 @@
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" name="buscaLote" id="buscaLote" placeholder="Buscar...">
+                        <input type="text" name="buscaLote" id="buscaLote"  value="${param.buscaLote}" placeholder="Buscar...">
                     </div>
                 </form>
 
@@ -119,16 +119,48 @@
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemLotes">mostrando 1 a 5 de 25 lotes</span>
+                <span class="Contagem">
+                    Mostrando ${paginacao.inicio} a ${paginacao.fim}
+                    de ${paginacao.total} lotes
+                </span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
+                <div class="Paginacao">
+                    <c:url var="urlAnterior" value="/lotes">
+                        <c:param name="pagina" value="${paginacao.pagina - 1}" />
+                        <c:param name="buscaLote" value="${param.buscaLote}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temAnterior}">
+                            <a class="seta" href="${urlAnterior}" aria-label="Página anterior">&#9664;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-disabled="true">&#9664;</span>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="${paginacao.janelaInicio}" end="${paginacao.janelaFim}" var="numero">
+                        <c:url var="urlPagina" value="/lotes">
+                            <c:param name="pagina" value="${numero}" />
+                            <c:param name="buscaLote" value="${param.buscaLote}" />
+                        </c:url>
+                        <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
+                           href="${urlPagina}"
+                           aria-label="Página ${numero}"
+                            ${numero == paginacao.pagina ? 'aria-current="page"' : ''}><c:out value="${numero}"/></a>
+                    </c:forEach>
+
+                    <c:url var="urlProxima" value="/lotes">
+                        <c:param name="pagina" value="${paginacao.pagina + 1}" />
+                        <c:param name="buscaLote" value="${param.buscaLote}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temProxima}">
+                            <a class="seta" href="${urlProxima}" aria-label="Próxima página">&#9654;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-disabled="true">&#9654;</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 
