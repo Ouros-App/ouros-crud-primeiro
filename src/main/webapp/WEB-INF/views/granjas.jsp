@@ -9,6 +9,53 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <style>
+        .RodapeTabela .Paginacao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .RodapeTabela .Paginacao a,
+        .RodapeTabela .Paginacao .seta {
+            box-sizing: border-box;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 34px;
+            height: 36px;
+            padding: 0 8px;
+            border: none;
+            border-radius: 9px;
+            background: transparent;
+            color: #17172f;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .RodapeTabela .Paginacao a:hover:not(.ativo) {
+            background: #f0f1f5;
+        }
+        .RodapeTabela .Paginacao a.ativo {
+            background: #111025;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .RodapeTabela .Paginacao .seta {
+            min-width: 28px;
+            width: 28px;
+            padding: 0;
+            color: #9aa7bd;
+            font-size: 13px;
+        }
+        .RodapeTabela .Paginacao .seta.desabilitada {
+            cursor: default;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
@@ -70,23 +117,25 @@
         <div class="Painel">
 
             <div class="Filtros">
-                <div class="CampoBusca">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" id="buscaGranja" placeholder="Buscar...">
-                </div>
+                <form action="${pageContext.request.contextPath}/granjas" method="get" class="FormBusca" id="formBuscaGranjas">
+                    <div class="CampoBusca">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" name="buscaGranja" id="buscaGranja"
+                               value="<c:out value='${param.buscaGranja}'/>" placeholder="Buscar...">
+                    </div>
 
-                <input type="text" class="CampoSetor" id="filtroLocalizacao" placeholder="">
-
-                <div class="OrdenarPor">
-                    <select id="ordenarPor">
-                        <option value="granja">Ordenar por: Granja</option>
-                        <option value="capacidade">Ordenar por: Capacidade</option>
-                        <option value="sustentabilidade">Ordenar por: Sustentabilidade</option>
-                    </select>
-                </div>
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor" name="ordenarPor" aria-label="Ordenar granjas por"
+                                onchange="this.form.submit()">
+                            <option value="granja" ${empty param.ordenarPor || param.ordenarPor == 'granja' ? 'selected' : ''}>Ordenar por: Granja</option>
+                            <option value="capacidade" ${param.ordenarPor == 'capacidade' ? 'selected' : ''}>Ordenar por: Capacidade</option>
+                            <option value="sustentabilidade" ${param.ordenarPor == 'sustentabilidade' ? 'selected' : ''}>Ordenar por: Sustentabilidade</option>
+                        </select>
+                    </div>
+                </form>
 
                 <button type="button" class="BotaoNovo" onclick="abrirFormulario('granja-nova.jsp')">
                     + Nova granja
@@ -105,21 +154,68 @@
                         <th>Ações</th>
                     </tr>
                     </thead>
-                    <tbody id="tabela-granjas"></tbody>
+                    <tbody id="tabela-granjas">
+                        <c:forEach var="granja" items="${granjas}">
+                            <tr>
+                                <td><c:out value="${granja.nome}"/></td>
+                                <td><c:out value="${granja.nomeResponsavel}"/></td>
+                                <td><c:out value="${granja.localizacao}"/></td>
+                                <td><c:out value="${granja.capacidadeDeAves}"/></td>
+                                <td><c:out value="${granja.cgi}"/></td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemGranjas">mostrando 1 a 5 de 25 granjas</span>
+                <span class="Contagem" id="contagemGranjas">
+                    Mostrando ${paginacao.inicio} a ${paginacao.fim} de ${paginacao.total} granjas
+                </span>
 
                 <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
+                    <c:url var="urlAnterior" value="/granjas">
+                        <c:param name="pagina" value="${paginacao.pagina - 1}" />
+                        <c:param name="buscaGranja" value="${param.buscaGranja}" />
+                        <c:param name="localizacao" value="${param.localizacao}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temAnterior}">
+                            <a class="seta" href="${urlAnterior}" aria-label="Página anterior">&#9664;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-label="Não há página anterior" aria-disabled="true">&#9664;</span>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:forEach begin="${paginacao.janelaInicio}" end="${paginacao.janelaFim}" var="numero">
+                        <c:url var="urlPagina" value="/granjas">
+                            <c:param name="pagina" value="${numero}" />
+                            <c:param name="buscaGranja" value="${param.buscaGranja}" />
+                            <c:param name="localizacao" value="${param.localizacao}" />
+                            <c:param name="ordenarPor" value="${param.ordenarPor}" />
+                        </c:url>
+                        <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
+                           href="${urlPagina}"
+                           aria-current="${numero == paginacao.pagina ? 'page' : ''}"><c:out value="${numero}"/></a>
+                    </c:forEach>
+
+                    <c:url var="urlProxima" value="/granjas">
+                        <c:param name="pagina" value="${paginacao.pagina + 1}" />
+                        <c:param name="buscaGranja" value="${param.buscaGranja}" />
+                        <c:param name="localizacao" value="${param.localizacao}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
+                    </c:url>
+                    <c:choose>
+                        <c:when test="${paginacao.temProxima}">
+                            <a class="seta" href="${urlProxima}" aria-label="Próxima página">&#9654;</a>
+                        </c:when>
+                        <c:otherwise>
+                            <span class="seta desabilitada" aria-label="Não há próxima página" aria-disabled="true">&#9654;</span>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
 
@@ -127,91 +223,6 @@
     </div>
 
 </div>
-
-<script>
-    var granjas = ${empty granjas ? '[]' : granjas};
-
-    function esc(t) {
-        return String(t == null ? "" : t).replace(/[&<>"']/g, function (c) {
-            return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];
-        });
-    }
-
-    function renderizarGranjas(lista) {
-        var corpoTabela = document.getElementById("tabela-granjas");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (g) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + esc(g.nome) + "</td>" +
-                "<td>" + esc(g.nomeResponsavel) + "</td>" +
-                "<td>" + esc(g.localizacao) + "</td>" +
-                "<td>" + esc(g.capacidadeDeAves) + "</td>" +
-                "<td>" + esc(g.cgi) + "</td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg></button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path><path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg></button>" +
-                "</div></td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                sessionStorage.setItem('ouros-editor-granja', JSON.stringify(g));
-                abrirFormulario('granja-nova.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.getElementById("buscaGranja").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtradas = granjas.filter(function (g) {
-            return (g.nome || "").toLowerCase().includes(termo);
-        });
-        renderizarGranjas(filtradas);
-    });
-
-    // ===== paginação (visual) =====
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
-    var botaoAnterior = document.getElementById("botaoAnterior");
-    var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
-
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
-        });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
-    }
-    botoesPagina.forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
-        });
-    });
-    botaoAnterior.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p > 1) marcarPaginaAtiva(p - 1);
-    });
-    botaoProximo.addEventListener("click", function () {
-        var p = parseInt(document.querySelector("#paginacao button.ativo").getAttribute("data-pagina"), 10);
-        if (p < totalPaginas) marcarPaginaAtiva(p + 1);
-    });
-    marcarPaginaAtiva(1);
-
-    renderizarGranjas(granjas);
-</script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de granjas" class="FormularioFrame"></iframe></dialog>
 <script>
@@ -237,51 +248,6 @@
             }
         });
     })();
-</script>
-<script>
-    // Relaciona o value do <select> com o campo do objeto granja
-    var camposOrdenacao = {
-        granja: "nome",
-        capacidade: "capacidadeDeAves",
-        sustentabilidade: "cgi"
-    };
-
-    function aplicarFiltroEOrdenacao() {
-        var termo = document.getElementById("buscaGranja").value.toLowerCase();
-        var criterio = document.getElementById("ordenarPor").value;
-        var campo = camposOrdenacao[criterio];
-
-        // 1. filtra (cópia nova do array, o original não é alterado)
-        var lista = granjas.filter(function (g) {
-            return (g.nome || "").toLowerCase().includes(termo);
-        });
-
-        // 2. ordena
-        if (campo) {
-            lista.sort(function (a, b) {
-                var valorA = a[campo];
-                var valorB = b[campo];
-
-                var numeroA = Number(String(valorA).replace(",", "."));
-                var numeroB = Number(String(valorB).replace(",", "."));
-
-                if (valorA !== "" && valorB !== "" && valorA != null && valorB != null
-                    && !isNaN(numeroA) && !isNaN(numeroB)) {
-                    return numeroA - numeroB;
-                }
-                return String(valorA == null ? "" : valorA)
-                    .localeCompare(String(valorB == null ? "" : valorB), "pt-BR", { sensitivity: "base", numeric: true });
-            });
-        }
-
-        // 3. desenha
-        renderizarGranjas(lista);
-    }
-
-    document.getElementById("buscaGranja").addEventListener("input", aplicarFiltroEOrdenacao);
-    document.getElementById("ordenarPor").addEventListener("change", aplicarFiltroEOrdenacao);
-
-    aplicarFiltroEOrdenacao();
 </script>
 </body>
 </html>

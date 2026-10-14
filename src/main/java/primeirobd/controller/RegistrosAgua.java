@@ -49,7 +49,7 @@ public class RegistrosAgua extends HttpServlet {
         request.setAttribute("paginacao", paginacao);
 
         getServletContext()
-                .getRequestDispatcher("/registroAguas.jsp")
+                .getRequestDispatcher("/WEB-INF/views/registroAguas.jsp")
                 .forward(request, response);
 
     }

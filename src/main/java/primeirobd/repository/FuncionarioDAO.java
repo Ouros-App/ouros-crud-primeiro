@@ -1,6 +1,7 @@
 package primeirobd.repository;
 
 import primeirobd.model.Funcionario;
+import primeirobd.model.Granja;
 
 import java.util.List;
 
@@ -20,4 +21,17 @@ public interface FuncionarioDAO {
     //-------------------------------------------
     int contar();
     List<Funcionario> select_paginado(int tamanho, int offset);
+    List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset);
+    List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset);
+    List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset);
+    List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset);
+    List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset);
+
+    int contar_paginado();
+    int contar_paginado_filtro_tudo(String busca);
+    int contar_paginado_filtro_nome(String busca);
+    int contar_paginado_filtro_setor(String busca);
+    int contar_paginado_filtro_email(String busca);
+    int contar_paginado_filtro_telefone(String busca);
+
 }

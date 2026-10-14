@@ -22,4 +22,5 @@ public interface LoteDAO {
 
     int contar();
     List<Lote> select_paginado(int tamanho, int offset);
+    List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset);
 }
