@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=26">
+    <link rel="stylesheet" href="landing.css?v=106">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -22,7 +22,7 @@
             <a href="#funcionamento">Como funciona</a>
             <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
-            <a class="sobre" href="#sobre">Sobre nós</a>
+            <a class="sobre" href="sobre.jsp">Sobre nós</a>
         </nav>
 
         <div class="acoes"><a class="entrar" href="login.jsp">Entrar</a><a class="btcadastro" href="Cadastro.jsp">Cadastro</a></div>
@@ -30,11 +30,13 @@
     </header>
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
-        <div class="circulo hero-brilho-roxo" aria-hidden="true"></div>
-        <div class="circulo hero-brilho-roxo-right" aria-hidden="true"></div>
-        <div class="circulo hero-brilho-dourado" aria-hidden="true"></div>
-        <div class="circulo hero-brilho-dourado-left" aria-hidden="true"></div>
-        <div class="decor" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
+        <div class="hero-atmosfera" aria-hidden="true">
+            <div class="circulo hero-brilho-roxo"></div>
+            <div class="circulo hero-brilho-roxo-right"></div>
+            <div class="circulo hero-brilho-azul-visual"></div>
+            <div class="circulo hero-brilho-dourado"></div>
+            <div class="decor"><span class="star star-1"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
+        </div>
         <div class="hero-container">
 
             <div class="hero-content">
@@ -44,7 +46,10 @@
 
             <div class="hero-visual">
                 <img src="assets/linhaGold.svg" class="linha-gold" alt="" aria-hidden="true">
-                <img src="assets/celular-asa-azul.svg?v=2" class="celular" alt="Celular Ouros com tela azul-marinho e uma asa dourada">
+                <div class="hero-composicao" role="img" aria-label="Celular OUROS com asa dourada">
+                    <img src="assets/asa-hero.png?v=1" class="hero-asa" alt="" aria-hidden="true">
+                    <img src="assets/celular-ouros.png?v=1" class="hero-celular" alt="" aria-hidden="true">
+                </div>
             </div>
 
         </div>
@@ -120,7 +125,7 @@
                     <img src="assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gerenciamento de lote</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <p>Registre cada lote e acompanhe os dados da produção em um só lugar.</p>
                     </div>
                 </article>
 
@@ -128,7 +133,7 @@
                     <img src="assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Simulador de lucro</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+                        <p>Estime custos e receitas para entender a rentabilidade de cada lote.</p>
                     </div>
                 </article>
 
@@ -136,7 +141,7 @@
                     <img src="assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gestão de água e energia</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+                        <p>Acompanhe o consumo de água e energia e encontre oportunidades de economia.</p>
                     </div>
                 </article>
 
@@ -144,7 +149,7 @@
                     <img src="assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Ranking entre as granjas</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+                        <p>Compare o desempenho das granjas e reconheça quem adota práticas mais sustentáveis.</p>
                     </div>
                 </article>
 
@@ -152,7 +157,7 @@
                     <div class="funcionalidade-imagem-sem-foto" aria-hidden="true"></div>
                     <div class="funcionalidade-texto">
                         <h3>Notificações inteligentes</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit tempus porttitor et posuere consectetur est at lobortis.</p>
+                        <p>Receba alertas sobre indicadores e prazos importantes para agir no momento certo.</p>
                     </div>
                 </article>
 
@@ -161,7 +166,7 @@
                     <img src="assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Metas de sustentabilidade</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+                        <p>Defina objetivos ambientais e acompanhe o avanço dos indicadores da sua granja.</p>
                     </div>
                 </article>
 
@@ -169,7 +174,7 @@
                     <img src="assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Dashboards intuitivos</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur, donec ullamcorper.</p>
+                        <p>Visualize os principais indicadores em painéis claros para apoiar suas decisões.</p>
                     </div>
                 </article>
 
@@ -208,8 +213,11 @@
         </div>
         <div class="landing-container">
             <aside class="ranking-calculo" aria-labelledby="calculo-titulo">
-                <div class="calculo-explicacao">
+                <div class="calculo-cabecalho">
                     <h3 id="calculo-titulo">Como o Ranking é Calculado?</h3>
+                    <span class="calculo-titulo-divisor" aria-hidden="true"></span>
+                </div>
+                <div class="calculo-explicacao">
                     <p>O produtor informa a leitura inicial e final do hidrômetro, o preço por metro cúbico de água e o preço por kWh do período. O sistema converte isso em intensidade de consumo por cabeça entregue — a mesma métrica para todos, independentemente do tamanho da propriedade.</p>
                 </div>
                 <div class="calculo-formulas">
@@ -223,11 +231,12 @@
                     </div>
                 </div>
                 <div class="formula formula--geral">
-                    <h4>Consumo geral do integrado (CGI)</h4>
-                    <p>(CAA × preço da água) + (CEA × preço da energia)</p>
+                    <h4>Consumo Geral do Integrado (CGI)</h4>
+                    <p aria-label="CAA vezes 0.7, mais CEA vezes 0.3, igual a CGI"><span>(</span><span class="formula-destaque">CAA</span> × <span class="formula-destaque">0.7</span><span>)</span> + <span>(</span><span class="formula-destaque">CEA</span> × <span class="formula-destaque">0.3</span><span>)</span> = <span class="formula-destaque">CGI</span></p>
                 </div>
             </aside>
         </div>
+
     </section>
 
     <!-- PLANOS -->
@@ -238,33 +247,30 @@
 
             <div class="planos-grid">
                 <article class="plano-card">
-                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Trimestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
-                    <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês.</p>
+                    <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Trimestral">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
-                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Semestral</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
-                    <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês, com 5% de desconto sobre o total.</p>
+                    <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com 5% de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Semestral">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
-                    <div class="circulo plano-brilho" aria-hidden="true"></div>
                     <h3>Anual</h3>
                     <p>Ideal para quem quer experimentar nossos serviços.</p>
                     <h4>Preço</h4>
-                    <p class="plano-preco">R$ 3.500,00 fixos + R$ 5,00 por integrado, por mês, com 10% de desconto sobre o total.</p>
+                    <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com 10% de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Anual">Agendar planejamento</a>
                 </article>
 
             </div>
@@ -302,35 +308,35 @@
             <h2 class="secao-titulo faq-titulo" id="faqTitulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FAQ</h2>
             <div class="faq-lista">
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta1" id="faqPergunta1">O sistema funciona offline?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta1" id="faqPergunta1">O sistema funciona offline?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta1" role="region" aria-labelledby="faqPergunta1" hidden><p>O uso das funcionalidades depende de conexão com a plataforma. A disponibilidade de recursos offline deverá ser confirmada para a versão implantada.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta2" id="faqPergunta2">Quem pode usar a plataforma?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta2" id="faqPergunta2">Quem pode usar a plataforma?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta2" role="region" aria-labelledby="faqPergunta2" hidden><p>A plataforma foi pensada para empresas integradoras acompanharem sua rede e para produtores integrados registrarem e consultarem os dados da própria granja.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta3" id="faqPergunta3">Quais indicadores posso acompanhar?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta3" id="faqPergunta3">Quais indicadores posso acompanhar?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta3" role="region" aria-labelledby="faqPergunta3" hidden><p>Consumo de água e energia, informações dos lotes, desempenho e indicadores de sustentabilidade da granja.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta4" id="faqPergunta4">Como funciona o ranking entre as granjas?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta4" id="faqPergunta4">Como funciona o ranking entre as granjas?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta4" role="region" aria-labelledby="faqPergunta4" hidden><p>O ranking compara indicadores de consumo e sustentabilidade para ajudar a visualizar o desempenho das propriedades participantes.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta5" id="faqPergunta5">Como é calculado o preço do plano?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta5" id="faqPergunta5">Como é calculado o preço do plano?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta5" role="region" aria-labelledby="faqPergunta5" hidden><p>A estimativa usa o valor fixo de R$ 3.500,00 mais R$ 5,00 por integrado ao mês. O plano semestral tem 5% de desconto e o anual, 10% sobre o valor do período.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta6" id="faqPergunta6">Quais períodos de contratação estão disponíveis?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta6" id="faqPergunta6">Quais períodos de contratação estão disponíveis?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta6" role="region" aria-labelledby="faqPergunta6" hidden><p>Há opções trimestral, semestral e anual. Use o simulador para estimar o investimento conforme o número de integrados.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta7" id="faqPergunta7">Como solicito uma demonstração?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta7" id="faqPergunta7">Como solicito uma demonstração?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta7" role="region" aria-labelledby="faqPergunta7" hidden><p>Entre em contato com a equipe pelo bloco de ajuda abaixo para conversar sobre uma demonstração e conhecer a implantação.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta8" id="faqPergunta8">Posso trocar de plano depois?<span aria-hidden="true">+</span></button></h3>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta8" id="faqPergunta8">Posso trocar de plano depois?<span class="faq-seta" aria-hidden="true"></span></button></h3>
                     <div class="faq-resposta" id="faqResposta8" role="region" aria-labelledby="faqPergunta8" hidden><p>As condições de alteração dependem do contrato. A equipe poderá orientar qual opção atende melhor ao período de uso da sua operação.</p></div>
                 </article>
             </div>
@@ -358,7 +364,7 @@
             </nav>
             <nav class="rodape-coluna" aria-label="Links da empresa">
                 <h2>Empresa</h2>
-                <a href="#sobre">Sobre nós</a>
+                <a href="sobre.jsp">Sobre nós</a>
                 <a href="#faq">Perguntas frequentes</a>
                 <a href="#faq">Contato</a>
             </nav>

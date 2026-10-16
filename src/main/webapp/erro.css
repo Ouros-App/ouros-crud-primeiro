@@ -1,0 +1,258 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    min-width: 320px;
+    min-height: 100%;
+    margin: 0;
+}
+
+body {
+    color: #0c2e5d;
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error-page {
+    position: relative;
+    display: grid;
+    min-height: 100vh;
+    min-height: 100svh;
+    place-items: center;
+    overflow: hidden;
+    padding: 48px 24px;
+    isolation: isolate;
+}
+
+.corner {
+    position: absolute;
+    z-index: -1;
+    width: min(31vw, 310px);
+    aspect-ratio: 1;
+    background: #f8e8c7;
+    pointer-events: none;
+}
+
+.corner--top {
+    top: -190px;
+    left: -115px;
+    border-radius: 0 0 78% 0;
+    transform: rotate(-12deg);
+}
+
+.corner--bottom {
+    right: -130px;
+    bottom: -220px;
+    width: min(39vw, 390px);
+    border-radius: 78% 0 0;
+    transform: rotate(-12deg);
+}
+
+.error-content {
+    width: min(100%, 780px);
+    text-align: center;
+}
+
+.eyebrow {
+    position: absolute;
+    top: 16px;
+    left: max(24px, calc((100vw - 780px) / 2));
+    margin: 0;
+    color: #747474;
+    font-size: 14px;
+}
+
+.error-scene {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 38px auto 20px;
+}
+
+.error-scene--404 {
+    gap: clamp(0px, 1vw, 12px);
+}
+
+.digit,
+.generic-code {
+    color: #cd982b;
+    font-size: clamp(130px, 20vw, 220px);
+    font-weight: 800;
+    line-height: .9;
+    letter-spacing: -0.085em;
+}
+
+.mascot-wrap {
+    position: relative;
+    display: grid;
+    width: clamp(150px, 22vw, 230px);
+    height: clamp(175px, 25vw, 255px);
+    flex: 0 0 auto;
+    place-items: center;
+}
+
+.mascot-wrap::after {
+    position: absolute;
+    z-index: 0;
+    right: 3%;
+    bottom: 5%;
+    left: 3%;
+    height: 13%;
+    border-radius: 50%;
+    background: #f8e8c7;
+    content: "";
+}
+
+.mascot-wrap img {
+    position: relative;
+    z-index: 1;
+    width: 76%;
+    max-height: 88%;
+    object-fit: contain;
+    transform: translateY(9px);
+}
+
+.orbit {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    fill: #dda632;
+    stroke: #171717;
+    stroke-width: 2.3;
+    pointer-events: none;
+}
+
+.orbit ellipse {
+    fill: none;
+}
+
+.error-scene--generic {
+    flex-direction: column;
+    gap: 0;
+}
+
+.error-scene--generic .generic-code {
+    font-size: clamp(88px, 14vw, 150px);
+    letter-spacing: -0.06em;
+}
+
+.error-scene--generic .mascot-wrap {
+    width: 150px;
+    height: 155px;
+    margin-top: -12px;
+}
+
+h1 {
+    margin: 0;
+    color: #0c2e5d;
+    font-size: clamp(28px, 4vw, 38px);
+    font-weight: 750;
+    letter-spacing: -0.06em;
+}
+
+.message {
+    margin: 7px 0 0;
+    color: #91a1b8;
+    font-size: 15px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.button {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 0 18px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .18s ease, transform .18s ease;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+}
+
+.button:focus-visible {
+    outline: 3px solid #e6b84d;
+    outline-offset: 3px;
+}
+
+.button--primary {
+    color: #fff;
+    background: #0c2e5d;
+}
+
+.button--primary:hover {
+    background: #16437d;
+}
+
+.button--secondary {
+    border-color: #dbe2eb;
+    color: #0c2e5d;
+    background: #fff;
+}
+
+.button--secondary:hover {
+    background: #f5f7fa;
+}
+
+@media (max-width: 560px) {
+    .error-page {
+        padding: 54px 16px 32px;
+    }
+
+    .eyebrow {
+        left: 18px;
+    }
+
+    .error-scene {
+        margin-top: 24px;
+    }
+
+    .digit {
+        font-size: clamp(74px, 25vw, 115px);
+    }
+
+    .mascot-wrap {
+        width: clamp(110px, 35vw, 150px);
+        height: clamp(155px, 43vw, 190px);
+    }
+
+    h1 {
+        font-size: clamp(26px, 8vw, 34px);
+    }
+
+    .actions {
+        gap: 9px;
+        margin-top: 22px;
+    }
+
+    .button {
+        padding-inline: 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
