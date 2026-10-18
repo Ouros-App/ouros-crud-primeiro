@@ -15,8 +15,8 @@
 <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
 <form action="funcionarios" method="post" target="_top" data-editor="funcionario">
-<input type="hidden" name="acao" value="criar">
-<input type="hidden" name="id" value="">
+<input type="hidden" name="acao" value="novo">
+<input type="hidden" name="id" value="${funcionarios.id}">
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
 <label for="nome">Nome completo</label>
@@ -40,7 +40,7 @@
 </div>
 <div class="EditorCampo">
 <label for="empresa">Empresa</label>
-<input id="empresa" name="empresa" type="tel" placeholder="11 12345-6789"  >
+<input id="empresa" name="empresa" type="text" placeholder="AgroAves Brasil Ltda"  >
 </div>
 </div>
 <footer class="EditorAcoes">

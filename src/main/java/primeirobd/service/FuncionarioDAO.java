@@ -27,6 +27,8 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String UPDATE_EMAIL = "UPDATE funcionario SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE funcionario SET nome = ? WHERE nome = ?";
     public static final String UPDATE_SETOR = "UPDATE funcionario SET setor = ? WHERE setor = ?";
+    public static final String UPDATE_ALL = "UPDATE funcionario SET nome = ?, cpf = ?, email = ?, setor = ?, id_empresa = ? WHERE id = ?";
+    public static final String UPDATE_TELEFONE = "UPDATE telefone_funcionario SET telefone = ? WHERE id_funcionario = ?";
     public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM funcionario";
     public static final String SELECT_COUNT_PAGINADO =
             "SELECT COUNT(*) " +
@@ -69,67 +71,78 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     "WHERE telefone_funcionario.telefone LIKE ?";
 
     public static final String SELECT_PAGINADO =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+             "funcionario.nome, " +
             "funcionario.setor, " +
             "funcionario.email, " +
             "telefone_funcionario.telefone AS telefone " +
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+            "ORDER BY funcionario.id " +
             "LIMIT ? OFFSET ?";
     public static final String SELECT_PAGINADO_FILTRO_TUDO =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+                    "funcionario.nome, " +
                     "funcionario.setor, " +
                     "funcionario.email, " +
                     "telefone_funcionario.telefone " +
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.nome LIKE ? OR funcionario.setor LIKE ? OR funcionario.email LIKE ? OR telefone_funcionario.telefone LIKE ? " +
+                    "ORDER BY funcionario.id " +
                     "LIMIT ? OFFSET ?";
-    public static final String SELECT_FILTRO_NOME =
-            "SELECT funcionario.nome, " +
-                    "funcionario.setor, " +
-                    "funcionario.email, " +
-                    "telefone_funcionario.telefone " +
-                    "FROM funcionario " +
-                    "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
-                    "WHERE funcionario.nome LIKE ?";
+    public static final String SELECT_BY_ID =
+            "SELECT f.id, f.nome, f.cpf, f.email, f.setor, f.id_empresa, " +
+                    "e.nome AS empresa, t.telefone " +
+                    "FROM funcionario f " +
+                    "JOIN empresa e ON e.id = f.id_empresa " +
+                    "LEFT JOIN telefone_funcionario t ON t.id_funcionario = f.id " +
+                    "WHERE f.id = ?";
     public static final String SELECT_PAGINADO_FILTRO_NOME =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+            "funcionario.nome, " +
             "funcionario.setor, " +
             "funcionario.email, " +
             "telefone_funcionario.telefone " +
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
+            "ORDER BY funcionario.id " +
             "WHERE funcionario.nome LIKE ? " +
             "LIMIT ? OFFSET ?";
     public static final String SELECT_PAGINADO_FILTRO_SETOR =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+                    "funcionario.nome, " +
                     "funcionario.setor, " +
                     "funcionario.email, " +
                     "telefone_funcionario.telefone " +
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.setor LIKE ? " +
+                    "ORDER BY funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public static final String SELECT_PAGINADO_FILTRO_EMAIL =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+                    "funcionario.nome, " +
                     "funcionario.setor, " +
                     "funcionario.email, " +
                     "telefone_funcionario.telefone " +
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.email LIKE ? " +
+                    "ORDER BY funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public static final String SELECT_PAGINADO_FILTRO_TELEFONE =
-            "SELECT funcionario.nome, " +
+            "SELECT funcionario.id, " +
+                    "funcionario.nome, " +
                     "funcionario.setor, " +
                     "funcionario.email, " +
                     "telefone_funcionario.telefone " +
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE telefone_funcionario.telefone LIKE ? " +
+                    "ORDER BY funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public int contar() {
@@ -157,6 +170,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -186,6 +200,8 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
 
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
+
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -212,6 +228,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
 
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -238,6 +255,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
 
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -264,6 +282,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
 
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -290,6 +309,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
 
                 while (resultadoConsulta.next()) {
                     Funcionario fun = new Funcionario();
+                    fun.setId(resultadoConsulta.getInt("id"));
                     fun.setNome(resultadoConsulta.getString("nome"));
                     fun.setSetor(resultadoConsulta.getString("setor"));
                     fun.setEmail(resultadoConsulta.getString("email"));
@@ -303,20 +323,25 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_id_by_nome(String nome) {
-        List<Funcionario> resultado = new ArrayList<>();
+    public Funcionario select_by_id(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-
-            while (resultadoConsulta.next()) {
+        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
                 Funcionario fun = new Funcionario();
-                fun.setId(resultadoConsulta.getInt("id"));
-                resultado.add(fun);
+                fun.setId(rs.getInt("id"));
+                fun.setNome(rs.getString("nome"));
+                fun.setCpf(rs.getString("cpf"));
+                fun.setEmail(rs.getString("email"));
+                fun.setSetor(rs.getString("setor"));
+                fun.setIdEmpresa(rs.getInt("id_empresa"));
+                fun.setNomeEmpresa(rs.getString("empresa"));
+                fun.setTelefone(rs.getString("telefone"));
+                return fun;
             }
-            return resultado;
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+            throw new RuntimeException("Erro ao buscar funcionário.\n" + e.getMessage(), e);
         }
     }
 
@@ -477,6 +502,38 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+        }
+    }
+
+    public String update_funcionario_com_telefone(Funcionario fun, int idEmpresa) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try {
+            conexao.setAutoCommit(false);
+            try (PreparedStatement ps1 = conexao.prepareStatement(UPDATE_ALL);
+                 PreparedStatement ps2 = conexao.prepareStatement(UPDATE_TELEFONE)) {
+
+                ps1.setString(1, fun.getNome());
+                ps1.setString(2, fun.getCpf());
+                ps1.setString(3, fun.getEmail());
+                ps1.setString(4, fun.getSetor());
+                ps1.setInt(5, idEmpresa);
+                ps1.setInt(6, fun.getId());
+                ps1.executeUpdate();
+
+                ps2.setString(1, fun.getTelefone());
+                ps2.setInt(2, fun.getId());
+                ps2.executeUpdate();
+
+                conexao.commit();
+                return "Funcionário atualizado com sucesso";
+            } catch (SQLException e) {
+                conexao.rollback();
+                throw e;
+            } finally {
+                conexao.setAutoCommit(true);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar funcionário.\n" + e.getMessage(), e);
         }
     }
 

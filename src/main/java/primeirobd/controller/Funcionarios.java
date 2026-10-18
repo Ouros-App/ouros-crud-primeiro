@@ -33,11 +33,30 @@ public class Funcionarios extends HttpServlet {
 
         String buscaUsuario = request.getParameter("buscaFuncionario");
         String filtro = request.getParameter("buscarEm");
+        String acao = request.getParameter("acao");
 
-        if ("novo".equals(request.getParameter("acao"))) {
+        if ("novo".equals(acao)) {
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/funcionario-novo.jsp")
                     .forward(request, response);
+            return;
+        }
+
+        if ("editar".equals(acao)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Funcionario funcionarios = funcionario.select_by_id(id);
+                if (funcionarios == null) {
+                    response.sendRedirect(request.getContextPath() + "/funcionarios?erro=naoencontrado");
+                    return;
+                }
+                request.setAttribute("funcionarios", funcionarios);
+                // reaproveita o mesmo formulário do "novo"
+                getServletContext().getRequestDispatcher("/WEB-INF/views/editar-funcionario.jsp")
+                        .forward(request, response);
+            } catch (NumberFormatException e) {
+                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=id");
+            }
             return;
         }
 
@@ -188,6 +207,7 @@ public class Funcionarios extends HttpServlet {
         String setor = request.getParameter("setor");
         String telefone = request.getParameter("telefone");
         String empresa = request.getParameter("empresa");
+        String acao = request.getParameter("acao");
         EmpresaDAO empresaDAO = new EmpresaDAO();
 
         if (nome == null
@@ -203,9 +223,6 @@ public class Funcionarios extends HttpServlet {
 
         List<Empresa> emps = empresaDAO.select_empresa_by_nome(empresa.trim());
 
-        System.out.println("empresa=" + empresa + " | achadas=" + emps.size()
-                + " | id=" + (emps.isEmpty() ? "nenhuma" : emps.getFirst().getId()));
-
         if (emps.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/funcionarios?erro=empresa");
             return;
@@ -214,7 +231,17 @@ public class Funcionarios extends HttpServlet {
         Funcionario novoFuncionario = new Funcionario(
                 nome.trim(), cpf.trim(), email.trim(), setor.trim(), telefone.trim());
 
-        funcionario.insert_funcionario_com_telefone(novoFuncionario, emps);
+        if ("editar".equals(acao)) {
+            try {
+                novoFuncionario.setId(Integer.parseInt(request.getParameter("id")));
+            } catch (NumberFormatException e) {
+                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=id");
+                return;
+            }
+            funcionario.update_funcionario_com_telefone(novoFuncionario, emps.getFirst().getId());
+        } else {
+            funcionario.insert_funcionario_com_telefone(novoFuncionario, emps);
+        }
 
         response.sendRedirect(request.getContextPath() + "/funcionarios");
     }

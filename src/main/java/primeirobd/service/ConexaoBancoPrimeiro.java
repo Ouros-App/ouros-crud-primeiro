@@ -32,7 +32,7 @@ public class ConexaoBancoPrimeiro {
             }
             return connection;
         } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("Falha ao conectar: " + e.getMessage(), e);
         } catch (ClassNotFoundException cnfe) {
             throw new RuntimeException(cnfe.getMessage());
         }

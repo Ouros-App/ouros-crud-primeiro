@@ -111,7 +111,19 @@
                             <td><c:out value="${funcionario.setor}"/></td>
                             <td><c:out value="${funcionario.email}"/></td>
                             <td><c:out value="${funcionario.telefone}"/></td>
-                            <td></td>
+                            <td>
+                            <td>
+                                <div class="ColunaAcoes">
+                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                            onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=editar&id=${funcionario.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                    </button>
+                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                            onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=excluir&id=${funcionario.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -172,7 +184,8 @@
 
 </div>
 
-<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog> function abrirForms() {
+<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog>
+<dialog></dialog>
 <script>
     function abrirForms(url) {
         const d = document.getElementById('formularioModal');

@@ -9,6 +9,7 @@ public class Funcionario {
     private String nome;
     private String setor;
     private String telefone;
+    private String nomeEmpresa;
 
     //construtores
 
@@ -62,6 +63,7 @@ public class Funcionario {
         return telefone;
     }
 
+    public String getNomeEmpresa() { return nomeEmpresa; }
 
     //metodos setters
 
@@ -91,6 +93,10 @@ public class Funcionario {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
     }
 
     @Override
