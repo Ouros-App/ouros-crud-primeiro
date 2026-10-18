@@ -39,6 +39,9 @@
                 <a href="metas" class="MenuItem">
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
+                <a href="empresas" class="MenuItem empresa">
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/empresa.svg"></span>
+                </a>
             </nav>
         </div>
 
@@ -77,16 +80,6 @@
                     </div>
 
                     <div class="OrdenarPor">
-                        <select id="buscarEm" name="buscarEm">
-                                <option value="tudo" ${param.buscarEm == 'tudo' ? 'selected' : ''} >Buscar em: tudo</option>
-                                <option value="nome" ${param.buscarEm == 'nome' ? 'selected' : ''}>Buscar em: nome</option>
-                                <option value="setor" ${param.buscarEm == 'setor' ? 'selected' : ''}>Buscar em: setor</option>
-                                <option value="email" ${param.buscarEm == 'email' ? 'selected' : ''}>Buscar em: email</option>
-                                <option value="telefone" ${param.buscarEm == 'telefone' ? 'selected' : ''}>Buscar em: telefone</option>
-                        </select>
-                    </div>
-
-                    <div class="OrdenarPor">
                         <select id="ordenarPor">
                             <option value="nome">Ordenar por: Nome</option>
                             <option value="setor">Ordenar por: Setor</option>
@@ -95,7 +88,7 @@
                 </form>
 
 
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('funcionarios?acao=novo')">
+                <button type="button" class="BotaoNovo" onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=novo')">
                     + Novo funcionário
                 </button>
             </div>
@@ -179,30 +172,13 @@
 
 </div>
 
-<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog>
+<dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog> function abrirForms() {
 <script>
-    (function () {
-        const dialog = document.getElementById('formularioModal');
-        const frame = dialog.querySelector('iframe');
-        let previousOverflow = '';
-        window.abrirFormulario = function (url) {
-            frame.src = url;
-            previousOverflow = document.body.style.overflow;
-            document.body.style.overflow = 'hidden';
-            dialog.showModal();
-        };
-        dialog.addEventListener('close', function () {
-            document.body.style.overflow = previousOverflow;
-            frame.removeAttribute('src');
-        });
-        window.addEventListener('message', function (event) {
-            if (event.origin !== location.origin || event.source !== frame.contentWindow) return;
-            if (event.data === 'ouros:fechar-formulario') dialog.close();
-            if (event.data && event.data.type === 'ouros:altura-formulario' && Number.isFinite(event.data.height)) {
-                frame.style.height = Math.min(Math.max(event.data.height, 300), 1200) + 'px';
-            }
-        });
-    })();
+    function abrirForms(url) {
+        const d = document.getElementById('formularioModal');
+        d.querySelector('iframe').src = url;
+        d.showModal();
+    }
 </script>
 </body>
 </html>

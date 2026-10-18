@@ -1,4 +1,5 @@
 package primeirobd.controller;
+
 import primeirobd.utils.Paginacao;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -8,13 +9,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import primeirobd.service.*;
 import primeirobd.model.*;
+import primeirobd.utils.Validador;
 
 import java.io.IOException;
 import java.util.List;
 
 @WebServlet(name = "Funcionarios", value = "/funcionarios")
-public class Funcionarios extends HttpServlet{
+public class Funcionarios extends HttpServlet {
     private FuncionarioDAO funcionario;
+    public static final int TAMANHO_PAGINA = 5;
 
     @Override
     public void init() throws ServletException {
@@ -25,16 +28,18 @@ public class Funcionarios extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // 1. Descobre qual página foi pedida .-.
+        // Descobre qual página foi pedida .-.
         int pagina = Paginacao.lerPagina(request);
-
-        // 2. Quantos registros serão mostrados por página ._.
-        int tamanho = 5;
-
-
 
         String buscaUsuario = request.getParameter("buscaFuncionario");
         String filtro = request.getParameter("buscarEm");
+
+        if ("novo".equals(request.getParameter("acao"))) {
+            getServletContext()
+                    .getRequestDispatcher("/WEB-INF/views/funcionario-novo.jsp")
+                    .forward(request, response);
+            return;
+        }
 
         if (filtro == null || filtro.isBlank()) {
             filtro = "tudo";
@@ -45,7 +50,6 @@ public class Funcionarios extends HttpServlet{
         }
 
         buscaUsuario = buscaUsuario.trim();
-
 
         int total;
 
@@ -77,18 +81,18 @@ public class Funcionarios extends HttpServlet{
             }
         }
 
-        Paginacao paginacao = new Paginacao(pagina, tamanho, total);
+        Paginacao paginacao = new Paginacao(pagina, TAMANHO_PAGINA, total);
 
         List<Funcionario> funcionarios = null;
 
-        if(filtro.equals("tudo")){
-            if(buscaUsuario.isEmpty()){
+        if (filtro.equals("tudo")) {
+            if (buscaUsuario.isEmpty()) {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
                                 paginacao.getOffset()
                         );
-            }else {
+            } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_tudo(
                                 "%" + buscaUsuario + "%",
@@ -97,14 +101,14 @@ public class Funcionarios extends HttpServlet{
                         );
             }
         }
-        if(filtro.equals("nome")){
-            if(buscaUsuario.isEmpty()){
+        if (filtro.equals("nome")) {
+            if (buscaUsuario.isEmpty()) {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
                                 paginacao.getOffset()
                         );
-            }else {
+            } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_nome(
                                 "%" + buscaUsuario + "%",
@@ -113,14 +117,14 @@ public class Funcionarios extends HttpServlet{
                         );
             }
         }
-        if(filtro.equals("setor")){
-            if(buscaUsuario.isEmpty()){
+        if (filtro.equals("setor")) {
+            if (buscaUsuario.isEmpty()) {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
                                 paginacao.getOffset()
                         );
-            }else {
+            } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_setor(
                                 "%" + buscaUsuario + "%",
@@ -129,14 +133,14 @@ public class Funcionarios extends HttpServlet{
                         );
             }
         }
-        if(filtro.equals("email")){
-            if(buscaUsuario.isEmpty()){
+        if (filtro.equals("email")) {
+            if (buscaUsuario.isEmpty()) {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
                                 paginacao.getOffset()
                         );
-            }else {
+            } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_email(
                                 "%" + buscaUsuario + "%",
@@ -145,14 +149,14 @@ public class Funcionarios extends HttpServlet{
                         );
             }
         }
-        if(filtro.equals("telefone")){
-            if(buscaUsuario.isEmpty()){
+        if (filtro.equals("telefone")) {
+            if (buscaUsuario.isEmpty()) {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
                                 paginacao.getOffset()
                         );
-            }else {
+            } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_telefone(
                                 "%" + buscaUsuario + "%",
@@ -171,5 +175,47 @@ public class Funcionarios extends HttpServlet{
         getServletContext()
                 .getRequestDispatcher("/WEB-INF/views/funcionarios.jsp")
                 .forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        // pega os valores que o usuár inseriu no formulário
+        String nome = request.getParameter("nome");
+        String cpf = request.getParameter("cpf");
+        String email = request.getParameter("email");
+        String setor = request.getParameter("setor");
+        String telefone = request.getParameter("telefone");
+        String empresa = request.getParameter("empresa");
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+
+        if (nome == null
+                || nome.isBlank()
+                || setor == null
+                || empresa == null
+                || !Validador.isEmailValido(email)
+                || !Validador.isCpfValido(cpf)
+                || !Validador.isTelefoneValido(telefone)) {
+            response.sendRedirect(request.getContextPath() + "/funcionarios?erro=dados");
+            return;
+        }
+
+        List<Empresa> emps = empresaDAO.select_empresa_by_nome(empresa.trim());
+
+        System.out.println("empresa=" + empresa + " | achadas=" + emps.size()
+                + " | id=" + (emps.isEmpty() ? "nenhuma" : emps.getFirst().getId()));
+
+        if (emps.isEmpty()) {
+            response.sendRedirect(request.getContextPath() + "/funcionarios?erro=empresa");
+            return;
+        }
+
+        Funcionario novoFuncionario = new Funcionario(
+                nome.trim(), cpf.trim(), email.trim(), setor.trim(), telefone.trim());
+
+        funcionario.insert_funcionario_com_telefone(novoFuncionario, emps);
+
+        response.sendRedirect(request.getContextPath() + "/funcionarios");
     }
 }

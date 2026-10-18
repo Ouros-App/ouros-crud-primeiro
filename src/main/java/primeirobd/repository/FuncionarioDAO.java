@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.Empresa;
 import primeirobd.model.Funcionario;
 import primeirobd.model.Granja;
 
@@ -12,7 +13,7 @@ public interface FuncionarioDAO {
     List<Funcionario> select_email();
     //-------------------------------------------
     String delete(int id);
-    String insert(Funcionario fun);
+    String insert_funcionario_com_telefone(Funcionario fun, List<Empresa> empresas);
     //-------------------------------------------
     String update_id(int idNew, int idOld);
     String update_email(String emailNew, String emailOld);

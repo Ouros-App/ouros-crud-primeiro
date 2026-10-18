@@ -23,6 +23,15 @@ public class Funcionario {
         this.telefone = telefone;
     }
 
+    public Funcionario(int id, String nome, String cpf, String email, String setor, String telefone) {
+        this.email = email;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.setor = setor;
+        this.telefone = telefone;
+        this.id = id;
+    }
+
     //metodos getters
 
     public int getId() {

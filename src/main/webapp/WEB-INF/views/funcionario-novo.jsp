@@ -36,7 +36,11 @@
 </div>
 <div class="EditorCampo">
 <label for="telefone">Telefone</label>
-<input id="telefone" name="telefone" type="tel" placeholder="+55 11 12345-6789"  >
+<input id="telefone" name="telefone" type="tel" placeholder="11 12345-6789"  >
+</div>
+<div class="EditorCampo">
+<label for="empresa">Empresa</label>
+<input id="empresa" name="empresa" type="tel" placeholder="11 12345-6789"  >
 </div>
 </div>
 <footer class="EditorAcoes">

@@ -71,7 +71,8 @@ body {
 .MenuItem.funcionarios,
 .MenuItem.registro,
 .MenuItem.registros,
-.MenuItem.metas {
+.MenuItem.metas,
+.MenuItem.empresa{
     font-weight: 600;
     background: linear-gradient(to right, #b98407, #bb830227);
 }

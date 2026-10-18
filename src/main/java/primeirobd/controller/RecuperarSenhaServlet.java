@@ -10,7 +10,7 @@ import primeirobd.service.ProprietarioGranjaDAO;
 import primeirobd.service.RecuperarSenhaDAO;
 import primeirobd.utils.EmailService;
 import primeirobd.utils.TokenUtil;
-import primeirobd.validadorREGEX.Validador;
+import primeirobd.utils.Validador;
 
 import java.io.IOException;
 import java.time.LocalDateTime;

@@ -9,7 +9,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.RecuperarSenha;
 import primeirobd.service.ProprietarioGranjaDAO;
 import primeirobd.service.RecuperarSenhaDAO;
-import primeirobd.validadorREGEX.Validador;
+import primeirobd.utils.Validador;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -37,7 +37,7 @@ public class RedefinirSenhaServlet extends HttpServlet {
         String token = request.getParameter("token");
 
         // a página mostra o formulário ou "link inválido", conforme este atributo
-        request.setAttribute("tokenValido", tokenEhValido(token));
+        request.setAttribute("tokenValido", tokenIsValido(token));
         request.setAttribute("token", token);
         request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
     }
@@ -55,7 +55,7 @@ public class RedefinirSenhaServlet extends HttpServlet {
                 ? null
                 : recuperarDao.buscarPorToken(token);
 
-        if (!tokenEhValido(registro)) {
+        if (!tokenIsValido(registro)) {
             request.setAttribute("tokenValido", false);
             request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
             return;
@@ -87,15 +87,15 @@ public class RedefinirSenhaServlet extends HttpServlet {
         response.sendRedirect("login.jsp?status=senhaalterada");
     }
 
-    private boolean tokenEhValido(String token) {
+    private boolean tokenIsValido(String token) {
         if (token == null || token.isBlank()) {
             return false;
         }
-        return tokenEhValido(recuperarDao.buscarPorToken(token));
+        return tokenIsValido(recuperarDao.buscarPorToken(token));
     }
 
     // existe, não foi usado e não expirou
-    private boolean tokenEhValido(RecuperarSenha registro) {
+    private boolean tokenIsValido(RecuperarSenha registro) {
         return registro != null
                 && !registro.isUsado()
                 && registro.getExpiraEm().isAfter(LocalDateTime.now());
