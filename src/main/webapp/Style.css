@@ -1177,6 +1177,31 @@ body {
     font-size: 0.85rem;
     color: #6b7280;
 }
+.RecuperarAjuda {
+    margin: -8px 0 16px;
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.RecuperarFeedback {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.RecuperarFeedback--sucesso {
+    border-color: #b7dfc6;
+    background: #f1faf4;
+    color: #27633b;
+}
+.RecuperarFeedback--erro {
+    border-color: #f1c1c1;
+    background: #fff4f4;
+}
 
 /* RESPONSIVO */
 

@@ -8,7 +8,7 @@
     <title>Esqueci minha senha</title>
 
     <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="Style.css?v=5">
+    <link rel="stylesheet" href="Style.css?v=7">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
 </head>
 <body>
@@ -80,24 +80,27 @@
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email"
-                           placeholder="seuemail@email.com" autocomplete="email" required>
+                           placeholder="seuemail@email.com" autocomplete="email" maxlength="254"
+                           pattern="[\w.+-]+@[\w-]+(\.[\w-]+)*\.[A-Za-z]{2,}"
+                           aria-describedby="recuperarAjuda" required>
                 </div>
+                <p class="RecuperarAjuda" id="recuperarAjuda">Se houver uma conta com esse e-mail, enviaremos um link de redefinição.</p>
 
                 <button type="submit" class="LoginBotao">Enviar link</button>
 
                 <%-- mensagens vindas do servlet (?status=... e ?erro=...) --%>
                 <c:if test="${param.status == 'enviado'}">
-                    <p class="LoginSubtitulo" role="status">
+                    <p class="LoginSubtitulo RecuperarFeedback RecuperarFeedback--sucesso" role="status">
                         Se esse e-mail estiver cadastrado, enviamos um link para redefinir sua senha.
                     </p>
                 </c:if>
 
                 <c:if test="${param.erro == 'email'}">
-                    <p class="LoginErro" role="alert">Digite um e-mail válido.</p>
+                    <p class="LoginErro RecuperarFeedback RecuperarFeedback--erro" role="alert">Digite um e-mail válido.</p>
                 </c:if>
 
                 <c:if test="${param.erro == 'falha'}">
-                    <p class="LoginErro" role="alert">
+                    <p class="LoginErro RecuperarFeedback RecuperarFeedback--erro" role="alert">
                         Não foi possível enviar agora. Tente novamente em instantes.
                     </p>
                 </c:if>
