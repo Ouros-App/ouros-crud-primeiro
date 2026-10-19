@@ -287,7 +287,8 @@ body {
     width: 100%;
     overflow-x: auto;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     border: 1px solid #e5e7eb;
 }
 
@@ -402,6 +403,37 @@ body {
 
 .Paginacao button.seta {
     color: #9ca3af;
+}
+
+.Paginacao button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.CampoBusca:focus-within,
+.OrdenarPor select:focus-visible,
+.BotaoNovo:focus-visible,
+.Paginacao button:focus-visible {
+    outline: 3px solid rgba(244, 169, 0, 0.45);
+    outline-offset: 2px;
+}
+
+.TabelaVazia td {
+    padding: 32px 16px;
+    color: #6b7280;
+    text-align: center;
+}
+
+.VisuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* TOPBAR */

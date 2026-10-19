@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funcionários</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="stylesheet" href="Style.css?v=5">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -68,17 +68,21 @@
 
             <div class="Filtros">
                 <div class="CampoBusca">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="7"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="buscaFuncionario" placeholder="Buscar...">
+                    <input type="search" id="buscaFuncionario" placeholder="Buscar funcionário..." aria-label="Buscar funcionários">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroSetor" placeholder="">
+                <div class="OrdenarPor">
+                    <select id="filtroSetor" aria-label="Filtrar funcionários por setor">
+                        <option value="">Todos os setores</option>
+                    </select>
+                </div>
 
                 <div class="OrdenarPor">
-                    <select id="ordenarPor">
+                    <select id="ordenarPor" aria-label="Ordenar funcionários">
                         <option value="nome">Ordenar por: Nome</option>
                         <option value="setor">Ordenar por: Setor</option>
                     </select>
@@ -91,12 +95,13 @@
 
             <div class="tabela">
                 <table>
+                    <caption class="VisuallyHidden">Lista de funcionários cadastrados</caption>
                     <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>E-mail</th>
-                        <th>CPF</th>
-                        <th>Setor</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">CPF</th>
+                        <th scope="col">Setor</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-funcionarios">
@@ -113,17 +118,12 @@
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemFuncionarios">mostrando 1 a 5 de 25 funcionários</span>
+                <span class="Contagem" id="contagemFuncionarios" aria-live="polite"></span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
-                </div>
+                <nav class="Paginacao" id="paginacao" aria-label="Páginas de funcionários">
+                    <button type="button" class="seta" id="botaoAnterior" aria-label="Página anterior">&#9664;</button>
+                    <button type="button" class="seta" id="botaoProximo" aria-label="Próxima página">&#9654;</button>
+                </nav>
             </div>
 
         </div>
@@ -132,91 +132,135 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    function renderizarFuncionarios(lista) {
-        var corpoTabela = document.getElementById("tabela-funcionarios");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (f) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + f.nome + "</td>" +
-                "<td>" + f.setor + "</td>" +
-                "<td>" + f.email + "</td>" +
-                "<td>" + f.telefone + "</td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg>" +
-                "</button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path>" +
-                "<path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg>" +
-                "</button>" +
-                "</div>" +
-                "</td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, f);
-                ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-funcionario', JSON.stringify(dados));
-                abrirFormulario('funcionario-novo.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.getElementById("buscaFuncionario").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtrados = funcionarios.filter(function (f) {
-            return f.nome.toLowerCase().includes(termo);
-        });
-        renderizarFuncionarios(filtrados);
-    });
-
-    // ================== CONTROLE DE PÁGINAS (visual, tabela fictícia não muda) ==================
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
+(function () {
+    var corpoTabela = document.getElementById("tabela-funcionarios");
+    var busca = document.getElementById("buscaFuncionario");
+    var filtroSetor = document.getElementById("filtroSetor");
+    var ordenarPor = document.getElementById("ordenarPor");
+    var contagem = document.getElementById("contagemFuncionarios");
+    var paginacao = document.getElementById("paginacao");
     var botaoAnterior = document.getElementById("botaoAnterior");
     var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
+    var linhasOriginais = Array.from(corpoTabela.querySelectorAll("tr"));
+    var itensPorPagina = 5;
+    var paginaAtual = 1;
 
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
+    function preencherSetores() {
+        var setores = Array.from(new Set(linhasOriginais
+            .map(function (linha) { return linha.cells[3] ? linha.cells[3].textContent.trim() : ""; })
+            .filter(Boolean)))
+            .sort(function (a, b) { return a.localeCompare(b, "pt-BR", { sensitivity: "base" }); });
+
+        setores.forEach(function (setor) {
+            var opcao = document.createElement("option");
+            opcao.value = setor;
+            opcao.textContent = setor;
+            filtroSetor.appendChild(opcao);
         });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
     }
 
-    botoesPagina.forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
+    function obterLinhasFiltradas() {
+        var termo = busca.value.trim().toLocaleLowerCase("pt-BR");
+        var setorSelecionado = filtroSetor.value;
+        var colunaOrdenacao = ordenarPor.value === "setor" ? 3 : 0;
+
+        return linhasOriginais.filter(function (linha) {
+            var texto = linha.textContent.toLocaleLowerCase("pt-BR");
+            var setor = linha.cells[3] ? linha.cells[3].textContent.trim() : "";
+            return texto.includes(termo) && (!setorSelecionado || setor === setorSelecionado);
+        }).sort(function (linhaA, linhaB) {
+            var textoA = linhaA.cells[colunaOrdenacao].textContent.trim();
+            var textoB = linhaB.cells[colunaOrdenacao].textContent.trim();
+            return textoA.localeCompare(textoB, "pt-BR", { sensitivity: "base" });
         });
-    });
+    }
 
+    function atualizarPaginacao(totalPaginas) {
+        paginacao.querySelectorAll("button[data-pagina]").forEach(function (botao) {
+            botao.remove();
+        });
+
+        for (var pagina = 1; pagina <= totalPaginas; pagina += 1) {
+            var botao = document.createElement("button");
+            botao.type = "button";
+            botao.textContent = pagina;
+            botao.dataset.pagina = pagina;
+            botao.setAttribute("aria-label", "Página " + pagina);
+
+            if (pagina === paginaAtual) {
+                botao.className = "ativo";
+                botao.setAttribute("aria-current", "page");
+            }
+
+            botao.addEventListener("click", function (evento) {
+                paginaAtual = Number(evento.currentTarget.dataset.pagina);
+                renderizarTabela();
+            });
+            paginacao.insertBefore(botao, botaoProximo);
+        }
+
+        botaoAnterior.disabled = paginaAtual === 1;
+        botaoProximo.disabled = paginaAtual === totalPaginas;
+    }
+
+    function renderizarTabela() {
+        var linhas = obterLinhasFiltradas();
+        var totalPaginas = Math.max(1, Math.ceil(linhas.length / itensPorPagina));
+        paginaAtual = Math.min(paginaAtual, totalPaginas);
+
+        var inicio = (paginaAtual - 1) * itensPorPagina;
+        var fim = Math.min(inicio + itensPorPagina, linhas.length);
+        var fragmento = document.createDocumentFragment();
+
+        if (linhas.length === 0) {
+            var linhaVazia = document.createElement("tr");
+            linhaVazia.className = "TabelaVazia";
+            var celulaVazia = document.createElement("td");
+            celulaVazia.colSpan = 4;
+            celulaVazia.textContent = "Nenhum funcionário encontrado.";
+            linhaVazia.appendChild(celulaVazia);
+            fragmento.appendChild(linhaVazia);
+            contagem.textContent = "Nenhum funcionário encontrado";
+        } else {
+            linhas.slice(inicio, fim).forEach(function (linha) {
+                fragmento.appendChild(linha);
+            });
+            contagem.textContent = "Mostrando " + (inicio + 1) + " a " + fim + " de " + linhas.length + " funcionários";
+        }
+
+        corpoTabela.replaceChildren(fragmento);
+        atualizarPaginacao(totalPaginas);
+    }
+
+    busca.addEventListener("input", function () {
+        paginaAtual = 1;
+        renderizarTabela();
+    });
+    filtroSetor.addEventListener("change", function () {
+        paginaAtual = 1;
+        renderizarTabela();
+    });
+    ordenarPor.addEventListener("change", function () {
+        paginaAtual = 1;
+        renderizarTabela();
+    });
     botaoAnterior.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina > 1) marcarPaginaAtiva(pagina - 1);
+        if (paginaAtual > 1) {
+            paginaAtual -= 1;
+            renderizarTabela();
+        }
     });
-
     botaoProximo.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina < totalPaginas) marcarPaginaAtiva(pagina + 1);
+        var totalPaginas = Math.max(1, Math.ceil(obterLinhasFiltradas().length / itensPorPagina));
+        if (paginaAtual < totalPaginas) {
+            paginaAtual += 1;
+            renderizarTabela();
+        }
     });
 
-    marcarPaginaAtiva(1);
-    renderizarFuncionarios(funcionarios);
+    preencherSetores();
+    renderizarTabela();
+})();
 </script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionarios" class="FormularioFrame"></iframe></dialog>
