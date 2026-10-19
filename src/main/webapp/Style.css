@@ -391,17 +391,44 @@ body {
     transition: background-color 0.2s, color 0.2s;
 }
 
+.Paginacao a,
+.Paginacao span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.Paginacao a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
 .Paginacao button:hover {
     background-color: #f4f4f7;
 }
 
-.Paginacao button.ativo {
+.Paginacao a:hover {
+    background-color: #f4f4f7;
+}
+
+.Paginacao button.ativo,
+.Paginacao span.ativo {
     background-color: #0E0C23;
     color: #ffffff;
     font-weight: 600;
 }
 
-.Paginacao button.seta {
+.Paginacao button.seta,
+.Paginacao a.seta {
     color: #9ca3af;
 }
 
@@ -413,7 +440,8 @@ body {
 .CampoBusca:focus-within,
 .OrdenarPor select:focus-visible,
 .BotaoNovo:focus-visible,
-.Paginacao button:focus-visible {
+.Paginacao button:focus-visible,
+.Paginacao a:focus-visible {
     outline: 3px solid rgba(244, 169, 0, 0.45);
     outline-offset: 2px;
 }
