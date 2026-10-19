@@ -1300,6 +1300,19 @@ body {
 .EditorCampo--full {
     grid-column:1/-1
 }
+.EditorCampo[hidden] {
+    display:none
+}
+.EditorMetaEscopoAjuda {
+    margin:-4px 0 14px;
+    padding:10px 12px;
+    border-left:3px solid #dba32f;
+    border-radius:5px;
+    background:#faf7ef;
+    color:#5e5133;
+    font-size:12px;
+    line-height:1.5
+}
 .EditorCampo label,.EditorLabel {
     font-size:12px;
     line-height:1.4;

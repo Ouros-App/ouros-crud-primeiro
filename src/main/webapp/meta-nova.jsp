@@ -17,19 +17,20 @@
 <form action="metas" method="post" data-editor="meta">
 <input type="hidden" name="acao" value="criar">
 <input type="hidden" name="id" value="">
-<div class="EditorAbas" role="group" aria-label="Tipo">
+<div class="EditorAbas" role="group" aria-label="Abrangência da meta" aria-describedby="metaEscopoAjuda">
 <button type="button" data-group="tipo" data-value="Individual" aria-pressed="true" class="EditorAba ativa">Individual</button>
 <button type="button" data-group="tipo" data-value="Estadual" aria-pressed="false" class="EditorAba">Estadual</button>
 <input type="hidden" name="tipo" value="Individual">
 </div>
+<p class="EditorMetaEscopoAjuda" id="metaEscopoAjuda">Escolha se a meta será vinculada a uma granja ou a uma região/estado.</p>
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
 <label for="titulo">Título</label>
-<input id="titulo" name="titulo" type="text" placeholder="Diminuindo água"  required>
+<input id="titulo" name="titulo" type="text" placeholder="Diminuir o consumo de água" maxlength="120" required>
 </div>
 <div class="EditorCampo EditorCampo--full">
 <label for="descricao">Descrição</label>
-<input id="descricao" name="descricao" type="text" placeholder="Granja Ouro Branco"  >
+<input id="descricao" name="descricao" type="text" placeholder="Reduzir o consumo em 10% até dezembro" maxlength="250">
 </div>
 <div class="EditorCampo">
 <span class="EditorLabel">Tipo de valor</span>
@@ -47,19 +48,24 @@
 </div>
 <div class="EditorCampo">
 <label for="alvo">Valor alvo (litros)</label>
-<input id="alvo" name="alvo" type="number" placeholder="1100" min="0" step="any" >
+<input id="alvo" name="alvo" type="number" placeholder="1100" min="0.01" step="0.01" inputmode="decimal" aria-describedby="alvoAjuda" required>
+<small class="EditorCampoAjuda" id="alvoAjuda">Informe um valor maior que zero; a unidade acompanha o tipo selecionado.</small>
 </div>
 <div class="EditorCampo">
 <label for="status">Status</label>
-<select id="status" name="status">
-<option>Em processo</option>
-<option>Feito</option>
-<option>Falha</option>
+<select id="status" name="status" required>
+<option value="Em processo">Em processo</option>
+<option value="Feito">Feito</option>
+<option value="Falha">Falha</option>
 </select>
 </div>
-<div class="EditorCampo">
+<div class="EditorCampo EditorCampo--full" id="metaGranjaCampo">
 <label for="granja">Granja</label>
-<input id="granja" name="granja" type="text" placeholder="Granja Ouro Branco"  required>
+<input id="granja" name="granja" type="text" placeholder="Granja Ouro Branco" maxlength="120" autocomplete="organization" required>
+</div>
+<div class="EditorCampo EditorCampo--full" id="metaRegiaoCampo" hidden>
+<label for="regiaoMeta">Região ou estado</label>
+<input id="regiaoMeta" name="regiao" type="text" placeholder="Sudeste ou São Paulo" maxlength="80" disabled>
 </div>
 </div>
 <footer class="EditorAcoes">
@@ -81,7 +87,7 @@
  function refresh(){for(const button of form.querySelectorAll('[data-group]')){const active=form.elements.namedItem(button.dataset.group).value===button.dataset.value;button.classList.toggle('ativa',active);button.setAttribute('aria-pressed',String(active));}
  const energy=form.elements.namedItem(kind==='meta'?'tipoValor':'tipo')?.value==='Energia';
  if(kind==='registro'){document.getElementById('editorTitulo').textContent=(editing?'Editar':'Novo')+' Registro de '+(energy?'energia':'água');document.querySelector('label[for=medidorInicial]').textContent=energy?'Medidor inicial (kWh)':'Hidrômetro inicial (água)';document.querySelector('label[for=medidorFinal]').textContent=energy?'Medidor final (kWh)':'Hidrômetro final (água)';}
- if(kind==='meta')document.querySelector('label[for=alvo]').textContent='Valor alvo ('+(energy?'kWh':'litros')+')';
+ if(kind==='meta'){document.querySelector('label[for=alvo]').textContent='Valor alvo ('+(energy?'kWh':'litros')+')';const individual=form.elements.tipo.value==='Individual';document.getElementById('metaGranjaCampo').hidden=!individual;document.getElementById('metaRegiaoCampo').hidden=individual;form.elements.granja.disabled=!individual;form.elements.granja.required=individual;form.elements.regiao.disabled=individual;form.elements.regiao.required=!individual;}
  }
  form.querySelectorAll('[data-group]').forEach(button=>button.addEventListener('click',()=>{form.elements.namedItem(button.dataset.group).value=button.dataset.value;refresh();}));refresh();
  form.addEventListener('input',()=>{form.querySelectorAll('input').forEach(input=>input.setCustomValidity(''));});
