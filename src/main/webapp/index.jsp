@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=123">
+    <link rel="stylesheet" href="landing.css?v=137">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -348,7 +348,7 @@
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
                 <div class="circulo faq-ajuda-brilho" aria-hidden="true"></div>
                 <span class="faq-ajuda-icone" aria-hidden="true"><img src="assets/balao-falas.png" alt=""></span>
-                <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudar, garantindo que você tenha a melhor experiência possível.</span></span>
+                <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudá-lo, garantindo que você<br>tenha a melhor experiência possível</span></span>
             </aside>
         </div>
     </section>
@@ -381,7 +381,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js?v=11" defer></script>
+    <script src="landing.js?v=12" defer></script>
 </body>
 
 </html>

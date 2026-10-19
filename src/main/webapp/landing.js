@@ -25,14 +25,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    document.querySelectorAll('.faq-pergunta').forEach((button) => {
+    const faqButtons = Array.from(document.querySelectorAll('.faq-pergunta'));
+    const faqCloseTimers = new WeakMap();
+    const faqMotionDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 240;
+
+    const setFaqOpen = (button, open) => {
+        const answer = document.getElementById(button.getAttribute('aria-controls'));
+        if (!answer) {
+            return;
+        }
+
+        window.clearTimeout(faqCloseTimers.get(answer));
+        button.setAttribute('aria-expanded', String(open));
+
+        if (open) {
+            answer.hidden = false;
+            answer.classList.remove('is-open');
+            void answer.offsetHeight;
+            window.requestAnimationFrame(() => {
+                if (button.getAttribute('aria-expanded') === 'true') {
+                    answer.classList.add('is-open');
+                }
+            });
+            return;
+        }
+
+        answer.classList.remove('is-open');
+        if (faqMotionDuration === 0) {
+            answer.hidden = true;
+            return;
+        }
+
+        const closeTimer = window.setTimeout(() => {
+            if (button.getAttribute('aria-expanded') === 'false') {
+                answer.hidden = true;
+            }
+        }, faqMotionDuration);
+        faqCloseTimers.set(answer, closeTimer);
+    };
+
+    faqButtons.forEach((button) => {
         button.addEventListener('click', () => {
             const isOpen = button.getAttribute('aria-expanded') === 'true';
-            const answer = document.getElementById(button.getAttribute('aria-controls'));
-            button.setAttribute('aria-expanded', String(!isOpen));
-            if (answer) {
-                answer.hidden = isOpen;
-            }
+            faqButtons.forEach((otherButton) => {
+                if (otherButton !== button && otherButton.getAttribute('aria-expanded') === 'true') {
+                    setFaqOpen(otherButton, false);
+                }
+            });
+            setFaqOpen(button, !isOpen);
         });
     });
 
