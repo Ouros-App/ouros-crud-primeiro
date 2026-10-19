@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Novo Funcionário</title>
-<link rel="stylesheet" href="Style.css?v=4">
+<link rel="stylesheet" href="Style.css?v=10">
 <link rel="icon" href="img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
@@ -20,23 +20,24 @@
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
 <label for="nome">Nome completo</label>
-<input id="nome" name="nome" type="text" placeholder="Rafael Santos"  required>
+<input id="nome" name="nome" type="text" placeholder="Rafael Santos" autocomplete="name" maxlength="120" required>
 </div>
 <div class="EditorCampo">
 <label for="cpf">CPF</label>
-<input id="cpf" name="cpf" type="text" placeholder="000.000.000-00"  >
+<input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" inputmode="numeric" autocomplete="off" maxlength="14" aria-describedby="cpfAjuda">
+<small class="EditorCampoAjuda" id="cpfAjuda">Digite os 11 números; a formatação será aplicada automaticamente.</small>
 </div>
 <div class="EditorCampo">
 <label for="setor">Setor</label>
-<input id="setor" name="setor" type="text" placeholder="Manejo"  >
+<input id="setor" name="setor" type="text" placeholder="Manejo" autocomplete="organization-title" maxlength="80">
 </div>
 <div class="EditorCampo">
 <label for="email">E-mail</label>
-<input id="email" name="email" type="email" placeholder="exemplo@gmail.com"  required>
+<input id="email" name="email" type="email" placeholder="exemplo@gmail.com" autocomplete="email" maxlength="254" required>
 </div>
 <div class="EditorCampo">
 <label for="telefone">Telefone</label>
-<input id="telefone" name="telefone" type="tel" placeholder="+55 11 12345-6789"  >
+<input id="telefone" name="telefone" type="tel" placeholder="+55 11 12345-6789" autocomplete="tel" inputmode="tel" maxlength="20">
 </div>
 </div>
 <footer class="EditorAcoes">
@@ -48,25 +49,80 @@
 </form>
 </main>
 <script>
-(() => {
- const form=document.querySelector('[data-editor]'); if(!form)return;
- const kind=form.dataset.editor, editing=new URLSearchParams(location.search).get('acao')==='editar';
- form.elements.acao.value=editing?'editar':'criar';
- if(editing){const titles={granja:'Granja',lote:'Lote',funcionario:'Funcionário',registro:'Registro de água',meta:'Meta'};document.title='Editar '+titles[kind];document.getElementById('editorTitulo').textContent=document.title;}
- // Dados temporários apenas para pré-visualizar a edição. O backend deve carregar pelo ID.
- if(editing){try{const data=JSON.parse(sessionStorage.getItem('ouros-editor-'+kind)||'{}');for(const [key,value] of Object.entries(data)){const input=form.elements.namedItem(key);if(input && value!=null)input.value=value;}}catch(e){/* Edição direta abre sem dados. */}}
- function refresh(){for(const button of form.querySelectorAll('[data-group]')){const active=form.elements.namedItem(button.dataset.group).value===button.dataset.value;button.classList.toggle('ativa',active);button.setAttribute('aria-pressed',String(active));}
- const energy=form.elements.namedItem(kind==='meta'?'tipoValor':'tipo')?.value==='Energia';
- if(kind==='registro'){document.getElementById('editorTitulo').textContent=(editing?'Editar':'Novo')+' Registro de '+(energy?'energia':'água');document.querySelector('label[for=medidorInicial]').textContent=energy?'Medidor inicial (kWh)':'Hidrômetro inicial (água)';document.querySelector('label[for=medidorFinal]').textContent=energy?'Medidor final (kWh)':'Hidrômetro final (água)';}
- if(kind==='meta')document.querySelector('label[for=alvo]').textContent='Valor alvo ('+(energy?'kWh':'litros')+')';
- }
- form.querySelectorAll('[data-group]').forEach(button=>button.addEventListener('click',()=>{form.elements.namedItem(button.dataset.group).value=button.dataset.value;refresh();}));refresh();
- form.addEventListener('input',()=>{form.querySelectorAll('input').forEach(input=>input.setCustomValidity(''));});
- form.addEventListener('submit',event=>{
- if(kind==='registro'){const first=form.elements.medidorInicial,last=form.elements.medidorFinal;if(first.value!==''&&last.value!==''&&Number(last.value)<Number(first.value)){event.preventDefault();last.setCustomValidity('O medidor final deve ser maior ou igual ao inicial.');last.reportValidity();return;}}
- if(editing&&!form.elements.id.value){event.preventDefault();const notice=form.querySelector('.EditorAviso');notice.hidden=false;notice.textContent='Esta edição usa dados de exemplo. O salvamento será habilitado com a integração do registro ao backend.';}
- });
- document.addEventListener('keydown',event=>{if(event.key==='Escape')location.href=document.querySelector('.EditorFechar').href;});
+(function () {
+    var form = document.querySelector('[data-editor="funcionario"]');
+    if (!form) return;
+
+    var cpf = form.elements.namedItem("cpf");
+    var aviso = form.querySelector(".EditorAviso");
+    var editando = new URLSearchParams(location.search).get("acao") === "editar";
+
+    function formatarCpf(valor) {
+        var numeros = valor.replace(/\D/g, "").slice(0, 11);
+        return numeros
+            .replace(/^(\d{3})(\d)/, "$1.$2")
+            .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+            .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
+    }
+
+    function cpfValido(valor) {
+        var numeros = valor.replace(/\D/g, "");
+        if (numeros.length !== 11 || /^(\d)\1{10}$/.test(numeros)) return false;
+
+        for (var digito = 9; digito <= 10; digito += 1) {
+            var soma = 0;
+            for (var indice = 0; indice < digito; indice += 1) {
+                soma += Number(numeros[indice]) * (digito + 1 - indice);
+            }
+            var verificador = (soma * 10) % 11;
+            if (verificador === 10) verificador = 0;
+            if (verificador !== Number(numeros[digito])) return false;
+        }
+        return true;
+    }
+
+    if (editando) {
+        document.title = "Editar Funcionário";
+        document.getElementById("editorTitulo").textContent = document.title;
+        form.elements.acao.value = "editar";
+        try {
+            var dados = JSON.parse(sessionStorage.getItem("ouros-editor-funcionario") || "{}");
+            ["nome", "cpf", "setor", "email", "telefone"].forEach(function (campo) {
+                var entrada = form.elements.namedItem(campo);
+                if (entrada && dados[campo] != null) entrada.value = dados[campo];
+            });
+        } catch (erro) {
+            // O formulário continua disponível para edição manual.
+        }
+    }
+
+    cpf.value = formatarCpf(cpf.value);
+    cpf.addEventListener("input", function () {
+        cpf.value = formatarCpf(cpf.value);
+        cpf.setCustomValidity("");
+        cpf.removeAttribute("aria-invalid");
+        aviso.hidden = true;
+    });
+
+    form.addEventListener("submit", function (evento) {
+        var numeros = cpf.value.replace(/\D/g, "");
+        if (numeros && !cpfValido(numeros)) {
+            evento.preventDefault();
+            cpf.setCustomValidity("Informe um CPF válido com 11 números.");
+            cpf.setAttribute("aria-invalid", "true");
+            cpf.reportValidity();
+            return;
+        }
+
+        if (editando && !form.elements.id.value) {
+            evento.preventDefault();
+            aviso.hidden = false;
+            aviso.textContent = "Não foi possível salvar a edição sem o identificador do funcionário.";
+            return;
+        }
+
+        cpf.value = numeros;
+    });
 })();
 
 </script>
