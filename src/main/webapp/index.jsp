@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=106">
+    <link rel="stylesheet" href="landing.css?v=123">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -31,11 +31,15 @@
 
     <section class="hero" id="inicio" aria-labelledby="hero-title">
         <div class="hero-atmosfera" aria-hidden="true">
-            <div class="circulo hero-brilho-roxo"></div>
+            <div class="circulo hero-brilho-roxo-left"></div>
             <div class="circulo hero-brilho-roxo-right"></div>
             <div class="circulo hero-brilho-azul-visual"></div>
             <div class="circulo hero-brilho-dourado"></div>
-            <div class="decor"><span class="star star-1"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
+            <div class="decor">
+                <span class="star star-1"></span><span class="star star-2"></span>
+                <span class="star star-3"></span><span class="star star-4"></span>
+                <span class="star star-5"></span><span class="star star-6"></span>
+            </div>
         </div>
         <div class="hero-container">
 
@@ -48,7 +52,7 @@
                 <img src="assets/linhaGold.svg" class="linha-gold" alt="" aria-hidden="true">
                 <div class="hero-composicao" role="img" aria-label="Celular OUROS com asa dourada">
                     <img src="assets/asa-hero.png?v=1" class="hero-asa" alt="" aria-hidden="true">
-                    <img src="assets/celular-ouros.png?v=1" class="hero-celular" alt="" aria-hidden="true">
+                    <img src="assets/celular-ouros.png?v=2" class="hero-celular" alt="" aria-hidden="true">
                 </div>
             </div>
 

@@ -657,7 +657,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 24px;
-    background-color: #333333;
+    background-color: #ffffff;
     overflow: hidden;
 }
 
@@ -764,24 +764,12 @@ body {
     max-width: 28ch;
 }
 
-/* Mascote das telas de login e "esqueci minha senha" */
-
-
-/* Mascote da tela de login */
+/* Mesmo mascote, com escala e posição consistentes nas três telas de acesso. */
 .MascoteLogin {
     position: absolute;
     right: 18px;
     bottom: 12px;
     width: 120px;
-    height: auto;
-    pointer-events: none;
-}
-/*mascote da tela esqueci minha senha */
-.MascoteSenha {
-    position: absolute;
-    right: 12px;
-    bottom: 8px;
-    width: 112px;
     height: auto;
     pointer-events: none;
 }
@@ -959,7 +947,6 @@ body {
     }
 
     .LoginRecursos,
-    .MascoteSenha,
     .MascoteLogin {
         display: none;
     }
