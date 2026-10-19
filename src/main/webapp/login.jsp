@@ -8,7 +8,7 @@
     <title>Login</title>
 
     <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="Style.css?v=5">
+    <link rel="stylesheet" href="Style.css?v=6">
     <link rel="icon" type="image/svg+xml" href="img/granja.svg">
 </head>
 <body>
@@ -16,6 +16,7 @@
     <div class="LoginShell">
 
         <div class="LoginMarca">
+            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
 
             <p class="LoginTagline">
@@ -71,44 +72,46 @@
             </div>
         </div>
 
-        <div class="LoginFormulario">
+        <main class="LoginFormulario">
             <div class="LoginCabecalho">
                 <h1 class="LoginTitulo">Bem-vindo de volta!</h1>
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
 
-            <form action="login" method="post">
+            <form class="LoginAcessoFormulario" action="login" method="post">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email"
-                           placeholder="seuemail@email.com" autocomplete="email" required>
+                           placeholder="seuemail@email.com" autocomplete="email"
+                           aria-invalid="${param.erro == 'credenciais' or param.erro == 'naoverificado'}" required>
                 </div>
 
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="senha">Senha</label>
                     <input class="LoginCampoInput" type="password" id="senha" name="senha"
-                           placeholder="••••••••" autocomplete="current-password" required>
+                           placeholder="••••••••" autocomplete="current-password"
+                           aria-invalid="${param.erro == 'credenciais'}" required>
                 </div>
 
                 <div class="LoginUtilitario">
                     <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
                 </div>
 
-                <br>
-                <br>
-                <button type="submit" class="LoginBotao">Continuar</button>
-
                 <c:if test="${param.erro == 'credenciais'}">
-                    <p class="LoginErro" role="alert">Email ou senha incorretos.</p>
+                    <p id="loginCredenciaisErro" class="LoginErro LoginAcessoErro" role="alert">
+                        Email ou senha incorretos.
+                    </p>
                 </c:if>
 
                 <c:if test="${param.erro == 'naoverificado'}">
-                    <p class="LoginErro" role="alert">
+                    <p id="loginVerificacaoErro" class="LoginErro LoginAcessoErro" role="alert">
                         Confirme seu email antes de entrar. Verifique sua caixa de entrada.
                     </p>
                 </c:if>
+
+                <button type="submit" class="LoginBotao">Continuar</button>
             </form>
-        </div>
+        </main>
 
     </div>
 </div>

@@ -1633,3 +1633,45 @@ body {
         padding: 10px 12px;
     }
 }
+
+/* Ajustes da tela de acesso */
+.LoginAcessoFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.LoginAcessoFormulario .LoginCampoGrupo {
+    margin-bottom: 0;
+}
+.LoginAcessoFormulario .LoginUtilitario {
+    margin: -4px 0 0;
+}
+.LoginAcessoFormulario .LoginCampoInput[aria-invalid="true"] {
+    border-color: #dc2626;
+}
+.LoginAcessoFormulario .LoginCampoInput:focus-visible,
+.LoginAcessoFormulario .LoginBotao:focus-visible,
+.LoginFormulario .LoginLinkEsqueci:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.LoginFormulario .LoginAcessoErro {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #b42318 !important;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+@media (max-width: 480px) {
+    .LoginAcessoFormulario {
+        gap: 18px;
+    }
+    .LoginFormulario .LoginAcessoErro {
+        padding: 10px 12px;
+    }
+}
