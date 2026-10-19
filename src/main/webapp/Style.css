@@ -1322,6 +1322,9 @@ body {
     color:#19191e;
     color-scheme:light
 }
+.EditorCampo input[type="number"],.EditorCampo input[type="date"] {
+    font-variant-numeric:tabular-nums
+}
 .EditorCampo input::placeholder {
     color:#939393;
     opacity:1
