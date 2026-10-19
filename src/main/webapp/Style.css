@@ -1323,6 +1323,37 @@ body {
     font-size:12px;
     line-height:1.5
 }
+.CadastroIntroducao {
+    margin:-8px 0 20px;
+    color:#6b7280;
+    font-size:13px;
+    line-height:1.55
+}
+.CadastroSenhaControle {
+    display:flex;
+    align-items:center;
+    gap:8px
+}
+.CadastroSenhaControle input {
+    flex:1
+}
+.CadastroSenhaToggle {
+    min-height:44px;
+    padding:0 12px;
+    border:1px solid #dce0ec;
+    border-radius:7px;
+    background:white;
+    color:#333342;
+    font:13px 'Poppins','Segoe UI',sans-serif;
+    cursor:pointer
+}
+.CadastroSenhaToggle:hover {
+    background:#f5f5fa
+}
+.CadastroSenhaToggle:focus-visible {
+    outline:2px solid #946700;
+    outline-offset:3px
+}
 .EditorCampo label,.EditorLabel {
     font-size:12px;
     line-height:1.4;
