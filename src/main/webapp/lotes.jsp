@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lotes</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="stylesheet" href="Style.css?v=7">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -72,13 +72,17 @@
                         <circle cx="11" cy="11" r="7"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="buscaLote" placeholder="Buscar...">
+                    <input type="search" id="buscaLote" placeholder="Buscar nesta página..." aria-label="Buscar lotes nesta página">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroGranja" placeholder="">
+                <div class="OrdenarPor">
+                    <select id="filtroGranja" aria-label="Filtrar lotes por granja nesta página">
+                        <option value="">Todas as granjas</option>
+                    </select>
+                </div>
 
                 <div class="OrdenarPor">
-                    <select id="ordenarPor">
+                    <select id="ordenarPor" aria-label="Ordenar lotes nesta página">
                         <option value="chegada">Ordenar por: Chegada</option>
                         <option value="entregues">Ordenar por: Entregues</option>
                         <option value="ganho">Ordenar por: Ganho</option>
@@ -92,45 +96,58 @@
 
             <div class="tabela">
                 <table>
+                    <caption class="VisuallyHidden">Lista de lotes cadastrados</caption>
                     <thead>
                     <tr>
-                        <th>Lote</th>
-                        <th>Granja</th>
-                        <th>Entregues</th>
-                        <th>Recebidas</th>
-                        <th>Chegada</th>
-                        <th>Ganho</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th scope="col">Lote</th>
+                        <th scope="col">Granja</th>
+                        <th scope="col">Entregues</th>
+                        <th scope="col">Recebidas</th>
+                        <th scope="col">Chegada</th>
+                        <th scope="col">Ganho (kg)</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-lotes">
                         <c:forEach var="lote" items="${lotes}">
-                                ><tr>
-                                    <td><c:out value="${lote.id}"/></td>
-                                    <td><c:out value="${lote.nomeGranja}"/></td>
-                                    <td><c:out value="${lote.galinhasEntregadas}"/></td>
-                                    <td><c:out value="${lote.galinhasRecebidas}"/></td>
-                                    <td><c:out value="${lote.dtChegada}"/></td>
-                                    <td><c:out value="${lote.ganho}"/></td>
-                                </tr>
+                            <tr>
+                                <td><c:out value="${lote.id}"/></td>
+                                <td><c:out value="${lote.nomeGranja}"/></td>
+                                <td class="DadoNumerico"><c:out value="${lote.galinhasEntregadas}"/></td>
+                                <td class="DadoNumerico"><c:out value="${lote.galinhasRecebidas}"/></td>
+                                <td class="DadoData"><c:out value="${lote.dtChegada}"/></td>
+                                <td class="DadoNumerico"><c:out value="${lote.ganho}"/></td>
+                            </tr>
                         </c:forEach>
                     </tbody>
                 </table>
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemLotes">mostrando 1 a 5 de 25 lotes</span>
+                <span class="Contagem" id="contagemLotes" aria-live="polite">
+                    <c:choose>
+                        <c:when test="${paginacao.total == 0}">Nenhum lote cadastrado.</c:when>
+                        <c:otherwise>Mostrando ${paginacao.inicio} a ${paginacao.fim} de ${paginacao.total} lotes</c:otherwise>
+                    </c:choose>
+                </span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
-                </div>
+                <nav class="Paginacao" aria-label="Páginas de lotes">
+                    <c:if test="${paginacao.temAnterior}">
+                        <a class="seta" href="lotes?pagina=${paginacao.pagina - 1}" aria-label="Página anterior">&#9664;</a>
+                    </c:if>
+                    <c:forEach var="pagina" begin="${paginacao.janelaInicio}" end="${paginacao.janelaFim}">
+                        <c:choose>
+                            <c:when test="${pagina == paginacao.pagina}">
+                                <span class="ativo" aria-current="page" aria-label="Página ${pagina}">${pagina}</span>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="lotes?pagina=${pagina}" aria-label="Página ${pagina}">${pagina}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <c:if test="${paginacao.temProxima}">
+                        <a class="seta" href="lotes?pagina=${paginacao.pagina + 1}" aria-label="Próxima página">&#9654;</a>
+                    </c:if>
+                </nav>
             </div>
 
         </div>
@@ -139,103 +156,82 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    function classeStatus(status) {
-        if (status === "Recebido") return "positivo";
-        return "neutro";
-    }
+(function () {
+    var corpoTabela = document.getElementById("tabela-lotes");
+    var busca = document.getElementById("buscaLote");
+    var filtroGranja = document.getElementById("filtroGranja");
+    var ordenarPor = document.getElementById("ordenarPor");
+    var contagem = document.getElementById("contagemLotes");
+    var resumoOriginal = contagem.textContent.trim();
+    var linhasOriginais = Array.from(corpoTabela.querySelectorAll("tr"));
+    var comparador = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
 
-    function renderizarLotes(lista) {
-        var corpoTabela = document.getElementById("tabela-lotes");
-        corpoTabela.innerHTML = "";
+    function preencherGranjas() {
+        var granjas = Array.from(new Set(linhasOriginais
+            .map(function (linha) { return linha.cells[1] ? linha.cells[1].textContent.trim() : ""; })
+            .filter(Boolean)))
+            .sort(function (a, b) { return comparador.compare(a, b); });
 
-        lista.forEach(function (l) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + l.lote + "</td>" +
-                "<td>" + l.granja + "</td>" +
-                "<td>" + l.entregues + "</td>" +
-                "<td>" + l.recebidas + "</td>" +
-                "<td>" + l.chegada + "</td>" +
-                "<td>" + l.ganho + "</td>" +
-                "<td><span class='Status " + classeStatus(l.status) + "'>" + l.status + "</span></td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg>" +
-                "</button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path>" +
-                "<path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg>" +
-                "</button>" +
-                "</div>" +
-                "</td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, l);
-
-
-
-                ['entregues','recebidas'].forEach(function (key) { dados[key] = l[key].replace(/\./g, '').replace(/[^0-9]/g, ''); }); dados.ganho = l.ganho.replace(' kg','').replace(',','.').replace(/[^0-9.]/g,'');
-                ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-lote', JSON.stringify(dados));
-                abrirFormulario('lote-novo.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
+        granjas.forEach(function (granja) {
+            var opcao = document.createElement("option");
+            opcao.value = granja;
+            opcao.textContent = granja;
+            filtroGranja.appendChild(opcao);
         });
     }
 
-    document.getElementById("buscaLote").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtrados = lotes.filter(function (l) {
-            return l.granja.toLowerCase().includes(termo) || l.lote.toLowerCase().includes(termo);
-        });
-        renderizarLotes(filtrados);
-    });
+    function obterLinhasFiltradas() {
+        var termo = busca.value.trim().toLocaleLowerCase("pt-BR");
+        var granjaSelecionada = filtroGranja.value;
+        var colunaOrdenacao = { chegada: 4, entregues: 2, ganho: 5 }[ordenarPor.value] || 4;
 
-    // ================== CONTROLE DE PÁGINAS (visual, tabela fictícia não muda) ==================
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
-    var botaoAnterior = document.getElementById("botaoAnterior");
-    var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
-
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
+        return linhasOriginais.filter(function (linha) {
+            var texto = linha.textContent.toLocaleLowerCase("pt-BR");
+            var granja = linha.cells[1] ? linha.cells[1].textContent.trim() : "";
+            return texto.includes(termo) && (!granjaSelecionada || granja === granjaSelecionada);
+        }).sort(function (linhaA, linhaB) {
+            var valorA = linhaA.cells[colunaOrdenacao].textContent.trim();
+            var valorB = linhaB.cells[colunaOrdenacao].textContent.trim();
+            if (colunaOrdenacao === 2 || colunaOrdenacao === 5) {
+                return (parseFloat(valorA.replace(",", ".")) || 0) - (parseFloat(valorB.replace(",", ".")) || 0);
+            }
+            return comparador.compare(valorA, valorB);
         });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
     }
 
-    botoesPagina.forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
-        });
-    });
+    function renderizarTabela() {
+        var linhasFiltradas = obterLinhasFiltradas();
+        var fragmento = document.createDocumentFragment();
+        var filtrosAtivos = busca.value.trim() || filtroGranja.value;
 
-    botaoAnterior.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina > 1) marcarPaginaAtiva(pagina - 1);
-    });
+        if (linhasFiltradas.length === 0) {
+            var linhaVazia = document.createElement("tr");
+            linhaVazia.className = "TabelaVazia";
+            var celulaVazia = document.createElement("td");
+            celulaVazia.colSpan = 6;
+            celulaVazia.textContent = linhasOriginais.length === 0
+                ? "Nenhum lote cadastrado."
+                : "Nenhum lote encontrado nesta página.";
+            linhaVazia.appendChild(celulaVazia);
+            fragmento.appendChild(linhaVazia);
+            contagem.textContent = celulaVazia.textContent;
+        } else {
+            linhasFiltradas.forEach(function (linha) { fragmento.appendChild(linha); });
+            contagem.textContent = filtrosAtivos
+                ? linhasFiltradas.length + (linhasFiltradas.length === 1 ? " lote encontrado nesta página" : " lotes encontrados nesta página")
+                : resumoOriginal;
+        }
 
-    botaoProximo.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina < totalPaginas) marcarPaginaAtiva(pagina + 1);
-    });
+        corpoTabela.replaceChildren(fragmento);
+    }
 
-    marcarPaginaAtiva(1);
-    renderizarLotes(lotes);
+    busca.addEventListener("input", renderizarTabela);
+    filtroGranja.addEventListener("change", renderizarTabela);
+    ordenarPor.addEventListener("change", renderizarTabela);
+
+    preencherGranjas();
+    renderizarTabela();
+})();
 </script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de lotes" class="FormularioFrame"></iframe></dialog>
