@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metas</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="stylesheet" href="Style.css?v=8">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -67,8 +67,8 @@
         <div class="Painel">
 
             <div class="Alternador">
-                <button type="button" class="AlternadorItem ativo" data-tipo="Individual">Individual</button>
-                <button type="button" class="AlternadorItem" data-tipo="Estadual">Estadual</button>
+                <button type="button" class="AlternadorItem ativo" data-tipo="Individual" aria-pressed="true">Individual</button>
+                <button type="button" class="AlternadorItem" data-tipo="Estadual" aria-pressed="false">Estadual</button>
             </div>
 
             <div class="Filtros">
@@ -77,13 +77,17 @@
                         <circle cx="11" cy="11" r="7"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="buscaMeta" placeholder="Buscar...">
+                    <input type="search" id="buscaMeta" placeholder="Buscar metas..." aria-label="Buscar metas">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroGranja" placeholder="">
+                <div class="OrdenarPor">
+                    <select id="filtroAlvo" aria-label="Filtrar metas por granja ou estado">
+                        <option value="">Todas as granjas e estados</option>
+                    </select>
+                </div>
 
                 <div class="OrdenarPor">
-                    <select id="ordenarPor">
+                    <select id="ordenarPor" aria-label="Ordenar metas">
                         <option value="titulo">Ordenar por: Título</option>
                         <option value="status">Ordenar por: Status</option>
                     </select>
@@ -96,33 +100,48 @@
 
             <div class="tabela">
                 <table>
+                    <caption class="VisuallyHidden">Lista de metas cadastradas</caption>
                     <thead>
                     <tr>
-                        <th>Título</th>
-                        <th>Granja</th>
-                        <th>Alvo</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th scope="col">Título</th>
+                        <th scope="col">Granja ou estado</th>
+                        <th scope="col">Indicador</th>
+                        <th scope="col">Valor alvo</th>
+                        <th scope="col">Status</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-metas">
-                    <!-- linhas preenchidas dinamicamente -->
+                        <c:forEach var="meta" items="${metas}">
+                            <tr data-individual="${meta.individual}">
+                                <td><c:out value="${meta.titulo}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${meta.individual}">Granja #<c:out value="${meta.idGranja}"/></c:when>
+                                        <c:otherwise>Estado: <c:out value="${meta.estado}"/></c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td><c:out value="${meta.tipoMeta}"/></td>
+                                <td class="DadoNumerico"><c:out value="${meta.valorAlvo}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${meta.status eq 'Feito'}"><span class="Status positivo"><c:out value="${meta.status}"/></span></c:when>
+                                        <c:when test="${meta.status eq 'Falha'}"><span class="Status negativo"><c:out value="${meta.status}"/></span></c:when>
+                                        <c:otherwise><span class="Status neutro"><c:out value="${meta.status}"/></span></c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemMetas">mostrando 1 a 5 de 25 granjas</span>
+                <span class="Contagem" id="contagemMetas" aria-live="polite"></span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
-                </div>
+                <nav class="Paginacao" id="paginacao" aria-label="Páginas de metas">
+                    <button type="button" class="seta" id="botaoAnterior" aria-label="Página anterior">&#9664;</button>
+                    <button type="button" class="seta" id="botaoProximo" aria-label="Próxima página">&#9654;</button>
+                </nav>
             </div>
 
         </div>
@@ -131,120 +150,131 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    var tipoAtual = "Individual";
-
-    function classeStatus(status) {
-        if (status === "Feito") return "positivo";
-        if (status === "Falha") return "negativo";
-        return "neutro";
-    }
-
-    function listaAtual() {
-        return tipoAtual === "Individual" ? metasIndividual : metasEstadual;
-    }
-
-    function renderizarMetas(lista) {
-        var corpoTabela = document.getElementById("tabela-metas");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (m) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + m.titulo + "</td>" +
-                "<td>" + m.granja + "</td>" +
-                "<td>" + m.alvo + "</td>" +
-                "<td><span class='Status " + classeStatus(m.status) + "'>" + m.status + "</span></td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg>" +
-                "</button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path>" +
-                "<path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg>" +
-                "</button>" +
-                "</div>" +
-                "</td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, m);
-
-
-                dados.tipo = tipoAtual; dados.tipoValor = m.alvo.includes('kWh') ? 'Energia' : 'Agua'; dados.alvo = (m.alvo.match(/[\d,.]+/) || [''])[0].replace(',', '.');
-
-                ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-meta', JSON.stringify(dados));
-                abrirFormulario('meta-nova.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.getElementById("buscaMeta").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtradas = listaAtual().filter(function (m) {
-            return m.titulo.toLowerCase().includes(termo) || m.granja.toLowerCase().includes(termo);
-        });
-        renderizarMetas(filtradas);
-    });
-
-    // Alterna entre Individual e Estadual
-    document.querySelectorAll(".AlternadorItem").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            document.querySelectorAll(".AlternadorItem").forEach(function (b) {
-                b.classList.remove("ativo");
-            });
-            botao.classList.add("ativo");
-            tipoAtual = botao.getAttribute("data-tipo");
-            document.getElementById("buscaMeta").value = "";
-            renderizarMetas(listaAtual());
-        });
-    });
-
-    // ================== CONTROLE DE PÁGINAS (visual, tabela fictícia não muda) ==================
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
+(function () {
+    var corpoTabela = document.getElementById("tabela-metas");
+    var busca = document.getElementById("buscaMeta");
+    var filtroAlvo = document.getElementById("filtroAlvo");
+    var ordenarPor = document.getElementById("ordenarPor");
+    var contagem = document.getElementById("contagemMetas");
+    var paginacao = document.getElementById("paginacao");
     var botaoAnterior = document.getElementById("botaoAnterior");
     var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
+    var botoesTipo = Array.from(document.querySelectorAll(".AlternadorItem"));
+    var linhasOriginais = Array.from(corpoTabela.querySelectorAll("tr"));
+    var comparador = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
+    var tipoAtual = "Individual";
+    var paginaAtual = 1;
+    var itensPorPagina = 5;
 
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
+    function preencherAlvos() {
+        var alvos = Array.from(new Set(linhasOriginais
+            .map(function (linha) { return linha.cells[1] ? linha.cells[1].textContent.trim() : ""; })
+            .filter(Boolean)))
+            .sort(function (a, b) { return comparador.compare(a, b); });
+
+        alvos.forEach(function (alvo) {
+            var opcao = document.createElement("option");
+            opcao.value = alvo;
+            opcao.textContent = alvo;
+            filtroAlvo.appendChild(opcao);
         });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
     }
 
-    botoesPagina.forEach(function (botao) {
+    function obterMetasFiltradas() {
+        var termo = busca.value.trim().toLocaleLowerCase("pt-BR");
+        var alvoSelecionado = filtroAlvo.value;
+        var colunaOrdenacao = ordenarPor.value === "status" ? 4 : 0;
+
+        return linhasOriginais.filter(function (linha) {
+            var tipoIndividual = linha.dataset.individual === "true";
+            var correspondeAoTipo = tipoAtual === "Individual" ? tipoIndividual : !tipoIndividual;
+            var texto = linha.textContent.toLocaleLowerCase("pt-BR");
+            var alvo = linha.cells[1] ? linha.cells[1].textContent.trim() : "";
+            return correspondeAoTipo && texto.includes(termo) && (!alvoSelecionado || alvo === alvoSelecionado);
+        }).sort(function (linhaA, linhaB) {
+            return comparador.compare(
+                linhaA.cells[colunaOrdenacao].textContent.trim(),
+                linhaB.cells[colunaOrdenacao].textContent.trim()
+            );
+        });
+    }
+
+    function atualizarPaginacao(totalPaginas) {
+        paginacao.querySelectorAll("button[data-pagina]").forEach(function (botao) { botao.remove(); });
+        for (var pagina = 1; pagina <= totalPaginas; pagina += 1) {
+            var botao = document.createElement("button");
+            botao.type = "button";
+            botao.textContent = pagina;
+            botao.dataset.pagina = pagina;
+            botao.setAttribute("aria-label", "Página " + pagina);
+            if (pagina === paginaAtual) {
+                botao.className = "ativo";
+                botao.setAttribute("aria-current", "page");
+            }
+            botao.addEventListener("click", function (evento) {
+                paginaAtual = Number(evento.currentTarget.dataset.pagina);
+                renderizarTabela();
+            });
+            paginacao.insertBefore(botao, botaoProximo);
+        }
+        botaoAnterior.disabled = totalPaginas === 0 || paginaAtual === 1;
+        botaoProximo.disabled = totalPaginas === 0 || paginaAtual === totalPaginas;
+    }
+
+    function renderizarTabela() {
+        var metas = obterMetasFiltradas();
+        var totalPaginas = Math.ceil(metas.length / itensPorPagina);
+        paginaAtual = Math.min(paginaAtual, Math.max(1, totalPaginas));
+        var inicio = (paginaAtual - 1) * itensPorPagina;
+        var fim = Math.min(inicio + itensPorPagina, metas.length);
+        var fragmento = document.createDocumentFragment();
+
+        if (metas.length === 0) {
+            var linhaVazia = document.createElement("tr");
+            linhaVazia.className = "TabelaVazia";
+            var celulaVazia = document.createElement("td");
+            celulaVazia.colSpan = 5;
+            celulaVazia.textContent = linhasOriginais.length === 0
+                ? "Nenhuma meta cadastrada."
+                : "Nenhuma meta encontrada para estes filtros.";
+            linhaVazia.appendChild(celulaVazia);
+            fragmento.appendChild(linhaVazia);
+            contagem.textContent = celulaVazia.textContent;
+        } else {
+            metas.slice(inicio, fim).forEach(function (linha) { fragmento.appendChild(linha); });
+            contagem.textContent = "Mostrando " + (inicio + 1) + " a " + fim + " de " + metas.length + " metas";
+        }
+
+        corpoTabela.replaceChildren(fragmento);
+        atualizarPaginacao(totalPaginas);
+    }
+
+    botoesTipo.forEach(function (botao) {
         botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
+            tipoAtual = botao.dataset.tipo;
+            botoesTipo.forEach(function (outroBotao) {
+                var ativo = outroBotao === botao;
+                outroBotao.classList.toggle("ativo", ativo);
+                outroBotao.setAttribute("aria-pressed", String(ativo));
+            });
+            paginaAtual = 1;
+            renderizarTabela();
         });
     });
-
+    busca.addEventListener("input", function () { paginaAtual = 1; renderizarTabela(); });
+    filtroAlvo.addEventListener("change", function () { paginaAtual = 1; renderizarTabela(); });
+    ordenarPor.addEventListener("change", function () { paginaAtual = 1; renderizarTabela(); });
     botaoAnterior.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina > 1) marcarPaginaAtiva(pagina - 1);
+        if (paginaAtual > 1) { paginaAtual -= 1; renderizarTabela(); }
     });
-
     botaoProximo.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina < totalPaginas) marcarPaginaAtiva(pagina + 1);
+        var totalPaginas = Math.max(1, Math.ceil(obterMetasFiltradas().length / itensPorPagina));
+        if (paginaAtual < totalPaginas) { paginaAtual += 1; renderizarTabela(); }
     });
 
-    marcarPaginaAtiva(1);
-    renderizarMetas(listaAtual());
+    preencherAlvos();
+    renderizarTabela();
+})();
 </script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de metas" class="FormularioFrame"></iframe></dialog>

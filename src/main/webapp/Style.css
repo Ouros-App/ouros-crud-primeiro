@@ -554,6 +554,11 @@ body {
     color: #ffffff;
 }
 
+.AlternadorItem:focus-visible {
+    outline: 3px solid rgba(244, 169, 0, 0.55);
+    outline-offset: 2px;
+}
+
 /* BADGES DE STATUS */
 
 .Status {
