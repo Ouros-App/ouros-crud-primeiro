@@ -323,6 +323,11 @@ body {
     white-space: nowrap;
 }
 
+.tabela td.DadoIndisponivel {
+    color: #9ca3af;
+    text-align: center;
+}
+
 .tabela tbody tr:last-child td {
     border-bottom: none;
 }

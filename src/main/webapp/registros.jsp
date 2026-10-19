@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registros</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="stylesheet" href="Style.css?v=9">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -67,8 +67,8 @@
         <div class="Painel">
 
             <div class="Alternador">
-                <button type="button" class="AlternadorItem ativo" data-tipo="Agua">💧 Água</button>
-                <button type="button" class="AlternadorItem" data-tipo="Energia">⚡ Energia</button>
+                <button type="button" class="AlternadorItem ativo" data-tipo="Agua" aria-pressed="true">💧 Água</button>
+                <button type="button" class="AlternadorItem" data-tipo="Energia" aria-pressed="false">⚡ Energia</button>
             </div>
 
             <div class="Filtros">
@@ -77,13 +77,17 @@
                         <circle cx="11" cy="11" r="7"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input type="text" id="buscaRegistro" placeholder="Buscar...">
+                    <input type="search" id="buscaRegistro" placeholder="Buscar registros..." aria-label="Buscar registros">
                 </div>
 
-                <input type="text" class="CampoSetor" id="filtroLote" placeholder="">
+                <div class="OrdenarPor">
+                    <select id="filtroLote" aria-label="Filtrar registros por lote">
+                        <option value="">Todos os lotes</option>
+                    </select>
+                </div>
 
                 <div class="OrdenarPor">
-                    <select id="ordenarPor">
+                    <select id="ordenarPor" aria-label="Ordenar registros">
                         <option value="data">Ordenar por: Data</option>
                         <option value="consumo">Ordenar por: Consumo</option>
                     </select>
@@ -96,36 +100,46 @@
 
             <div class="tabela">
                 <table>
+                    <caption class="VisuallyHidden">Registros de consumo das granjas</caption>
                     <thead>
                     <tr>
-                        <th>Granja</th>
-                        <th>Lote</th>
-                        <th>Data</th>
-                        <th>Hidrômetro inicial</th>
-                        <th>Hidrômetro final</th>
-                        <th>Consumo</th>
-                        <th>Status</th>
-                        <th>Ações</th>
+                        <th scope="col">Lote</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Medição inicial</th>
+                        <th scope="col">Medição final</th>
+                        <th scope="col" id="tituloConsumo">Consumo (litros)</th>
                     </tr>
                     </thead>
                     <tbody id="tabela-registros">
-
+                        <c:forEach var="registro" items="${registroAguas}">
+                            <tr data-tipo="Agua">
+                                <td>Lote #<c:out value="${registro.idLote}"/></td>
+                                <td class="DadoData"><c:out value="${registro.dtRegistro}"/></td>
+                                <td class="DadoNumerico"><c:out value="${registro.hidrometroInicio}"/></td>
+                                <td class="DadoNumerico"><c:out value="${registro.hidrometroFinal}"/></td>
+                                <td class="DadoNumerico"><c:out value="${registro.hidrometroFinal - registro.hidrometroInicio}"/> L</td>
+                            </tr>
+                        </c:forEach>
+                        <c:forEach var="registro" items="${registroEnergias}">
+                            <tr data-tipo="Energia">
+                                <td>Lote #<c:out value="${registro.idLote}"/></td>
+                                <td class="DadoData"><c:out value="${registro.dtRegistro}"/></td>
+                                <td class="DadoIndisponivel" aria-label="Não se aplica">—</td>
+                                <td class="DadoIndisponivel" aria-label="Não se aplica">—</td>
+                                <td class="DadoNumerico"><c:out value="${registro.consumo}"/> kWh</td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
             </div>
 
             <div class="RodapeTabela">
-                <span class="Contagem" id="contagemRegistros">mostrando 1 a 5 de 25 registros de água</span>
+                <span class="Contagem" id="contagemRegistros" aria-live="polite"></span>
 
-                <div class="Paginacao" id="paginacao">
-                    <button type="button" class="seta" id="botaoAnterior">&#9664;</button>
-                    <button type="button" class="ativo" data-pagina="1">1</button>
-                    <button type="button" data-pagina="2">2</button>
-                    <button type="button" data-pagina="3">3</button>
-                    <button type="button" data-pagina="4">4</button>
-                    <button type="button" data-pagina="5">5</button>
-                    <button type="button" class="seta" id="botaoProximo">&#9654;</button>
-                </div>
+                <nav class="Paginacao" id="paginacao" aria-label="Páginas de registros">
+                    <button type="button" class="seta" id="botaoAnterior" aria-label="Página anterior">&#9664;</button>
+                    <button type="button" class="seta" id="botaoProximo" aria-label="Próxima página">&#9654;</button>
+                </nav>
             </div>
 
         </div>
@@ -134,127 +148,135 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    var tipoAtual = "Agua";
-
-    function classeStatus(status) {
-        if (status === "Abaixo") return "positivo";
-        if (status === "Acima") return "negativo";
-        return "neutro";
-    }
-
-    function listaAtual() {
-        return tipoAtual === "Agua" ? registrosAgua : registrosEnergia;
-    }
-
-    function renderizarRegistros(lista) {
-        var corpoTabela = document.getElementById("tabela-registros");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (r) {
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + r.granja + "</td>" +
-                "<td>" + r.lote + "</td>" +
-                "<td>" + r.data + "</td>" +
-                "<td>" + r.inicial + "</td>" +
-                "<td>" + r.final + "</td>" +
-                "<td>" + r.consumo + "</td>" +
-                "<td><span class='Status " + classeStatus(r.status) + "'>" + r.status + "</span></td>" +
-                "<td>" +
-                "<div class='ColunaAcoes'>" +
-                "<button type='button' class='BotaoAcao editar' title='Editar'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<path d='M12 20h9'></path>" +
-                "<path d='M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z'></path>" +
-                "</svg>" +
-                "</button>" +
-                "<button type='button' class='BotaoAcao excluir' title='Excluir'>" +
-                "<svg viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'>" +
-                "<polyline points='3 6 5 6 21 6'></polyline>" +
-                "<path d='M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6'></path>" +
-                "<path d='M10 11v6'></path>" +
-                "<path d='M14 11v6'></path>" +
-                "<path d='M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2'></path>" +
-                "</svg>" +
-                "</button>" +
-                "</div>" +
-                "</td>";
-
-            linha.querySelector('.editar').addEventListener('click', function () {
-                var dados = Object.assign({}, r);
-
-                dados.tipo = tipoAtual; dados.medidorInicial = r.inicial.replace(/\./g, ''); dados.medidorFinal = r.final.replace(/\./g, '');
-
-
-                ['data','chegada'].forEach(function (key) { if (dados[key] && /^\d{2}\/\d{2}\/\d{4}$/.test(dados[key])) dados[key] = dados[key].split('/').reverse().join('-'); });
-                sessionStorage.setItem('ouros-editor-registro', JSON.stringify(dados));
-                abrirFormulario('registro-novo.jsp?acao=editar');
-            });
-            corpoTabela.appendChild(linha);
-        });
-
-        var contagem = document.getElementById("contagemRegistros");
-        var rotulo = tipoAtual === "Agua" ? "água" : "energia";
-        contagem.textContent = "mostrando 1 a " + lista.length + " de 25 registros de " + rotulo;
-    }
-
-    document.getElementById("buscaRegistro").addEventListener("input", function (e) {
-        var termo = e.target.value.toLowerCase();
-        var filtrados = listaAtual().filter(function (r) {
-            return r.granja.toLowerCase().includes(termo) || r.lote.toLowerCase().includes(termo);
-        });
-        renderizarRegistros(filtrados);
-    });
-
-    // Alterna entre Água e Energia
-    document.querySelectorAll(".AlternadorItem").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            document.querySelectorAll(".AlternadorItem").forEach(function (b) {
-                b.classList.remove("ativo");
-            });
-            botao.classList.add("ativo");
-            tipoAtual = botao.getAttribute("data-tipo");
-            document.getElementById("buscaRegistro").value = "";
-            renderizarRegistros(listaAtual());
-        });
-    });
-
-    // ================== CONTROLE DE PÁGINAS (visual, tabela fictícia não muda) ==================
-    var botoesPagina = document.querySelectorAll("#paginacao button[data-pagina]");
+(function () {
+    var corpoTabela = document.getElementById("tabela-registros");
+    var busca = document.getElementById("buscaRegistro");
+    var filtroLote = document.getElementById("filtroLote");
+    var ordenarPor = document.getElementById("ordenarPor");
+    var tituloConsumo = document.getElementById("tituloConsumo");
+    var contagem = document.getElementById("contagemRegistros");
+    var paginacao = document.getElementById("paginacao");
     var botaoAnterior = document.getElementById("botaoAnterior");
     var botaoProximo = document.getElementById("botaoProximo");
-    var totalPaginas = botoesPagina.length;
+    var botoesTipo = Array.from(document.querySelectorAll(".AlternadorItem"));
+    var linhasOriginais = Array.from(corpoTabela.querySelectorAll("tr"));
+    var comparador = new Intl.Collator("pt-BR", { sensitivity: "base", numeric: true });
+    var tipoAtual = "Agua";
+    var paginaAtual = 1;
+    var itensPorPagina = 5;
 
-    function marcarPaginaAtiva(numeroPagina) {
-        botoesPagina.forEach(function (botao) {
-            var pagina = parseInt(botao.getAttribute("data-pagina"), 10);
-            botao.classList.toggle("ativo", pagina === numeroPagina);
+    function preencherLotes() {
+        var lotes = Array.from(new Set(linhasOriginais
+            .map(function (linha) { return linha.cells[0] ? linha.cells[0].textContent.trim() : ""; })
+            .filter(Boolean)))
+            .sort(function (a, b) { return comparador.compare(a, b); });
+
+        lotes.forEach(function (lote) {
+            var opcao = document.createElement("option");
+            opcao.value = lote;
+            opcao.textContent = lote;
+            filtroLote.appendChild(opcao);
         });
-        botaoAnterior.disabled = numeroPagina === 1;
-        botaoProximo.disabled = numeroPagina === totalPaginas;
     }
 
-    botoesPagina.forEach(function (botao) {
+    function obterRegistrosFiltrados() {
+        var termo = busca.value.trim().toLocaleLowerCase("pt-BR");
+        var loteSelecionado = filtroLote.value;
+        var colunaOrdenacao = ordenarPor.value === "consumo" ? 4 : 1;
+
+        return linhasOriginais.filter(function (linha) {
+            var texto = linha.textContent.toLocaleLowerCase("pt-BR");
+            var lote = linha.cells[0] ? linha.cells[0].textContent.trim() : "";
+            return linha.dataset.tipo === tipoAtual && texto.includes(termo) && (!loteSelecionado || lote === loteSelecionado);
+        }).sort(function (linhaA, linhaB) {
+            var valorA = linhaA.cells[colunaOrdenacao].textContent.trim();
+            var valorB = linhaB.cells[colunaOrdenacao].textContent.trim();
+            if (colunaOrdenacao === 4) {
+                return (parseFloat(valorA.replace(",", ".")) || 0) - (parseFloat(valorB.replace(",", ".")) || 0);
+            }
+            return comparador.compare(valorA, valorB);
+        });
+    }
+
+    function atualizarPaginacao(totalPaginas) {
+        paginacao.querySelectorAll("button[data-pagina]").forEach(function (botao) { botao.remove(); });
+        for (var pagina = 1; pagina <= totalPaginas; pagina += 1) {
+            var botao = document.createElement("button");
+            botao.type = "button";
+            botao.textContent = pagina;
+            botao.dataset.pagina = pagina;
+            botao.setAttribute("aria-label", "Página " + pagina);
+            if (pagina === paginaAtual) {
+                botao.className = "ativo";
+                botao.setAttribute("aria-current", "page");
+            }
+            botao.addEventListener("click", function (evento) {
+                paginaAtual = Number(evento.currentTarget.dataset.pagina);
+                renderizarTabela();
+            });
+            paginacao.insertBefore(botao, botaoProximo);
+        }
+        botaoAnterior.disabled = totalPaginas === 0 || paginaAtual === 1;
+        botaoProximo.disabled = totalPaginas === 0 || paginaAtual === totalPaginas;
+    }
+
+    function renderizarTabela() {
+        var registros = obterRegistrosFiltrados();
+        var registrosDoTipo = linhasOriginais.filter(function (linha) { return linha.dataset.tipo === tipoAtual; });
+        var totalPaginas = Math.ceil(registros.length / itensPorPagina);
+        paginaAtual = Math.min(paginaAtual, Math.max(1, totalPaginas));
+        var inicio = (paginaAtual - 1) * itensPorPagina;
+        var fim = Math.min(inicio + itensPorPagina, registros.length);
+        var fragmento = document.createDocumentFragment();
+        var unidade = tipoAtual === "Agua" ? "litros" : "kWh";
+        tituloConsumo.textContent = "Consumo (" + unidade + ")";
+
+        if (registros.length === 0) {
+            var linhaVazia = document.createElement("tr");
+            linhaVazia.className = "TabelaVazia";
+            var celulaVazia = document.createElement("td");
+            celulaVazia.colSpan = 5;
+            celulaVazia.textContent = registrosDoTipo.length === 0
+                ? "Nenhum registro de " + (tipoAtual === "Agua" ? "água" : "energia") + " carregado."
+                : "Nenhum registro encontrado para estes filtros.";
+            linhaVazia.appendChild(celulaVazia);
+            fragmento.appendChild(linhaVazia);
+            contagem.textContent = celulaVazia.textContent;
+        } else {
+            registros.slice(inicio, fim).forEach(function (linha) { fragmento.appendChild(linha); });
+            contagem.textContent = "Mostrando " + (inicio + 1) + " a " + fim + " de " + registros.length + " registros de " + (tipoAtual === "Agua" ? "água" : "energia") + " carregados";
+        }
+
+        corpoTabela.replaceChildren(fragmento);
+        atualizarPaginacao(totalPaginas);
+    }
+
+    botoesTipo.forEach(function (botao) {
         botao.addEventListener("click", function () {
-            marcarPaginaAtiva(parseInt(botao.getAttribute("data-pagina"), 10));
+            tipoAtual = botao.dataset.tipo;
+            botoesTipo.forEach(function (outroBotao) {
+                var ativo = outroBotao === botao;
+                outroBotao.classList.toggle("ativo", ativo);
+                outroBotao.setAttribute("aria-pressed", String(ativo));
+            });
+            paginaAtual = 1;
+            renderizarTabela();
         });
     });
-
+    busca.addEventListener("input", function () { paginaAtual = 1; renderizarTabela(); });
+    filtroLote.addEventListener("change", function () { paginaAtual = 1; renderizarTabela(); });
+    ordenarPor.addEventListener("change", function () { paginaAtual = 1; renderizarTabela(); });
     botaoAnterior.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina > 1) marcarPaginaAtiva(pagina - 1);
+        if (paginaAtual > 1) { paginaAtual -= 1; renderizarTabela(); }
     });
-
     botaoProximo.addEventListener("click", function () {
-        var atual = document.querySelector("#paginacao button.ativo");
-        var pagina = parseInt(atual.getAttribute("data-pagina"), 10);
-        if (pagina < totalPaginas) marcarPaginaAtiva(pagina + 1);
+        var totalPaginas = Math.ceil(obterRegistrosFiltrados().length / itensPorPagina);
+        if (paginaAtual < totalPaginas) { paginaAtual += 1; renderizarTabela(); }
     });
 
-    marcarPaginaAtiva(1);
-    renderizarRegistros(listaAtual());
+    preencherLotes();
+    renderizarTabela();
+})();
 </script>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de registros" class="FormularioFrame"></iframe></dialog>
