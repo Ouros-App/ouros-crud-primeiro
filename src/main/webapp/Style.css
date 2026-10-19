@@ -1313,6 +1313,16 @@ body {
     font-size:12px;
     line-height:1.5
 }
+.EditorRegistroTipoAjuda {
+    margin:-4px 0 14px;
+    padding:10px 12px;
+    border-left:3px solid #648e7e;
+    border-radius:5px;
+    background:#f0f7f3;
+    color:#355b4c;
+    font-size:12px;
+    line-height:1.5
+}
 .EditorCampo label,.EditorLabel {
     font-size:12px;
     line-height:1.4;
