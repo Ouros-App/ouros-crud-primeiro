@@ -1400,6 +1400,10 @@ body {
 }
 .EditorAviso {
     margin-top:16px;
+    padding:12px 14px;
+    border:1px solid #efd1c0;
+    border-radius:8px;
+    background:#fff7f2;
     font-size:12px;
     line-height:1.5;
     color:#702e14
