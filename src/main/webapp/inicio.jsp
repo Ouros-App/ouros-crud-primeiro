@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Início</title>
-    <link rel="stylesheet" href="Style.css?v=4">
+    <link rel="stylesheet" href="Style.css?v=5">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
@@ -50,7 +50,7 @@
         </a>
     </aside>
 
-    <div class="Conteudo">
+    <div class="Conteudo ConteudoInicio">
 
         <div class="BannerInicio">
             <h2>Olá, UserVera</h2>
@@ -107,7 +107,7 @@
 
             <div class="Painel">
                 <div class="tabela">
-                    <table>
+                    <table aria-describedby="lotes-recentes-contagem">
                         <thead>
                         <tr>
                             <th>Lote</th>
@@ -126,16 +126,11 @@
                 </div>
 
                 <div class="RodapeTabela">
-                    <span class="Contagem">mostrando 1 a 5 de 25 lotes</span>
+                    <span class="Contagem InicioContagem" id="lotes-recentes-contagem" aria-live="polite" aria-atomic="true"></span>
 
-                    <div class="Paginacao" id="paginacao">
-                        <button type="button" class="seta" id="paginaAnterior">&#9664;</button>
-                        <button type="button" class="ativo" data-pagina="1">1</button>
-                        <button type="button" data-pagina="2">2</button>
-                        <button type="button" data-pagina="3">3</button>
-                        <button type="button" data-pagina="4">4</button>
-                        <button type="button" data-pagina="5">5</button>
-                        <button type="button" class="seta" id="proximaPagina">&#9654;</button>
+                    <div class="Paginacao InicioPaginacao" id="paginacao" role="group" aria-label="Paginação de lotes recentes">
+                        <button type="button" class="seta" id="paginaAnterior" aria-label="Página anterior" disabled>&#9664;</button>
+                        <button type="button" class="seta" id="proximaPagina" aria-label="Próxima página" disabled>&#9654;</button>
                     </div>
                 </div>
             </div>
@@ -146,7 +141,8 @@
 </div>
 
 <script>
-    // Exemplo de dados - substitua pela chamada real ao backend
+(function () {
+    // Dados de exemplo; a paginação acompanha a quantidade efetivamente disponível.
     var lotesRecentes = [
         { lote: "#14", granja: "Granja sedentária", entregues: "5000", recebidas: "4.980", chegada: "05/09/2026", ganho: "6,4 kg", status: "recebido" },
         { lote: "#13", granja: "Granja Ouro Branco", entregues: "4000", recebidas: "---", chegada: "---", ganho: "---", status: "em-processo" },
@@ -154,42 +150,108 @@
         { lote: "#11", granja: "Sonho diamante negro", entregues: "1200", recebidas: "---", chegada: "---", ganho: "---", status: "em-processo" },
         { lote: "#10", granja: "Granja preguiça", entregues: "10.000", recebidas: "9.000", chegada: "05/09/2026", ganho: "21,4 kg", status: "recebido" }
     ];
-
     var statusInfo = {
         "recebido": { texto: "Recebido", classe: "positivo" },
         "em-processo": { texto: "Em processo", classe: "neutro" }
     };
+    var itensPorPagina = 5;
+    var paginaAtual = 1;
+    var corpoTabela = document.getElementById("tabela-lotes-recentes");
+    var contagem = document.getElementById("lotes-recentes-contagem");
+    var paginacao = document.getElementById("paginacao");
+    var botaoAnterior = document.getElementById("paginaAnterior");
+    var botaoProximo = document.getElementById("proximaPagina");
 
-    function renderizarLotesRecentes(lista) {
-        var corpoTabela = document.getElementById("tabela-lotes-recentes");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (l) {
-            var s = statusInfo[l.status];
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + l.lote + "</td>" +
-                "<td>" + l.granja + "</td>" +
-                "<td>" + l.entregues + "</td>" +
-                "<td>" + l.recebidas + "</td>" +
-                "<td>" + l.chegada + "</td>" +
-                "<td>" + l.ganho + "</td>" +
-                "<td><span class='Status " + s.classe + "'>" + s.texto + "</span></td>";
-            corpoTabela.appendChild(linha);
-        });
+    function criarCelula(valor) {
+        var celula = document.createElement("td");
+        celula.textContent = valor;
+        return celula;
     }
 
-    document.querySelectorAll("#paginacao button[data-pagina]").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            document.querySelectorAll("#paginacao button[data-pagina]").forEach(function (b) {
-                b.classList.remove("ativo");
-            });
-            botao.classList.add("ativo");
-            // aqui entra a chamada para buscar a página correspondente no backend
+    function atualizarPaginacao(totalPaginas) {
+        paginacao.querySelectorAll("button[data-pagina]").forEach(function (botao) {
+            botao.remove();
         });
+
+        for (var pagina = 1; pagina <= totalPaginas; pagina += 1) {
+            var botao = document.createElement("button");
+            botao.type = "button";
+            botao.textContent = pagina;
+            botao.dataset.pagina = pagina;
+            botao.setAttribute("aria-label", "Página " + pagina);
+            if (pagina === paginaAtual) {
+                botao.className = "ativo";
+                botao.setAttribute("aria-current", "page");
+            }
+            botao.addEventListener("click", function (evento) {
+                paginaAtual = Number(evento.currentTarget.dataset.pagina);
+                renderizarLotesRecentes();
+            });
+            paginacao.insertBefore(botao, botaoProximo);
+        }
+
+        botaoAnterior.disabled = paginaAtual === 1 || totalPaginas === 0;
+        botaoProximo.disabled = paginaAtual === totalPaginas || totalPaginas === 0;
+    }
+
+    function renderizarLotesRecentes() {
+        var totalPaginas = Math.ceil(lotesRecentes.length / itensPorPagina);
+        paginaAtual = Math.min(paginaAtual, Math.max(1, totalPaginas));
+        var inicio = (paginaAtual - 1) * itensPorPagina;
+        var fim = Math.min(inicio + itensPorPagina, lotesRecentes.length);
+        var fragmento = document.createDocumentFragment();
+
+        if (lotesRecentes.length === 0) {
+            var linhaVazia = document.createElement("tr");
+            linhaVazia.className = "TabelaVazia";
+            var celulaVazia = document.createElement("td");
+            celulaVazia.colSpan = 7;
+            celulaVazia.textContent = "Nenhum lote recente disponível.";
+            linhaVazia.appendChild(celulaVazia);
+            fragmento.appendChild(linhaVazia);
+            contagem.textContent = "Nenhum lote recente disponível.";
+        } else {
+            lotesRecentes.slice(inicio, fim).forEach(function (lote) {
+                var linha = document.createElement("tr");
+                var informacoes = statusInfo[lote.status] || { texto: "Status indisponível", classe: "neutro" };
+                linha.appendChild(criarCelula(lote.lote));
+                linha.appendChild(criarCelula(lote.granja));
+                linha.appendChild(criarCelula(lote.entregues));
+                linha.appendChild(criarCelula(lote.recebidas));
+                linha.appendChild(criarCelula(lote.chegada));
+                linha.appendChild(criarCelula(lote.ganho));
+
+                var celulaStatus = document.createElement("td");
+                var status = document.createElement("span");
+                status.className = "Status " + informacoes.classe;
+                status.textContent = informacoes.texto;
+                celulaStatus.appendChild(status);
+                linha.appendChild(celulaStatus);
+                fragmento.appendChild(linha);
+            });
+            contagem.textContent = "Mostrando " + (inicio + 1) + " a " + fim + " de " + lotesRecentes.length + " lotes";
+        }
+
+        corpoTabela.replaceChildren(fragmento);
+        atualizarPaginacao(totalPaginas);
+    }
+
+    botaoAnterior.addEventListener("click", function () {
+        if (paginaAtual > 1) {
+            paginaAtual -= 1;
+            renderizarLotesRecentes();
+        }
+    });
+    botaoProximo.addEventListener("click", function () {
+        var totalPaginas = Math.ceil(lotesRecentes.length / itensPorPagina);
+        if (paginaAtual < totalPaginas) {
+            paginaAtual += 1;
+            renderizarLotesRecentes();
+        }
     });
 
-    renderizarLotesRecentes(lotesRecentes);
+    renderizarLotesRecentes();
+})();
 </script>
 
 </body>
