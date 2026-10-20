@@ -1786,3 +1786,128 @@ body {
         gap: 10px;
     }
 }
+
+/* Confirmação de exclusão */
+.ExcluirPagina {
+    min-height: 100dvh;
+    margin: 0;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 12, 35, 0.65);
+    color: #111827;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+.ExcluirCartao {
+    width: 100%;
+    max-width: 340px;
+    padding: 32px 28px;
+    border-radius: 14px;
+    background: #fff;
+    text-align: center;
+}
+.ExcluirIlustracao {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e4e7f1;
+    color: #e51b23;
+}
+.ExcluirIlustracao svg {
+    width: 40px;
+    height: 40px;
+}
+.ExcluirCartao h1,
+.ExcluirCartao p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.ExcluirCartao h1 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.ExcluirCartao p {
+    margin: 0;
+}
+.ExcluirAcoes {
+    display: flex;
+    gap: 16px;
+    margin-top: 34px;
+}
+.ExcluirAcoes button {
+    flex: 1;
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.ExcluirCancelar {
+    color: #111827;
+    background: #e4e7f1;
+    border-color: #d9ddea !important;
+}
+.ExcluirConfirmar {
+    color: #fff;
+    background: #e51b23;
+}
+.ExcluirConfirmar:hover:not(:disabled) {
+    background: #c8141c;
+}
+.ExcluirCancelar:hover {
+    background: #d6dae6;
+}
+.ExcluirConfirmar svg {
+    width: 18px;
+    height: 18px;
+}
+.ExcluirAcoes button:focus-visible {
+    outline: 3px solid #635c93;
+    outline-offset: 3px;
+}
+.ExcluirConfirmar:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+.ExcluirCartao .ExcluirResultado {
+    margin-top: 18px;
+    padding: 10px 12px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #85232a;
+    font-size: 12px;
+    text-align: left;
+}
+.ExcluirEmModal {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+}
+.ExcluirEmModal .ExcluirCartao {
+    max-width: none;
+}
+@media (max-width: 480px) {
+    .ExcluirPagina {
+        padding: 16px;
+    }
+    .ExcluirCartao {
+        padding: 28px 20px;
+    }
+    .ExcluirAcoes {
+        gap: 10px;
+        margin-top: 24px;
+    }
+}
