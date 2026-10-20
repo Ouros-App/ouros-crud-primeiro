@@ -1111,15 +1111,15 @@ a {
 /* Seção do ranking */
 
 .ranking {
-    padding: 32px 0 48px;
+    padding: 32px 0 120px;
     background: #faf7ec;
 }
 
 .ranking-grid {
     display: grid;
-    width: 85%;
+    width: 96%;
     grid-template-columns: minmax(0, 1.34fr) minmax(250px, 0.86fr);
-    align-items: center;
+    align-items: stretch;
     gap: clamp(28px, 6vw, 68px);
 }
 
@@ -1131,9 +1131,10 @@ a {
 
 .ranking-titulo-linha {
     display: block;
-    width: 70px;
-    height: 2px;
+    width: 110px;
+    height: 4px;
     margin-bottom: 8px;
+    border-radius: 999px;
     background: #0e0c23;
 }
 
@@ -1142,13 +1143,24 @@ a {
     color: #0e0c23;
     font-size: clamp(28px, 3.5vw, 50px);
     font-weight: 900;
+    -webkit-text-stroke: 0.75px currentColor;
     line-height: 1.05;
     text-transform: uppercase;
+}
+.ranking-subtitulo{
+    margin: 0;
+    line-height: normal;
+    color: #000;
+    font-family: Poppins;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 }
 
 .ranking-podio {
     display: block;
-    width: 100%;
+    width: 95%;
     height: auto;
     object-fit: contain;
     margin-top: 48px;
@@ -1158,16 +1170,20 @@ a {
 
 .ranking-beneficios {
     display: grid;
-    gap: 24px;
+    gap: 32px;
+    width: min(90%, 531px);
+    justify-self: end;
     min-width: 0;
-    min-height: 400px;
-    margin: 0;
-    padding: 28px;
+    min-height: 0;
+    align-self: stretch;
+    margin: clamp(69px, calc(7.35vw + 10px), 115px) 0 0;
+    margin-right: 16px;
+    padding: 48px 36px;
     list-style: none;
     border: 1px solid #f0e5bd;
     border-radius: 20px;
     background: #fffef5;
-    box-shadow: 0 10px 30px rgba(185, 145, 42, 0.14);
+    box-shadow: 0 0 42px rgba(221, 181, 61, 0.22), 0 10px 30px rgba(185, 145, 42, 0.14);
     transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
@@ -1190,9 +1206,9 @@ a {
 
 .ranking-beneficio-icone {
     display: grid;
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
+    flex: 0 0 58px;
+    width: 58px;
+    height: 58px;
     place-items: center;
     border: 1px solid #eedda8;
     border-radius: 50%;
@@ -1201,15 +1217,15 @@ a {
 
 .ranking-beneficio-icone img {
     display: block;
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
 }
 
 .ranking-beneficio p {
     margin: 0;
     color: #211b3c;
-    font-size: clamp(13px, 1.3vw, 18px);
+    font-size: clamp(13px, 1.3vw, 17px);
     line-height: 1.4;
 }
 
@@ -1277,6 +1293,16 @@ a {
     max-width: 620px;
     font-size: 16px;
     line-height: 1.5;
+}
+
+.calculo-linha {
+    white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+    .calculo-linha {
+        white-space: normal;
+    }
 }
 
 .calculo-formulas {
@@ -1943,8 +1969,17 @@ a {
     }
 
     .ranking-beneficios {
+        min-height: 0;
+        align-self: stretch;
+        justify-self: stretch;
+        width: 100%;
+        margin: 0;
         gap: 12px;
         padding: 20px 16px;
+    }
+
+    .ranking-beneficio-quebra {
+        display: none;
     }
 
     .ranking-beneficio {
@@ -1958,8 +1993,8 @@ a {
     }
 
     .ranking-beneficio-icone img {
-        width: 19px;
-        height: 19px;
+        width: 23px;
+        height: 23px;
     }
 
     .ranking-calculo {
@@ -2212,8 +2247,8 @@ a {
     }
 
     .ranking-beneficio-icone img {
-        width: 22px;
-        height: 22px;
+        width: 26px;
+        height: 26px;
     }
 
     .ranking-calculo {

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="${pageContext.request.contextPath}/landing/">
     <title>Ouros | Eficiência e Sustentabilidade</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,25 +188,26 @@
             <div class="ranking-apresentacao">
                 <span class="ranking-titulo-linha" aria-hidden="true"></span>
                 <h2 class="ranking-titulo" id="ranking-titulo">A Liderança em<br>Sustentabilidade</h2>
-                <img class="ranking-podio" src="../assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
+                <p class="ranking-subtitulo">Utilize rankings para gerenciar seus integrados e ter uma melhor visualização de <br>seus gastos. Cada estado brasileiro possui seu próprio ranking.</p>
+                <img class="ranking-podio" src="../assets/ligas-alta-resolucao.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
             </div>
 
             <ul class="ranking-beneficios" aria-label="Benefícios do ranking de sustentabilidade">
                 <li class="ranking-beneficio">
                     <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-olho.svg" alt=""></span>
-                    <p>Visualize a eficiência real de cada fornecedor, sem estimar gastos indiretos.</p>
+                    <p>Visualize a eficiência real de cada<br class="ranking-beneficio-quebra"> fornecedor, sem estimar gastos indiretos.</p>
                 </li>
                 <li class="ranking-beneficio">
                     <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-lupa.svg" alt=""></span>
-                    <p>Identifique quem gasta mais e traz maior prejuízo ambiental.</p>
+                    <p>Identifique quem gasta mais e traz maior<br class="ranking-beneficio-quebra"> prejuízo ambiental.</p>
                 </li>
                 <li class="ranking-beneficio">
                     <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-dados.svg" alt=""></span>
-                    <p>Priorize decisões de compra com base em dados primários.</p>
+                    <p>Priorize decisões de compra com base<br class="ranking-beneficio-quebra"> em dados primários.</p>
                 </li>
                 <li class="ranking-beneficio">
                     <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-trofeu.svg" alt=""></span>
-                    <p>Reconheça publicamente os integrados mais eficientes.</p>
+                    <p>Reconheça publicamente os integrados<br class="ranking-beneficio-quebra"> mais eficientes.</p>
                 </li>
             </ul>
 
@@ -217,7 +219,13 @@
                     <span class="calculo-titulo-divisor" aria-hidden="true"></span>
                 </div>
                 <div class="calculo-explicacao">
-                    <p>O produtor informa a leitura inicial e final do hidrômetro, o preço por metro cúbico de água e o preço por kWh do período. O sistema converte isso em intensidade de consumo por cabeça entregue — a mesma métrica para todos, independentemente do tamanho da propriedade.</p>
+                    <p>
+                        <span class="calculo-linha">O produtor informa a leitura inicial e final do hidrômetro, o preço</span><br class="desktop-break">
+                        <span class="calculo-linha">por metro cúbico de água e o preço por kWh do período. O</span><br class="desktop-break">
+                        <span class="calculo-linha">sistema converte isso em intensidade de consumo por cabeça</span><br class="desktop-break">
+                        <span class="calculo-linha">entregue — a mesma métrica para todos, independentemente</span><br class="desktop-break">
+                        <span class="calculo-linha">do tamanho da propriedade.</span>
+                    </p>
                 </div>
                 <div class="calculo-formulas">
                     <div class="formula">
