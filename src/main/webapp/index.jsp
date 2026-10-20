@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css?v=137">
+    <link rel="stylesheet" href="landing.css">
     <link rel="icon" href="assets/Asa-icon.png">
 </head>
 <body>
@@ -51,13 +51,13 @@
             <div class="hero-visual">
                 <img src="assets/linhaGold.svg" class="linha-gold" alt="" aria-hidden="true">
                 <div class="hero-composicao" role="img" aria-label="Celular OUROS com asa dourada">
-                    <img src="assets/asa-hero.png?v=1" class="hero-asa" alt="" aria-hidden="true">
-                    <img src="assets/celular-ouros.png?v=2" class="hero-celular" alt="" aria-hidden="true">
+                    <img src="assets/asa-hero.png" class="hero-asa" alt="" aria-hidden="true">
+                    <img src="assets/celular-ouros.png" class="hero-celular" alt="" aria-hidden="true">
                 </div>
             </div>
 
         </div>
-        <div class="hero-wave" aria-hidden="true"><img src="assets/onda.svg?v=5" alt=""></div>
+        <div class="hero-wave" aria-hidden="true"><img src="assets/onda.svg" alt=""></div>
     </section>
 
     <section class="part2" id="desafios" aria-labelledby="desafios-title">
@@ -381,7 +381,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js?v=12" defer></script>
+    <script src="landing.js" defer></script>
 </body>
 
 </html>
