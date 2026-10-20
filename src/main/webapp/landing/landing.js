@@ -83,12 +83,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const funcionamentoVisual = document.getElementById('funcionamentoVisual');
     const funcionamentoViews = {
         empresa: [
-            { src: 'assets/funcionamento-notebook-figma.png', alt: 'Painel da plataforma exibido em um notebook' },
+            { src: '../assets/funcionamento-notebook-figma.png', alt: 'Painel da plataforma exibido em um notebook' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ],
         integrado: [
-            { src: 'assets/funcionamento-integrado-figma.png', alt: 'Tela de cadastro da plataforma em um celular' },
+            { src: '../assets/funcionamento-integrado-figma.png', alt: 'Tela de cadastro da plataforma em um celular' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ]
