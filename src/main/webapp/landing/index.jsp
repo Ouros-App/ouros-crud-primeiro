@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css">
-    <link rel="icon" href="../assets/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/landing/landing.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
 </head>
 <body>
     <header id="header">
-        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="../assets/Ouros.svg" alt="Ouros"></a>
+        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros"></a>
 
         <nav id="navegacao" aria-label="Navegação principal">
             <a href="#inicio">Início</a>
@@ -22,10 +22,10 @@
             <a href="#funcionamento">Como funciona</a>
             <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
-            <a class="sobre" href="sobre.jsp">Sobre nós</a>
+            <a class="sobre" href="${pageContext.request.contextPath}/landing/sobre.jsp">Sobre nós</a>
         </nav>
 
-        <div class="acoes"><a class="entrar" href="../login.jsp">Entrar</a><a class="btcadastro" href="../Cadastro.jsp">Cadastro</a></div>
+        <div class="acoes"><a class="entrar" href="${pageContext.request.contextPath}/login.jsp">Entrar</a><a class="btcadastro" href="${pageContext.request.contextPath}/Cadastro.jsp">Cadastro</a></div>
         <button type="button" class="menu-mobile" id="menuMobile" aria-label="Abrir menu" aria-controls="navegacao" aria-expanded="false"><span></span><span></span><span></span></button>
     </header>
 
@@ -48,11 +48,11 @@
             </div>
 
             <div class="hero-visual">
-                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><img src="../assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
+                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><img src="${pageContext.request.contextPath}/assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
             </div>
 
         </div>
-        <div class="hero-wave" aria-hidden="true"><img src="../assets/onda.svg" alt=""></div>
+        <div class="hero-wave" aria-hidden="true"><img src="${pageContext.request.contextPath}/assets/onda.svg" alt=""></div>
     </section>
 
     <section class="part2" id="desafios" aria-labelledby="desafios-title">
@@ -60,52 +60,51 @@
             <h2 class="part2Title" id="desafios-title"><span>DESAFIOS</span><small>invisíveis na sua rede de produtores<br> integrados</small></h2>
 
             <div class="cards">
-                <article class="card card-1"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
-                <article class="card card-2"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
-                <article class="card card-3"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
-                <article class="card card-4"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
+                <article class="card card-1"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
+                <article class="card card-2"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
+                <article class="card card-3"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
+                <article class="card card-4"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
             </div>
 
         </div>
     </section>
 
-    <!-- FUNCIONAMENTO -->
-    <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
-        <div class="circulo funcionamento-brilho" aria-hidden="true"></div>
-        <img class="funcionamento-detalhes" src="../assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
+    <!-- PASSO A PASSO -->
+    <section class="funcionamento" id="funcionamento" data-perfil="empresa" aria-labelledby="funcionamento-titulo">
+        <img class="funcionamento-detalhes" src="${pageContext.request.contextPath}/assets/funcionamento-detalhes-passo-a-passo.svg" alt="" aria-hidden="true">
         <div class="landing-container">
-            <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
+            <div class="funcionamento-cabecalho">
+                <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>PASSO A PASSO</h2>
+                <div class="perfil-opcoes" role="group" aria-label="Perfil de uso">
+                    <button class="perfil-opcao selecionado" type="button" data-perfil="empresa" aria-pressed="true">Empresa</button>
+                    <button class="perfil-opcao" type="button" data-perfil="integrado" aria-pressed="false">Integrado</button>
+                </div>
+            </div>
             <div class="funcionamento-grid">
-                <div class="funcionamento-visual" id="funcionamentoVisual" aria-live="polite">
-                    <img id="funcionamentoImagem" src="../assets/funcionamento-notebook-figma.png" alt="Painel da plataforma exibido em um notebook">
-                    <div class="funcionamento-duplo" id="funcionamentoDuplo" role="img" aria-label="Dois celulares com as telas de acompanhamento da plataforma" style="display: none;">
-                        <img class="funcionamento-duplo-base" src="../assets/funcionamento-duplo-base-figma.png" alt="">
-                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-4" src="../assets/funcionamento-tela-4-figma.png" alt="">
-                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-3" src="../assets/funcionamento-tela-3-figma.png" alt="">
+                <div class="funcionamento-visual" id="funcionamentoVisual" data-assets-base="${pageContext.request.contextPath}/assets/" aria-live="polite">
+                    <div class="circulo funcionamento-brilho" aria-hidden="true"></div>
+                    <div class="funcionamento-recorte" id="funcionamentoRecorte">
+                        <img id="funcionamentoImagem" src="${pageContext.request.contextPath}/assets/imagem-1-empresa-passo-a-passo.svg?v=5" alt="Tablet com painel da empresa e indicadores de produção">
                     </div>
                 </div>
                 <div class="funcionamento-conteudo">
-                    <div class="perfil-opcoes" role="group" aria-label="Perfil de uso">
-                        <button class="perfil-opcao selecionado" type="button" data-perfil="empresa" aria-pressed="true">Empresa</button>
-                        <button class="perfil-opcao" type="button" data-perfil="integrado" aria-pressed="false">Integrado</button>
-                    </div>
                     <ol class="funcionamento-passos">
                         <li class="passo-destaque" data-passo="1">
                             <button class="passo-botao" type="button" aria-label="Selecionar etapa 1" aria-pressed="true">1</button>
-                            <h3 data-empresa="Substitua estimativas por dados primários reais" data-integrado="Registre dados reais da sua propriedade">Substitua estimativas por dados primários reais</h3>
-                            <p data-empresa="Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural." data-integrado="Registre o consumo da sua propriedade e compartilhe dados reais com a empresa integradora.">Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural.</p>
+                            <h3 data-empresa="Substitua estimativas por dados primários reais" data-integrado="Registre seu consumo de forma simples e offline">Substitua estimativas por dados primários reais</h3>
+                            <p data-empresa="Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural." data-integrado="Lance seus dados de água e energia ao final de cada lote, mesmo sem sinal de internet na granja.">Substitua cálculos imprecisos por dados primários de consumo direto de cada propriedade rural.</p>
                             <span class="passo-ligacao" aria-hidden="true"></span>
                         </li>
                         <li data-passo="2">
                             <button class="passo-botao" type="button" aria-label="Selecionar etapa 2" aria-pressed="false">2</button>
-                            <h3 data-empresa="Identifique e priorize os fornecedores mais eficientes" data-integrado="Acompanhe seu desempenho entre os integrados">Identifique e priorize os fornecedores mais eficientes</h3>
-                            <p data-empresa="Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras." data-integrado="Consulte seus indicadores e veja oportunidades para melhorar seus resultados.">Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras.</p>
+                            <h3 data-empresa="Identifique e priorize os fornecedores mais eficientes" data-integrado="Acompanhe sua evolução em dashboards claros">Identifique e priorize os fornecedores mais eficientes</h3>
+                            <p data-empresa="Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras." data-integrado="Acompanhe a evolução da sua produção com gráficos claros e fáceis de entender.">Identifique instantaneamente os produtores mais eficientes para otimizar sua tomada de decisão e compras.</p>
                             <span class="passo-ligacao" aria-hidden="true"></span>
                         </li>
                         <li data-passo="3">
                             <button class="passo-botao" type="button" aria-label="Selecionar etapa 3" aria-pressed="false">3</button>
-                            <h3 data-empresa="Monitore suas metas ESG com precisão" data-integrado="Acompanhe metas de sustentabilidade">Monitore suas metas ESG com precisão</h3>
-                            <p data-empresa="Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores." data-integrado="Visualize o progresso dos indicadores ambientais e de consumo da sua granja.">Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores.</p>
+                            <h3 data-empresa="Monitore suas metas ESG com precisão" data-integrado="Suba no ranking e conquiste o nível Ouro">Monitore suas metas ESG com precisão</h3>
+                            <p data-empresa="Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores." data-integrado="Melhore sua eficiência, suba de nível (do Bronze ao Ouro) e ganhe destaque perante a empresa.">Acompanhe o progresso das suas metas ambientais com relatórios integrados de toda a sua rede de fornecedores.</p>
                         </li>
                     </ol>
                 </div>
@@ -121,7 +120,7 @@
             <div class="funcionalidades-faixa" data-slider="funcionalidades" tabindex="0" role="region" aria-label="Funcionalidades da plataforma; deslize horizontalmente para ver todos os cards">
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gerenciamento de lote</h3>
                         <p>Registre cada lote e acompanhe os dados da produção em um só lugar.</p>
@@ -129,7 +128,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Simulador de lucro</h3>
                         <p>Estime custos e receitas para entender a rentabilidade de cada lote.</p>
@@ -137,7 +136,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gestão de água e energia</h3>
                         <p>Acompanhe o consumo de água e energia e encontre oportunidades de economia.</p>
@@ -145,7 +144,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Ranking entre as granjas</h3>
                         <p>Compare o desempenho das granjas e reconheça quem adota práticas mais sustentáveis.</p>
@@ -162,7 +161,7 @@
 
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Metas de sustentabilidade</h3>
                         <p>Defina objetivos ambientais e acompanhe o avanço dos indicadores da sua granja.</p>
@@ -170,7 +169,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Dashboards intuitivos</h3>
                         <p>Visualize os principais indicadores em painéis claros para apoiar suas decisões.</p>
@@ -187,24 +186,24 @@
             <div class="ranking-apresentacao">
                 <span class="ranking-titulo-linha" aria-hidden="true"></span>
                 <h2 class="ranking-titulo" id="ranking-titulo">A Liderança em<br>Sustentabilidade</h2>
-                <img class="ranking-podio" src="../assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
+                <img class="ranking-podio" src="${pageContext.request.contextPath}/assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
             </div>
 
             <ul class="ranking-beneficios" aria-label="Benefícios do ranking de sustentabilidade">
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-olho.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-olho.svg" alt=""></span>
                     <p>Visualize a eficiência real de cada fornecedor, sem estimar gastos indiretos.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-lupa.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-lupa.svg" alt=""></span>
                     <p>Identifique quem gasta mais e traz maior prejuízo ambiental.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-dados.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-dados.svg" alt=""></span>
                     <p>Priorize decisões de compra com base em dados primários.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-trofeu.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-trofeu.svg" alt=""></span>
                     <p>Reconheça publicamente os integrados mais eficientes.</p>
                 </li>
             </ul>
@@ -342,7 +341,7 @@
 
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
                 <div class="circulo faq-ajuda-brilho" aria-hidden="true"></div>
-                <span class="faq-ajuda-icone" aria-hidden="true"><img src="../assets/balao-falas.png" alt=""></span>
+                <span class="faq-ajuda-icone" aria-hidden="true"><img src="${pageContext.request.contextPath}/assets/balao-falas.png" alt=""></span>
                 <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudá-lo, garantindo que você<br>tenha a melhor experiência possível</span></span>
             </aside>
         </div>
@@ -352,7 +351,7 @@
     <footer class="rodape" id="sobre">
         <div class="landing-container rodape-conteudo">
             <div class="rodape-marca">
-                <a class="rodape-logo" href="#inicio" aria-label="Ouros — voltar ao início"><img src="../assets/Ouros.svg" alt="Ouros"></a>
+                <a class="rodape-logo" href="#inicio" aria-label="Ouros — voltar ao início"><img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros"></a>
                 <p>Desempenho que gera reconhecimento.</p>
             </div>
             <nav class="rodape-coluna" aria-label="Links do produto">
@@ -363,7 +362,7 @@
             </nav>
             <nav class="rodape-coluna" aria-label="Links da empresa">
                 <h2>Empresa</h2>
-                <a href="sobre.jsp">Sobre nós</a>
+                <a href="${pageContext.request.contextPath}/landing/sobre.jsp">Sobre nós</a>
                 <a href="#faq">Perguntas frequentes</a>
                 <a href="#faq">Contato</a>
             </nav>
@@ -376,8 +375,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js" defer></script>
+    <script src="${pageContext.request.contextPath}/landing/landing.js" defer></script>
 </body>
 
 </html>
-
