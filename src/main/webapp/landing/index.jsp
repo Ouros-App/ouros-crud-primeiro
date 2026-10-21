@@ -117,7 +117,10 @@
 
     <section class="funcionalidades" id="funcionalidades" aria-labelledby="funcionalidades-titulo">
         <div class="landing-container">
-            <h2 class="secao-titulo" id="funcionalidades-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONALIDADES</h2>
+            <div class="funcionalidades-titulo">
+                <span class="secao-titulo-linha" aria-hidden="true"></span>
+                <h2 class="secao-titulo" id="funcionalidades-titulo">FUNCIONALIDADES</h2>
+            </div>
             <div class="funcionalidades-faixa" data-slider="funcionalidades" tabindex="0" role="region" aria-label="Funcionalidades da plataforma; deslize horizontalmente para ver todos os cards">
 
                 <article class="funcionalidade-card">
@@ -153,7 +156,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <div class="funcionalidade-imagem-sem-foto" aria-hidden="true"></div>
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-notificacoes.svg" alt="Ilustração da funcionalidade de notificações inteligentes" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Notificações inteligentes</h3>
                         <p>Receba alertas sobre indicadores e prazos importantes para agir no momento certo.</p>

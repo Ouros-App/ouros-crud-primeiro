@@ -1014,7 +1014,7 @@ a {
 /* Funcionalidades */
 
 .funcionalidades {
-    padding: 90px 0 60px;
+    padding: clamp(90px, 8.5vw, 123px) 0 60px;
     background: #faf7ec;
 }
 
@@ -1022,22 +1022,41 @@ a {
     width: 90%;
 }
 
+.funcionalidades-titulo {
+    position: relative;
+    left: calc(35px - max(5vw, calc((100vw - 1440px) / 2)));
+    width: 551px;
+    max-width: 100%;
+    font-size: 53px;
+}
+
 .funcionalidades .secao-titulo {
-    padding-left: 80px;
-    font-size: clamp(40px, 4vw, 64px);
+    width: 551px;
+    height: 81px;
+    max-width: 100%;
+    padding: 0;
+    color: var(--Color-4, #1C1A32);
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 53px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 104.5%;
 }
 
 .funcionalidades .secao-titulo-linha {
-    width: 145px;
-    margin-left: -80px;
-    margin-bottom: 16px;
+    width: 2.45em;
+    height: 3px;
+    margin-left: calc(50% - 4.86em);
+    margin-bottom: 20px;
     background: #0e0c23;
+    border-radius: 999px;
 }
 
 .funcionalidades-faixa {
     display: flex;
     gap: 16px;
-    margin-top: 34px;
+    margin-top: 74px;
     padding: 10px 0 20px;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
@@ -1055,15 +1074,16 @@ a {
 
 .funcionalidade-card {
     display: flex;
-    flex: 0 0 290px;
+    flex: 0 0 289px;
     flex-direction: column;
     min-width: 0;
-    min-height: 340px;
+    height: 340px;
     overflow: hidden;
     scroll-snap-align: start;
     border: 1px solid transparent;
     background: #f2f0ed;
     border-radius: 8px;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.25);
     transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
 }
 
@@ -1081,13 +1101,6 @@ a {
     width: 100%;
     height: 150px;
     object-fit: cover;
-}
-
-.funcionalidade-imagem-sem-foto {
-    flex: 0 0 150px;
-    width: 100%;
-    height: 150px;
-    background-color: #905d5d;
 }
 
 .funcionalidade-texto {
@@ -1935,6 +1948,13 @@ a {
     }
 
     .funcionalidades .secao-titulo {
+        width: auto;
+        height: auto;
+        font-size: clamp(38px, 5vw, 60px);
+    }
+
+    .funcionalidades-titulo {
+        width: 100%;
         font-size: clamp(38px, 5vw, 60px);
     }
 
@@ -2163,11 +2183,12 @@ a {
 
     .funcionalidades .secao-titulo {
         font-size: clamp(34px, 9vw, 46px);
-        padding-left: 32px;
+        width: auto;
+        height: auto;
     }
 
-    .funcionalidades .secao-titulo-linha {
-        margin-left: -32px;
+    .funcionalidades-titulo {
+        font-size: clamp(34px, 9vw, 46px);
     }
 
     .funcionalidades-faixa {
