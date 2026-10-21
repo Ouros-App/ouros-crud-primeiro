@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="landing.css">
-    <link rel="icon" href="../assets/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/landing/landing.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
 </head>
 <body>
     <header id="header">
-        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="../assets/Ouros.svg" alt="Ouros"></a>
+        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros"></a>
 
         <nav id="navegacao" aria-label="Navegação principal">
             <a href="#inicio">Início</a>
@@ -48,11 +48,11 @@
             </div>
 
             <div class="hero-visual">
-                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><img src="../assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
+                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><img src="${pageContext.request.contextPath}/assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
             </div>
 
         </div>
-        <div class="hero-wave" aria-hidden="true"><img src="../assets/onda.svg" alt=""></div>
+        <div class="hero-wave" aria-hidden="true"><img src="${pageContext.request.contextPath}/assets/onda.svg" alt=""></div>
     </section>
 
     <section class="part2" id="desafios" aria-labelledby="desafios-title">
@@ -60,10 +60,10 @@
             <h2 class="part2Title" id="desafios-title"><span>DESAFIOS</span><small>invisíveis na sua rede de produtores<br> integrados</small></h2>
 
             <div class="cards">
-                <article class="card card-1"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
-                <article class="card card-2"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
-                <article class="card card-3"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
-                <article class="card card-4"><img class="card-linha" src="../assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="../assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
+                <article class="card card-1"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Falta de controle preciso dos gastos da produção.</p><h3>GASTOS</h3></div></article>
+                <article class="card card-2"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Recursos desperdiçados sem acompanhamento.</p><h3>DESPERDÍCIO</h3></div></article>
+                <article class="card card-3"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-descendo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Decisões baseadas em estimativas pouco precisas.</p><h3>ESTIMATIVAS</h3></div></article>
+                <article class="card card-4"><img class="card-linha" src="${pageContext.request.contextPath}/assets/linhaGold.svg" alt="" aria-hidden="true"><img class="card-diagonal" src="${pageContext.request.contextPath}/assets/card-diagonal-subindo.svg" alt="" aria-hidden="true"><div class="card-content"><p>Processos manuais dificultam o acompanhamento.</p><h3>PAPEL</h3></div></article>
             </div>
 
         </div>
@@ -72,16 +72,16 @@
     <!-- FUNCIONAMENTO -->
     <section class="funcionamento" id="funcionamento" aria-labelledby="funcionamento-titulo">
         <div class="circulo funcionamento-brilho" aria-hidden="true"></div>
-        <img class="funcionamento-detalhes" src="../assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
+        <img class="funcionamento-detalhes" src="${pageContext.request.contextPath}/assets/funcionamento-detalhes.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FUNCIONAMENTO</h2>
             <div class="funcionamento-grid">
                 <div class="funcionamento-visual" id="funcionamentoVisual" aria-live="polite">
-                    <img id="funcionamentoImagem" src="../assets/funcionamento-notebook-figma.png" alt="Painel da plataforma exibido em um notebook">
+                    <img id="funcionamentoImagem" src="${pageContext.request.contextPath}/assets/funcionamento-notebook-figma.png" alt="Painel da plataforma exibido em um notebook">
                     <div class="funcionamento-duplo" id="funcionamentoDuplo" role="img" aria-label="Dois celulares com as telas de acompanhamento da plataforma" style="display: none;">
-                        <img class="funcionamento-duplo-base" src="../assets/funcionamento-duplo-base-figma.png" alt="">
-                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-4" src="../assets/funcionamento-tela-4-figma.png" alt="">
-                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-3" src="../assets/funcionamento-tela-3-figma.png" alt="">
+                        <img class="funcionamento-duplo-base" src="${pageContext.request.contextPath}/assets/funcionamento-duplo-base-figma.png" alt="">
+                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-4" src="${pageContext.request.contextPath}/assets/funcionamento-tela-4-figma.png" alt="">
+                        <img class="funcionamento-duplo-tela funcionamento-duplo-tela-3" src="${pageContext.request.contextPath}/assets/funcionamento-tela-3-figma.png" alt="">
                     </div>
                 </div>
                 <div class="funcionamento-conteudo">
@@ -121,7 +121,7 @@
             <div class="funcionalidades-faixa" data-slider="funcionalidades" tabindex="0" role="region" aria-label="Funcionalidades da plataforma; deslize horizontalmente para ver todos os cards">
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-lote-figma.png" alt="Pessoa registrando informações da granja em um tablet" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gerenciamento de lote</h3>
                         <p>Registre cada lote e acompanhe os dados da produção em um só lugar.</p>
@@ -129,7 +129,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-simulador-figma.png" alt="Calculadora e anotações usadas para simular custos" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Simulador de lucro</h3>
                         <p>Estime custos e receitas para entender a rentabilidade de cada lote.</p>
@@ -137,7 +137,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-agua-energia-figma.png" alt="Painéis solares e sistema de bombeamento de água em uma propriedade rural" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Gestão de água e energia</h3>
                         <p>Acompanhe o consumo de água e energia e encontre oportunidades de economia.</p>
@@ -145,7 +145,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-ranking-figma.png" alt="Degraus com estrelas douradas representando o ranking" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Ranking entre as granjas</h3>
                         <p>Compare o desempenho das granjas e reconheça quem adota práticas mais sustentáveis.</p>
@@ -162,7 +162,7 @@
 
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-metas-figma.png" alt="Mãos plantando uma muda como símbolo de sustentabilidade" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Metas de sustentabilidade</h3>
                         <p>Defina objetivos ambientais e acompanhe o avanço dos indicadores da sua granja.</p>
@@ -170,7 +170,7 @@
                 </article>
 
                 <article class="funcionalidade-card">
-                    <img src="../assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
+                    <img src="${pageContext.request.contextPath}/assets/funcionalidade-dashboard-figma.png" alt="Pessoa consultando um dashboard em um notebook" loading="lazy">
                     <div class="funcionalidade-texto">
                         <h3>Dashboards intuitivos</h3>
                         <p>Visualize os principais indicadores em painéis claros para apoiar suas decisões.</p>
@@ -187,24 +187,24 @@
             <div class="ranking-apresentacao">
                 <span class="ranking-titulo-linha" aria-hidden="true"></span>
                 <h2 class="ranking-titulo" id="ranking-titulo">A Liderança em<br>Sustentabilidade</h2>
-                <img class="ranking-podio" src="../assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
+                <img class="ranking-podio" src="${pageContext.request.contextPath}/assets/ligas.png" alt="Pódio de sustentabilidade com as categorias Ferro, Cobre, Bronze, Prata e Ouro" loading="lazy">
             </div>
 
             <ul class="ranking-beneficios" aria-label="Benefícios do ranking de sustentabilidade">
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-olho.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-olho.svg" alt=""></span>
                     <p>Visualize a eficiência real de cada fornecedor, sem estimar gastos indiretos.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-lupa.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-lupa.svg" alt=""></span>
                     <p>Identifique quem gasta mais e traz maior prejuízo ambiental.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-dados.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-dados.svg" alt=""></span>
                     <p>Priorize decisões de compra com base em dados primários.</p>
                 </li>
                 <li class="ranking-beneficio">
-                    <span class="ranking-beneficio-icone"><img src="../assets/ranking-icone-trofeu.svg" alt=""></span>
+                    <span class="ranking-beneficio-icone"><img src="${pageContext.request.contextPath}/assets/ranking-icone-trofeu.svg" alt=""></span>
                     <p>Reconheça publicamente os integrados mais eficientes.</p>
                 </li>
             </ul>
@@ -303,46 +303,49 @@
         <div class="circulo faq-brilho faq-brilho-1" aria-hidden="true"></div>
         <div class="circulo faq-brilho faq-brilho-2" aria-hidden="true"></div>
         <div class="circulo faq-brilho faq-brilho-3" aria-hidden="true"></div>
+        <div class="circulo faq-brilho faq-brilho-4" aria-hidden="true"></div>
+        <div class="circulo faq-brilho faq-brilho-5" aria-hidden="true"></div>
+        <div class="circulo faq-brilho faq-brilho-6" aria-hidden="true"></div>
         <div class="landing-container faq-container">
-            <h2 class="secao-titulo faq-titulo" id="faqTitulo"><span class="secao-titulo-linha" aria-hidden="true"></span>FAQ</h2>
+            <h2 class="secao-titulo faq-titulo" id="faqTitulo"><span class="secao-titulo-linha" aria-hidden="true"></span><span>PERGUNTAS<br>FREQUENTES</span></h2>
             <div class="faq-lista">
                 <article class="faq-item">
                     <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta1" id="faqPergunta1">O sistema funciona offline?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta1" role="region" aria-labelledby="faqPergunta1" hidden><p>O uso das funcionalidades depende de conexão com a plataforma. A disponibilidade de recursos offline deverá ser confirmada para a versão implantada.</p></div>
+                    <div class="faq-resposta" id="faqResposta1" role="region" aria-labelledby="faqPergunta1" hidden><p>Sim, o sistema funciona de forma offline, considerando as limitações de conectividade nas regiões rurais. Os dados informados pelo produtor ficam salvos no próprio celular e são sincronizados automaticamente assim que houver conexão disponível.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta2" id="faqPergunta2">Quem pode usar a plataforma?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta2" role="region" aria-labelledby="faqPergunta2" hidden><p>A plataforma foi pensada para empresas integradoras acompanharem sua rede e para produtores integrados registrarem e consultarem os dados da própria granja.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta2" id="faqPergunta2">Que tipo de suporte e recursos educativos o produtor encontra no app?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta2" role="region" aria-labelledby="faqPergunta2" hidden><p>O produtor conta com a biblioteca de eBooks Explorer, que reúne artigos e vídeos com dicas práticas sustentáveis. Ele também pode tirar dúvidas com o assistente virtual Midas, acessar o canal de consulta da equipe técnica e receber notificações com informações automáticas caso seja identificado um consumo elevado.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta3" id="faqPergunta3">Quais indicadores posso acompanhar?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta3" role="region" aria-labelledby="faqPergunta3" hidden><p>Consumo de água e energia, informações dos lotes, desempenho e indicadores de sustentabilidade da granja.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta3" id="faqPergunta3">Como funciona a automação de alertas de alto consumo?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta3" role="region" aria-labelledby="faqPergunta3" hidden><p>Quando o sistema detecta que uma propriedade apresentou um aumento incomum no consumo de água ou energia entre ciclos, ele envia notificações automáticas ao produtor com orientações técnicas e atalhos para a aba Explorer. Ao mesmo tempo, o painel de alertas da empresa sinaliza a anomalia para que a equipe de campo possa oferecer suporte técnico.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta4" id="faqPergunta4">Como funciona o ranking entre as granjas?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta4" role="region" aria-labelledby="faqPergunta4" hidden><p>O ranking compara indicadores de consumo e sustentabilidade para ajudar a visualizar o desempenho das propriedades participantes.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta4" id="faqPergunta4">O aplicativo conta com um chatbot ou assistente virtual para ajudar os usuários?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta4" role="region" aria-labelledby="faqPergunta4" hidden><p>Sim, o aplicativo possui um chatbot integrado chamado Midas. Para o produtor rural, ele responde a dúvidas rápidas sobre o uso do aplicativo, orienta sobre as funcionalidades e auxilia no registro de lançamentos do dia a dia. Para a empresa contratante, o Midas atua como um canal digital de consulta para fornecer informações sobre a situação geral e o desempenho no ranking de fornecedores.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta5" id="faqPergunta5">Como é calculado o preço do plano?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta5" role="region" aria-labelledby="faqPergunta5" hidden><p>A estimativa usa o valor fixo de R$ 3.500,00 mais R$ 5,00 por integrado ao mês. O plano semestral tem 5% de desconto e o anual, 10% sobre o valor do período.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta5" id="faqPergunta5">Como o sistema garante uma comparação justa entre granjas de portes e locais diferentes?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta5" role="region" aria-labelledby="faqPergunta5" hidden><p>A eficiência do produtor não é calculada pelo consumo bruto total, mas pela intensidade de uso de recursos (gestão de água e energia dividida pela quantidade de animais entregues). Além disso, os rankings são divididos por estado e organizados em quatro níveis evolutivos (Ferro, Bronze, Prata e Ouro), valorizando tanto os melhores resultados quanto a evolução no tempo.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta6" id="faqPergunta6">Quais períodos de contratação estão disponíveis?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta6" role="region" aria-labelledby="faqPergunta6" hidden><p>Há opções trimestral, semestral e anual. Use o simulador para estimar o investimento conforme o número de integrados.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta6" id="faqPergunta6">Como o aplicativo incentiva o engajamento do produtor rural no dia a dia?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta6" role="region" aria-labelledby="faqPergunta6" hidden><p>O engajamento é promovido por meio da gamificação e reconhecimento. À medida que melhora sua eficiência, o produtor avança nos níveis (Ferro, Bronze, Prata e Ouro) e pode ter preferência comercial na compra por parte da empresa parceira.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta7" id="faqPergunta7">Como solicito uma demonstração?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta7" role="region" aria-labelledby="faqPergunta7" hidden><p>Entre em contato com a equipe pelo bloco de ajuda abaixo para conversar sobre uma demonstração e conhecer a implantação.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta7" id="faqPergunta7">É possível exportar os dados e relatórios da propriedade?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta7" role="region" aria-labelledby="faqPergunta7" hidden><p>Sim. O produtor ou gestor da granja pode gerar e exportar relatórios consolidados em formato PDF a qualquer momento. Isso facilita a comparação de práticas sustentáveis, o acompanhamento de dados de consumo ou da gestão financeira interna da propriedade.</p></div>
                 </article>
                 <article class="faq-item">
-                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta8" id="faqPergunta8">Posso trocar de plano depois?<span class="faq-seta" aria-hidden="true"></span></button></h3>
-                    <div class="faq-resposta" id="faqResposta8" role="region" aria-labelledby="faqPergunta8" hidden><p>As condições de alteração dependem do contrato. A equipe poderá orientar qual opção atende melhor ao período de uso da sua operação.</p></div>
+                    <h3><button class="faq-pergunta" type="button" aria-expanded="false" aria-controls="faqResposta8" id="faqPergunta8">O que o aplicativo resolve para o agronegócio?<span class="faq-seta" aria-hidden="true"></span></button></h3>
+                    <div class="faq-resposta" id="faqResposta8" role="region" aria-labelledby="faqPergunta8" hidden><p>Ele resolve a falta de visibilidade sobre o uso indireto de recursos nas fazendas, incentivando o monitoramento contínuo e a redução do consumo de água e energia na cadeia de suprimentos.</p></div>
                 </article>
             </div>
 
             <aside class="faq-ajuda" aria-label="Ajuda e dúvidas">
                 <div class="circulo faq-ajuda-brilho" aria-hidden="true"></div>
-                <span class="faq-ajuda-icone" aria-hidden="true"><img src="../assets/balao-falas.png" alt=""></span>
+                <span class="faq-ajuda-icone" aria-hidden="true"><img src="${pageContext.request.contextPath}/assets/balao-falas.png" alt=""></span>
                 <span class="faq-ajuda-texto"><strong>Sua dúvida não está aqui?</strong><span>Nossa equipe terá o prazer de ajudá-lo, garantindo que você<br>tenha a melhor experiência possível</span></span>
             </aside>
         </div>
@@ -352,7 +355,7 @@
     <footer class="rodape" id="sobre">
         <div class="landing-container rodape-conteudo">
             <div class="rodape-marca">
-                <a class="rodape-logo" href="#inicio" aria-label="Ouros — voltar ao início"><img src="../assets/Ouros.svg" alt="Ouros"></a>
+                <a class="rodape-logo" href="#inicio" aria-label="Ouros — voltar ao início"><img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros"></a>
                 <p>Desempenho que gera reconhecimento.</p>
             </div>
             <nav class="rodape-coluna" aria-label="Links do produto">
@@ -376,7 +379,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="landing.js" defer></script>
+    <script src="${pageContext.request.contextPath}/landing/landing.js" defer></script>
 </body>
 
 </html>
