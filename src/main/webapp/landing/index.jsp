@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/landing/landing.css?v=2">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/landing/landing.css">
     <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
 </head>
 <body data-context-path="${pageContext.request.contextPath}">
@@ -256,7 +256,7 @@
 
                 <article class="plano-card">
                     <h3>Semestral</h3>
-                    <p>Ideal para quem quer experimentar nossos serviços.</p>
+                    <p>Ideal para quem busca acompanhar nossos serviços por mais tempo.</p>
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com <span class="plano-desconto-destaque">5%</span> de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
@@ -265,7 +265,7 @@
 
                 <article class="plano-card">
                     <h3>Anual</h3>
-                    <p>Ideal para quem quer experimentar nossos serviços.</p>
+                    <p>Ideal para quem quer aproveitar nossos serviços de forma contínua.</p>
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com <span class="plano-desconto-destaque">10%</span> de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
@@ -376,7 +376,7 @@
         <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
     </footer>
 
-    <script src="${pageContext.request.contextPath}/landing/landing.js?v=2" defer></script>
+    <script src="${pageContext.request.contextPath}/landing/landing.js" defer></script>
 </body>
 
 </html>
