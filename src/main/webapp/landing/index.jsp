@@ -251,7 +251,7 @@
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Trimestral">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Trimestral" data-meses="3" data-desconto="0" href="mailto:ouros.app@gmail.com?subject=Agendamento%20de%20planejamento%20-%20Trimestral">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
@@ -260,7 +260,7 @@
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com <span class="plano-desconto-destaque">5%</span> de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Semestral">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Semestral" data-meses="6" data-desconto="5" href="mailto:ouros.app@gmail.com?subject=Agendamento%20de%20planejamento%20-%20Semestral">Agendar planejamento</a>
                 </article>
 
                 <article class="plano-card">
@@ -269,7 +269,7 @@
                     <h4>Preço</h4>
                     <p class="plano-preco">R$ 3500,00 fixo + 5 reais por integrado, por mês. Com <span class="plano-desconto-destaque">10%</span> de desconto.</p>
                     <!-- Abre um rascunho de e-mail para agendar este plano. -->
-                    <a class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" href="mailto:sofia.20260263@institutojef.org.br?subject=Agendamento%20de%20planejamento%20-%20Anual">Agendar planejamento</a>
+                    <a class="plano-agendar" data-plano="Anual" data-meses="12" data-desconto="10" href="mailto:ouros.app@gmail.com?subject=Agendamento%20de%20planejamento%20-%20Anual">Agendar planejamento</a>
                 </article>
 
             </div>
