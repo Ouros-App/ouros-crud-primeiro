@@ -5,7 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | Ouros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="Style.css">
+    <style>
+        .LoginFormulario > .LoginGoogle {
+            width: min(490px, 100%);
+            max-width: 490px;
+            height: 56px;
+            flex: 0 0 56px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 861px) and (max-height: 820px) {
+            .LoginFormulario {
+                justify-content: flex-start;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .LoginFormulario > * {
+                flex-shrink: 0;
+            }
+
+            .LoginFormulario .LoginCabecalho {
+                margin-bottom: 22px;
+            }
+
+            .LoginFormulario > form .LoginCampoGrupo {
+                margin-bottom: 16px;
+            }
+
+            .LoginFormulario > form .LoginCampoGrupo:last-of-type {
+                margin-bottom: 14px;
+            }
+
+            .LoginFormulario .LoginSeparador {
+                margin: 14px auto 20px;
+            }
+
+            .LoginFormulario .LoginRodape {
+                margin-top: 12px;
+            }
+        }
+    </style>
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
 </head>
