@@ -4,7 +4,7 @@
     --sobre-gold: #cf9d23;
     --sobre-cream: #faf7ec;
     --sobre-ink: #17152b;
-    --sobre-header-clearance: clamp(82px, 5.35vw, 110px);
+    --sobre-header-clearance: 96px;
 }
 
 * {
@@ -29,16 +29,23 @@ a {
 }
 
 .sobre-header {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: 5;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    z-index: 1000;
     display: flex;
-    min-height: var(--sobre-header-clearance);
+    width: min(1278px, calc(100% - 160px));
+    height: 80px;
     align-items: center;
-    justify-content: space-between;
-    gap: clamp(12px, 2vw, 30px);
-    padding: 18px 4.2%;
+    justify-content: center;
+    gap: 86px;
+    padding: 0 14px;
+    border: 1px solid rgba(232, 232, 220, .18);
+    border-radius: 30px;
+    background: rgba(14, 12, 35, .50);
+    backdrop-filter: blur(16px);
     color: #fff;
+    transform: translateX(-50%);
 }
 
 .sobre-logo {
@@ -47,7 +54,7 @@ a {
 
 .sobre-logo img {
     display: block;
-    width: 150px;
+    width: 149px;
     height: auto;
 }
 
@@ -55,13 +62,13 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(12px, 1.7vw, 26px);
+    gap: 19px;
 }
 
 .sobre-nav a,
 .sobre-acoes a {
     color: #fff;
-    font-size: clamp(11px, 1vw, 14px);
+    font-size: 14px;
     white-space: nowrap;
 }
 
@@ -73,22 +80,49 @@ a {
 
 .sobre-nav .sobre-link-atual {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
 }
 
 .sobre-acoes {
     display: flex;
     flex: 0 0 auto;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+}
+
+.sobre-acoes .sobre-entrar {
+    font-size: 17px;
 }
 
 .sobre-acoes .sobre-cadastro {
-    padding: 7px 14px;
-    border-radius: 4px;
-    background: var(--sobre-gold);
+    display: inline-flex;
+    width: 117px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: #cb982d;
     color: var(--sobre-navy);
-    font-weight: 700;
+    font-size: 17px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
+}
+
+.sobre-acoes .sobre-cadastro:hover,
+.sobre-acoes .sobre-cadastro:focus-visible {
+    border-color: rgba(232, 232, 220, .68);
+    border-radius: 12px;
+    background: #0e0c23;
+    color: #fff;
+}
+
+.sobre-acoes .sobre-cadastro:focus-visible {
+    outline: 2px solid var(--sobre-gold);
+    outline-offset: 3px;
 }
 
 .sobre-menu {
@@ -537,17 +571,22 @@ a {
 
 @media (max-width: 760px) {
     :root {
-        --sobre-header-clearance: 68px;
+        --sobre-header-clearance: 76px;
     }
 
     .sobre-header {
-        min-height: 68px;
-        gap: 8px;
-        padding: 10px clamp(8px, 3.5vw, 16px);
+        top: 8px;
+        width: calc(100% - 20px);
+        height: 68px;
+        min-height: 0;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 0 12px;
+        border-radius: 22px;
     }
 
     .sobre-logo img {
-        width: clamp(72px, 22vw, 106px);
+        width: 100px;
     }
 
     .sobre-nav {
@@ -556,9 +595,9 @@ a {
 
     .sobre-nav.sobre-nav-aberta {
         position: absolute;
-        top: calc(100% - 1px);
-        right: 8px;
-        left: 8px;
+        top: 76px;
+        right: 5%;
+        left: 5%;
         display: flex;
         align-items: stretch;
         flex-direction: column;
@@ -571,20 +610,24 @@ a {
     }
 
     .sobre-nav a {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .sobre-acoes {
-        gap: clamp(6px, 2vw, 12px);
+        gap: 10px;
         margin-left: auto;
     }
 
     .sobre-acoes a {
-        font-size: clamp(9px, 2.7vw, 12px);
+        font-size: 13px;
     }
 
     .sobre-acoes .sobre-cadastro {
-        padding: 6px clamp(7px, 2vw, 11px);
+        width: auto;
+        height: 32px;
+        padding: 5px 9px;
+        font-size: 12px;
+        line-height: 20px;
     }
 
     .sobre-menu {
@@ -688,6 +731,49 @@ a {
         width: clamp(46px, 21vw, 78px);
         flex-basis: clamp(46px, 21vw, 78px);
         border-radius: 8px;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+    :root {
+        --sobre-header-clearance: 84px;
+    }
+
+    .sobre-header {
+        top: 12px;
+        width: calc(100% - 32px);
+        height: 72px;
+        gap: 10px;
+        padding: 0 12px;
+    }
+
+    .sobre-logo img {
+        width: 135px;
+    }
+
+    .sobre-nav {
+        flex: 1 1 auto;
+        gap: clamp(5px, .8vw, 9px);
+    }
+
+    .sobre-nav a {
+        font-size: clamp(10px, 1.15vw, 13px);
+    }
+
+    .sobre-acoes {
+        gap: 10px;
+    }
+
+    .sobre-acoes a {
+        font-size: 13px;
+    }
+
+    .sobre-acoes .sobre-cadastro {
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        line-height: 20px;
     }
 }
 

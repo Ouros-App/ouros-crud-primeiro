@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sobre.css?v=20261022-12">
+    <link rel="stylesheet" href="sobre.css?v=20261022-13">
     <link rel="icon" href="../assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
@@ -19,8 +19,10 @@
         </a>
         <nav class="sobre-nav" id="navegacaoSobre" aria-label="Navegação principal">
             <a href="index.jsp#inicio">Início</a>
+            <a href="index.jsp#desafios">Desafios</a>
+            <a href="index.jsp#funcionamento">Passo a Passo</a>
             <a href="index.jsp#funcionalidades">Funcionalidades</a>
-            <a href="index.jsp#funcionamento">Como funciona</a>
+            <a href="index.jsp#ranking">Ranking</a>
             <a href="index.jsp#planos">Planos</a>
             <a href="index.jsp#faq">FAQ</a>
             <a class="sobre-link-atual" href="${pageContext.request.contextPath}/landing/sobre.jsp" aria-current="page">Sobre nós</a>
