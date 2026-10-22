@@ -1,3 +1,5 @@
+const appContextPath = document.currentScript?.dataset.contextPath ?? '';
+
 document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('header');
     const mobileMenu = document.getElementById('menuMobile');
@@ -83,12 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const funcionamentoVisual = document.getElementById('funcionamentoVisual');
     const funcionamentoViews = {
         empresa: [
-            { src: '../assets/funcionamento-notebook-figma.png', alt: 'Painel da plataforma exibido em um notebook' },
+            { src: `${appContextPath}/assets/funcionamento-notebook-figma.png`, alt: 'Painel da plataforma exibido em um notebook' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ],
         integrado: [
-            { src: '../assets/funcionamento-integrado-figma.png', alt: 'Tela de cadastro da plataforma em um celular' },
+            { src: `${appContextPath}/assets/funcionamento-integrado-figma.png`, alt: 'Tela de cadastro da plataforma em um celular' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
             { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
         ]

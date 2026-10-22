@@ -1822,33 +1822,108 @@ a {
 /* Rodapé */
 
 .rodape {
-    padding: 66px 0 26px;
+    height: 389px;
+    padding: 40px 0 14px;
     color: #ffffff;
     background: #05050b;
+}
+
+.rodape .landing-container {
+    width: calc(100% - 110px);
+    max-width: none;
 }
 
 .rodape-conteudo {
     display: grid;
     grid-template-columns: minmax(250px, 2fr) repeat(3, minmax(120px, 1fr));
     gap: 36px;
-    padding-bottom: 64px;
+    padding-bottom: 70px;
 }
 
 .rodape-marca {
     position: relative;
-    left: 14px;
+    left: 0;
+}
+
+.rodape-logo {
+    display: block;
+    width: fit-content;
 }
 
 .rodape-logo img {
     display: block;
-    width: 136px;
+    width: 179px;
     height: auto;
 }
 
 .rodape-marca p {
-    margin: 28px 0 0;
+    width: 302px;
+    margin: 28px 0 40px;
     color: #93919b;
     font-size: 15px;
+    line-height: 1.5;
+}
+
+.rodape-contatos {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+}
+
+.rodape-contato {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    color: #8d8d8d;
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+.rodape-contato:hover {
+    color: #ffffff;
+}
+
+.rodape-contato:hover .rodape-contato-icone {
+    background-color: #cb982d;
+}
+
+.rodape-contato-email {
+    width: 211px;
+    gap: 11px;
+}
+
+.rodape-contato-icone {
+    display: block;
+    flex: 0 0 auto;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+}
+
+.rodape-contato-icone-email {
+    flex: 0 0 21px;
+    width: 21px;
+    height: 16px;
+    mask-image: url("../assets/email.svg");
+    -webkit-mask-image: url("../assets/email.svg");
+}
+
+.rodape-contato-instagram {
+    width: 117px;
+    gap: 12px;
+}
+
+.rodape-contato-icone-instagram {
+    flex: 0 0 19px;
+    width: 19px;
+    height: 19px;
+    mask-image: url("../assets/instagram.svg");
+    -webkit-mask-image: url("../assets/instagram.svg");
 }
 
 .rodape-coluna {
@@ -1885,11 +1960,12 @@ a {
 .rodape-base {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 20px;
-    padding-top: 22px;
+    padding-top: 37px;
     border-top: 1px solid #45434f;
-    color: #8e8b96;
-    font-size: 13px;
+    color: #8d8d8d;
+    font-size: 15px;
 }
 
 .rodape-base a {
@@ -1899,6 +1975,14 @@ a {
 /* Ajustes responsivos das seções inferiores */
 
 @media (max-width: 900px) {
+    .rodape {
+        height: auto;
+    }
+
+    .rodape .landing-container {
+        width: 92%;
+    }
+
     .funcionamento-grid,
     .ranking-grid {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -2124,6 +2208,14 @@ a {
 
     .rodape-marca {
         left: 0;
+    }
+
+    .rodape-marca p {
+        width: auto;
+    }
+
+    .rodape {
+        padding-bottom: 26px;
     }
 
     .rodape-base {
