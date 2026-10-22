@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sobre.css">
+    <link rel="stylesheet" href="sobre.css?v=20261022-12">
     <link rel="icon" href="../assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
@@ -23,7 +23,7 @@
             <a href="index.jsp#funcionamento">Como funciona</a>
             <a href="index.jsp#planos">Planos</a>
             <a href="index.jsp#faq">FAQ</a>
-            <a class="sobre-link-atual" href="sobre.jsp" aria-current="page">Sobre nós</a>
+            <a class="sobre-link-atual" href="${pageContext.request.contextPath}/landing/sobre.jsp" aria-current="page">Sobre nós</a>
         </nav>
         <div class="sobre-acoes">
             <a class="sobre-entrar" href="../login.jsp">Entrar</a>
@@ -36,8 +36,8 @@
 
     <main>
         <section class="sobre-hero" id="inicio" aria-labelledby="sobreTitulo">
-            <img class="sobre-asa-fundo" src="../assets/Asa.png" alt="" aria-hidden="true">
-            <div class="sobre-estrelas" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
+            <img class="sobre-asa-fundo" src="${pageContext.request.contextPath}/assets/asa.svg?v=20261022-3" alt="" aria-hidden="true">
+            <div class="sobre-estrelas" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span><span class="star star-7"></span><span class="star star-8"></span><span class="star star-9"></span><span class="star star-10"></span></div>
             <h1 id="sobreTitulo"><span>Conheça a equipe</span><span>por trás do</span><strong>OUROS</strong></h1>
             <svg class="sobre-onda" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
                 <path d="M0 89C100 80 128 44 240 50c104 6 114 50 226 49 109-1 133-37 242-34 100 3 127 37 232 35 112-2 147-45 256-45 101 0 156 34 244 43v62H0V89Z" fill="#faf7ec"/>
@@ -96,7 +96,7 @@
             </nav>
             <nav class="sobre-rodape-coluna" aria-label="Links da empresa">
                 <h2>Empresa</h2>
-                <a href="sobre.jsp#inicio">Sobre</a>
+                <a href="${pageContext.request.contextPath}/landing/sobre.jsp#inicio">Sobre</a>
                 <a href="index.jsp#faq">Contato</a>
             </nav>
             <div class="sobre-rodape-coluna sobre-rodape-legal">
