@@ -1834,9 +1834,14 @@ a {
     padding-bottom: 64px;
 }
 
+.rodape-marca {
+    position: relative;
+    left: 14px;
+}
+
 .rodape-logo img {
     display: block;
-    width: 142px;
+    width: 136px;
     height: auto;
 }
 
@@ -2115,6 +2120,10 @@ a {
     .rodape-marca,
     .rodape-legal {
         grid-column: 1 / -1;
+    }
+
+    .rodape-marca {
+        left: 0;
     }
 
     .rodape-base {
