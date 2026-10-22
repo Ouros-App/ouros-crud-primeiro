@@ -40,7 +40,7 @@
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
                 <a href="empresas" class="MenuItem empresa">
-                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/empresa.svg"></span>
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/empresa.svg"></span> Empresas
                 </a>
             </nav>
         </div>
@@ -69,29 +69,34 @@
 
         <div class="Painel">
 
-            <div class="Filtros">
+            <div>
                 <form action="${pageContext.request.contextPath}/funcionarios" method="get" class="FormBusca">
                     <div class="CampoBusca">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" name="buscaFuncionario" id="buscaFuncionario" value="${param.buscaFuncionario}" placeholder="Buscar...">
+                        <input type="text" id="buscaRegistro" placeholder="Buscar..." autocomplete="off">
                     </div>
+
 
                     <div class="OrdenarPor">
                         <select id="ordenarPor">
-                            <option value="nome">Ordenar por: Nome</option>
-                            <option value="setor">Ordenar por: Setor</option>
+                            <option value="nome" ${empty param.ordenarPor || param.ordenarPor == 'nome' ? 'selected' : ''}>Ordenar por: Nome</option>
+                            <option value="setor" ${param.ordenarPor == 'setor' ? 'selected' : ''}>Ordenar por: Setor</option>
                         </select>
+                    </div>
+
+                    <div>
+                        <button type="button" class="BotaoNovo" onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=inserir')">
+                            + Novo funcionário
+                        </button>
                     </div>
                 </form>
 
-
-                <button type="button" class="BotaoNovo" onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=novo')">
-                    + Novo funcionário
-                </button>
             </div>
+
+            <br>
 
             <div class="tabela">
                 <table>
@@ -111,7 +116,6 @@
                             <td><c:out value="${funcionario.setor}"/></td>
                             <td><c:out value="${funcionario.email}"/></td>
                             <td><c:out value="${funcionario.telefone}"/></td>
-                            <td>
                             <td>
                                 <div class="ColunaAcoes">
                                     <button type="button" class="BotaoAcao editar" title="Editar"
@@ -141,6 +145,7 @@
                         <c:param name="pagina" value="${paginacao.pagina - 1}" />
                         <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
                         <c:param name="buscarEm" value="${param.buscarEm}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}"/>
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temAnterior}">
@@ -156,6 +161,7 @@
                             <c:param name="pagina" value="${numero}" />
                             <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
                             <c:param name="buscarEm" value="${param.buscarEm}" />
+                            <c:param name="ordenarPor" value="${param.ordenarPor}" />
                         </c:url>
                         <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
                            href="${urlPagina}"
@@ -167,6 +173,7 @@
                         <c:param name="pagina" value="${paginacao.pagina + 1}" />
                         <c:param name="buscaFuncionario" value="${param.buscaFuncionario}" />
                         <c:param name="buscarEm" value="${param.buscarEm}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temProxima}">

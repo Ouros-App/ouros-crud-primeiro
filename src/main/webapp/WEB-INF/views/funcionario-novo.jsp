@@ -14,9 +14,8 @@
 <h1 id="editorTitulo">Novo Funcionário</h1>
 <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
-<form action="funcionarios" method="post" target="_top" data-editor="funcionario">
-<input type="hidden" name="acao" value="novo">
-<input type="hidden" name="id" value="${funcionarios.id}">
+<form action="${pageContext.request.contextPath}/funcionarios" method="post" target="_top" data-editor="funcionario">
+<input type="hidden" name="acao" value="inserir">
 <div class="EditorGrid">
 <div class="EditorCampo EditorCampo--full">
 <label for="nome">Nome completo</label>
@@ -55,7 +54,7 @@
 (() => {
  const form=document.querySelector('[data-editor]'); if(!form)return;
  const kind=form.dataset.editor, editing=new URLSearchParams(location.search).get('acao')==='editar';
- form.elements.acao.value=editing?'editar':'criar';
+ form.elements.acao.value=editing?'editar':'inserir';
  if(editing){const titles={granja:'Granja',lote:'Lote',funcionario:'Funcionário',registro:'Registro de água',meta:'Meta'};document.title='Editar '+titles[kind];document.getElementById('editorTitulo').textContent=document.title;}
  // Dados temporários apenas para pré-visualizar a edição. O backend deve carregar pelo ID.
  if(editing){try{const data=JSON.parse(sessionStorage.getItem('ouros-editor-'+kind)||'{}');for(const [key,value] of Object.entries(data)){const input=form.elements.namedItem(key);if(input && value!=null)input.value=value;}}catch(e){/* Edição direta abre sem dados. */}}

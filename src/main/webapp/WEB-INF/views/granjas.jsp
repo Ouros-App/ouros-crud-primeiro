@@ -87,7 +87,7 @@
                     <span class="Icone"><img src="${pageContext.request.contextPath}/img/metas.svg" alt=""></span> Metas
                 </a>
                 <a href="empresas" class="MenuItem empresa">
-                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/empresa.svg"></span>
+                    <span class="Icone"><img src="${pageContext.request.contextPath}/img/empresa.svg"></span> Empresas
                 </a>
             </nav>
         </div>
