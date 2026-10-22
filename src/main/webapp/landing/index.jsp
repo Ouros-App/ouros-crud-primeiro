@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate"); response.setHeader("Pragma", "no-cache"); response.setDateHeader("Expires", 0); %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -74,7 +75,7 @@
         <img class="funcionamento-detalhes" src="${pageContext.request.contextPath}/assets/funcionamento-detalhes-passo-a-passo.svg" alt="" aria-hidden="true">
         <div class="landing-container">
             <div class="funcionamento-cabecalho">
-                <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span>PASSO A PASSO</h2>
+                <h2 class="secao-titulo secao-titulo--dourado" id="funcionamento-titulo"><span class="secao-titulo-linha" aria-hidden="true"></span><span class="funcionamento-titulo-texto">PASSO A PASSO</span></h2>
                 <div class="perfil-opcoes" role="group" aria-label="Perfil de uso">
                     <button class="perfil-opcao selecionado" type="button" data-perfil="empresa" aria-pressed="true">Empresa</button>
                     <button class="perfil-opcao" type="button" data-perfil="integrado" aria-pressed="false">Integrado</button>
@@ -84,7 +85,7 @@
                 <div class="funcionamento-visual" id="funcionamentoVisual" data-assets-base="${pageContext.request.contextPath}/assets/" aria-live="polite">
                     <div class="circulo funcionamento-brilho" aria-hidden="true"></div>
                     <div class="funcionamento-recorte" id="funcionamentoRecorte">
-                        <img id="funcionamentoImagem" src="${pageContext.request.contextPath}/assets/imagem-1-empresa-passo-a-passo.svg?v=5" alt="Tablet com painel da empresa e indicadores de produção">
+                        <img id="funcionamentoImagem" src="${pageContext.request.contextPath}/assets/imagem-1-empresa-passo-a-passo.svg" alt="Tablet com painel da empresa e indicadores de produção">
                     </div>
                 </div>
                 <div class="funcionamento-conteudo">

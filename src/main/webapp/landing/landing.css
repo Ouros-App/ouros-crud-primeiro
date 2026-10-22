@@ -661,10 +661,10 @@ a {
     }
 
     .funcionamento-brilho {
-        top: 50%;
+        top: calc(50% + 10px);
         left: 50%;
-        width: min(115vw, 693px);
-        height: min(87.7vw, 524px);
+        width: min(112.09vw, 675.75px);
+        height: min(85.48vw, 510.75px);
         transform: translate(-50%, -50%) scale(1.045);
     }
 
@@ -825,10 +825,10 @@ a {
 
 .funcionamento-brilho {
     z-index: 0;
-    top: 50%;
+    top: calc(50% + 10px);
     left: 50%;
-    width: min(55vw, 693px);
-    height: min(42vw, 524px);
+    width: min(53.61vw, 675.75px);
+    height: min(40.94vw, 510.75px);
     border-radius: 495px;
     background: radial-gradient(50% 50% at 50% 50%, rgba(46, 38, 135, 0.90) 2.9%, rgba(14, 12, 35, 0.90) 100%);
     filter: blur(34.400001525878906px);
@@ -857,13 +857,16 @@ a {
 }
 
 .funcionamento .secao-titulo {
-    width: min(485px, 100%);
+    width: 485px;
+    max-width: 100%;
     color: #CB982D;
-    font-family: Poppins, sans-serif;
+    background: none;
+    font-family: 'Poppins', sans-serif;
     font-size: 55px;
     font-style: normal;
     font-weight: 900;
-    line-height: 104.5%;
+    line-height: 57.475px;
+    text-shadow: none;
 }
 
 .funcionamento .secao-titulo-linha {
@@ -873,6 +876,7 @@ a {
     border-radius: 999px;
     background: #cb982d;
 }
+
 
 .funcionamento-visual {
     position: relative;

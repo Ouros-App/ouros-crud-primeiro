@@ -85,14 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const funcionamentoAssetBase = funcionamentoVisual?.dataset.assetsBase || '../assets/';
     const funcionamentoViews = {
         empresa: [
-            { src: 'imagem-1-empresa-passo-a-passo.svg?v=5', alt: 'Tablet com painel da empresa e indicadores de produção', offsetX: '-24px', offsetY: '-9px' },
-            { src: 'imagem-2-empresa-passo-a-passo.svg?v=3', alt: 'Dois tablets sobrepostos com o painel de ranking da empresa', offsetX: '-40px', scale: 1.26 },
-            { src: 'imagem-3-empresa-passo-a-passo.svg?v=2', alt: 'Tablet com metas e resultados de produção', offsetX: 'calc(clamp(0px, 1.5vw, 24px) - 34px)', offsetY: 'calc(clamp(0px, 1vw, 16px) + 31px)', scale: 1.1 }
+            { src: 'imagem-1-empresa-passo-a-passo.svg', alt: 'Tablet com painel da empresa e indicadores de produção', offsetX: '-24px', offsetY: '-9px' },
+            { src: 'imagem-2-empresa-passo-a-passo.svg', alt: 'Dois tablets sobrepostos com o painel de ranking da empresa', offsetX: '-40px', scale: 1.323 },
+            { src: 'imagem-3-empresa-passo-a-passo.svg', alt: 'Tablet com metas e resultados de produção', offsetX: 'calc(clamp(0px, 1.5vw, 24px) - 34px)', offsetY: 'calc(clamp(0px, 1vw, 16px) + 31px)', scale: 1.1 }
         ],
         integrado: [
-            { src: 'imagem-1-integrado-passo-a-passo.png', alt: 'Celular com formulário de cadastro do integrado', offsetY: '-53px', scale: 0.84 },
-            { src: 'imagem-2-integrado-passo-a-passo.png', alt: 'Dois celulares com gráficos de consumo e produção', offsetX: '-37px', offsetY: '5px', scale: 1.2 },
-            { src: 'imagem-3-integrado-passo-a-passo.svg?v=1', alt: 'Celular com painel de ranking e a classificação de Marcela', width: 396, offsetX: '10px', scale: 0.924 }
+            { src: 'imagem-1-integrado-passo-a-passo.png', alt: 'Celular com formulário de cadastro do integrado', offsetX: '-15px', offsetY: '-53px', scale: 0.9261 },
+            { src: 'imagem-2-integrado-passo-a-passo.png', alt: 'Dois celulares com gráficos de consumo e produção', offsetX: '-42px', offsetY: '10px', scale: 1.2 },
+            { src: 'imagem-3-integrado-passo-a-passo.svg', alt: 'Celular com painel de ranking e a classificação de Marcela', width: 396, offsetX: '10px', offsetY: '-25px', scale: 0.83391 }
         ]
     };
     let selectedProfile = 'empresa';
