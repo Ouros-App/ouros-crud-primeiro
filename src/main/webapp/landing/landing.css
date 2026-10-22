@@ -543,26 +543,76 @@ a {
 .desafios-controles {
     grid-column: 1;
     grid-row: 2;
-    justify-self: center;
+    justify-self: stretch;
+    position: relative;
+    z-index: 2;
+    height: 56px;
+    margin-top: 33px;
+    padding: 0;
+    background: transparent;
+}
+
+.desafios-controles-grupo {
+    position: absolute;
+    top: 20px;
+    left: calc(50% + clamp(0px, 3.3vw, 47.5px));
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 18px;
-    padding: 4px;
+    justify-content: center;
+    gap: 21px;
+    width: 219px;
+    height: 28px;
+    transform: translateX(-50%);
+}
+
+.desafios-paginas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 121px;
+    height: 28px;
+    padding: 0 10px;
+    border: 1px solid #79768c;
     border-radius: 999px;
-    background: #28263a;
+    background: #9997a1;
+}
+
+.desafio-pagina {
+    flex: 0 0 14px;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #faf7ec;
+    cursor: pointer;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.desafio-pagina.is-active {
+    background: #0e0c23;
+}
+
+.desafio-pagina:hover {
+    transform: scale(1.12);
+}
+
+.desafio-pagina:focus-visible {
+    outline: 2px solid #0e0c23;
+    outline-offset: 3px;
 }
 
 .desafio-seta {
     display: grid;
     place-items: center;
+    flex: 0 0 28px;
     width: 28px;
     height: 28px;
     padding: 0;
     border: 0;
     border-radius: 50%;
-    color: #faf7ec;
-    background: transparent;
+    color: #d8a23a;
+    background: #0e0c23;
     cursor: pointer;
     transition: color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
@@ -578,14 +628,9 @@ a {
     stroke-linejoin: round;
 }
 
-.desafio-seta--proximo {
-    color: #1c1a32;
-    background: #cf9d23;
-}
-
 .desafio-seta:hover {
-    color: #1c1a32;
-    background: #cf9d23;
+    color: #fac61b;
+    background: #28263a;
     transform: scale(1.06);
 }
 
@@ -831,6 +876,15 @@ a {
         width: min(100%, 535px);
         justify-self: center;
         border-radius: 24px;
+    }
+
+    .desafios-controles {
+        margin-top: 24px;
+    }
+
+    .desafios-controles-grupo {
+        top: 14px;
+        left: 50%;
     }
 
 }

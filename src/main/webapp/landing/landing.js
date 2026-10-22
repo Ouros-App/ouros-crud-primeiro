@@ -12,11 +12,21 @@ document.addEventListener('DOMContentLoaded', () => {
         let desafioPointerInside = false;
         let desafioFocusWithin = false;
         let desafioTransitionInProgress = false;
-        const desafioNavButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-nav]'));
+        const desafioPageButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-indice]'));
+        const desafioNavButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-nav], [data-desafio-indice]'));
+
+        const updateDesafioPagination = (index) => {
+            desafioPageButtons.forEach((button, buttonIndex) => {
+                const selected = buttonIndex === index;
+                button.classList.toggle('is-active', selected);
+                button.setAttribute('aria-pressed', String(selected));
+            });
+        };
 
         if (activeDesafioIndex < 0) {
             activeDesafioIndex = 0;
         }
+        updateDesafioPagination(activeDesafioIndex);
 
         const showDesafio = (index, direction = 1) => {
             if (desafioTransitionInProgress || desafioSlides.length < 2) {
@@ -32,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const incomingSlide = desafioSlides[nextIndex];
             const travelDirection = direction < 0 ? -1 : 1;
             activeDesafioIndex = nextIndex;
+            updateDesafioPagination(nextIndex);
 
             incomingSlide.classList.add('is-active');
             incomingSlide.setAttribute('aria-hidden', 'false');
@@ -124,8 +135,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         desafioNavButtons.forEach((button) => {
             button.addEventListener('click', () => {
-                const direction = button.dataset.desafioNav === 'anterior' ? -1 : 1;
-                showDesafio(activeDesafioIndex + direction, direction);
+                const targetIndex = Number(button.dataset.desafioIndice);
+                const isPageButton = Number.isInteger(targetIndex);
+                const direction = isPageButton
+                    ? (targetIndex < activeDesafioIndex ? -1 : 1)
+                    : (button.dataset.desafioNav === 'anterior' ? -1 : 1);
+                showDesafio(isPageButton ? targetIndex : activeDesafioIndex + direction, direction);
                 scheduleDesafioRotation();
             });
         });

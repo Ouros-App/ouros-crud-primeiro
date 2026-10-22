@@ -90,12 +90,20 @@
                     <img src="${pageContext.request.contextPath}/assets/controlar-os-gastos.svg" alt="Planejamento de orçamento em um caderno com calculadora e café">
                 </article>
                 <div class="desafios-controles" role="group" aria-label="Navegação dos desafios">
-                    <button class="desafio-seta desafio-seta--anterior" type="button" data-desafio-nav="anterior" aria-label="Desafio anterior">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" /></svg>
-                    </button>
-                    <button class="desafio-seta desafio-seta--proximo" type="button" data-desafio-nav="proximo" aria-label="Próximo desafio">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" /></svg>
-                    </button>
+                    <div class="desafios-controles-grupo">
+                        <button class="desafio-seta desafio-seta--anterior" type="button" data-desafio-nav="anterior" aria-label="Desafio anterior">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14.5 5-7 7 7 7" /></svg>
+                        </button>
+                        <div class="desafios-paginas" role="group" aria-label="Selecionar desafio">
+                            <button class="desafio-pagina is-active" type="button" data-desafio-indice="0" aria-label="Ir para o desafio 1" aria-pressed="true"></button>
+                            <button class="desafio-pagina" type="button" data-desafio-indice="1" aria-label="Ir para o desafio 2" aria-pressed="false"></button>
+                            <button class="desafio-pagina" type="button" data-desafio-indice="2" aria-label="Ir para o desafio 3" aria-pressed="false"></button>
+                            <button class="desafio-pagina" type="button" data-desafio-indice="3" aria-label="Ir para o desafio 4" aria-pressed="false"></button>
+                        </div>
+                        <button class="desafio-seta desafio-seta--proximo" type="button" data-desafio-nav="proximo" aria-label="Próximo desafio">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9.5 5 7 7-7 7" /></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
 
