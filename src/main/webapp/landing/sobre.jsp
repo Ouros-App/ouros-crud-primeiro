@@ -9,25 +9,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sobre.css">
-    <link rel="icon" href="../assets/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/landing/sobre.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
     <header class="sobre-header" id="header">
-        <a class="sobre-logo" href="index.jsp" aria-label="Ouros — voltar ao início">
-            <img src="../assets/Ouros.svg" alt="Ouros">
+        <a class="sobre-logo" href="${pageContext.request.contextPath}/landing/index.jsp" aria-label="Ouros — voltar ao início">
+            <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
         </a>
         <nav class="sobre-nav" id="navegacaoSobre" aria-label="Navegação principal">
-            <a href="index.jsp#inicio">Início</a>
-            <a href="index.jsp#funcionalidades">Funcionalidades</a>
-            <a href="index.jsp#funcionamento">Como funciona</a>
-            <a href="index.jsp#planos">Planos</a>
-            <a href="index.jsp#faq">FAQ</a>
-            <a class="sobre-link-atual" href="sobre.jsp" aria-current="page">Sobre nós</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#inicio">Início</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#desafios">Desafios</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#funcionamento">Passo a Passo</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#funcionalidades">Funcionalidades</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#planos">Planos</a>
+            <a href="${pageContext.request.contextPath}/landing/index.jsp#faq">FAQ</a>
+            <a class="sobre-link-atual" href="${pageContext.request.contextPath}/landing/sobre.jsp#inicio" aria-current="page">Sobre nós</a>
         </nav>
         <div class="sobre-acoes">
-            <a class="sobre-entrar" href="../login.jsp">Entrar</a>
-            <a class="sobre-cadastro" href="../Cadastro.jsp">Cadastro</a>
+            <a class="sobre-entrar" href="${pageContext.request.contextPath}/login.jsp">Entrar</a>
+            <a class="sobre-cadastro" href="${pageContext.request.contextPath}/Cadastro.jsp">Cadastro</a>
         </div>
         <button class="sobre-menu" id="menuSobre" type="button" aria-label="Abrir menu" aria-controls="navegacaoSobre" aria-expanded="false">
             <span></span><span></span><span></span>
@@ -36,7 +37,7 @@
 
     <main>
         <section class="sobre-hero" id="inicio" aria-labelledby="sobreTitulo">
-            <img class="sobre-asa-fundo" src="../assets/Asa.png" alt="" aria-hidden="true">
+            <img class="sobre-asa-fundo" src="${pageContext.request.contextPath}/assets/Asa.png" alt="" aria-hidden="true">
             <div class="sobre-estrelas" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span></div>
             <h1 id="sobreTitulo"><span>Conheça a equipe</span><span>por trás do</span><strong>OUROS</strong></h1>
             <svg class="sobre-onda" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
@@ -53,7 +54,7 @@
                 </figure>
 
                 <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
-                    <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><img class="sobre-ano-asa" src="../assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
+                    <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><img class="sobre-ano-asa" src="${pageContext.request.contextPath}/assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
                     <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do primeiro ano; deslize para ver todas as pessoas">
                         <div class="sobre-pessoas">
                             <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
@@ -67,7 +68,7 @@
                 </section>
 
                 <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
-                    <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><img class="sobre-ano-asa" src="../assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
+                    <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><img class="sobre-ano-asa" src="${pageContext.request.contextPath}/assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
                     <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do segundo ano; deslize para ver todas as pessoas">
                         <div class="sobre-pessoas">
                             <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
@@ -86,18 +87,18 @@
     <footer class="sobre-rodape">
         <div class="sobre-rodape-conteudo">
             <div class="sobre-rodape-marca">
-                <a href="index.jsp#inicio" aria-label="Ouros — voltar ao início">OUROS</a>
+                <a href="${pageContext.request.contextPath}/landing/index.jsp#inicio" aria-label="Ouros — voltar ao início">OUROS</a>
                 <p>Sustentabilidade que vira reconhecimento.</p>
             </div>
             <nav class="sobre-rodape-coluna" aria-label="Links do produto">
                 <h2>Produto</h2>
-                <a href="index.jsp#funcionamento">Como funciona</a>
-                <a href="index.jsp#planos">Planos</a>
+                <a href="${pageContext.request.contextPath}/landing/index.jsp#funcionamento">Passo a Passo</a>
+                <a href="${pageContext.request.contextPath}/landing/index.jsp#planos">Planos</a>
             </nav>
             <nav class="sobre-rodape-coluna" aria-label="Links da empresa">
                 <h2>Empresa</h2>
-                <a href="sobre.jsp#inicio">Sobre</a>
-                <a href="index.jsp#faq">Contato</a>
+                <a href="${pageContext.request.contextPath}/landing/sobre.jsp#inicio">Sobre nós</a>
+                <a href="${pageContext.request.contextPath}/landing/index.jsp#faq">Contato</a>
             </nav>
             <div class="sobre-rodape-coluna sobre-rodape-legal">
                 <h2>Legal</h2>

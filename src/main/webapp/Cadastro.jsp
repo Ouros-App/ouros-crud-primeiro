@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | Ouros</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body>
 
 <main class="LoginPage">
     <div class="LoginShell">
         <section class="LoginMarca" aria-label="Sobre o Ouros">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -58,7 +57,7 @@
                 </li>
             </ul>
 
-            <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+            <img class="MascoteLogin" src="${pageContext.request.contextPath}/img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
         </section>
 
         <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
@@ -67,7 +66,7 @@
                 <p class="LoginSubtitulo">Crie sua conta para ser um OUROS</p>
             </header>
 
-            <form action="Cadastro.jsp" method="post" id="formCadastro">
+            <form action="${pageContext.request.contextPath}/Cadastro.jsp" method="post" id="formCadastro">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="nome">Nome</label>
                     <input class="LoginCampoInput" type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
@@ -101,7 +100,7 @@
 
             <div class="LoginRodape">
                 <span>Já tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="login.jsp">Entrar</a>
+                <a class="LoginLinkEsqueci" href="${pageContext.request.contextPath}/login.jsp">Entrar</a>
             </div>
         </section>
     </div>

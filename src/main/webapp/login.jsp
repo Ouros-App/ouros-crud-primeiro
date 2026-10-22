@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar | Ouros</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body>
 
@@ -15,7 +14,7 @@
     <div class="LoginShell">
 
         <div class="LoginMarca">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -65,7 +64,7 @@
             </ul>
 
             <div class="MascoteLoginBox">
-                <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+                <img class="MascoteLogin" src="${pageContext.request.contextPath}/img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
             </div>
         </div>
 
@@ -75,7 +74,7 @@
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
 
-            <form action="login.jsp" method="post">
+            <form action="${pageContext.request.contextPath}/login.jsp" method="post">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
@@ -87,7 +86,7 @@
                 </div>
 
                 <div class="LoginUtilitario">
-                    <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
+                    <a class="LoginLinkEsqueci" href="${pageContext.request.contextPath}/RecuperarSenha.jsp">Esqueceu sua senha?</a>
                 </div>
 
                 <button type="submit" class="LoginBotao">Continuar</button>
@@ -95,7 +94,7 @@
 
             <div class="LoginRodape">
                 <span>Ainda não tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="Cadastro.jsp">Cadastre-se</a>
+                <a class="LoginLinkEsqueci" href="${pageContext.request.contextPath}/Cadastro.jsp">Cadastre-se</a>
             </div>
         </div>
 

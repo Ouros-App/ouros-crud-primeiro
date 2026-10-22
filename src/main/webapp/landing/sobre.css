@@ -83,11 +83,36 @@ a {
 }
 
 .sobre-acoes .sobre-cadastro {
-    padding: 7px 14px;
-    border-radius: 4px;
-    background: var(--sobre-gold);
+    display: inline-flex;
+    width: 117px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px 13px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: #cb982d;
     color: var(--sobre-navy);
-    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 19px;
+    text-align: center;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
+}
+
+.sobre-acoes .sobre-cadastro:hover,
+.sobre-acoes .sobre-cadastro:focus-visible {
+    border-color: rgba(232, 232, 220, .68);
+    border-radius: 12px;
+    background: var(--sobre-navy);
+    color: #fff;
+}
+
+.sobre-acoes .sobre-cadastro:focus-visible {
+    outline: 2px solid var(--sobre-gold);
+    outline-offset: 3px;
 }
 
 .sobre-menu {
@@ -480,6 +505,14 @@ a {
         border: 1px solid var(--sobre-gold);
         border-radius: 22px;
     }
+
+    .sobre-acoes .sobre-cadastro {
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        line-height: 20px;
+    }
 }
 
 @media (max-width: 760px) {
@@ -527,7 +560,11 @@ a {
     }
 
     .sobre-acoes .sobre-cadastro {
-        padding: 6px clamp(7px, 2vw, 11px);
+        width: auto;
+        height: 32px;
+        padding: 5px clamp(7px, 2vw, 11px);
+        font-size: 12px;
+        line-height: 20px;
     }
 
     .sobre-menu {
