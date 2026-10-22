@@ -365,25 +365,29 @@
                     </a>
                 </div>
             </div>
-            <nav class="rodape-coluna" aria-label="Links do produto">
-                <h2>Produto</h2>
-                <a href="#funcionamento">Como funciona</a>
-                <a href="#funcionalidades">Funcionalidades</a>
-                <a href="#planos">Planos</a>
+            <nav class="rodape-coluna" aria-label="Links do projeto">
+                <h2>Projeto</h2>
+                <div class="rodape-links">
+                    <a href="#inicio">Início</a>
+                    <a href="#desafios">Desafios</a>
+                    <a href="#funcionamento">Passo a Passo</a>
+                </div>
             </nav>
-            <nav class="rodape-coluna" aria-label="Links da empresa">
-                <h2>Empresa</h2>
-                <a href="sobre.jsp">Sobre nós</a>
-                <a href="#faq">Perguntas frequentes</a>
-                <a href="#faq">Contato</a>
+            <nav class="rodape-coluna rodape-coluna-secundaria" aria-label="Mais links do projeto">
+                <div class="rodape-links">
+                    <a href="#funcionalidades">Funcionalidades</a>
+                    <a href="#planos">Planos</a>
+                    <a href="#faq">FAQ</a>
+                </div>
             </nav>
-            <div class="rodape-coluna rodape-legal">
-                <h2>Legal</h2>
-                <p>Política de privacidade — em elaboração</p>
-                <p>Termos de uso — em elaboração</p>
-            </div>
+            <nav class="rodape-coluna rodape-coluna-equipe" aria-label="Links da equipe">
+                <h2>Equipe</h2>
+                <div class="rodape-links">
+                    <a href="sobre.jsp">Sobre Nós</a>
+                </div>
+            </nav>
         </div>
-        <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span><a href="#inicio">Voltar ao início ↑</a></div>
+        <div class="landing-container rodape-base"><span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span></div>
     </footer>
 
     <script src="${pageContext.request.contextPath}/landing/landing.js" data-context-path="${pageContext.request.contextPath}" defer></script>
