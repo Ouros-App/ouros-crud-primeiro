@@ -18,8 +18,10 @@
 
         <nav id="navegacao" aria-label="Navegação principal">
             <a href="#inicio">Início</a>
+            <a href="#desafios">Desafios</a>
+            <a href="#funcionamento">Passo a passo</a>
             <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#funcionamento">Como funciona</a>
+            <a href="#ranking">Ranking</a>
             <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
             <a class="sobre" href="${pageContext.request.contextPath}/landing/sobre.jsp">Sobre nós</a>
