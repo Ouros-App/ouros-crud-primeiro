@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.RecuperarSenha;
-import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.service.AdministradorDAO;
 import primeirobd.service.RecuperarSenhaDAO;
 import primeirobd.utils.Validador;
 
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
     o usuário chega aqui pelo link do email (/RedefinirSenha?token=...).
 
     RecuperarSenhaDAO     -> busca e marca o token como usado
-    ProprietarioGranjaDAO -> atualiza a senha do usuário
+    AdministradorDAO -> atualiza a senha do administrador
     Validador             -> regra de senha (a mesma do cadastro)
  */
 @WebServlet(name = "RedefinirSenha", value = "/redefinir-senha")
@@ -28,7 +28,7 @@ public class RedefinirSenhaServlet extends HttpServlet {
     private static final String PAGINA_REDEFINIR = "/RedefinirSenha.jsp";
 
     private final RecuperarSenhaDAO recuperarDao = new RecuperarSenhaDAO();
-    private final ProprietarioGranjaDAO usuarioDao = new ProprietarioGranjaDAO();
+    private final AdministradorDAO administradorDao = new AdministradorDAO();
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +79,7 @@ public class RedefinirSenhaServlet extends HttpServlet {
 
         // senha criptografada, igual ao cadastro
         String senhaHash = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
-        usuarioDao.atualizarSenha(registro.getUsuarioId(), senhaHash);
+        administradorDao.atualizarSenha(registro.getAdministradorId(), senhaHash);
 
         // o link só funciona uma vez
         recuperarDao.marcarComoUsado(token);

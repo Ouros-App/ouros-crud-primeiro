@@ -1,8 +1,8 @@
 package primeirobd.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
-import primeirobd.model.ProprietarioGranja;
-import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.model.Administrador;
+import primeirobd.service.AdministradorDAO;
 import primeirobd.service.VerificacaoEmailDAO;
 import primeirobd.utils.EmailService;
 import primeirobd.utils.TokenUtil;
@@ -17,40 +17,40 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 /*
-    servlet responsavel por receber o cadastro do usuário
+    servlet responsavel por receber o cadastro do administrador
     valida os dados e DISPARA O EMAIL(finalmente)
 
-    Validador      -> confere se os campos têm o formato correto (regex)
-    ProprietarioGranjaDAO -> conversa com o banco de dados
-    TokenUtil      -> gera o token de verificação
-    EmailService   -> envia o email com o link de verificação
+    Validador        -> confere se os campos têm o formato correto (regex)
+    AdministradorDAO -> conversa com o banco de dados
+    TokenUtil        -> gera o token de verificação
+    EmailService     -> envia o email com o link de verificação
  */
 @WebServlet(name = "cadastro", value = "/cadastro")
 public class CadastroServlet extends HttpServlet {
 
-    // objeto
-    private final ProprietarioGranjaDAO dao = new ProprietarioGranjaDAO();
-
+    // objetos
+    private final AdministradorDAO dao = new AdministradorDAO();
+    private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-        //campos do formulario
+        // campos do formulario
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
         String telefone = request.getParameter("telefone");
         String senha = request.getParameter("senha");
-        String idGranjaParam = request.getParameter("idGranja");
 
         response.setContentType("text/plain;charset=UTF-8");
 
         StringBuilder erros = new StringBuilder();
 
-
         // validar com o REGEX (eba ele ta aq)
+        if (nome == null || nome.trim().isEmpty()) {
+            erros.append("- Nome é obrigatório\n");
+        }
         if (!Validador.isCpfValido(cpf)) {
             erros.append("- CPF inválido\n");
         }
@@ -62,13 +62,6 @@ public class CadastroServlet extends HttpServlet {
         }
         if (!Validador.isSenhaValida(senha)) {
             erros.append("- Senha não atende aos requisitos mínimos\n");
-        }
-
-        int idGranja = 0;
-        if (idGranjaParam == null || !idGranjaParam.matches("\\d+")) {
-            erros.append("- Granja inválida\n");
-        } else {
-            idGranja = Integer.parseInt(idGranjaParam);
         }
 
         // se der qualquer erro eh pq ta errado
@@ -90,31 +83,28 @@ public class CadastroServlet extends HttpServlet {
             return;
         }
 
-        //senha criptogradada
+        // senha criptografada
         String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
 
-        // salva o usuario
-        ProprietarioGranja prg = new ProprietarioGranja();
-        prg.setNome(nome);
-        prg.setCpf(cpf);
-        prg.setEmail(email);
-        prg.setSenha(senhaHash);
-        prg.setIdGranja(idGranja);
+        // salva o administrador
+        Administrador adm = new Administrador();
+        adm.setNome(nome.trim());
+        adm.setCpf(cpf);
+        adm.setEmail(email);
+        adm.setSenha(senhaHash);
 
-        int usuarioId = dao.insert(prg);
+        int administradorId = dao.insert(adm);
+
+        // salva o telefone na tabela telefone_admin
+        // new TelefoneAdminDAO().insert(administradorId, telefone);
 
         // token aleatorio
         String token = TokenUtil.gerarToken();
+        verificacaoDao.salvarToken(administradorId, token, LocalDateTime.now().plusHours(24));
 
-
-
-        VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
-        verificacaoDao.salvarToken(usuarioId, token, LocalDateTime.now().plusHours(24));
-
-        // envia o emial (hell yeah)
+        // envia o email (hell yeah)
         EmailService.enviarEmailVerificacao(email, token);
 
         response.getWriter().write("Cadastro realizado! Verifique seu email para confirmar.");
     }
-
 }

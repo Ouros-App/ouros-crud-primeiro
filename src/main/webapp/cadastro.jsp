@@ -25,9 +25,6 @@
     <label for="senha">Senha:</label><br>
     <input type="password" id="senha" name="senha"><br><br>
 
-    <label for="idGranja">ID da Granja:</label><br>
-    <input type="text" id="idGranja" name="idGranja"><br><br>
-
     <input type="submit" value="Cadastrar">
 
 </form>

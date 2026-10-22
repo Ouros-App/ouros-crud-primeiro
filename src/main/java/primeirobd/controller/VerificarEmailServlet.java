@@ -1,7 +1,7 @@
 package primeirobd.controller;
 
 import primeirobd.model.VerificacaoEmail;
-import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.service.AdministradorDAO;
 import primeirobd.service.VerificacaoEmailDAO;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class VerificarEmailServlet extends HttpServlet {
 
     private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
-    private final ProprietarioGranjaDAO usuarioDao = new ProprietarioGranjaDAO();
+    private final AdministradorDAO administradorDao = new AdministradorDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,7 +42,7 @@ public class VerificarEmailServlet extends HttpServlet {
             // marca o token como usado, pra impedir reaproveitamento do mesmo link
             verificacaoDao.marcarComoUsado(token);
 
-            usuarioDao.marcarEmailComoVerificado(registro.getUsuarioId());
+            administradorDao.marcarEmailComoVerificado(registro.getAdministradorId());
 
             response.getWriter().write("Email verificado com sucesso!");
         } else {

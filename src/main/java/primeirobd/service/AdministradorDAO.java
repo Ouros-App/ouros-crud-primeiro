@@ -195,10 +195,10 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
-    public void marcarEmailComoVerificado(int usuarioId) {
+    public void marcarEmailComoVerificado(int administradorId) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(UPDATE_EMAIL_VERIFICADO)) {
-            stmt.setInt(1, usuarioId);
+            stmt.setInt(1, administradorId);
             stmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -231,11 +231,11 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
-    public void atualizarSenha(int usuarioId, String senhaHash) {
+    public void atualizarSenha(int administradorId, String senhaHash) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(UPDATE_SENHA)) {
             stmt.setString(1, senhaHash);
-            stmt.setInt(2, usuarioId);
+            stmt.setInt(2, administradorId);
             stmt.executeUpdate();
 
         } catch (SQLException e) {

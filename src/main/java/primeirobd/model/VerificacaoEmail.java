@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class VerificacaoEmail {
 
     private int id;
-    private int usuarioId;
+    private int administradorId;
     private String token;
     private LocalDateTime expiraEm;
     private boolean usado;
@@ -18,12 +18,12 @@ public class VerificacaoEmail {
         this.id = id;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public int getAdministradorId() {
+        return administradorId;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setAdministradorId(int administradorId) {
+        this.administradorId = administradorId;
     }
 
     public String getToken() {

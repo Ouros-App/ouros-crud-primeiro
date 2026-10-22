@@ -58,7 +58,7 @@ public class AuthenticationFilter implements Filter {
         HttpSession sessao = req.getSession(false);
 
         boolean autenticado = sessao != null
-                && sessao.getAttribute("usuarioId") != null;
+                && sessao.getAttribute("administradorId") != null;
 
         if (autenticado) {
             chain.doFilter(request, response);

@@ -12,19 +12,19 @@ import java.time.LocalDateTime;
 public class VerificacaoEmailDAO {
 
     public static final String INSERT =
-            "INSERT INTO verificacao_email (usuario_id, token, expira_em, usado) VALUES (?, ?, ?, false)";
+            "INSERT INTO verificacao_email_admin (usuario_id, token, expira_em, usado) VALUES (?, ?, ?, false)";
 
     public static final String SELECT_BY_TOKEN =
-            "SELECT id, usuario_id, token, expira_em, usado FROM verificacao_email WHERE token = ?";
+            "SELECT id, usuario_id, token, expira_em, usado FROM verificacao_email_admin WHERE token = ?";
 
     public static final String MARCAR_COMO_USADO =
-            "UPDATE verificacao_email SET usado = true WHERE token = ?";
+            "UPDATE verificacao_email_admin SET usado = true WHERE token = ?";
 
-    public void salvarToken(int usuarioId, String token, LocalDateTime expiraEm) {
+    public void salvarToken(int administradorId, String token, LocalDateTime expiraEm) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(INSERT)) {
 
-            stmt.setInt(1, usuarioId);
+            stmt.setInt(1, administradorId);
             stmt.setString(2, token);
             stmt.setTimestamp(3, Timestamp.valueOf(expiraEm));
             stmt.executeUpdate();
@@ -47,7 +47,7 @@ public class VerificacaoEmailDAO {
 
                 VerificacaoEmail vt = new VerificacaoEmail();
                 vt.setId(rs.getInt("id"));
-                vt.setUsuarioId(rs.getInt("usuario_id"));
+                vt.setAdministradorId(rs.getInt("usuario_id"));
                 vt.setToken(rs.getString("token"));
                 vt.setExpiraEm(rs.getTimestamp("expira_em").toLocalDateTime());
                 vt.setUsado(rs.getBoolean("usado"));

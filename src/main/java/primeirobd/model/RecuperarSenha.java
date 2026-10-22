@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class RecuperarSenha {
     private int id;
-    private int usuarioId;
+    private int administradorId;
     private String token;
     private LocalDateTime expiraEm;
     private boolean usado;
@@ -16,8 +16,8 @@ public class RecuperarSenha {
         return id;
     }
 
-    public int getUsuarioId() {
-        return usuarioId;
+    public int getAdministradorId() {
+        return administradorId;
     }
 
     public String getToken() {
@@ -36,8 +36,8 @@ public class RecuperarSenha {
         this.id = id;
     }
 
-    public void setUsuarioId(int usuarioId) {
-        this.usuarioId = usuarioId;
+    public void setAdministradorId(int administradorId) {
+        this.administradorId = administradorId;
     }
 
     public void setToken(String token) {

@@ -3,8 +3,8 @@ package primeirobd.controller;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import primeirobd.model.ProprietarioGranja;
-import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.model.Administrador;
+import primeirobd.service.AdministradorDAO;
 
 import java.io.IOException;
 
@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpSession;
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
 
-    private final ProprietarioGranjaDAO dao =
-            new ProprietarioGranjaDAO();
+    private final AdministradorDAO dao =
+            new AdministradorDAO();
 
     @Override
     protected void doGet(
@@ -54,13 +54,13 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // Busca o usuário pelo e-mail.
-        ProprietarioGranja usuario = dao.buscarPorEmail(email);
+        // Busca o administrador pelo e-mail.
+        Administrador administrador = dao.buscarPorEmail(email);
 
-        // Valida o usuário e a senha.
-        if (usuario == null
-                || usuario.getSenha() == null
-                || !BCrypt.checkpw(senha, usuario.getSenha())) {
+        // Valida o administrador e a senha.
+        if (administrador == null
+                || administrador.getSenha() == null
+                || !BCrypt.checkpw(senha, administrador.getSenha())) {
 
             response.sendRedirect(
                     contexto + "/login.jsp?erro=credenciais"
@@ -69,7 +69,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         // Exige que o e-mail esteja verificado.
-        if (!usuario.isEmailVerificado()) {
+        if (!administrador.isEmailVerificado()) {
 
             response.sendRedirect(
                     contexto + "/login.jsp?erro=naoverificado"
@@ -87,8 +87,8 @@ public class LoginServlet extends HttpServlet {
         // Cria a sessão autenticada.
         HttpSession sessao = request.getSession(true);
 
-        sessao.setAttribute("usuarioId", usuario.getId());
-        sessao.setAttribute("usuarioNome", usuario.getNome());
+        sessao.setAttribute("administradorId", administrador.getId());
+        sessao.setAttribute("administradorNome", administrador.getNome());
 
         // CORREÇÃO: utiliza o servlet /inicio.
         response.sendRedirect(contexto + "/inicio");

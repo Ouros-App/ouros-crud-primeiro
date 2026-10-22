@@ -5,8 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import primeirobd.model.ProprietarioGranja;
-import primeirobd.service.ProprietarioGranjaDAO;
+import primeirobd.model.Administrador;
+import primeirobd.service.AdministradorDAO;
 import primeirobd.service.RecuperarSenhaDAO;
 import primeirobd.utils.EmailService;
 import primeirobd.utils.TokenUtil;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
     Esqueci minha senha etapa 1 :(
 
     Validador             -> confere o formato do email (regex)
-    ProprietarioGranjaDAO -> busca o usuário pelo email
+    AdministradorDAO -> busca o administrador pelo email
     TokenUtil             -> gera o token
     RecuperarSenhaDAO   -> guarda o token (mesmo molde do VerificacaoEmailDAO)
     EmailService          -> envia o email com o link
@@ -32,7 +32,7 @@ public class RecuperarSenhaServlet extends HttpServlet {
     private static final int VALIDADE_MINUTOS = 30;
 
 
-    private final ProprietarioGranjaDAO usuarioDao = new ProprietarioGranjaDAO();
+    private final AdministradorDAO administradorDao = new AdministradorDAO();
     private final RecuperarSenhaDAO recuperarDao = new RecuperarSenhaDAO();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,14 +52,14 @@ public class RecuperarSenhaServlet extends HttpServlet {
             }
             email = email.trim();
 
-            ProprietarioGranja usuario = usuarioDao.buscarPorEmail(email);
+            Administrador administrador = administradorDao.buscarPorEmail(email);
 
             // só envia se o usuário existe, mas a resposta é igual nos dois casos
-            if (usuario != null) {
+            if (administrador != null) {
                 try {
                     String token = TokenUtil.gerarToken();
                     recuperarDao.salvarToken(
-                            usuario.getId(), token, LocalDateTime.now().plusMinutes(VALIDADE_MINUTOS));
+                            administrador.getId(), token, LocalDateTime.now().plusMinutes(VALIDADE_MINUTOS));
                     EmailService.enviarEmailRecuperacao(email, token, VALIDADE_MINUTOS);
                 } catch (Exception e) {
                     e.printStackTrace();
