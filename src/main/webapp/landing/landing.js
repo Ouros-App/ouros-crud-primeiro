@@ -1,4 +1,174 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const desafiosSlider = document.getElementById('desafiosSlider');
+    if (desafiosSlider) {
+        const desafioSlides = Array.from(desafiosSlider.querySelectorAll('.desafio-slide'));
+        const reduceDesafioMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let activeDesafioIndex = desafioSlides.findIndex((slide) => slide.classList.contains('is-active'));
+        let desafioRotationTimer;
+        let desafioRotationPaused = false;
+        let desafioPointerInside = false;
+        let desafioFocusWithin = false;
+        let desafioTransitionInProgress = false;
+        const desafioPageButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-indice]'));
+        const desafioNavButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-nav], [data-desafio-indice]'));
+
+        const updateDesafioPagination = (index) => {
+            desafioPageButtons.forEach((button, buttonIndex) => {
+                const selected = buttonIndex === index;
+                button.classList.toggle('is-active', selected);
+                button.setAttribute('aria-pressed', String(selected));
+            });
+        };
+
+        if (activeDesafioIndex < 0) {
+            activeDesafioIndex = 0;
+        }
+        updateDesafioPagination(activeDesafioIndex);
+
+        const showDesafio = (index, direction = 1) => {
+            if (desafioTransitionInProgress || desafioSlides.length < 2) {
+                return;
+            }
+
+            const nextIndex = (index + desafioSlides.length) % desafioSlides.length;
+            if (nextIndex === activeDesafioIndex) {
+                return;
+            }
+
+            const outgoingSlide = desafioSlides[activeDesafioIndex];
+            const incomingSlide = desafioSlides[nextIndex];
+            const travelDirection = direction < 0 ? -1 : 1;
+            activeDesafioIndex = nextIndex;
+            updateDesafioPagination(nextIndex);
+
+            incomingSlide.classList.add('is-active');
+            incomingSlide.setAttribute('aria-hidden', 'false');
+            outgoingSlide.setAttribute('aria-hidden', 'true');
+
+            if (reduceDesafioMotion.matches) {
+                outgoingSlide.classList.remove('is-active');
+                return;
+            }
+
+            const outgoingImage = outgoingSlide.querySelector('img');
+            const incomingImage = incomingSlide.querySelector('img');
+            const outgoingContent = outgoingSlide.querySelector('.desafio-conteudo');
+            const incomingContent = incomingSlide.querySelector('.desafio-conteudo');
+            const canAnimate = outgoingImage?.animate && incomingImage?.animate;
+
+            if (!canAnimate) {
+                outgoingSlide.classList.remove('is-active');
+                return;
+            }
+
+            desafioTransitionInProgress = true;
+            desafiosSlider.setAttribute('aria-busy', 'true');
+            desafioNavButtons.forEach((button) => { button.disabled = true; });
+            outgoingSlide.style.zIndex = '2';
+            incomingSlide.style.zIndex = '1';
+            outgoingSlide.style.pointerEvents = 'none';
+            incomingSlide.style.pointerEvents = 'none';
+
+            const duration = 850;
+            const easing = 'cubic-bezier(0.22, 0.68, 0, 1)';
+            const options = { duration, easing, fill: 'both' };
+            const animations = [
+                outgoingImage.animate([
+                    { transform: 'translate3d(0, 0, 0) scale(1) rotate(0deg)', opacity: 1, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 0% 0%)' },
+                    { offset: 0.48, transform: `translate3d(${-travelDirection * 28}px, 22px, 0) scale(1.02) rotate(${-travelDirection * 1.5}deg)`, opacity: 0.92, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 12% 100%, 0% 100%, 0% 0%)' },
+                    { transform: `translate3d(${-travelDirection * 140}px, 76px, 0) scale(0.88) rotate(${-travelDirection * 4}deg)`, opacity: 0, clipPath: 'polygon(18% 0, 100% 0, 100% 84%, 82% 100%, 0 100%, 0 18%)' }
+                ], options),
+                incomingImage.animate([
+                    { transform: `translate3d(${travelDirection * 132}px, -56px, 0) scale(0.84) rotate(${travelDirection * 4}deg)`, opacity: 0, clipPath: 'polygon(14% 0, 100% 0, 100% 82%, 86% 100%, 0 100%, 0 18%)' },
+                    { offset: 0.55, transform: `translate3d(${travelDirection * 44}px, -18px, 0) scale(0.94) rotate(${travelDirection}deg)`, opacity: 0.86, clipPath: 'polygon(8% 0, 100% 0, 100% 91%, 91% 100%, 0 100%, 0 9%)' },
+                    { transform: 'translate3d(0, 0, 0) scale(1) rotate(0deg)', opacity: 1, clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 100% 100%, 0% 100%, 0% 0%)' }
+                ], options)
+            ];
+
+            if (outgoingContent?.animate && incomingContent?.animate) {
+                animations.push(outgoingContent.animate([
+                    { transform: 'translate3d(0, 0, 0)', opacity: 1 },
+                    { transform: `translate3d(${-travelDirection * 24}px, 10px, 0)`, opacity: 0 }
+                ], { duration: 500, easing, fill: 'both' }));
+                animations.push(incomingContent.animate([
+                    { transform: `translate3d(${travelDirection * 22}px, -8px, 0)`, opacity: 0 },
+                    { transform: 'translate3d(0, 0, 0)', opacity: 1 }
+                ], { duration: 620, delay: 120, easing, fill: 'both' }));
+            }
+
+            Promise.all(animations.map((animation) => animation.finished.catch(() => undefined))).then(() => {
+                outgoingSlide.classList.remove('is-active');
+                outgoingSlide.style.zIndex = '';
+                incomingSlide.style.zIndex = '';
+                outgoingSlide.style.pointerEvents = '';
+                incomingSlide.style.pointerEvents = '';
+                animations.forEach((animation) => animation.cancel());
+                desafioTransitionInProgress = false;
+                desafiosSlider.removeAttribute('aria-busy');
+                desafioNavButtons.forEach((button) => { button.disabled = false; });
+            });
+        };
+
+        const scheduleDesafioRotation = () => {
+            window.clearTimeout(desafioRotationTimer);
+            if (desafioSlides.length < 2 || desafioRotationPaused || reduceDesafioMotion.matches || document.hidden) {
+                return;
+            }
+
+            desafioRotationTimer = window.setTimeout(() => {
+                showDesafio(activeDesafioIndex + 1, 1);
+                scheduleDesafioRotation();
+            }, 6500);
+        };
+
+        desafiosSlider.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+                event.preventDefault();
+                const direction = event.key === 'ArrowRight' ? 1 : -1;
+                showDesafio(activeDesafioIndex + direction, direction);
+                scheduleDesafioRotation();
+            }
+        });
+
+        desafioNavButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const targetIndex = Number(button.dataset.desafioIndice);
+                const isPageButton = Number.isInteger(targetIndex);
+                const direction = isPageButton
+                    ? (targetIndex < activeDesafioIndex ? -1 : 1)
+                    : (button.dataset.desafioNav === 'anterior' ? -1 : 1);
+                showDesafio(isPageButton ? targetIndex : activeDesafioIndex + direction, direction);
+                scheduleDesafioRotation();
+            });
+        });
+
+        desafiosSlider.addEventListener('pointerenter', () => {
+            desafioPointerInside = true;
+            desafioRotationPaused = true;
+            window.clearTimeout(desafioRotationTimer);
+        });
+        desafiosSlider.addEventListener('pointerleave', () => {
+            desafioPointerInside = false;
+            desafioRotationPaused = desafioFocusWithin;
+            scheduleDesafioRotation();
+        });
+        desafiosSlider.addEventListener('focusin', () => {
+            desafioFocusWithin = true;
+            desafioRotationPaused = true;
+            window.clearTimeout(desafioRotationTimer);
+        });
+        desafiosSlider.addEventListener('focusout', (event) => {
+            if (!desafiosSlider.contains(event.relatedTarget)) {
+                desafioFocusWithin = false;
+                desafioRotationPaused = desafioPointerInside;
+                scheduleDesafioRotation();
+            }
+        });
+        document.addEventListener('visibilitychange', scheduleDesafioRotation);
+        reduceDesafioMotion.addEventListener?.('change', scheduleDesafioRotation);
+        scheduleDesafioRotation();
+    }
+
     const header = document.getElementById('header');
     const mobileMenu = document.getElementById('menuMobile');
     const navigation = document.getElementById('navegacao');
@@ -386,10 +556,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    const automaticStepButtons = Array.from(document.querySelectorAll('.passo-botao'));
+    const automaticProfileButtons = Array.from(document.querySelectorAll('.perfil-opcao'));
+    if (automaticStepButtons.length > 1) {
+        let automaticStepTimer;
+        const scheduleAutomaticStep = () => {
+            window.clearTimeout(automaticStepTimer);
+            if (document.hidden) {
+                return;
+            }
+
+            automaticStepTimer = window.setTimeout(() => {
+                const activeIndex = automaticStepButtons.findIndex(
+                    (button) => button.getAttribute('aria-pressed') === 'true'
+                );
+                const nextIndex = (activeIndex + 1) % automaticStepButtons.length;
+                automaticStepButtons[nextIndex].click();
+                scheduleAutomaticStep();
+            }, 5000);
+        };
+
+        [...automaticStepButtons, ...automaticProfileButtons].forEach((button) => {
+            button.addEventListener('click', scheduleAutomaticStep);
+        });
+        document.addEventListener('visibilitychange', scheduleAutomaticStep);
+        scheduleAutomaticStep();
+    }
     const currentYear = document.getElementById('anoAtual');
     if (currentYear) {
         currentYear.textContent = String(new Date().getFullYear());
     }
 });
-
 
