@@ -5,23 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-
+    <title>Entrar | Ouros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="Style.css?v=6">
-    <link rel="icon" type="image/svg+xml" href="img/granja.svg">
+    <link rel="stylesheet" href="Style.css?v=8">
+    <link rel="icon" type="image/png" href="img/Asa-icon.png">
 </head>
 <body>
-<div class="LoginPage">
-    <div class="LoginShell">
+
+<main class="LoginPage LoginPage--entrar">
+    <div class="LoginShell LoginShell--entrar">
 
         <div class="LoginMarca">
             <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
-
             <p class="LoginTagline">
-                CRUD para monitoramento de dados de forma mais
-                <span class="destaque">eficiente.</span>
+                Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
             </p>
 
             <ul class="LoginRecursos">
@@ -72,9 +73,9 @@
             </div>
         </div>
 
-        <main class="LoginFormulario">
+        <section class="LoginFormulario" aria-labelledby="loginTitulo">
             <div class="LoginCabecalho">
-                <h1 class="LoginTitulo">Bem-vindo de volta!</h1>
+                <h1 class="LoginTitulo" id="loginTitulo">Bem-vindo de volta!</h1>
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
 
@@ -97,6 +98,10 @@
                     <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
                 </div>
 
+                <c:if test="${param.status == 'senhaalterada'}">
+                    <p class="LoginSubtitulo LoginAcessoErro" role="status">Sua senha foi alterada. Entre com a nova senha.</p>
+                </c:if>
+
                 <c:if test="${param.erro == 'credenciais'}">
                     <p id="loginCredenciaisErro" class="LoginErro LoginAcessoErro" role="alert">
                         Email ou senha incorretos.
@@ -111,9 +116,15 @@
 
                 <button type="submit" class="LoginBotao">Continuar</button>
             </form>
-        </main>
+
+            <div class="LoginRodape">
+                <span>Ainda não tem uma conta?</span>
+                <a class="LoginLinkEsqueci" href="cadastro.jsp">Cadastre-se</a>
+            </div>
+        </section>
 
     </div>
-</div>
+</main>
+
 </body>
 </html>
