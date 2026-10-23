@@ -2122,3 +2122,388 @@ body {
         transition-duration: .01ms;
     }
 }
+
+/* Cadastro: layout trazido da branch feature/landing/cadastro */
+.LoginPage--cadastro {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background-color: #0E0C23;
+    overflow: hidden;
+}
+
+.LoginPage--cadastro .LoginShell {
+    width: 100%;
+    max-width: none;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    position: relative;
+    background-color: #0E0C23;
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    overflow: hidden;
+    box-shadow: none;
+}
+
+.LoginPage--cadastro .LoginMarca {
+    position: relative;
+    padding: 48px clamp(32px, 5.55vw, 80px) 32px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #0E0C23;
+}
+
+.LoginPage--cadastro .LoginLogo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    gap: 8px;
+    width: 260px;
+    max-width: 100%;
+    color: #ffffff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.LoginPage--cadastro .LoginLogo img {
+    display: block;
+    width: 260px;
+    max-width: 100%;
+}
+
+.LoginPage--cadastro .LoginDivisor {
+    width: 80px;
+    height: 2.5px;
+    background-color: #D8A23A;
+    border-radius: 2px;
+    margin: 28px 0 18px;
+}
+
+.LoginPage--cadastro .LoginTagline {
+    color: #ffffff;
+    font-size: 28px;
+    line-height: 1.35;
+    max-width: 428px;
+}
+
+.LoginPage--cadastro .LoginTagline .destaque {
+    color: #FAC61B;
+}
+
+.LoginPage--cadastro .LoginRecursos {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 48px;
+    padding: 0;
+    list-style: none;
+}
+
+.LoginPage--cadastro .LoginRecursoItem {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.LoginPage--cadastro .LoginRecursoIcone {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background-color: rgba(255, 255, 255, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LoginPage--cadastro .LoginRecursoIcone svg {
+    width: 30px;
+    height: 30px;
+    stroke: #D8A23A;
+}
+
+.LoginPage--cadastro .LoginRecursoTitulo {
+    color: #ffffff;
+    font-size: 22px;
+    line-height: 1.5;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.LoginPage--cadastro .LoginRecursoTexto {
+    color: #D9D9D9;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.4;
+    max-width: 328px;
+}
+
+.LoginPage--cadastro .MascoteLogin {
+    position: absolute;
+    right: 38px;
+    bottom: 12px;
+    width: 211px;
+    height: auto;
+    transform: translateX(15%);
+    pointer-events: none;
+}
+
+.LoginPage--cadastro .LoginFormulario {
+    justify-self: center;
+    align-self: center;
+    width: min(677px, calc(100% - 32px));
+    height: min(889px, calc(100dvh - 40px));
+    background-color: #ffffff;
+    border-radius: 25px;
+    margin: 0;
+    padding: 40px 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2.5px solid #D8A23A;
+    overflow-y: auto;
+}
+
+.LoginPage--cadastro .LoginCabecalho {
+    width: 100%;
+    max-width: 490px;
+    align-self: center;
+    margin: 0 auto 36px;
+    text-align: center;
+}
+
+.LoginPage--cadastro .LoginTitulo {
+    color: #090471;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.LoginPage--cadastro .LoginSubtitulo {
+    color: #5E5E5E;
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.LoginPage--cadastro .CadastroCamposGrid,
+.LoginPage--cadastro .LoginSeparador,
+.LoginPage--cadastro .LoginGoogle,
+.LoginPage--cadastro .LoginRodape {
+    width: 100%;
+    max-width: 490px;
+    align-self: center;
+}
+
+.LoginPage--cadastro .CadastroCamposGrid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 14px;
+    margin: 0 auto;
+}
+
+.LoginPage--cadastro .CadastroCamposGrid .LoginCampoGrupo {
+    position: relative;
+    min-width: 0;
+    margin: 0;
+}
+
+.LoginPage--cadastro .CadastroCampo--full {
+    grid-column: 1 / -1;
+}
+
+.LoginPage--cadastro .LoginCampoLabel {
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    z-index: 1;
+    background-color: #ffffff;
+    padding: 0 7px;
+    font-size: 13px;
+    color: #1C1A32;
+}
+
+.LoginPage--cadastro .LoginCampoInput {
+    width: 100%;
+    height: 56px;
+    padding: 10px 18px;
+    border: 1px solid #5E5E5E;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.LoginPage--cadastro .LoginCampoInput::placeholder {
+    color: #9ca3af;
+}
+
+.LoginPage--cadastro .LoginCampoInput:focus {
+    border-color: #D8A23A;
+}
+
+.LoginPage--cadastro .CadastroCamposGrid .LoginBotao {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 56px;
+    margin-top: 2px;
+    padding: 10px 26px;
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.LoginPage--cadastro .CadastroCamposGrid .LoginBotao:hover {
+    background-color: #17143A;
+}
+
+.LoginPage--cadastro .LoginSeparador {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 12px;
+    margin: 22px auto 24px;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.LoginPage--cadastro .LoginSeparadorLinha {
+    height: 1px;
+    background-color: #d1d5db;
+}
+
+.LoginPage--cadastro .LoginGoogle {
+    height: 56px;
+    padding: 13px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    color: #111827;
+    background-color: #ffffff;
+    border: 2px solid #CECDD2;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.LoginPage--cadastro .LoginGoogle:hover {
+    background-color: #f9fafb;
+}
+
+.LoginPage--cadastro .LoginGoogleIcone {
+    display: block;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 20px;
+    background: url("img/google-signin.png") center / 40px 40px no-repeat;
+}
+
+.LoginPage--cadastro .LoginRodape {
+    margin: 20px auto 0;
+    text-align: center;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+.LoginPage--cadastro .LoginLinkEsqueci {
+    margin-left: 6px;
+    color: #f4a900;
+    text-decoration: none;
+}
+
+.LoginPage--cadastro .LoginLinkEsqueci:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 860px) {
+    .LoginPage--cadastro {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow: auto;
+    }
+
+    .LoginPage--cadastro .LoginShell {
+        height: auto;
+        min-height: 100vh;
+        min-height: 100dvh;
+        grid-template-columns: 1fr;
+        overflow: visible;
+    }
+
+    .LoginPage--cadastro .LoginRecursos,
+    .LoginPage--cadastro .MascoteLogin {
+        display: none;
+    }
+
+    .LoginPage--cadastro .LoginMarca {
+        padding: 28px 24px;
+    }
+
+    .LoginPage--cadastro .LoginFormulario {
+        justify-self: center;
+        width: calc(100% - 16px);
+        height: auto;
+        min-height: 0;
+        margin: 8px auto;
+        padding: 28px 24px;
+        overflow: visible;
+    }
+
+    .LoginPage--cadastro .LoginCabecalho {
+        margin-bottom: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .LoginPage--cadastro .CadastroCamposGrid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .LoginPage--cadastro .CadastroCampo--full,
+    .LoginPage--cadastro .CadastroCamposGrid .LoginBotao {
+        grid-column: auto;
+    }
+
+    .LoginPage--cadastro .LoginSeparador {
+        margin: 20px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .LoginPage--cadastro {
+        padding: 0;
+    }
+
+    .LoginPage--cadastro .LoginFormulario {
+        padding: 26px 20px;
+    }
+
+    .LoginPage--cadastro .LoginTitulo {
+        font-size: 22px;
+    }
+}
