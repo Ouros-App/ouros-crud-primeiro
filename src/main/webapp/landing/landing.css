@@ -2487,3 +2487,366 @@ a {
     }
 }
 
+/* Ajustes responsivos do hero para tablet e celular. O desktop acima de 1100px
+   mantém as medidas e posições aprovadas no Figma. */
+@media (min-width: 901px) and (max-width: 1100px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+        column-gap: clamp(14px, 2vw, 24px);
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(42px, 5.25vw, 58px);
+        letter-spacing: -1.35px;
+    }
+
+    .hero-content h1::before {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: min(66vw, 430px);
+        transform: translateY(-50%);
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        margin-top: clamp(24px, 3vw, 34px);
+        font-size: clamp(16px, 1.8vw, 19px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        height: 100%;
+        min-height: 0;
+        margin-top: 0;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 50%;
+        right: -3%;
+        width: min(108%, 480px);
+        transform: translateY(-50%);
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+    #header {
+        width: calc(100% - 40px);
+        height: 68px;
+        padding: 0 12px;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo img {
+        width: clamp(110px, 14vw, 128px);
+    }
+
+    #header nav {
+        display: none;
+    }
+
+    #header nav.mobile-aberto {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 22px;
+        border: 1px solid #39364a;
+        border-radius: 12px;
+        background: #19162f;
+        gap: 18px;
+    }
+
+    #header nav a {
+        font-size: 16px;
+    }
+
+    .acoes {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+
+    .acoes a {
+        font-size: 13px;
+    }
+
+    .acoes .btcadastro {
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .menu-mobile {
+        display: block;
+        flex: 0 0 auto;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 100svh;
+    }
+
+    .hero-container {
+        height: auto;
+        min-height: 100svh;
+        grid-template-columns: minmax(0, 1fr);
+        align-content: center;
+        padding: clamp(120px, 14svh, 144px) clamp(24px, 6vw, 56px) clamp(96px, 10svh, 120px);
+        gap: clamp(24px, 3.5vh, 36px);
+    }
+
+    .hero-content {
+        width: min(100%, 780px);
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(42px, 6vw, 54px);
+        letter-spacing: -1.25px;
+    }
+
+    .hero-content h1::before {
+        width: min(110vw, 680px);
+        height: min(82vw, 520px);
+    }
+
+    .hero-content::before {
+        left: -5%;
+        width: 110%;
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        max-width: 54ch;
+        margin-top: 24px;
+        font-size: clamp(16px, 2.1vw, 18px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        width: min(100%, 420px);
+        height: auto;
+        aspect-ratio: 766 / 782;
+        min-height: 0;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 0;
+        right: 0;
+        width: 100%;
+        aspect-ratio: 766 / 782;
+        transform: none;
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+
+    .hero-brilho-azul-visual {
+        display: block;
+        top: 43%;
+        left: 50%;
+        right: auto;
+        width: min(76vw, 390px);
+        height: min(76vw, 390px);
+        transform: translateX(-50%);
+        opacity: .19;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        height: auto;
+        min-height: min(100svh, 850px);
+    }
+
+    .hero-container {
+        height: auto;
+        min-height: min(100svh, 850px);
+        align-content: center;
+        padding: clamp(108px, 16svh, 125px) 6% clamp(82px, 10svh, 108px);
+        gap: clamp(24px, 4vh, 36px);
+    }
+
+    .hero-content {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(34px, 7.3vw, 55px);
+        font-size: var(--hero-title-size);
+        letter-spacing: -1px;
+    }
+
+    .hero-content h1::before {
+        inset: -10% -4%;
+    }
+
+    .hero-content::before {
+        left: -5%;
+        width: 110%;
+        height: clamp(260px, 42vw, 340px);
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        max-width: 54ch;
+        margin-top: 24px;
+        font-size: clamp(14px, 3.6vw, 16px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        width: min(90%, 340px);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 766 / 782;
+        min-height: 0;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 0;
+        right: 0;
+        width: 100%;
+        aspect-ratio: 766 / 782;
+        transform: none;
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+
+    .hero-brilho-roxo-right {
+        right: 0;
+        width: min(72vw, 360px);
+        height: min(72vw, 360px);
+    }
+
+    .hero-brilho-dourado {
+        right: 4%;
+        width: min(88vw, 360px);
+        height: min(70vw, 300px);
+    }
+
+    .hero-brilho-azul-visual {
+        display: block;
+        top: 43%;
+        left: 50%;
+        right: auto;
+        width: min(76vw, 360px);
+        height: min(76vw, 360px);
+        transform: translateX(-50%);
+        opacity: .19;
+    }
+}
+
+@media (max-width: 370px) {
+    #header {
+        width: calc(100% - 12px);
+        padding: 0 8px;
+        gap: 6px;
+    }
+
+    .logo img {
+        width: 86px;
+    }
+
+    .acoes {
+        gap: 6px;
+    }
+
+    .acoes a {
+        font-size: 12px;
+    }
+
+    .acoes .btcadastro {
+        height: 30px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .menu-mobile {
+        padding: 6px;
+    }
+}
+
+/* As estrelas acompanham o layout empilhado sem sair dos limites da tela.
+   As coordenadas do desktop permanecem intactas a partir de 1101px. */
+@media (min-width: 761px) and (max-width: 1100px) {
+    .hero > .decor {
+        z-index: 3;
+    }
+
+    .hero > .decor .star {
+        width: clamp(4px, .55vw, 6px);
+        height: clamp(4px, .55vw, 6px);
+    }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+    .star-1 { left: 2%; top: 13%; }
+    .star-2 { left: auto; right: 2%; top: 23%; }
+    .star-3 { left: 2%; top: 39%; }
+    .star-4 { left: auto; right: 2%; top: 53%; }
+    .star-5 { left: 2%; top: 70%; }
+    .star-6 { left: auto; right: 2%; top: 85%; }
+
+    .star-7-reference {
+        left: 8%;
+        top: 91%;
+    }
+
+    .star-8-reference {
+        left: auto;
+        right: 8%;
+        top: 39%;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero > .decor {
+        z-index: 3;
+    }
+
+    .hero > .decor .star,
+    .hero-composicao .composicao-stars .star {
+        width: clamp(3px, 1.15vw, 5px);
+        height: clamp(3px, 1.15vw, 5px);
+    }
+
+    /* Distribui as estrelas pelas margens livres do título, subtítulo e arte. */
+    .star-1 { left: 1.5%; top: 12%; }
+    .star-2 { left: auto; right: 1.5%; top: 22%; }
+    .star-3 { left: 1.5%; top: 39%; }
+    .star-4 { left: auto; right: 1.5%; top: 53%; }
+    .star-5 { left: 1.5%; top: 70%; }
+    .star-6 { left: auto; right: 1.5%; top: 85%; }
+
+    /* No celular, as estrelas 7 e 8 acompanham a composição escalada. */
+    .hero-composicao .star-7 {
+        left: 10.99%;
+        top: 12.19%;
+    }
+
+    .hero-composicao .star-8 {
+        left: 69.93%;
+        top: 74.02%;
+    }
+}
+

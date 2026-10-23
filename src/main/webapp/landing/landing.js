@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navigation.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
         document.addEventListener('click', (event) => {
-            if (window.innerWidth <= 760 && header && !header.contains(event.target)) {
+            if (window.innerWidth <= 900 && header && !header.contains(event.target)) {
                 closeMenu();
             }
         });
