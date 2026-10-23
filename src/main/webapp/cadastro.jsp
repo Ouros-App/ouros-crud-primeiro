@@ -1,79 +1,182 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cadastro de Proprietário</title>
-    <link rel="stylesheet" href="Style.css?v=6">
-    <link rel="icon" href="img/Asa-icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | Ouros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <style>
+        .LoginPage--cadastro .LoginFormulario > .LoginGoogle {
+            width: min(490px, 100%);
+            max-width: 490px;
+            height: 56px;
+            flex: 0 0 56px;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 861px) and (max-height: 820px) {
+            .LoginPage--cadastro .LoginFormulario {
+                justify-content: flex-start;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+
+            .LoginPage--cadastro .LoginFormulario > * {
+                flex-shrink: 0;
+            }
+
+            .LoginPage--cadastro .LoginCabecalho {
+                margin-bottom: 22px;
+            }
+
+            .LoginPage--cadastro .CadastroCamposGrid .LoginCampoGrupo {
+                margin-bottom: 12px;
+            }
+
+            .LoginPage--cadastro .LoginSeparador {
+                margin: 14px auto 20px;
+            }
+
+            .LoginPage--cadastro .LoginRodape {
+                margin-top: 12px;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+    <base href="${pageContext.request.contextPath}/">
 </head>
-<body class="EditorPagina">
-<main class="EditorCartao" aria-labelledby="editorTitulo">
-    <header class="EditorCabecalho">
-        <h1 id="editorTitulo">Cadastro de Proprietário</h1>
-    </header>
-    <p class="CadastroIntroducao">Preencha seus dados para criar o acesso e vinculá-lo à sua granja.</p>
-    <form action="cadastro" method="post" data-cadastro="proprietario">
-        <div class="EditorGrid">
-            <div class="EditorCampo EditorCampo--full">
-                <label for="nome">Nome completo</label>
-                <input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" placeholder="Seu nome completo" required>
-            </div>
-            <div class="EditorCampo">
-                <label for="cpf">CPF</label>
-                <input type="text" id="cpf" name="cpf" inputmode="numeric" autocomplete="off" maxlength="14" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" title="Digite um CPF válido." placeholder="000.000.000-00" aria-describedby="cpfAjuda" required>
-                <small class="EditorCampoAjuda" id="cpfAjuda">Digite os 11 números; a formatação é aplicada automaticamente.</small>
-            </div>
-            <div class="EditorCampo">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" autocomplete="email" maxlength="254" pattern="[\w.+-]+@[\w-]+(\.[\w-]+)*\.[A-Za-z]{2,}" placeholder="voce@exemplo.com" required>
-            </div>
-            <div class="EditorCampo">
-                <label for="telefone">Telefone</label>
-                <input type="tel" id="telefone" name="telefone" inputmode="tel" autocomplete="tel" maxlength="15" pattern="\([0-9]{2}\) 9?[0-9]{4}-[0-9]{4}" placeholder="(11) 91234-5678" aria-describedby="telefoneAjuda" required>
-                <small class="EditorCampoAjuda" id="telefoneAjuda">Informe o DDD e um telefone com 10 ou 11 números.</small>
-            </div>
-            <div class="EditorCampo">
-                <label for="idGranja">ID da Granja</label>
-                <input type="number" id="idGranja" name="idGranja" min="1" max="2147483647" step="1" inputmode="numeric" placeholder="1" aria-describedby="granjaAjuda" required>
-                <small class="EditorCampoAjuda" id="granjaAjuda">Use o identificador da granja ao qual seu acesso será vinculado.</small>
-            </div>
-            <div class="EditorCampo EditorCampo--full">
-                <label for="senha">Senha</label>
-                <div class="CadastroSenhaControle">
-                    <input type="password" id="senha" name="senha" autocomplete="new-password" minlength="8" aria-describedby="senhaAjuda" required>
-                    <button class="CadastroSenhaToggle" type="button" aria-label="Mostrar senha" aria-controls="senha" aria-pressed="false">Mostrar</button>
+<body>
+
+<main class="LoginPage LoginPage--cadastro">
+    <div class="LoginShell">
+        <section class="LoginMarca" aria-label="Sobre o Ouros">
+            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginDivisor"></div>
+            <p class="LoginTagline">
+                Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
+            </p>
+
+            <ul class="LoginRecursos">
+                <li class="LoginRecursoItem">
+                    <span class="LoginRecursoIcone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2.5c-3.5 4-6 7.4-6 10.7a6 6 0 0 0 12 0c0-3.3-2.5-6.7-6-10.7Z"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <h2 class="LoginRecursoTitulo">Registros</h2>
+                        <p class="LoginRecursoTexto">Acompanhe o histórico de água e energia.</p>
+                    </div>
+                </li>
+                <li class="LoginRecursoItem">
+                    <span class="LoginRecursoIcone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M8 21h8"></path><path d="M12 17v4"></path>
+                            <path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"></path>
+                            <path d="M17 5h2a2 2 0 0 1 0 4h-1"></path><path d="M7 5H5a2 2 0 0 0 0 4h1"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <h2 class="LoginRecursoTitulo">Ranking</h2>
+                        <p class="LoginRecursoTexto">Compare o desempenho da sua granja com outras.</p>
+                    </div>
+                </li>
+                <li class="LoginRecursoItem">
+                    <span class="LoginRecursoIcone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path>
+                        </svg>
+                    </span>
+                    <div>
+                        <h2 class="LoginRecursoTitulo">Dashboards</h2>
+                        <p class="LoginRecursoTexto">Visualize indicadores de consumo e desempenho.</p>
+                    </div>
+                </li>
+            </ul>
+
+            <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+        </section>
+
+        <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
+            <header class="LoginCabecalho">
+                <h1 class="LoginTitulo" id="cadastro-titulo">Bem-vindo!</h1>
+                <p class="LoginSubtitulo">Crie sua conta para ser um OUROS</p>
+            </header>
+
+            <form action="cadastro" method="post" id="formCadastro" class="CadastroCamposGrid">
+                <div class="LoginCampoGrupo CadastroCampo--full">
+                    <label class="LoginCampoLabel" for="nome">Nome</label>
+                    <input class="LoginCampoInput" type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" maxlength="120" required>
                 </div>
-                <small class="EditorCampoAjuda" id="senhaAjuda">Mínimo de 8 caracteres, com maiúscula, minúscula, número e símbolo.</small>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="cpf">CPF</label>
+                    <input class="LoginCampoInput" type="text" id="cpf" name="cpf" inputmode="numeric" autocomplete="off" maxlength="14" pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" title="Digite um CPF válido." placeholder="000.000.000-00" required>
+                </div>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="telefone">Telefone</label>
+                    <input class="LoginCampoInput" type="tel" id="telefone" name="telefone" inputmode="tel" autocomplete="tel" maxlength="15" pattern="\([0-9]{2}\) 9?[0-9]{4}-[0-9]{4}" title="Informe o DDD e um telefone válido." placeholder="(11) 91234-5678" required>
+                </div>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="email">Email</label>
+                    <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" autocomplete="email" maxlength="254" required>
+                </div>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="idGranja">ID da granja</label>
+                    <input class="LoginCampoInput" type="number" id="idGranja" name="idGranja" min="1" max="2147483647" step="1" inputmode="numeric" placeholder="1" required>
+                </div>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="senha">Senha</label>
+                    <input class="LoginCampoInput" type="password" id="senha" name="senha" placeholder="Mínimo de 8 caracteres" autocomplete="new-password" minlength="8" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=!._*-]).{8,}" title="Use ao menos 8 caracteres, com maiúscula, minúscula, número e símbolo." required>
+                </div>
+                <div class="LoginCampoGrupo">
+                    <label class="LoginCampoLabel" for="confirmarSenha">Confirmar senha</label>
+                    <input class="LoginCampoInput" type="password" id="confirmarSenha" name="confirmarSenha" placeholder="Repita sua senha" autocomplete="new-password" minlength="8" required>
+                </div>
+
+                <button type="submit" class="LoginBotao CadastroCampo--full">Continuar</button>
+            </form>
+
+            <div class="LoginSeparador" aria-hidden="true">
+                <span class="LoginSeparadorLinha"></span>
+                <span>ou</span>
+                <span class="LoginSeparadorLinha"></span>
             </div>
-        </div>
-        <footer class="EditorAcoes CadastroAcoes">
-            <a href="login.jsp" class="EditorCancelar">Voltar ao login</a>
-            <button type="submit" class="EditorSalvar">Criar cadastro</button>
-        </footer>
-    </form>
+
+            <button type="button" class="LoginGoogle" aria-label="Entrar com Google">
+                <span class="LoginGoogleIcone" aria-hidden="true"></span>
+                Entrar com Google
+            </button>
+
+            <div class="LoginRodape">
+                <span>Já tem uma conta?</span>
+                <a class="LoginLinkEsqueci" href="login.jsp">Entrar</a>
+            </div>
+        </section>
+    </div>
 </main>
+
 <script>
 (() => {
-    const form = document.querySelector('[data-cadastro="proprietario"]');
-    if (!form) return;
-
-    const cpf = form.elements.namedItem('cpf');
-    const telefone = form.elements.namedItem('telefone');
-    const senha = form.elements.namedItem('senha');
-    const alternarSenha = form.querySelector('.CadastroSenhaToggle');
+    const formularioCadastro = document.getElementById("formCadastro");
+    const cpfCadastro = formularioCadastro.elements.namedItem("cpf");
+    const telefoneCadastro = formularioCadastro.elements.namedItem("telefone");
+    const senhaCadastro = formularioCadastro.elements.namedItem("senha");
+    const confirmacaoSenha = formularioCadastro.elements.namedItem("confirmarSenha");
 
     function formatarCpf(valor) {
-        const numeros = valor.replace(/\D/g, '').slice(0, 11);
+        const numeros = valor.replace(/\D/g, "").slice(0, 11);
         return numeros
-            .replace(/^(\d{3})(\d)/, '$1.$2')
-            .replace(/^(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
-            .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            .replace(/^(\d{3})(\d)/, "$1.$2")
+            .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
+            .replace(/(\d{3})(\d{1,2})$/, "$1-$2");
     }
 
     function cpfValido(valor) {
-        const numeros = valor.replace(/\D/g, '');
+        const numeros = valor.replace(/\D/g, "");
         if (numeros.length !== 11 || /^(\d)\1{10}$/.test(numeros)) return false;
         for (let digito = 9; digito <= 10; digito += 1) {
             let soma = 0;
@@ -88,51 +191,56 @@
     }
 
     function formatarTelefone(valor) {
-        let numeros = valor.replace(/\D/g, '');
+        let numeros = valor.replace(/\D/g, "");
         if (/^\s*\+55/.test(valor)) numeros = numeros.slice(2);
         numeros = numeros.slice(0, 11);
-        if (!numeros) return '';
-        if (numeros.length <= 2) return '(' + numeros;
+        if (!numeros) return "";
+        if (numeros.length <= 2) return "(" + numeros;
         const ddd = numeros.slice(0, 2);
         const telefoneLocal = numeros.slice(2);
-        if (telefoneLocal.length <= 4) return '(' + ddd + ') ' + telefoneLocal;
+        if (telefoneLocal.length <= 4) return "(" + ddd + ") " + telefoneLocal;
         const tamanhoPrefixo = numeros.length > 10 ? 5 : 4;
-        return '(' + ddd + ') ' + telefoneLocal.slice(0, tamanhoPrefixo) + '-' + telefoneLocal.slice(tamanhoPrefixo);
+        return "(" + ddd + ") " + telefoneLocal.slice(0, tamanhoPrefixo) + "-" + telefoneLocal.slice(tamanhoPrefixo);
     }
 
-    cpf.addEventListener('input', () => {
-        cpf.value = formatarCpf(cpf.value);
-        cpf.setCustomValidity('');
-    });
-    telefone.addEventListener('input', () => {
-        telefone.value = formatarTelefone(telefone.value);
-        telefone.setCustomValidity('');
-    });
-    senha.addEventListener('input', () => senha.setCustomValidity(''));
+    function validarConfirmacaoSenha() {
+        if (confirmacaoSenha.value && confirmacaoSenha.value !== senhaCadastro.value) {
+            confirmacaoSenha.setCustomValidity("As senhas precisam ser iguais.");
+        } else {
+            confirmacaoSenha.setCustomValidity("");
+        }
+    }
 
-    alternarSenha.addEventListener('click', () => {
-        const visivel = senha.type === 'password';
-        senha.type = visivel ? 'text' : 'password';
-        alternarSenha.textContent = visivel ? 'Ocultar' : 'Mostrar';
-        alternarSenha.setAttribute('aria-label', visivel ? 'Ocultar senha' : 'Mostrar senha');
-        alternarSenha.setAttribute('aria-pressed', String(visivel));
-        senha.focus();
+    cpfCadastro.addEventListener("input", () => {
+        cpfCadastro.value = formatarCpf(cpfCadastro.value);
+        cpfCadastro.setCustomValidity("");
     });
+    telefoneCadastro.addEventListener("input", () => {
+        telefoneCadastro.value = formatarTelefone(telefoneCadastro.value);
+        telefoneCadastro.setCustomValidity("");
+    });
+    senhaCadastro.addEventListener("input", () => {
+        senhaCadastro.setCustomValidity("");
+        validarConfirmacaoSenha();
+    });
+    confirmacaoSenha.addEventListener("input", validarConfirmacaoSenha);
 
-    form.addEventListener('submit', evento => {
-        if (!cpfValido(cpf.value)) {
+    formularioCadastro.addEventListener("submit", evento => {
+        if (!cpfValido(cpfCadastro.value)) {
             evento.preventDefault();
-            cpf.setCustomValidity('Informe um CPF válido com 11 números.');
-            cpf.reportValidity();
+            cpfCadastro.setCustomValidity("Informe um CPF válido com 11 números.");
+            cpfCadastro.reportValidity();
             return;
         }
-        if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!._*-]).{8,}$/.test(senha.value)) {
+
+        validarConfirmacaoSenha();
+        if (!formularioCadastro.checkValidity()) {
             evento.preventDefault();
-            senha.setCustomValidity('Use ao menos 8 caracteres, incluindo maiúscula, minúscula, número e símbolo.');
-            senha.reportValidity();
+            formularioCadastro.reportValidity();
         }
     });
 })();
 </script>
+
 </body>
 </html>
