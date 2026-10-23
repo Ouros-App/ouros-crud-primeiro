@@ -857,6 +857,8 @@ a {
 }
 
 .funcionamento .secao-titulo {
+    position: relative;
+    z-index: 3;
     width: 485px;
     max-width: 100%;
     color: #CB982D;
