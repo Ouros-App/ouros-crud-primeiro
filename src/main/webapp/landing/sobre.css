@@ -316,7 +316,7 @@ a {
 .sobre-titulo-secao::after {
     height: 1px;
     flex: 1 1 auto;
-    background: rgba(23, 21, 43, .55);
+    background: rgba(203, 152, 45, .55);
     content: '';
 }
 
@@ -376,8 +376,36 @@ a {
     transform: translateY(-50%);
 }
 
+.sobre-anos {
+    position: relative;
+    left: 50%;
+    isolation: isolate;
+    overflow: visible;
+    width: 100vw;
+    margin-top: clamp(48px, 5vw, 72px);
+    padding: clamp(56px, 6.4vw, 96px) clamp(24px, 6.2vw, 94px) clamp(38px, 4.4vw, 68px);
+    transform: translateX(-50%);
+}
+
+.sobre-anos::before {
+    position: absolute;
+    top: 0;
+    bottom: -88px;
+    left: 50%;
+    z-index: -1;
+    width: 100vw;
+    background: #0E0C23;
+    content: "";
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
 .sobre-ano {
     margin-top: clamp(48px, 5vw, 72px);
+}
+
+.sobre-anos > .sobre-ano:first-child {
+    margin-top: 0;
 }
 
 .sobre-ano + .sobre-ano {
@@ -389,31 +417,35 @@ a {
     align-items: center;
     gap: clamp(10px, 1.3vw, 18px);
     margin: 0 0 clamp(32px, 4vw, 58px);
-    color: var(--sobre-ink);
-    font-size: clamp(30px, 2.6vw, 48px);
-    font-weight: 700;
-    line-height: 1;
+    color: #FAF7EC;
+    font-family: 'Poppins', sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
 }
 
 .sobre-ano-titulo::after {
     height: 1px;
     flex: 1 1 auto;
-    background: rgba(207, 157, 35, .65);
-    content: '';
+    background: #CB982D;
+    content: "";
 }
 
-.sobre-ano-asa {
+.sobre-ano-ponto {
     display: block;
-    width: clamp(36px, 3.5vw, 58px);
-    height: auto;
-    flex: 0 0 auto;
+    width: 5px;
+    height: 5px;
+    flex: 0 0 5px;
+    border-radius: 50%;
+    background: #CB982D;
 }
 
 .sobre-faixa-pessoas {
     overflow-x: auto;
-    padding: 10px;
-    border-radius: 10px;
-    background: #19162f;
+    padding: 0;
+    border-radius: 0;
+    background: transparent;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
 }
@@ -436,11 +468,10 @@ a {
     flex: 0 0 clamp(50px, 17vw, 84px);
     margin: 0;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, .12);
+    border: 0;
     border-radius: 10px;
-    background: #302d43;
+    background: #0E0C23;
     cursor: pointer;
-    transition: border-color 220ms ease, box-shadow 220ms ease;
 }
 
 .sobre-pessoa-placeholder {
@@ -488,12 +519,6 @@ a {
     line-height: 1.25;
 }
 
-.sobre-pessoa:hover,
-.sobre-pessoa:focus-visible {
-    border-color: var(--sobre-gold);
-    box-shadow: 0 12px 30px rgba(10, 8, 20, .28);
-}
-
 .sobre-pessoa:hover .sobre-pessoa-placeholder,
 .sobre-pessoa:focus-visible .sobre-pessoa-placeholder {
     filter: brightness(.68);
@@ -507,10 +532,48 @@ a {
 }
 
 @media (min-width: 900px) {
+    .sobre-equipe {
+        padding-bottom: 0;
+    }
+
+    .sobre-anos {
+        width: 100vw;
+        height: 1296px;
+        margin-top: 60px;
+        padding: 86px 0 0;
+        overflow: hidden;
+        background: #0E0C23;
+    }
+
+    .sobre-anos::before {
+        inset: 0;
+        width: auto;
+        transform: none;
+    }
+
+    .sobre-ano {
+        position: relative;
+        margin-top: 0;
+    }
+
+    .sobre-ano + .sobre-ano {
+        margin-top: 241px;
+    }
+
+    .sobre-ano-titulo {
+        margin: 0 171px 98px 195px;
+        font-size: 36px;
+    }
+
+    .sobre-faixa-pessoas {
+        width: min(calc(100% - 195px), 1057px);
+        margin-left: 195px;
+    }
+
     .sobre-faixa-pessoas {
         overflow-x: auto;
-        padding: 2.5vw 3.1vw;
-        border-radius: clamp(22px, 2vw, 30px);
+        padding: 0;
+        border-radius: 0;
         scrollbar-width: none;
     }
 
@@ -522,23 +585,14 @@ a {
         display: flex;
         width: max-content;
         min-width: 100%;
-        gap: 5.5vw;
+        gap: 79px;
     }
 
     .sobre-pessoa {
-        width: clamp(180px, 18vw, 324px);
-        height: clamp(180px, 18vw, 324px);
-        flex: 0 0 clamp(180px, 18vw, 324px);
-        border: 1px solid var(--sobre-gold);
-        border-radius: clamp(22px, 2.2vw, 34px);
-    }
-
-    .sobre-ano-titulo {
-        font-size: clamp(30px, 2.6vw, 48px);
-    }
-
-    .sobre-ano-asa {
-        width: clamp(36px, 3.5vw, 58px);
+        width: 260px;
+        height: 260px;
+        flex-basis: 260px;
+        border-radius: 35px;
     }
 
     .sobre-foto-equipe figcaption {
@@ -553,8 +607,8 @@ a {
     }
 
     .sobre-faixa-pessoas {
-        padding: 24px;
-        border-radius: 22px;
+        padding: 0;
+        border-radius: 0;
     }
 
     .sobre-pessoas {
@@ -565,7 +619,6 @@ a {
         width: clamp(150px, 25vw, 220px);
         height: clamp(150px, 25vw, 220px);
         flex-basis: clamp(150px, 25vw, 220px);
-        border: 1px solid var(--sobre-gold);
         border-radius: 22px;
     }
 }
@@ -710,6 +763,18 @@ a {
         margin-top: 28px;
     }
 
+    .sobre-anos {
+        left: 50%;
+        width: 100vw;
+        margin-top: 28px;
+        padding: 28px 16px 34px;
+        transform: translateX(-50%);
+    }
+
+    .sobre-anos::before {
+        bottom: -52px;
+    }
+
     .sobre-ano + .sobre-ano {
         margin-top: 24px;
     }
@@ -720,8 +785,8 @@ a {
     }
 
     .sobre-faixa-pessoas {
-        padding: 8px;
-        border-radius: 8px;
+        padding: 0;
+        border-radius: 0;
     }
 
     .sobre-pessoas {

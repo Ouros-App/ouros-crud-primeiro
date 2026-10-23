@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sobre.css?v=20261023-1">
+    <link rel="stylesheet" href="sobre.css?v=20261023-10">
     <link rel="icon" href="../assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
@@ -54,33 +54,35 @@
                     <figcaption>Imagem provisória — foto oficial da equipe será adicionada depois</figcaption>
                 </figure>
 
-                <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
-                    <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><img class="sobre-ano-asa" src="../assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
-                    <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do primeiro ano; deslize para ver todas as pessoas">
-                        <div class="sobre-pessoas">
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                <div class="sobre-anos">
+                    <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
+                        <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
+                        <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do primeiro ano; deslize para ver todas as pessoas">
+                            <div class="sobre-pessoas">
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
-                    <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><img class="sobre-ano-asa" src="../assets/asa-icone.svg" alt="" aria-hidden="true"></h3>
-                    <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do segundo ano; deslize para ver todas as pessoas">
-                        <div class="sobre-pessoas">
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
-                            <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                    <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
+                        <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
+                        <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do segundo ano; deslize para ver todas as pessoas">
+                            <div class="sobre-pessoas">
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Integrante provisório; informações da equipe em atualização"><span class="sobre-pessoa-placeholder" role="img" aria-label="Foto provisória de integrante da equipe"><span aria-hidden="true">Foto<br>provisória</span></span><figcaption class="sobre-pessoa-info"><strong>Integrante provisório</strong><span>Nome e função em atualização</span></figcaption></figure>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </section>
     </main>
