@@ -5,22 +5,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Esqueci minha senha</title>
-
+    <title>Recuperação de conta | Ouros</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <base href="${pageContext.request.contextPath}/">
-    <link rel="stylesheet" href="Style.css?v=7">
+    <link rel="stylesheet" href="Style.css?v=8">
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
 </head>
 <body>
 
-<div class="LoginPage">
-    <div class="LoginShell">
+<main class="LoginPage LoginPage--recuperacao">
+    <div class="LoginShell LoginShell--recuperacao">
 
         <div class="LoginMarca">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="logo"></div>
+            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
-                CRUD para monitoramento de dados de forma mais <span class="destaque">eficiente.</span>
+                Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
             </p>
 
             <ul class="LoginRecursos">
@@ -66,29 +68,30 @@
                 </li>
             </ul>
 
-            <img class="MascoteSenha" src="img/midas.png" alt="mascote do Ouros">
+            <img class="MascoteLogin" src="img/Midas-Recuperacao.png" alt="Midas, mascote do Ouros">
+
         </div>
 
         <div class="LoginFormulario">
             <div class="LoginCabecalho">
-                <h1 class="LoginTitulo">Esqueceu sua senha?</h1>
-                <p class="LoginSubtitulo">Digite seu e-mail e enviaremos um link para redefinir sua senha</p>
+                <h1 class="LoginTitulo">Recuperação de Conta</h1>
+                <p class="LoginSubtitulo">Redefina sua senha para continuar sendo um OUROS</p>
             </div>
 
-
             <form action="RecuperarSenha" method="post">
+                <h2 class="LoginPergunta">Esqueceu sua senha?</h2>
+                <p class="LoginInstrucao" id="recuperarAjuda">Digite seu e-mail e enviaremos um link para redefinir sua senha.</p>
+
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email"
                            placeholder="seuemail@email.com" autocomplete="email" maxlength="254"
                            pattern="[\w.+-]+@[\w-]+(\.[\w-]+)*\.[A-Za-z]{2,}"
-                           aria-describedby="recuperarAjuda" required>
+                           aria-describedby="recuperarAjuda" aria-invalid="${param.erro == 'email'}" required>
                 </div>
-                <p class="RecuperarAjuda" id="recuperarAjuda">Se houver uma conta com esse e-mail, enviaremos um link de redefinição.</p>
 
                 <button type="submit" class="LoginBotao">Enviar link</button>
 
-                <%-- mensagens vindas do servlet (?status=... e ?erro=...) --%>
                 <c:if test="${param.status == 'enviado'}">
                     <p class="LoginSubtitulo RecuperarFeedback RecuperarFeedback--sucesso" role="status">
                         Se esse e-mail estiver cadastrado, enviamos um link para redefinir sua senha.
@@ -107,12 +110,13 @@
             </form>
 
             <div class="LoginRodape">
-                <a class="LoginLinkEsqueci" href="login.jsp">Lembrou sua senha? Voltar ao login</a>
+                <span>Lembrou sua senha?</span>
+                <a class="LoginLinkEsqueci" href="login.jsp">Voltar ao login</a>
             </div>
         </div>
 
     </div>
-</div>
+</main>
 
 </body>
 </html>
