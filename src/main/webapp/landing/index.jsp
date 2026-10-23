@@ -14,18 +14,20 @@
 </head>
 <body>
     <header id="header">
-        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="../assets/Ouros.svg" alt="Ouros"></a>
+        <a class="logo" href="#inicio" aria-label="Ouros — início"><img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros"></a>
 
         <nav id="navegacao" aria-label="Navegação principal">
             <a href="#inicio">Início</a>
+            <a href="#desafios">Desafios</a>
+            <a href="#funcionamento">Passo a passo</a>
             <a href="#funcionalidades">Funcionalidades</a>
-            <a href="#funcionamento">Como funciona</a>
+            <a href="#ranking">Ranking</a>
             <a href="#planos">Planos</a>
             <a href="#faq">FAQ</a>
-            <a class="sobre" href="sobre.jsp">Sobre nós</a>
+            <a class="sobre" href="${pageContext.request.contextPath}/landing/sobre.jsp">Sobre nós</a>
         </nav>
 
-        <div class="acoes"><a class="entrar" href="../login.jsp">Entrar</a><a class="btcadastro" href="../Cadastro.jsp">Cadastro</a></div>
+        <div class="acoes"><a class="entrar" href="${pageContext.request.contextPath}/login.jsp">Entrar</a><a class="btcadastro" href="${pageContext.request.contextPath}/Cadastro.jsp">Cadastro</a></div>
         <button type="button" class="menu-mobile" id="menuMobile" aria-label="Abrir menu" aria-controls="navegacao" aria-expanded="false"><span></span><span></span><span></span></button>
     </header>
 
@@ -34,23 +36,25 @@
             <div class="circulo hero-brilho-roxo-left"></div>
             <div class="circulo hero-brilho-roxo-right"></div>
             <div class="circulo hero-brilho-dourado"></div>
-            <div class="decor">
-                <span class="star star-1"></span><span class="star star-2"></span>
-                <span class="star star-3"></span><span class="star star-4"></span>
-                <span class="star star-5"></span><span class="star star-6"></span>
-            </div>
+            <div class="circulo hero-brilho-azul-visual"></div>
         </div>
         <div class="hero-container">
 
             <div class="hero-content">
-                <h1 id="hero-title"><span>Evolua sua</span><strong>GRANJA</strong><span>com eficiência e</span><span>sustentabilidade</span></h1>
+                <h1 id="hero-title"><span>Evolua sua</span><strong><span>GRANJA</span></strong><span>com eficiência e</span><span>sustentabilidade</span></h1>
                 <p class="subTitle">Monitore consumo, acompanhe indicadores e evolua<br class="desktop-break"> no ranking de sustentabilidade.</p>
             </div>
 
             <div class="hero-visual">
-                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><img src="../assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
+                <div class="hero-composicao" role="img" aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"><picture><source media="(min-width: 1101px)" srcset="../assets/hero-composicao-ouros-desktop.svg"><img src="../assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true"></picture><div class="decor composicao-stars" aria-hidden="true"><span class="star star-7"></span><span class="star star-8"></span></div></div>
             </div>
 
+        </div>
+        <div class="decor" aria-hidden="true">
+            <span class="star star-1"></span><span class="star star-2"></span>
+            <span class="star star-3"></span><span class="star star-4"></span>
+            <span class="star star-5"></span><span class="star star-6"></span>
+            <span class="star star-7-reference"></span><span class="star star-8-reference"></span>
         </div>
         <div class="hero-wave" aria-hidden="true"><img src="../assets/onda.svg" alt=""></div>
     </section>
