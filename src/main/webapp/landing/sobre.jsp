@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="sobre.css?v=20261022-13">
+    <link rel="stylesheet" href="sobre.css?v=20261023-1">
     <link rel="icon" href="../assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
@@ -85,29 +85,49 @@
         </section>
     </main>
 
-    <footer class="sobre-rodape">
-        <div class="sobre-rodape-conteudo">
-            <div class="sobre-rodape-marca">
-                <a href="index.jsp#inicio" aria-label="Ouros — voltar ao início">OUROS</a>
-                <p>Sustentabilidade que vira reconhecimento.</p>
+    <footer class="rodape" id="sobre">
+        <div class="landing-container rodape-conteudo">
+            <div class="rodape-marca">
+                <a class="rodape-logo" href="index.jsp#inicio" aria-label="Ouros — voltar ao início">
+                    <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
+                </a>
+                <p>Desempenho que gera reconhecimento</p>
+                <div class="rodape-contatos">
+                    <a class="rodape-contato rodape-contato-email" href="mailto:ouros.app@gmail.com">
+                        <span class="rodape-contato-icone rodape-contato-icone-email" aria-hidden="true"></span>
+                        <span>ouros.app@gmail.com</span>
+                    </a>
+                    <a class="rodape-contato rodape-contato-instagram" href="https://www.instagram.com/ouros_app/" target="_blank" rel="noopener noreferrer">
+                        <span class="rodape-contato-icone rodape-contato-icone-instagram" aria-hidden="true"></span>
+                        <span>ouros_app</span>
+                    </a>
+                </div>
             </div>
-            <nav class="sobre-rodape-coluna" aria-label="Links do produto">
-                <h2>Produto</h2>
-                <a href="index.jsp#funcionamento">Como funciona</a>
-                <a href="index.jsp#planos">Planos</a>
+            <nav class="rodape-coluna" aria-label="Links do projeto">
+                <h2>Projeto</h2>
+                <div class="rodape-links">
+                    <a href="index.jsp#inicio">Início</a>
+                    <a href="index.jsp#desafios">Desafios</a>
+                    <a href="index.jsp#funcionamento">Passo a Passo</a>
+                </div>
             </nav>
-            <nav class="sobre-rodape-coluna" aria-label="Links da empresa">
-                <h2>Empresa</h2>
-                <a href="${pageContext.request.contextPath}/landing/sobre.jsp#inicio">Sobre</a>
-                <a href="index.jsp#faq">Contato</a>
+            <nav class="rodape-coluna rodape-coluna-secundaria" aria-label="Mais links do projeto">
+                <div class="rodape-links">
+                    <a href="index.jsp#funcionalidades">Funcionalidades</a>
+                    <a href="index.jsp#planos">Planos</a>
+                    <a href="index.jsp#faq">FAQ</a>
+                </div>
             </nav>
-            <div class="sobre-rodape-coluna sobre-rodape-legal">
-                <h2>Legal</h2>
-                <span>Privacidade</span>
-                <span>Termos</span>
-            </div>
+            <nav class="rodape-coluna rodape-coluna-equipe" aria-label="Links da equipe">
+                <h2>Equipe</h2>
+                <div class="rodape-links">
+                    <a href="sobre.jsp#inicio">Sobre Nós</a>
+                </div>
+            </nav>
         </div>
-        <div class="sobre-rodape-base">© 2026 Ouros. Todos os direitos reservados.</div>
+        <div class="landing-container rodape-base">
+            <span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span>
+        </div>
     </footer>
 
     <script>
