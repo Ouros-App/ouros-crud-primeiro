@@ -474,21 +474,12 @@ a {
     cursor: pointer;
 }
 
-.sobre-pessoa-placeholder {
+.sobre-pessoa-imagem {
     position: absolute;
     inset: 0;
-    display: grid;
-    place-items: center;
-    padding: 4px;
-    background:
-        linear-gradient(135deg, rgba(207, 157, 35, .2), transparent 50%),
-        linear-gradient(150deg, #373349, #211e34);
-    color: rgba(255, 255, 255, .78);
-    font-size: clamp(6px, .7vw, 9px);
-    font-weight: 600;
-    line-height: 1.15;
-    text-align: center;
-    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transform: scale(1);
     transition: filter 260ms ease, transform 400ms ease;
 }
@@ -519,8 +510,8 @@ a {
     line-height: 1.25;
 }
 
-.sobre-pessoa:hover .sobre-pessoa-placeholder,
-.sobre-pessoa:focus-visible .sobre-pessoa-placeholder {
+.sobre-pessoa:hover .sobre-pessoa-imagem,
+.sobre-pessoa:focus-visible .sobre-pessoa-imagem {
     filter: brightness(.68);
     transform: scale(1.08);
 }
@@ -849,7 +840,7 @@ a {
     }
 
     .sobre-pessoa,
-    .sobre-pessoa-placeholder,
+    .sobre-pessoa-imagem,
     .sobre-pessoa-info {
         transition: none;
     }
