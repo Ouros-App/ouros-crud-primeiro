@@ -26,12 +26,12 @@ public interface FuncionarioDAO {
 
     //-------------------------------------------
     int contar();
-    List<Funcionario> select_paginado(int tamanho, int offset);
-    List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset);
-    List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset);
-    List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset);
-    List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset);
-    List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset);
+    List<Funcionario> select_paginado(int tamanho, int offset, String ordenarPor);
+    List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset, String ordenarPor);
+    List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset, String ordenarPor);
+    List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset, String ordenarPor);
+    List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset, String ordenarPor);
+    List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset, String ordenarPor);
 
     int contar_paginado();
     int contar_paginado_filtro_tudo(String busca);

@@ -76,12 +76,13 @@
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" id="buscaRegistro" placeholder="Buscar..." autocomplete="off">
+                        <input type="text" id="buscaFuncionario" name="buscaFuncionario"
+                               value="<c:out value='${param.buscaFuncionario}'/>" placeholder="Buscar..." autocomplete="off">
                     </div>
 
 
                     <div class="OrdenarPor">
-                        <select id="ordenarPor">
+                        <select id="ordenarPor" name="ordenarPor" onchange="this.form.submit()">
                             <option value="nome" ${empty param.ordenarPor || param.ordenarPor == 'nome' ? 'selected' : ''}>Ordenar por: Nome</option>
                             <option value="setor" ${param.ordenarPor == 'setor' ? 'selected' : ''}>Ordenar por: Setor</option>
                         </select>

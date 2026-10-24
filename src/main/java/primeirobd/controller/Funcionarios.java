@@ -80,8 +80,12 @@ public class Funcionarios extends HttpServlet {
             filtro = "tudo";
         }
 
-        if (buscaUsuario == null) {
+        if (buscaUsuario == null || buscaUsuario.isBlank()) {
             buscaUsuario = "";
+        }
+
+        if(ordenarPor == null || ordenarPor.isBlank()){
+            ordenarPor = "nome";
         }
 
         buscaUsuario = buscaUsuario.trim();
@@ -125,14 +129,16 @@ public class Funcionarios extends HttpServlet {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_tudo(
                                 "%" + buscaUsuario + "%",
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             }
         }
@@ -141,14 +147,16 @@ public class Funcionarios extends HttpServlet {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_nome(
                                 "%" + buscaUsuario + "%",
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             }
         }
@@ -157,14 +165,16 @@ public class Funcionarios extends HttpServlet {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_setor(
                                 "%" + buscaUsuario + "%",
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             }
         }
@@ -173,14 +183,16 @@ public class Funcionarios extends HttpServlet {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_email(
                                 "%" + buscaUsuario + "%",
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             }
         }
@@ -189,26 +201,22 @@ public class Funcionarios extends HttpServlet {
                 funcionarios =
                         funcionario.select_paginado(
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             } else {
                 funcionarios =
                         funcionario.select_paginado_filtro_telefone(
                                 "%" + buscaUsuario + "%",
                                 paginacao.getTamanho(),
-                                paginacao.getOffset()
+                                paginacao.getOffset(),
+                                ordenarPor
                         );
             }
         }
 
-        if (ordenarPor == null || ordenarPor.isBlank()) {
-            ordenarPor = "nome";
-        }
-
-        // 6. Envia os funcionários para o JSP ¹_¹
         request.setAttribute("funcionarios", funcionarios);
 
-        // 7. Envia a paginação para o JSP :D
         request.setAttribute("paginacao", paginacao);
 
         request.setAttribute("ordenarPor", ordenarPor);

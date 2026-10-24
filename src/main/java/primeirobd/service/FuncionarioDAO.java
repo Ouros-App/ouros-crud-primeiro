@@ -87,7 +87,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             "telefone_funcionario.telefone AS telefone " +
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
-            "ORDER BY funcionario.id " +
+            "ORDER BY %s, funcionario.id " +
             "LIMIT ? OFFSET ?";
     public static final String SELECT_PAGINADO_FILTRO_TUDO =
             "SELECT funcionario.id, " +
@@ -98,7 +98,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.nome LIKE ? OR funcionario.setor LIKE ? OR funcionario.email LIKE ? OR telefone_funcionario.telefone LIKE ? " +
-                    "ORDER BY funcionario.id " +
+                    "ORDER BY %s, funcionario.id " +
                     "LIMIT ? OFFSET ?";
     public static final String SELECT_BY_ID =
             "SELECT f.id, f.nome, f.cpf, f.email, f.setor, f.id_empresa, " +
@@ -115,8 +115,8 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
             "telefone_funcionario.telefone " +
             "FROM funcionario " +
             "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
-            "ORDER BY funcionario.id " +
             "WHERE funcionario.nome LIKE ? " +
+            "ORDER BY %s, funcionario.id " +
             "LIMIT ? OFFSET ?";
     public static final String SELECT_PAGINADO_FILTRO_SETOR =
             "SELECT funcionario.id, " +
@@ -127,7 +127,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.setor LIKE ? " +
-                    "ORDER BY funcionario.id " +
+                    "ORDER BY %s, funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public static final String SELECT_PAGINADO_FILTRO_EMAIL =
@@ -139,7 +139,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE funcionario.email LIKE ? " +
-                    "ORDER BY funcionario.id " +
+                    "ORDER BY %s, funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public static final String SELECT_PAGINADO_FILTRO_TELEFONE =
@@ -151,7 +151,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
                     "FROM funcionario " +
                     "JOIN telefone_funcionario ON funcionario.id = telefone_funcionario.id_funcionario " +
                     "WHERE telefone_funcionario.telefone LIKE ? " +
-                    "ORDER BY funcionario.id " +
+                    "ORDER BY %s, funcionario.id " +
                     "LIMIT ? OFFSET ?";
 
     public int contar() {
@@ -169,10 +169,15 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado(int tamanho, int offset) {
+    private String colunaOrdem(String ordenarPor) {
+        return "setor".equals(ordenarPor) ? "funcionario.setor" : "funcionario.nome"; // whitelist
+    }
+
+    public List<Funcionario> select_paginado(int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ps.setInt(1, tamanho);
             ps.setInt(2, offset);
 
@@ -193,10 +198,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_tudo(String busca, int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO_FILTRO_TUDO, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_TUDO)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
 
             ps.setString(1, busca);
             ps.setString(2, busca);
@@ -224,10 +230,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_nome(String busca, int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO_FILTRO_NOME, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_NOME)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
 
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
@@ -251,10 +258,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_setor(String busca, int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO_FILTRO_SETOR, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_SETOR)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
 
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
@@ -278,10 +286,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_email(String busca, int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO_FILTRO_EMAIL, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_EMAIL)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
 
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
@@ -305,10 +314,11 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    public List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset) {
+    public List<Funcionario> select_paginado_filtro_telefone(String busca, int tamanho, int offset, String ordenarPor) {
+        String query = String.format(SELECT_PAGINADO_FILTRO_TELEFONE, colunaOrdem(ordenarPor));
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_TELEFONE)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
 
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
