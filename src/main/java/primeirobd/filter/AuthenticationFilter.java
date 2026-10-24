@@ -1,4 +1,3 @@
-
 package primeirobd.filter;
 
 import java.io.IOException;
@@ -11,9 +10,13 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import primeirobd.model.Administrador;
+import primeirobd.service.AdministradorDAO;
 
 @WebFilter("/*")
 public class AuthenticationFilter implements Filter {
+
+    private final AdministradorDAO administradorDao = new AdministradorDAO();
 
     private static final Set<String> ROTAS_PUBLICAS = Set.of(
             "/",
@@ -60,11 +63,28 @@ public class AuthenticationFilter implements Filter {
         boolean autenticado = sessao != null
                 && sessao.getAttribute("administradorId") != null;
 
-        if (autenticado) {
-            chain.doFilter(request, response);
-        } else {
+        if (!autenticado) {
             res.sendRedirect(contexto + "/login");
+            return;
         }
+
+        /*
+           Carrega o administrador logado e disponibiliza para todas as JSPs
+           (foto e nome na barra lateral). O Perfil.java sobrescreve o atributo
+           com a mesma informação, o que não causa problema.
+         */
+        int id = (Integer) sessao.getAttribute("administradorId");
+        Administrador adm = administradorDao.buscarPorId(id);
+
+        if (adm == null) {
+            // administrador apagado do banco: encerra a sessão
+            sessao.invalidate();
+            res.sendRedirect(contexto + "/login");
+            return;
+        }
+
+        req.setAttribute("administrador", adm);
+        chain.doFilter(request, response);
     }
 
     private boolean ehArquivoEstatico(String caminho) {
