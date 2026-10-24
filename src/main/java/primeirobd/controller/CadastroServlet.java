@@ -33,6 +33,17 @@ public class CadastroServlet extends HttpServlet {
     private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
 
     @Override
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException, ServletException {
+
+        request.getRequestDispatcher("/cadastro.jsp")
+                .forward(request, response);
+    }
+
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
