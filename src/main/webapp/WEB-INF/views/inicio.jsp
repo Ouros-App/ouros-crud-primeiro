@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -45,9 +46,16 @@
         </div>
 
         <a href="perfil" class="Usuario">
-          <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
+          <c:choose>
+                <c:when test="${not empty administrador.fotoPerfilUrl}">
+                    <img src="<c:out value='${administrador.fotoPerfilUrl}'/>" alt="foto do usuário">
+                </c:when>
+                <c:otherwise>
+                    <img src="${pageContext.request.contextPath}/img/imagemDefault.png" alt="foto do usuário">
+                </c:otherwise>
+            </c:choose>
             <div class="UsuarioInfo">
-                <strong>User</strong>
+                <strong><c:out value="${administrador.nome}" default="Usuário"/></strong>
                 <span>Admin</span>
             </div>
         </a>
@@ -56,7 +64,7 @@
     <div class="Conteudo">
 
         <div class="BannerInicio">
-            <h2>Olá, UserVera</h2>
+            <h2>Olá, <c:out value="${administrador.nome}" default="Usuário"/></h2>
             <p class="SubtituloBanner">Aqui está o resumo deste mês</p>
 
             <div class="BannerStats">
