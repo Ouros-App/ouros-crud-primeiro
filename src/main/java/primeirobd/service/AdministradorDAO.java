@@ -10,7 +10,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public static final String SELECT_ALL = "SELECT id,nome,cpf,email,email_verificado FROM administrador";
     public static final String SELECT_NOME = "SELECT nome FROM administrador";
     public static final String SELECT_ID = "SELECT id FROM administrador";
-    public static final String SELECT_EMAIL = "SELECT email FROM administrador";
+    public static final String SELECT_EMAIL = "SELECT email, foto_perfil_url FROM administrador";
     public static final String DELETE_BY_ID = "DELETE FROM administrador WHERE id = ?";
     public static final String INSERT = "INSERT INTO administrador (nome,cpf,senha,email) VALUES (?,?,?,?)";
     public static final String EXISTS_BY_EMAIL = "SELECT 1 FROM administrador WHERE email = ?";
@@ -21,6 +21,58 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public static final String UPDATE_EMAIL_VERIFICADO = "UPDATE administrador SET email_verificado = true WHERE id = ?";
     public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,email_verificado FROM administrador WHERE email = ?";
     private static final String UPDATE_SENHA = "UPDATE administrador SET senha = ? WHERE id = ?";
+    public static final String SELECT_BY_ID = "SELECT id, nome, cpf, email, senha, email_verificado, foto_perfil_url FROM administrador WHERE id = ?";
+    public static final String UPDATE_PERFIL = "UPDATE administrador SET foto_perfil_url = ? WHERE id = ?";
+
+    public Administrador buscarPorId(int id) {
+        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_ID)) {
+
+            stmt.setInt(1, id);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (!rs.next()) {
+                    return null;
+                }
+
+                Administrador adm = new Administrador();
+                adm.setId(rs.getInt("id"));
+                adm.setNome(rs.getString("nome"));
+                adm.setCpf(rs.getString("cpf"));
+                adm.setEmail(rs.getString("email"));
+                adm.setSenha(rs.getString("senha"));
+                adm.setEmailVerificado(
+                        rs.getBoolean("email_verificado")
+                );
+                adm.setFotoPerfilUrl(
+                        rs.getString("foto_perfil_url")
+                );
+
+                return adm;
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Erro ao buscar administrador por ID.", e
+            );
+        }
+    }
+
+    public void atualizarFotoPerfil(int id, String url) {
+
+        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(UPDATE_PERFIL)) {
+
+            stmt.setString(1, url);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(
+                    "Erro ao atualizar foto de perfil.", e
+            );
+        }
+    }
 
     public List<Administrador> select_all() {
         List<Administrador> informacoes = new ArrayList<>();
@@ -89,6 +141,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
             while (rs.next()) {
                 Administrador adm = new Administrador();
                 adm.setEmail(rs.getString("email"));
+                adm.setFotoPerfilUrl(rs.getString("foto_perfil_url"));
                 informacoes.add(adm);
             }
             return informacoes;

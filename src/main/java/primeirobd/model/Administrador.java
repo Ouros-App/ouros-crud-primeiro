@@ -9,6 +9,7 @@ public class Administrador {
     private String cpf;
     private boolean emailVerificado;
     private String nome;
+    private String fotoPerfilUrl;
 
     // construtor
     public Administrador() {
@@ -40,6 +41,11 @@ public class Administrador {
         return nome;
     }
 
+    public String getFotoPerfilUrl() {
+        return fotoPerfilUrl;
+    }
+
+
     // setter
 
     public void setId(int id) {
@@ -64,6 +70,10 @@ public class Administrador {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setFotoPerfilUrl(String fotoPerfilUrl) {
+        this.fotoPerfilUrl = fotoPerfilUrl;
     }
 
 
