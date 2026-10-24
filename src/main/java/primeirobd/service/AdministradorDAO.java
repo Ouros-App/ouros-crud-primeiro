@@ -21,7 +21,12 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public static final String UPDATE_EMAIL_VERIFICADO = "UPDATE administrador SET email_verificado = true WHERE id = ?";
     public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,email_verificado FROM administrador WHERE email = ?";
     private static final String UPDATE_SENHA = "UPDATE administrador SET senha = ? WHERE id = ?";
-    public static final String SELECT_BY_ID = "SELECT id, nome, cpf, email, senha, email_verificado, foto_perfil_url FROM administrador WHERE id = ?";
+    public static final String SELECT_BY_ID =
+            "SELECT a.id, a.nome, a.cpf, a.email, a.senha, a.email_verificado, " +
+                    "a.foto_perfil_url, t.telefone " +
+                    "FROM administrador a " +
+                    "LEFT JOIN telefone_admin t ON t.usuario_id = a.id " +
+                    "WHERE a.id = ?";
     public static final String UPDATE_PERFIL = "UPDATE administrador SET foto_perfil_url = ? WHERE id = ?";
 
     public Administrador buscarPorId(int id) {
@@ -41,12 +46,9 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
                 adm.setCpf(rs.getString("cpf"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));
-                adm.setEmailVerificado(
-                        rs.getBoolean("email_verificado")
-                );
-                adm.setFotoPerfilUrl(
-                        rs.getString("foto_perfil_url")
-                );
+                adm.setEmailVerificado(rs.getBoolean("email_verificado"));
+                adm.setFotoPerfilUrl(rs.getString("foto_perfil_url"));
+                adm.setTelefone(rs.getString("telefone"));
 
                 return adm;
             }

@@ -10,6 +10,7 @@ public class Administrador {
     private boolean emailVerificado;
     private String nome;
     private String fotoPerfilUrl;
+    private String telefone;
 
     // construtor
     public Administrador() {
@@ -45,6 +46,8 @@ public class Administrador {
         return fotoPerfilUrl;
     }
 
+    public String getTelefone() { return telefone; }
+
 
     // setter
 
@@ -75,6 +78,8 @@ public class Administrador {
     public void setFotoPerfilUrl(String fotoPerfilUrl) {
         this.fotoPerfilUrl = fotoPerfilUrl;
     }
+
+    public void setTelefone(String telefone) { this.telefone = telefone; }
 
 
     public String toString() {

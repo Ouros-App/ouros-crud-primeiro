@@ -44,42 +44,42 @@
 
             <nav class="Menu">
 
-                <a href="inicio.jsp" class="MenuItem">
+                <a href="inicio" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/inicio.svg" alt="">
                     </span>
                     Início
                 </a>
 
-                <a href="granjas.jsp" class="MenuItem">
+                <a href="granjas" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/granja.svg" alt="">
                     </span>
                     Granjas
                 </a>
 
-                <a href="lotes.jsp" class="MenuItem">
+                <a href="lotes" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/pintinho.svg" alt="">
                     </span>
                     Lotes
                 </a>
 
-                <a href="funcionarios.jsp" class="MenuItem">
+                <a href="funcionarios" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/fucionarios.svg" alt="">
                     </span>
                     Funcionários
                 </a>
 
-                <a href="registros.jsp" class="MenuItem">
+                <a href="registros" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/registros.svg" alt="">
                     </span>
                     Registros
                 </a>
 
-                <a href="metas.jsp" class="MenuItem">
+                <a href="metas" class="MenuItem">
                     <span class="Icone">
                         <img src="${pageContext.request.contextPath}/img/metas.svg" alt="">
                     </span>
@@ -182,16 +182,6 @@
                                id="nome"
                                name="nome"
                                value="<c:out value='${administrador.nome}'/>"
-                               required>
-                    </div>
-
-                    <div class="Campo">
-                        <label class="CampoLabel" for="cargo">Cargo</label>
-                        <input class="CampoInput"
-                               type="text"
-                               id="cargo"
-                               name="cargo"
-                               value="<c:out value='${administrador.cargo}'/>"
                                required>
                     </div>
 
