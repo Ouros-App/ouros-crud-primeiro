@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<fmt:setLocale value="pt_BR"/>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -67,20 +69,20 @@
 
             <div class="BannerStats">
                 <div class="BannerStatItem">
-                    <strong>128</strong>
+                    <strong>${totalGranjas}</strong>
                     <span>Granjas cadastradas</span>
                 </div>
                 <div class="BannerStatItem">
-                    <strong>542</strong>
-                    <span>Lotes em andamento</span>
+                    <strong>${totalLotes}</strong>
+                    <span>Lotes</span>
                 </div>
                 <div class="BannerStatItem">
-                    <strong>301</strong>
+                    <strong>${totalFuncionarios}</strong>
                     <span>Funcionários</span>
                 </div>
                 <div class="BannerStatItem">
-                    <strong>45</strong>
-                    <span>Metas em andamento</span>
+                    <strong>${totalMetas}</strong>
+                    <span>Metas</span>
                 </div>
             </div>
         </div>
@@ -88,26 +90,22 @@
         <div class="CardsMetricas">
             <div class="CardMetrica">
                 <div class="LabelMetrica">Frangos em produção</div>
-                <div class="ValorMetrica">45.902</div>
-                <span class="VariacaoMetrica positiva">&#9650; 5,4% vs mês anterior</span>
+                <div class="ValorMetrica"><fmt:formatNumber value="${frangosEmProducao}" pattern="#,##0"/></div>
             </div>
 
             <div class="CardMetrica">
                 <div class="LabelMetrica">Consumo de água</div>
-                <div class="ValorMetrica">224.532 Hl</div>
-                <span class="VariacaoMetrica negativa">&#9660; 1,2% vs mês anterior</span>
+                <div class="ValorMetrica"><fmt:formatNumber value="${consumoAgua}" pattern="#,##0"/> m³</div>
             </div>
 
             <div class="CardMetrica">
                 <div class="LabelMetrica">Consumo de energia</div>
-                <div class="ValorMetrica">1.098 GWh</div>
-                <span class="VariacaoMetrica positiva">&#9650; 2,5% vs mês anterior</span>
+                <div class="ValorMetrica"><fmt:formatNumber value="${consumoEnergia}" pattern="#,##0"/> kWh</div>
             </div>
 
             <div class="CardMetrica">
                 <div class="LabelMetrica">Metas concluídas</div>
-                <div class="ValorMetrica">32</div>
-                <span class="VariacaoMetrica negativa">&#9660; 12,1% vs mês anterior</span>
+                <div class="ValorMetrica"><fmt:formatNumber value="${metasConcluidas}" pattern="#,##0"/></div>
             </div>
         </div>
 
@@ -128,23 +126,73 @@
                             <th>Status</th>
                         </tr>
                         </thead>
-                        <tbody id="tabela-lotes-recentes">
-                        <!-- linhas preenchidas dinamicamente -->
+                        <tbody>
+                        <c:forEach var="l" items="${lotes}">
+                            <tr>
+                                <td>#${l.id}</td>
+                                <td><c:out value="${l.nomeGranja}"/></td>
+                                <td>${l.galinhasEntregadas}</td>
+                                <td>${l.galinhasRecebidas}</td>
+                                <td><c:out value="${empty l.dtChegada ? '---' : l.dtChegada}"/></td>
+                                <td>${l.ganho} kg</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty l.dtChegada}">
+                                            <span class="Status neutro">Em processo</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <span class="Status positivo">Recebido</span>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <c:if test="${empty lotes}">
+                            <tr><td colspan="7">Nenhum lote cadastrado.</td></tr>
+                        </c:if>
                         </tbody>
                     </table>
                 </div>
 
                 <div class="RodapeTabela">
-                    <span class="Contagem">mostrando 1 a 5 de 25 lotes</span>
+                    <span class="Contagem">
+                        Mostrando ${paginacao.inicio} a ${paginacao.fim} de ${paginacao.total} lotes
+                    </span>
 
-                    <div class="Paginacao" id="paginacao">
-                        <button type="button" class="seta" id="paginaAnterior">&#9664;</button>
-                        <button type="button" class="ativo" data-pagina="1">1</button>
-                        <button type="button" data-pagina="2">2</button>
-                        <button type="button" data-pagina="3">3</button>
-                        <button type="button" data-pagina="4">4</button>
-                        <button type="button" data-pagina="5">5</button>
-                        <button type="button" class="seta" id="proximaPagina">&#9654;</button>
+                    <div class="Paginacao">
+                        <c:url var="urlAnterior" value="/inicio">
+                            <c:param name="pagina" value="${paginacao.pagina - 1}" />
+                        </c:url>
+                        <c:choose>
+                            <c:when test="${paginacao.temAnterior}">
+                                <a class="seta" href="${urlAnterior}" aria-label="Página anterior">&#9664;</a>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="seta desabilitada" aria-disabled="true">&#9664;</span>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:forEach begin="${paginacao.janelaInicio}" end="${paginacao.janelaFim}" var="numero">
+                            <c:url var="urlPagina" value="/inicio">
+                                <c:param name="pagina" value="${numero}" />
+                            </c:url>
+                            <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
+                               href="${urlPagina}"
+                               aria-label="Página ${numero}"
+                               ${numero == paginacao.pagina ? 'aria-current="page"' : ''}><c:out value="${numero}"/></a>
+                        </c:forEach>
+
+                        <c:url var="urlProxima" value="/inicio">
+                            <c:param name="pagina" value="${paginacao.pagina + 1}" />
+                        </c:url>
+                        <c:choose>
+                            <c:when test="${paginacao.temProxima}">
+                                <a class="seta" href="${urlProxima}" aria-label="Próxima página">&#9654;</a>
+                            </c:when>
+                            <c:otherwise>
+                                <span class="seta desabilitada" aria-disabled="true">&#9654;</span>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
             </div>
@@ -153,53 +201,6 @@
     </div>
 
 </div>
-
-<script>
-    // Exemplo de dados - substitua pela chamada real ao backend
-    var lotesRecentes = [
-        { lote: "#14", granja: "Granja sedentária", entregues: "5000", recebidas: "4.980", chegada: "05/09/2026", ganho: "6,4 kg", status: "recebido" },
-        { lote: "#13", granja: "Granja Ouro Branco", entregues: "4000", recebidas: "---", chegada: "---", ganho: "---", status: "em-processo" },
-        { lote: "#12", granja: "Granja Sonho de Valça", entregues: "3000", recebidas: "2789", chegada: "05/09/2026", ganho: "1,3 kg", status: "recebido" },
-        { lote: "#11", granja: "Sonho diamante negro", entregues: "1200", recebidas: "---", chegada: "---", ganho: "---", status: "em-processo" },
-        { lote: "#10", granja: "Granja preguiça", entregues: "10.000", recebidas: "9.000", chegada: "05/09/2026", ganho: "21,4 kg", status: "recebido" }
-    ];
-
-    var statusInfo = {
-        "recebido": { texto: "Recebido", classe: "positivo" },
-        "em-processo": { texto: "Em processo", classe: "neutro" }
-    };
-
-    function renderizarLotesRecentes(lista) {
-        var corpoTabela = document.getElementById("tabela-lotes-recentes");
-        corpoTabela.innerHTML = "";
-
-        lista.forEach(function (l) {
-            var s = statusInfo[l.status];
-            var linha = document.createElement("tr");
-            linha.innerHTML =
-                "<td>" + l.lote + "</td>" +
-                "<td>" + l.granja + "</td>" +
-                "<td>" + l.entregues + "</td>" +
-                "<td>" + l.recebidas + "</td>" +
-                "<td>" + l.chegada + "</td>" +
-                "<td>" + l.ganho + "</td>" +
-                "<td><span class='Status " + s.classe + "'>" + s.texto + "</span></td>";
-            corpoTabela.appendChild(linha);
-        });
-    }
-
-    document.querySelectorAll("#paginacao button[data-pagina]").forEach(function (botao) {
-        botao.addEventListener("click", function () {
-            document.querySelectorAll("#paginacao button[data-pagina]").forEach(function (b) {
-                b.classList.remove("ativo");
-            });
-            botao.classList.add("ativo");
-            // aqui entra a chamada para buscar a página correspondente no backend
-        });
-    });
-
-    renderizarLotesRecentes(lotesRecentes);
-</script>
 
 </body>
 </html>
