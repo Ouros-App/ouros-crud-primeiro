@@ -440,6 +440,12 @@ body {
     background-color: #f4f4f7;
 }
 
+.Paginacao a.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-weight: 600;
+}
+
 .Paginacao button.ativo,
 .Paginacao span.ativo {
     background-color: #0E0C23;
