@@ -1,6 +1,7 @@
 package primeirobd.controller;
 import primeirobd.model.Administrador;
 import primeirobd.service.AdministradorDAO;
+import primeirobd.service.TelefoneAdminDAO;
 import primeirobd.utils.CloudinaryUtil;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import primeirobd.utils.Validador;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -127,6 +129,16 @@ public class Perfil extends HttpServlet {
                         request.getContextPath() + "/perfil?foto=removida"
                 );
                 return;
+            }
+
+            // telefone do admin
+            String telefone = request.getParameter("telefone");
+            if (telefone != null && !telefone.isBlank()) {
+                if (!Validador.isTelefoneValido(telefone.trim())) {
+                    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Telefone inválido.");
+                    return;
+                }
+                new TelefoneAdminDAO().salvar(id, telefone.trim());
             }
 
             // recupera o arquivo enviado pelo campo foto

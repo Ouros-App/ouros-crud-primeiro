@@ -3,6 +3,7 @@ package primeirobd.controller;
 import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.Administrador;
 import primeirobd.service.AdministradorDAO;
+import primeirobd.service.TelefoneAdminDAO;
 import primeirobd.service.VerificacaoEmailDAO;
 import primeirobd.utils.EmailService;
 import primeirobd.utils.TokenUtil;
@@ -107,7 +108,7 @@ public class CadastroServlet extends HttpServlet {
         int administradorId = dao.insert(adm);
 
         // salva o telefone na tabela telefone_admin
-        // new TelefoneAdminDAO().insert(administradorId, telefone);
+        new TelefoneAdminDAO().insert(administradorId, telefone);
 
         // token aleatorio
         String token = TokenUtil.gerarToken();
