@@ -120,6 +120,11 @@
         </div>
 
         <div class="Painel">
+        <c:if test="${not empty erro}">
+            <div class="AlertaErro" style="white-space: pre-line; color: #b00020; margin-bottom: 16px;">
+                <c:out value="${erro}"/>
+            </div>
+        </c:if>
 
             <form class="FormPainel"
                   action="perfil"
@@ -202,8 +207,8 @@
                                id="email"
                                name="email"
                                value="<c:out value='${administrador.email}'/>"
-                               placeholder="seuemail@email.com"
-                               required>
+                               readonly
+                               style="background: #f2f2f2; color: #777; cursor: not-allowed;">
                     </div>
 
                 </div>
@@ -250,7 +255,7 @@
                 <%-- AÇÕES --%>
                 <div class="FormAcoes">
 
-                    <a class="BotaoSecundario" href="inicio.jsp">
+                    <a class="BotaoSecundario" href="inicio">
                         Cancelar
                     </a>
 

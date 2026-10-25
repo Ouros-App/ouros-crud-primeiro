@@ -28,6 +28,33 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
                     "LEFT JOIN telefone_admin t ON t.usuario_id = a.id " +
                     "WHERE a.id = ?";
     public static final String UPDATE_PERFIL = "UPDATE administrador SET foto_perfil_url = ? WHERE id = ?";
+    private static final String UPDATE_DADOS = "UPDATE administrador SET nome = ? WHERE id = ?";
+    private static final String EXISTS_EMAIL_OUTRO = "SELECT 1 FROM administrador WHERE email = ? AND id <> ?";
+
+    public void atualizarDados(int id, String nome ) {
+        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(UPDATE_DADOS)) {
+            stmt.setString(1, nome);
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar dados do administrador.\n" + e.getMessage());
+        }
+    }
+
+    // true se OUTRO administrador já usa esse e-mail
+    public boolean emailEmUsoPorOutro(String email, int id) {
+        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = conexao.prepareStatement(EXISTS_EMAIL_OUTRO)) {
+            stmt.setString(1, email);
+            stmt.setInt(2, id);
+            try (ResultSet rs = stmt.executeQuery()) {
+                return rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao verificar e-mail.\n" + e.getMessage());
+        }
+    }
 
     public Administrador buscarPorId(int id) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
