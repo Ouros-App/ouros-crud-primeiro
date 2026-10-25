@@ -11,6 +11,11 @@ public class Granja {
     private String localizacao;
     private String regiao;
     private double cgi;
+    private String cep;
+    private int numero;
+    private String logradouro;
+    private String municipio;
+    private String estado;
 
     //construtor
 
@@ -55,6 +60,16 @@ public class Granja {
         return cgi;
     }
 
+    public String getCep() { return cep; }
+
+    public int getNumero() { return numero; }
+
+    public String getLogradouro() { return logradouro; }
+
+    public String getMunicipio() { return municipio; }
+
+    public String getEstado() { return estado; }
+
 
     //metodos setters
 
@@ -93,6 +108,16 @@ public class Granja {
     public void setCgi(double cgi) {
         this.cgi = cgi;
     }
+
+    public void setCep(String cep) { this.cep = cep; }
+
+    public void setNumero(int numero) { this.numero = numero; }
+
+    public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
+
+    public void setMunicipio(String municipio) { this.municipio = municipio; }
+
+    public void setEstado(String estado) { this.estado = estado; }
 
     @Override
     public String toString() {

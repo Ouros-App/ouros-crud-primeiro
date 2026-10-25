@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -140,9 +141,7 @@
                     </div>
                 </form>
 
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('granja-nova.jsp')">
-                    + Nova granja
-                </button>
+                <button type="button" class="BotaoNovo" onclick="abrirFormulario('${pageContext.request.contextPath}/granjas?acao=inserir')">+ Nova Granja</button>
             </div>
 
             <div class="tabela">
@@ -164,8 +163,19 @@
                             <td><c:out value="${granja.nomeResponsavel}"/></td>
                             <td><c:out value="${granja.localizacao}"/></td>
                             <td><c:out value="${granja.capacidadeDeAves}"/></td>
-                            <td><c:out value="${granja.cgi}"/></td>
-                            <td></td>
+                            <td><fmt:formatNumber value="${granja.cgi}" minFractionDigits="2" maxFractionDigits="2"/></td>
+                            <td>
+                                <div class="ColunaAcoes">
+                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                            onclick="abrirFormulario('${pageContext.request.contextPath}/granjas?acao=editar&id=${granja.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                    </button>
+                                    <button type="button" class="BotaoAcao excluir" title="Excluir"
+                                            onclick="abrirFormulario('${pageContext.request.contextPath}/granjas?acao=excluir&id=${granja.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
