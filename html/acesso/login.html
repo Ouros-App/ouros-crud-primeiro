@@ -1,21 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar | Ouros</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
-</head>
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    </head>
 <body>
 
 <div class="LoginPage">
     <div class="LoginShell">
 
         <div class="LoginMarca">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -65,7 +63,7 @@
             </ul>
 
             <div class="MascoteLoginBox">
-                <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+                <img class="MascoteLogin" src="../img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
             </div>
         </div>
 
@@ -75,7 +73,7 @@
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
 
-            <form action="login.jsp" method="post">
+            <form onsubmit="event.preventDefault()"><p role="status" style="margin:0 0 16px;padding:12px 14px;border-radius:8px;background:#fff4d6;color:#473900;font-size:14px;line-height:1.4;">Prévia estática: este formulário não envia dados. Não digite informações reais.</p>
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
@@ -87,7 +85,7 @@
                 </div>
 
                 <div class="LoginUtilitario">
-                    <a class="LoginLinkEsqueci" href="RecuperarSenha.jsp">Esqueceu sua senha?</a>
+                    <a class="LoginLinkEsqueci" href="recuperar-senha.html">Esqueceu sua senha?</a>
                 </div>
 
                 <button type="submit" class="LoginBotao">Continuar</button>
@@ -95,7 +93,7 @@
 
             <div class="LoginRodape">
                 <span>Ainda não tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="Cadastro.jsp">Cadastre-se</a>
+                <a class="LoginLinkEsqueci" href="cadastro.html">Cadastre-se</a>
             </div>
         </div>
 

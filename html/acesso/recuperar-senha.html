@@ -1,21 +1,19 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperação de conta | Ouros</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
-</head>
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    </head>
 <body>
 
 <div class="LoginPage">
     <div class="LoginShell">
 
         <div class="LoginMarca">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="logo"></div>
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="logo"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -64,7 +62,7 @@
                 </li>
             </ul>
 
-            <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+            <img class="MascoteLogin" src="../img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
         </div>
 
         <div class="LoginFormulario">
@@ -73,7 +71,7 @@
                 <p class="LoginSubtitulo">Redefina sua senha para continuar sendo um OUROS</p>
             </div>
 
-            <form action="RecuperarSenha.jsp" method="post">
+            <form onsubmit="event.preventDefault()"><p role="status" style="margin:0 0 16px;padding:12px 14px;border-radius:8px;background:#fff4d6;color:#473900;font-size:14px;line-height:1.4;">Prévia estática: este formulário não envia dados. Não digite informações reais.</p>
                 <h2 class="LoginPergunta">Esqueceu sua senha?</h2>
                 <p class="LoginInstrucao">Digite seu e-mail e enviaremos um link para redefinir sua senha.</p>
 
@@ -87,7 +85,7 @@
 
             <div class="LoginRodape">
                 <span>Lembrou sua senha?</span>
-                <a class="LoginLinkEsqueci" href="login.jsp">Voltar ao login</a>
+                <a class="LoginLinkEsqueci" href="login.html">Voltar ao login</a>
             </div>
         </div>
 

@@ -1,20 +1,18 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | Ouros</title>
-    <link rel="stylesheet" href="Style.css">
-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
-</head>
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    </head>
 <body>
 
 <main class="LoginPage">
     <div class="LoginShell">
         <section class="LoginMarca" aria-label="Sobre o Ouros">
-            <div class="LoginLogo"><img src="img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -58,7 +56,7 @@
                 </li>
             </ul>
 
-            <img class="MascoteLogin" src="img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+            <img class="MascoteLogin" src="../img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
         </section>
 
         <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
@@ -67,7 +65,7 @@
                 <p class="LoginSubtitulo">Crie sua conta para ser um OUROS</p>
             </header>
 
-            <form action="Cadastro.jsp" method="post" id="formCadastro">
+            <form id="formCadastro" onsubmit="event.preventDefault()"><p role="status" style="margin:0 0 16px;padding:12px 14px;border-radius:8px;background:#fff4d6;color:#473900;font-size:14px;line-height:1.4;">Prévia estática: este formulário não envia dados. Não digite informações reais.</p>
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="nome">Nome</label>
                     <input class="LoginCampoInput" type="text" id="nome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
@@ -101,7 +99,7 @@
 
             <div class="LoginRodape">
                 <span>Já tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="login.jsp">Entrar</a>
+                <a class="LoginLinkEsqueci" href="login.html">Entrar</a>
             </div>
         </section>
     </div>
