@@ -6,10 +6,6 @@ on:
       - main
     paths:
       - 'html/**'
-      - 'src/main/webapp/assets/**'
-      - 'src/main/webapp/img/**'
-      - 'src/main/webapp/Style.css'
-      - 'src/main/webapp/landing/*.css'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -24,7 +20,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
       pages: write
       id-token: write
     environment:
@@ -34,77 +29,14 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Check static site readiness
-        id: readiness
-        shell: bash
-        run: |
-          set -euo pipefail
-          for path in \
-            html/landing/index.html \
-            html/landing/sobre.html \
-            html/landing/landing.js \
-            html/acesso/login.html \
-            html/acesso/Cadastro.html \
-            html/acesso/RecuperarSenha.html \
-            html/landing/sections/header.html \
-            html/landing/sections/hero.html \
-            html/landing/sections/desafios.html \
-            html/landing/sections/funcionamento.html \
-            html/landing/sections/funcionalidades.html \
-            html/landing/sections/ranking.html \
-            html/landing/sections/planos.html \
-            html/landing/sections/faq.html \
-            html/landing/sections/rodape.html; do
-            if [ ! -f "$path" ]; then
-              echo "ready=false" >> "$GITHUB_OUTPUT"
-              echo "Aguardando as branches de conteúdo: $path ainda não está na main."
-              exit 0
-            fi
-          done
-          echo "ready=true" >> "$GITHUB_OUTPUT"
-
       - name: Configure Pages
-        if: steps.readiness.outputs.ready == 'true'
         uses: actions/configure-pages@v5
 
-      - name: Assemble static artifact
-        if: steps.readiness.outputs.ready == 'true'
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p _site
-          cp -R html _site/html
-          mkdir -p _site/src/main/webapp/landing
-          mkdir -p _site/src/main/webapp/assets
-          mkdir -p _site/src/main/webapp/img
-          cp src/main/webapp/landing/*.css _site/src/main/webapp/landing/
-          cp src/main/webapp/Style.css _site/src/main/webapp/Style.css
-          cp -R src/main/webapp/assets/. _site/src/main/webapp/assets/
-          cp -R src/main/webapp/img/. _site/src/main/webapp/img/
-          cat > _site/index.html <<'ROOT'
-          <!doctype html>
-          <html lang="pt-BR">
-          <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta http-equiv="refresh" content="0; url=./html/landing/">
-            <title>Ouros</title>
-          </head>
-          <body>
-            <p><a href="./html/landing/">Abrir a landing page Ouros</a></p>
-            <script>window.location.replace(new URL('./html/landing/', window.location.href));</script>
-          </body>
-          </html>
-          ROOT
-          touch _site/.nojekyll
-
-      - name: Upload Pages artifact
-        if: steps.readiness.outputs.ready == 'true'
+      - name: Upload static site
         uses: actions/upload-pages-artifact@v4
         with:
-          path: _site
+          path: html
 
       - name: Deploy to GitHub Pages
-        if: steps.readiness.outputs.ready == 'true'
         id: deployment
         uses: actions/deploy-pages@v5
