@@ -1,0 +1,90 @@
+name: Publish Ouros static site
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'html/**'
+      - 'src/main/webapp/assets/**'
+      - 'src/main/webapp/img/**'
+      - 'src/main/webapp/Style.css'
+      - 'src/main/webapp/landing/*.css'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Assemble static artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in header hero desafios funcionamento funcionalidades ranking planos faq rodape; do
+            test -f "html/landing/sections/$name.html" || {
+              echo "Seção ausente: html/landing/sections/$name.html"
+              exit 1
+            }
+          done
+          test -f html/landing/index.html
+          test -f html/landing/sobre.html
+          test -f html/landing/landing.js
+          test -f html/acesso/login.html
+          test -f html/acesso/Cadastro.html
+          test -f html/acesso/RecuperarSenha.html
+
+          mkdir -p _site
+          cp -R html _site/html
+          mkdir -p _site/src/main/webapp/landing
+          mkdir -p _site/src/main/webapp/assets
+          mkdir -p _site/src/main/webapp/img
+          cp src/main/webapp/landing/*.css _site/src/main/webapp/landing/
+          cp src/main/webapp/Style.css _site/src/main/webapp/Style.css
+          cp -R src/main/webapp/assets/. _site/src/main/webapp/assets/
+          cp -R src/main/webapp/img/. _site/src/main/webapp/img/
+          cat > _site/index.html <<'ROOT'
+          <!doctype html>
+          <html lang="pt-BR">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta http-equiv="refresh" content="0; url=./html/landing/">
+            <title>Ouros</title>
+          </head>
+          <body>
+            <p><a href="./html/landing/">Abrir a landing page Ouros</a></p>
+            <script>window.location.replace(new URL('./html/landing/', window.location.href));</script>
+          </body>
+          </html>
+          ROOT
+          touch _site/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
