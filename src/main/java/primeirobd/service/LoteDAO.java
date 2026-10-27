@@ -9,7 +9,7 @@ import java.util.List;
 
 public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String SELECT_ALL = "SELECT * FROM lote;";
-    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id";
+    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id ORDER BY lote.id";
     public static final String SELECT_ENTREGUES = "SELECT galinhas_entregadas FROM lote";
     public static final String SELECT_RECEBIDAS = "SELECT galinhas_recebidas FROM lote";
     public static final String SELECT_CHEGADA = "SELECT dt_chegada FROM lote";
@@ -47,6 +47,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                     "JOIN granja ON granja.id = lote.id_granja " +
                     "ORDER BY %s, lote.id " +
                     "LIMIT ? OFFSET ?";
+
 
     public static final String SELECT_PAGINADO_FILTROS =
             "SELECT lote.id, " +

@@ -167,21 +167,27 @@
             </div>
 
             <div class="Filtros">
-                <div class="CampoBusca">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                    </svg>
-                    <input type="text" id="buscaRegistro" placeholder="Buscar..." autocomplete="off">
-                </div>
+                <form action="${pageContext.request.contextPath}/registros" method="get" class="FormBusca">
+                    <input type="hidden" name="tipo" value="${tipoAtual}">
+                    <div class="CampoBusca">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" name="buscaRegistro" id="buscaRegistro"
+                               value="<c:out value='${param.buscaRegistro}'/>" placeholder="Buscar por granja..." autocomplete="off">
+                    </div>
 
-                <div class="OrdenarPor">
-                    <select id="ordenarPor" disabled>
-                        <option>Ordenar por: Data</option>
-                    </select>
-                </div>
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor" name="ordenarPor" aria-label="Ordenar registros por"
+                                onchange="this.form.submit()">
+                            <option value="data" ${empty param.ordenarPor || param.ordenarPor == 'data' ? 'selected' : ''}>Ordenar por: Data</option>
+                            <option value="lote" ${param.ordenarPor == 'lote' ? 'selected' : ''}>Ordenar por: Lote</option>
+                        </select>
+                    </div>
+                </form>
 
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('registro-novo.jsp')">
+                <button type="button" class="BotaoNovo" onclick="abrirFormulario('${pageContext.request.contextPath}/registros?acao=inserir&tipo=${tipoAtual}')">
                     + Novo registro
                 </button>
             </div>
@@ -197,6 +203,7 @@
                             <c:when test="${tipoAtual == 'agua'}">
                                 <th>Hidrômetro inicial</th>
                                 <th>Hidrômetro final</th>
+                                <th>Consumo</th>
                             </c:when>
                             <c:otherwise>
                                 <th>Consumo</th>
@@ -212,23 +219,41 @@
                     <c:choose>
                         <c:when test="${tipoAtual == 'agua'}">
                             <c:choose>
-                                <c:when test="empty registroAguas">
+                                <c:when test="${empty registroAguas}">
                                     <tr>
                                         <td colspan="7" class="TabelaVazia">Nenhum registro de água encontrado.</td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach var="registro" items="${registroAguas}">
+                                        <c:choose>
+                                            <c:when test="${registro.status == 'Abaixo'}"><c:set var="classeStatus" value="positivo"/></c:when>
+                                            <c:when test="${registro.status == 'Acima'}"><c:set var="classeStatus" value="negativo"/></c:when>
+                                            <c:otherwise><c:set var="classeStatus" value="neutro"/></c:otherwise>
+                                        </c:choose>
                                         <tr>
-                                            <td>-</td>
+                                            <td><c:out value="${registro.nomeGranja}"/></td>
                                             <td><c:out value="${registro.idLote}"/></td>
                                             <td><c:out value="${registro.dtRegistro}"/></td>
                                             <td><c:out value="${registro.hidrometroInicio}"/></td>
                                             <td><c:out value="${registro.hidrometroFinal}"/></td>
+                                            <td><c:out value="${registro.hidrometroFinal - registro.hidrometroInicio}"/></td>
+
                                             <td>
-                                                <span class="Status neutro">-</span>
+                                                <span class="Status ${classeStatus}"><c:out value="${empty registro.status ? '-' : registro.status}"/></span>
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <div class="ColunaAcoes">
+                                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                                            onclick="abrirFormulario('${pageContext.request.contextPath}/registros?acao=editar&tipo=${tipoAtual}&id=${registro.id}')">
+                                                        <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                                    </button>
+                                                    <button type="button" class="BotaoAcao excluir" title="Excluir"
+                                                            onclick="abrirFormulario('${pageContext.request.contextPath}/registros?acao=excluir&tipo=${tipoAtual}&id=${registro.id}')">
+                                                        <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                                    </button>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -244,16 +269,32 @@
                                 </c:when>
                                 <c:otherwise>
                                     <c:forEach var="registro" items="${registroEnergias}">
+                                        <c:choose>
+                                            <c:when test="${registro.status == 'Abaixo'}"><c:set var="classeStatus" value="positivo"/></c:when>
+                                            <c:when test="${registro.status == 'Acima'}"><c:set var="classeStatus" value="negativo"/></c:when>
+                                            <c:otherwise><c:set var="classeStatus" value="neutro"/></c:otherwise>
+                                        </c:choose>
                                         <tr>
-                                            <td>-</td>
+                                            <td><c:out value="${registro.nomeGranja}"/></td>
                                             <td><c:out value="${registro.idLote}"/></td>
                                             <td><c:out value="${registro.dtRegistro}"/></td>
                                             <td><c:out value="${registro.consumo}"/></td>
-                                            <td>-</td>
+                                            <td>kWh</td>
                                             <td>
-                                                <span class="Status neutro">-</span>
+                                                <span class="Status ${classeStatus}"><c:out value="${empty registro.status ? '-' : registro.status}"/></span>
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <div class="ColunaAcoes">
+                                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                                            onclick="abrirFormulario('${pageContext.request.contextPath}/registros?acao=editar&tipo=${tipoAtual}&id=${registro.id}')">
+                                                        <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                                    </button>
+                                                    <button type="button" class="BotaoAcao excluir" title="Excluir"
+                                                            onclick="abrirFormulario('${pageContext.request.contextPath}/registros?acao=excluir&tipo=${tipoAtual}&id=${registro.id}')">
+                                                        <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                                    </button>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -275,6 +316,8 @@
                     <c:url var="urlAnterior" value="/registros">
                         <c:param name="tipo" value="${tipoAtual}"/>
                         <c:param name="pagina" value="${paginacao.pagina - 1}"/>
+                        <c:param name="buscaRegistro" value="${param.buscaRegistro}"/>
+                        <c:param name="ordenarPor" value="${param.ordenarPor}"/>
                     </c:url>
 
                     <c:choose>
@@ -292,6 +335,8 @@
                         <c:url var="urlPagina" value="/registros">
                             <c:param name="tipo" value="${tipoAtual}"/>
                             <c:param name="pagina" value="${numero}"/>
+                            <c:param name="buscaRegistro" value="${param.buscaRegistro}"/>
+                            <c:param name="ordenarPor" value="${param.ordenarPor}"/>
                         </c:url>
 
                         <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
@@ -304,6 +349,8 @@
                     <c:url var="urlProxima" value="/registros">
                         <c:param name="tipo" value="${tipoAtual}"/>
                         <c:param name="pagina" value="${paginacao.pagina + 1}"/>
+                        <c:param name="buscaRegistro" value="${param.buscaRegistro}"/>
+                        <c:param name="ordenarPor" value="${param.ordenarPor}"/>
                     </c:url>
 
                     <c:choose>
@@ -327,17 +374,6 @@
 
 <script>
     (function () {
-        const campoBusca = document.getElementById('buscaRegistro');
-        const tabela = document.getElementById('tabela-registros');
-
-        campoBusca.addEventListener('input', function () {
-            const termo = this.value.trim().toLowerCase();
-
-            tabela.querySelectorAll('tr').forEach(function (linha) {
-                linha.style.display = linha.textContent.toLowerCase().includes(termo) ? '' : 'none';
-            });
-        });
-
         const dialog = document.getElementById('formularioModal');
         const frame = dialog.querySelector('iframe');
         let previousOverflow = '';

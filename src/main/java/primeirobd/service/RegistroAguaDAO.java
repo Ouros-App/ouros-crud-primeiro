@@ -1,6 +1,5 @@
 package primeirobd.service;
 
-import primeirobd.model.Lote;
 import primeirobd.model.RegistroAgua;
 
 import java.sql.*;
@@ -8,65 +7,100 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
-    public static final String SELECT_ALL =
-            "SELECT * FROM registro_agua";
-    public static final String SELECT_ID_LOTE =
-            "SELECT id_lote FROM registro_agua";
-    public static final String SELECT_DATA =
-            "SELECT dt_registro FROM registro_agua";
-    public static final String SELECT_HIDRO_INIC =
-            "SELECT hidrometro_inicio FROM registro_agua";
-    public static final String SELECT_HIDRO_FIM =
-            "SELECT hidrometro_fim FROM registro_agua";
-    public static final String DELETE_BY_ID =
-            "DELETE FROM registro_agua WHERE id = ?";
-    public static final String INSERT =
-            "INSERT INTO registro_agua (dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?)";
-    public static final String UPDATE_ID =
-            "UPDATE registro_agua SET id = ? WHERE id = ?";
-    public static final String UPDATE_ID_LOTE =
-            "UPDATE registro_agua SET id_lote = ? WHERE id_lote = ?";
-    public static final String UPDATE_DATA =
-            "UPDATE registro_agua SET dt_registro = ? WHERE dt_registro = ?";
-    public static final String UPDATE_HIDRO_INIC =
-            "UPDATE registro_agua SET hidrometro_inicio = ? WHERE hidrometro_inicio = ?";
-    public static final String UPDATE_HIDRO_FIM =
-            "UPDATE registro_agua SET hidrometro_final = ? WHERE hidrometro_final = ?";
+    public static final String SELECT_ALL = "SELECT * FROM registro_agua";
+    public static final String SELECT_ID_LOTE = "SELECT id_lote FROM registro_agua";
+    public static final String SELECT_DATA = "SELECT dt_registro FROM registro_agua";
+    public static final String SELECT_HIDRO_INIC = "SELECT hidrometro_inicio FROM registro_agua";
+    public static final String SELECT_HIDRO_FIM = "SELECT hidrometro_fim FROM registro_agua";
+    public static final String DELETE_BY_ID = "DELETE FROM registro_agua WHERE id = ?";
+    public static final String INSERT = "INSERT INTO registro_agua (dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?)";
+    public static final String UPDATE_ID = "UPDATE registro_agua SET id = ? WHERE id = ?";
+    public static final String UPDATE_ID_LOTE = "UPDATE registro_agua SET id_lote = ? WHERE id_lote = ?";
+    public static final String UPDATE_DATA = "UPDATE registro_agua SET dt_registro = ? WHERE dt_registro = ?";
+    public static final String UPDATE_HIDRO_INIC = "UPDATE registro_agua SET hidrometro_inicio = ? WHERE hidrometro_inicio = ?";
+    public static final String UPDATE_HIDRO_FIM = "UPDATE registro_agua SET hidrometro_final = ? WHERE hidrometro_final = ?";
     public static final String SELECT_COUNT =
-            "SELECT COUNT(*) FROM registro_agua";
-    public static final String SELECT_PAGINADO =
-            "SELECT * FROM registro_agua LIMIT ? OFFSET ?";
+            "SELECT COUNT(*) FROM registro_agua ra " +
+                    "JOIN lote l ON l.id = ra.id_lote " +
+                    "JOIN granja g ON g.id = l.id_granja " +
+                    "WHERE g.nome ILIKE ?";
 
-    public int contar() {
+    public static final String SELECT_PAGINADO =
+            "SELECT ra.id, ra.dt_registro, ra.hidrometro_inicio, ra.hidrometro_final, ra.id_lote, " +
+                    "       g.nome AS nome_granja, " +
+                    "       CASE " +
+                    "           WHEN ref.media IS NULL THEN NULL " +
+                    "           WHEN (ra.hidrometro_final - ra.hidrometro_inicio) < ref.media THEN 'Abaixo' " +
+                    "           WHEN (ra.hidrometro_final - ra.hidrometro_inicio) <= ref.media + 1 THEN 'Normal' " +
+                    "           ELSE 'Acima' " +
+                    "       END AS status " +
+                    "FROM registro_agua ra " +
+                    "JOIN lote l ON l.id = ra.id_lote " +
+                    "JOIN granja g ON g.id = l.id_granja " +
+                    "LEFT JOIN LATERAL ( " +
+                    "   SELECT AVG(ult.media_lote) AS media " +
+                    "   FROM ( " +
+                    "       SELECT AVG(r2.hidrometro_final - r2.hidrometro_inicio) AS media_lote " +
+                    "       FROM lote l2 " +
+                    "       LEFT JOIN registro_agua r2 ON r2.id_lote = l2.id " +
+                    "       WHERE l2.id_granja = l.id_granja AND l2.dt_chegada < l.dt_chegada " +
+                    "       GROUP BY l2.id, l2.dt_chegada " +
+                    "       ORDER BY l2.dt_chegada DESC, l2.id DESC " +
+                    "       LIMIT 3 " +
+                    "   ) ult " +
+                    ") ref ON TRUE " +
+                    "WHERE g.nome ILIKE ? " +
+                    "ORDER BY %s, ra.id DESC " +
+                    "LIMIT ? OFFSET ?";
+
+    public static final String SELECT_BY_ID =
+            "SELECT id, dt_registro, hidrometro_inicio, hidrometro_final, id_lote " +
+                    "FROM registro_agua WHERE id = ?";
+
+    public static final String UPDATE_ALL =
+            "UPDATE registro_agua SET dt_registro = ?, hidrometro_inicio = ?, " +
+                    "hidrometro_final = ?, id_lote = ? WHERE id = ?";
+
+    public int contar(String busca) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-            if (resultadoConsulta.next()){
-                return resultadoConsulta.getInt(1);
-            }
-            return 0;
+        try (PreparedStatement ps = conexao.prepareStatement(SELECT_COUNT)) {
+            ps.setString(1, busca);
 
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
+            }
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+            throw new RuntimeException("Ocorreu um erro ao contar. \n" + e.getMessage());
         }
     }
 
-    public List<RegistroAgua> select_paginado(int tamanho, int offset) {
+    public List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor) {
+        String colunaOrdenacao;
+        if ("lote".equals(ordenarPor)) {
+            colunaOrdenacao = "ra.id_lote DESC";
+        } else {
+            colunaOrdenacao = "ra.dt_registro DESC";
+        }
+        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+
         List<RegistroAgua> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
-            preparoConsultaSQL.setInt(1, tamanho);
-            preparoConsultaSQL.setInt(2, offset);
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
+            ps.setString(1, busca);
+            ps.setInt(2, tamanho);
+            ps.setInt(3, offset);
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     RegistroAgua rea = new RegistroAgua();
-                    rea.setId(resultadoConsulta.getInt("id"));
-                    rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                    rea.setHidrometroInicio(resultadoConsulta.getInt("hidrometro_inicio"));
-                    rea.setHidrometroFinal(resultadoConsulta.getInt("hidrometro_final"));
-                    rea.setIdLote(resultadoConsulta.getInt("id_lote"));
+                    rea.setId(rs.getInt("id"));
+                    rea.setDtRegistro(rs.getDate("dt_registro"));
+                    rea.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                    rea.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                    rea.setIdLote(rs.getInt("id_lote"));
+                    rea.setNomeGranja(rs.getString("nome_granja"));
+                    rea.setStatus(rs.getString("status"));
                     resultado.add(rea);
                 }
             }
@@ -76,7 +110,41 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
+    public RegistroAgua select_by_id(int id) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+            ps.setInt(1, id);
 
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
+
+                RegistroAgua rea = new RegistroAgua();
+                rea.setId(rs.getInt("id"));
+                rea.setDtRegistro(rs.getDate("dt_registro"));
+                rea.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                rea.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                rea.setIdLote(rs.getInt("id_lote"));
+                return rea;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar registro de água.\n" + e.getMessage(), e);
+        }
+    }
+
+    public String update_registro(RegistroAgua rea) {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
+            ps.setDate(1, rea.getDtRegistro());
+            ps.setBigDecimal(2, rea.getHidrometroInicio());
+            ps.setBigDecimal(3, rea.getHidrometroFinal());
+            ps.setInt(4, rea.getIdLote());
+            ps.setInt(5, rea.getId());
+            ps.executeUpdate();
+            return "Registro atualizado com sucesso";
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao atualizar registro de água.\n" + e.getMessage(), e);
+        }
+    }
 
     // metodo select :D
     public List<RegistroAgua> select_all() {
@@ -89,8 +157,8 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
                 RegistroAgua rea = new RegistroAgua();
                 rea.setId(resultadoConsulta.getInt("id"));
                 rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                rea.setHidrometroInicio(resultadoConsulta.getInt("hidrometro_inicio"));
-                rea.setHidrometroFinal(resultadoConsulta.getInt("hidrometro_final"));
+                rea.setHidrometroInicio(resultadoConsulta.getBigDecimal("hidrometro_inicio"));
+                rea.setHidrometroFinal(resultadoConsulta.getBigDecimal("hidrometro_final"));
                 rea.setIdLote(resultadoConsulta.getInt("id_lote"));
                 resultado.add(rea);
             }
@@ -142,7 +210,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
 
             while (resultadoConsulta.next()) {
                 RegistroAgua rea = new RegistroAgua();
-                rea.setHidrometroInicio(resultadoConsulta.getInt("hidrometro_inicio"));
+                rea.setHidrometroInicio(resultadoConsulta.getBigDecimal("hidrometro_inicio"));
                 resultado.add(rea);
             }
             return resultado;
@@ -159,7 +227,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
 
             while (resultadoConsulta.next()) {
                 RegistroAgua rea = new RegistroAgua();
-                rea.setHidrometroFinal(resultadoConsulta.getInt("hidrometro_final"));
+                rea.setHidrometroFinal(resultadoConsulta.getBigDecimal("hidrometro_final"));
                 resultado.add(rea);
             }
             return resultado;
@@ -173,8 +241,8 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
             preparoConsultaSQL.setDate(1, rea.getDtRegistro());
-            preparoConsultaSQL.setInt(2, rea.getHidrometroInicio());
-            preparoConsultaSQL.setInt(3, rea.getHidrometroFinal());
+            preparoConsultaSQL.setBigDecimal(2, rea.getHidrometroInicio());
+            preparoConsultaSQL.setBigDecimal(3, rea.getHidrometroFinal());
             preparoConsultaSQL.setInt(4, rea.getIdLote());
             preparoConsultaSQL.executeUpdate();
             return "Item inserido com sucesso no banco de dados";

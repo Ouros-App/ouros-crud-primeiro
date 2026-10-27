@@ -20,8 +20,6 @@ public interface RegistroEnergiaDAO {
     String update_data(Date dataNew, Date dataOld);
     String update_consumo(double consNew, double consOld);
 
-    int contar();
-    List<RegistroEnergia> select_paginado(int tamanho, int offset);
-
-
+    int contar(String busca);
+    List<RegistroEnergia> select_paginado(String busca, int tamanho, int offset, String ordenarPor);
 }
