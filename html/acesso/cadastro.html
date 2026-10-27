@@ -2,17 +2,17 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro | Ouros</title>
-    <link rel="stylesheet" href="../../src/main/webapp/Style.css">
-    <link rel="icon" type="image/png" href="../../src/main/webapp/img/Asa-icon.png">
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
 </head>
 <body>
 
 <main class="LoginPage">
     <div class="LoginShell">
         <section class="LoginMarca" aria-label="Sobre o Ouros">
-            <div class="LoginLogo"><img src="../../src/main/webapp/img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">
                 Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span>
@@ -56,7 +56,7 @@
                 </li>
             </ul>
 
-            <img class="MascoteLogin" src="../../src/main/webapp/img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
+            <img class="MascoteLogin" src="../img/Midas-Feliz.png" alt="Midas, mascote do Ouros">
         </section>
 
         <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
@@ -64,9 +64,7 @@
                 <h1 class="LoginTitulo" id="cadastro-titulo">Bem-vindo!</h1>
                 <p class="LoginSubtitulo">Crie sua conta para ser um OUROS</p>
             </header>
-            <p class="LoginInstrucao" id="avisoAcessoEstatico" role="status">Versão estática: autenticação, cadastro e recuperação dependem do backend. Esta página não envia nem armazena dados.</p>
-
-            <div role="group" aria-describedby="avisoAcessoEstatico">
+<div role="group">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="nome">Nome</label>
                     <input class="LoginCampoInput" type="text" id="nome" placeholder="Seu nome completo" autocomplete="name" required disabled tabindex="-1">
