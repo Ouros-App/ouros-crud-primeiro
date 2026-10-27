@@ -20,7 +20,6 @@ public interface MetaDAO {
     String update_valorAlvo(double valorAlvoNew, double valorAlvoOld);
 
     int contar(boolean individual, String busca);
-    List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset);
-
+    List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset, String ordenarPor);
 
 }

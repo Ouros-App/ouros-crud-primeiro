@@ -3,17 +3,17 @@ package primeirobd.service;
 import primeirobd.model.Meta;
 import primeirobd.model.Meta;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Types;
 
 public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String SELECT_ALL = "SELECT * FROM meta";
-//    public static final String SELECT_PAGINADO = "SELECT m.titulo, g.nome, m.valor_alvo FROM meta m JOIN granja g ON m.id_granja = g.id;";
-    public static final String SELECT_TITULO = "SELECT titulo FROM meta";
     public static final String SELECT_ID_GRANJA= "SELECT id_granja FROM meta";
     public static final String SELECT_VALOR_ALVO = "SELECT valor_alvo FROM meta";
     public static final String DELETE_BY_ID = "DELETE FROM meta WHERE id = ?";
@@ -34,8 +34,15 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
                     "FROM meta m " +
                     "LEFT JOIN granja g ON g.id = m.id_granja " +
                     "WHERE m.is_individual = ? AND (m.titulo LIKE ? OR g.nome LIKE ?) " +
-                    "ORDER BY m.id " +
+                    "ORDER BY %s, m.id " +
                     "LIMIT ? OFFSET ?";
+    public static final String SELECT_BY_ID =
+            "SELECT id, titulo, descricao, tipo_meta, status, valor_alvo, regiao, estado, " +
+                    "is_individual, id_granja FROM meta WHERE id = ?";
+
+    public static final String UPDATE_ALL =
+            "UPDATE meta SET titulo = ?, descricao = ?, tipo_meta = ?, status = ?, valor_alvo = ?, " +
+                    "regiao = ?, estado = ?, is_individual = ?, id_granja = ? WHERE id = ?";    public static final String SELECT_TITULO = "SELECT titulo FROM meta";
 
     public int contar(boolean individual, String busca) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -53,11 +60,19 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset) {
+    public List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset, String ordenarPor) {
+        String colunaOrdenacao;
+        if ("status".equals(ordenarPor)) {
+            colunaOrdenacao = "m.status";
+        } else {
+            colunaOrdenacao = "m.titulo";
+        }
+        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+
         List<Meta> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_PAGINADO)) {
+        try (PreparedStatement ps = conexao.prepareStatement(query)) {
             ps.setBoolean(1, individual);
             ps.setString(2, busca);
             ps.setString(3, busca);
@@ -69,7 +84,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
                     Meta met = new Meta();
                     met.setId(rs.getInt("id"));
                     met.setTitulo(rs.getString("titulo"));
-                    met.setValorAlvo(rs.getFloat("valor_alvo"));
+                    met.setValorAlvo(rs.getBigDecimal("valor_alvo"));
                     met.setStatus(rs.getString("status"));
                     met.setNomeGranja(rs.getString("nome_granja"));
                     resultado.add(met);
@@ -81,47 +96,54 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public int contar() {
+    public Meta select_by_id(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+            ps.setInt(1, id);
 
-        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-            if (resultadoConsulta.next()){
-                return resultadoConsulta.getInt(1);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (!rs.next()) return null;
+
+                Meta met = new Meta();
+                met.setId(rs.getInt("id"));
+                met.setTitulo(rs.getString("titulo"));
+                met.setDescricao(rs.getString("descricao"));
+                met.setTipoMeta(rs.getString("tipo_meta"));
+                met.setStatus(rs.getString("status"));
+                met.setValorAlvo(rs.getBigDecimal("valor_alvo"));
+                met.setRegiao(rs.getString("regiao"));
+                met.setEstado(rs.getString("estado"));
+                met.setIndividual(rs.getBoolean("is_individual"));
+                met.setIdGranja(rs.getInt("id_granja"));
+                return met;
             }
-            return 0;
-
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+            throw new RuntimeException("Erro ao buscar meta.\n" + e.getMessage(), e);
         }
     }
 
-    public List<Meta> select_paginado(int tamanho, int offset) {
-        List<Meta> resultado = new ArrayList<>();
+    // metodo update completo (todos os campos da meta são editáveis)
+    public String update_meta(Meta met) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO);) {
-            preparoConsultaSQL.setInt(1, tamanho);
-            preparoConsultaSQL.setInt(2, offset);
-
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
-                    Meta met = new Meta();
-                    met.setId(resultadoConsulta.getInt("id"));
-                    met.setDescricao(resultadoConsulta.getString("descricao"));
-                    met.setEstado(resultadoConsulta.getString("estado"));
-                    met.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                    met.setIndividual(resultadoConsulta.getBoolean("is_individual"));
-                    met.setRegiao(resultadoConsulta.getString("regiao"));
-                    met.setStatus(resultadoConsulta.getString("status"));
-                    met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
-                    met.setTitulo(resultadoConsulta.getString("titulo"));
-                    met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
-                    resultado.add(met);
-                }
+        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
+            ps.setString(1, met.getTitulo());
+            ps.setString(2, met.getDescricao());
+            ps.setString(3, met.getTipoMeta());
+            ps.setString(4, met.getStatus());
+            ps.setBigDecimal(5, met.getValorAlvo());
+            ps.setString(6, met.getRegiao());
+            ps.setString(7, met.getEstado());
+            ps.setBoolean(8, met.isIndividual());
+            if (met.isIndividual()) {
+                ps.setInt(9, met.getIdGranja());
+            } else {
+                ps.setNull(9, Types.INTEGER);
             }
-            return resultado;
+            ps.setInt(10, met.getId());
+            ps.executeUpdate();
+            return "Meta atualizada com sucesso";
         } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao mostrar informações paginadas.\n" + e.getMessage());
+            throw new RuntimeException("Erro ao atualizar meta.\n" + e.getMessage(), e);
         }
     }
 
@@ -143,7 +165,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
                 met.setStatus(resultadoConsulta.getString("status"));
                 met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
                 met.setTitulo(resultadoConsulta.getString("titulo"));
-                met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
                 informacoes.add(met);
             }
             return informacoes;
@@ -163,7 +185,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
                 Meta met = new Meta();
                 met.setTitulo(resultadoConsulta.getString("titulo"));
                 met.setNomeGranja(resultadoConsulta.getString("nome"));
-                met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
                 informacoes.add(met);
             }
             return informacoes;
@@ -217,7 +239,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
             while (resultadoConsulta.next()) {
                 Meta met = new Meta();
-                met.setValorAlvo(resultadoConsulta.getFloat("valor_alvo"));
+                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
                 informacoes.add(met);
             }
             return informacoes;
@@ -248,7 +270,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
             preparoConsultaSQL.setString(2, met.getDescricao());
             preparoConsultaSQL.setString(3, met.getTipoMeta());
             preparoConsultaSQL.setString(4, met.getStatus());
-            preparoConsultaSQL.setFloat(5, met.getValorAlvo());
+            preparoConsultaSQL.setBigDecimal(5, met.getValorAlvo());
             preparoConsultaSQL.setString(6, met.getRegiao());
             preparoConsultaSQL.setString(7, met.getEstado());
             preparoConsultaSQL.setBoolean(8, met.isIndividual());

@@ -1,5 +1,7 @@
 package primeirobd.model;
 
+import java.math.BigDecimal;
+
 public class Meta {
     // atributos da tabela
     private int id;
@@ -11,12 +13,10 @@ public class Meta {
     private String status;
     private String tipoMeta;
     private String titulo;
-    private float valorAlvo;
+    private BigDecimal valorAlvo;
     private String nomeGranja;
 
     //construtor
-
-
     public Meta() {
     }
 
@@ -58,7 +58,7 @@ public class Meta {
         return titulo;
     }
 
-    public float getValorAlvo() {
+    public BigDecimal getValorAlvo() {
         return valorAlvo;
     }
 
@@ -104,7 +104,7 @@ public class Meta {
         this.titulo = titulo;
     }
 
-    public void setValorAlvo(float valorAlvo) {
+    public void setValorAlvo(BigDecimal valorAlvo) {   // era float
         this.valorAlvo = valorAlvo;
     }
 
