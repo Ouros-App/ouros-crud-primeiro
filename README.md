@@ -1,54 +1,65 @@
 # Ouros — Landing Page
 
-Landing page da plataforma Ouros, que apresenta recursos para acompanhar a eficiência e a sustentabilidade de granjas e produtores integrados.
+Site estático que apresenta a plataforma Ouros e seus recursos para acompanhar a eficiência e a sustentabilidade de granjas e produtores integrados.
 
-## O que o site apresenta
+A versão publicada está em [ouros-app.github.io/ouros-landing](https://ouros-app.github.io/ouros-landing/).
 
-- Desafios de gestão e sustentabilidade na produção rural.
-- Passo a passo da plataforma para empresas e integrados.
-- Funcionalidades, como gerenciamento de lotes, simulador de lucro e ranking.
-- Planos, cálculo de valores e perguntas frequentes.
-- Página Sobre, com informações sobre a equipe.
-- Acesso às páginas de cadastro, login e recuperação de senha.
+## Páginas
+
+- `html/index.html`: landing page principal.
+- `html/landing/sobre.html`: página Sobre.
+- `html/acesso/login.html`: tela de login.
+- `html/acesso/cadastro.html`: tela de cadastro.
+- `html/acesso/recuperar-senha.html`: tela de recuperação de senha.
+
+As páginas de acesso são visuais. Sem um backend, elas não autenticam usuários, não enviam formulários e não salvam dados.
+
+## Recursos
+
+- Apresentação de desafios, funcionalidades, funcionamento, planos, ranking e perguntas frequentes.
+- Menu adaptado para telas menores.
+- Interações de FAQ e carrossel.
+- Estimativa de preço calculada no navegador, sem salvar os dados.
 
 ## Tecnologias
 
-- JSP para renderizar as páginas.
 - HTML, CSS e JavaScript.
 - Bootstrap 5.3.3 e fonte Poppins carregados por CDN.
-- Imagens e ilustrações locais em SVG e PNG.
+- Imagens e ilustrações locais em PNG e SVG.
 
-O descritor `src/main/webapp/WEB-INF/web.xml` usa Jakarta EE 6.1. O repositório não inclui configuração Maven, Gradle ou npm.
+Bootstrap e Poppins precisam de conexão com a internet para carregar.
 
 ## Estrutura
 
 ```text
-src/main/webapp/
-├── landing/
-│   ├── index.jsp       # Landing page
-│   ├── landing.css     # Estilos da landing page
-│   ├── landing.js      # Interações da página
-│   ├── sobre.jsp       # Página Sobre
-│   └── sobre.css       # Estilos da página Sobre
-├── assets/             # Imagens e ilustrações da landing
-├── img/                # Imagens usadas nas demais páginas
-├── WEB-INF/
-│   └── web.xml         # Configuração web da aplicação
-├── Cadastro.jsp
-├── login.jsp
-└── RecuperarSenha.jsp
+.github/
+└── workflows/
+    └── pages.yml       # Publicação pelo GitHub Actions
+
+html/
+├── index.html
+├── Style.css
+├── acesso/
+│   ├── cadastro.html
+│   ├── login.html
+│   └── recuperar-senha.html
+├── assets/             # Imagens da landing page
+├── img/                # Imagens das telas de acesso
+└── landing/
+    ├── landing.css
+    ├── landing.js
+    ├── sobre.css
+    └── sobre.html
 ```
 
 ## Executar localmente
 
-1. Configure um servidor JSP/Servlet compatível com Jakarta EE 6.1, como o Tomcat 11.
-2. Configure `src/main/webapp` para implantação como aplicação web no servidor.
-3. Inicie o servidor e acesse:
+1. Abra o repositório no VS Code.
+2. Abra `html/index.html`.
+3. Inicie o Live Server para visualizar o site no navegador.
 
-   ```text
-   http://localhost:8080/<contexto>/landing/index.jsp
-   ```
+## Publicar no GitHub Pages
 
-   Substitua `<contexto>` pelo caminho configurado para a aplicação. Por exemplo, se o contexto for `InterModel`, use `http://localhost:8080/InterModel/landing/index.jsp`.
+O workflow `.github/workflows/pages.yml` publica o conteúdo da pasta `html/` no GitHub Pages. A publicação é estática e não executa JSP, Servlets ou código Java no servidor.
 
-A fonte Poppins e o Bootstrap são carregados por CDN e precisam de conexão com a internet.
+Para que a publicação funcione, a origem do GitHub Pages deve estar configurada para **GitHub Actions** nas configurações do repositório.
