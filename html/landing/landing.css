@@ -19,15 +19,22 @@ a {
 /* Header */
 
 #header {
-    position: absolute;
-    inset: 0 0 auto;
-    z-index: 10;
-    height: 124px;
-    padding: 30px 3.5%;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: min(1278px, calc(100% - 160px));
+    height: 80px;
+    padding: 0 14px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 32px;
+    justify-content: center;
+    gap: 86px;
+    border: 1px solid rgba(232, 232, 220, .18);
+    border-radius: 30px;
+    background: rgba(14, 12, 35, .50);
+    backdrop-filter: blur(16px);
 }
 
 .logo {
@@ -36,18 +43,24 @@ a {
 
 .logo img {
     display: block;
-    width: 170px;
+    width: 149px;
     height: auto;
 }
 
 #header nav {
+    flex: 0 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(18px, 2vw, 32px);
+    gap: 19px;
 }
 
-#header nav a,
+#header nav a {
+    color: #ffffff;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
 .acoes a {
     color: #ffffff;
     font-size: 17px;
@@ -61,7 +74,7 @@ a {
 
 
 #header .sobre {
-    margin-left: 8px;
+    margin-left: 0;
     text-decoration: underline;
     text-underline-offset: 3px;
 }
@@ -73,19 +86,32 @@ a {
 }
 
 .acoes .btcadastro {
-    background: #cf9d23;
-    color: #0e0c23;
-    border-radius: 5px;
-    padding: 7px 18px;
+    display: inline-flex;
+    width: 117px;
+    height: 38px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 18px;
     border: 1px solid transparent;
-    transition: background-color .2s ease, color .2s ease, border-color .2s ease;
+    border-radius: 8px;
+    background: #cb982d;
+    color: #0e0c23;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    white-space: nowrap;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
 }
 
 .acoes .btcadastro:hover,
 .acoes .btcadastro:focus-visible {
-    background: transparent;
-    color: #cf9d23;
-    border-color: #cf9d23;
+    border-color: rgba(232, 232, 220, .68);
+    border-radius: 12px;
+    background: #0e0c23;
+    color: #fff;
 }
 
 .acoes .btcadastro:focus-visible {
@@ -133,6 +159,7 @@ a {
 }
 
 .hero-brilho-azul-visual {
+    display: none;
     z-index: 0;
     top: 2%;
     right: 8%;
@@ -145,8 +172,9 @@ a {
 
 .hero-brilho-dourado {
     z-index: 0;
-    top: 28%;
+    top: calc(28% + 5px);
     right: 8%;
+    transform: translate(-2px, 5px);
     width: min(46vw, 620px);
     height: min(44vw, 580px);
     background: radial-gradient(ellipse at center, rgba(194, 137, 34, .32) 0%, rgba(156, 101, 30, .26) 48%, rgba(90, 60, 39, .11) 76%, rgba(14, 12, 35, 0) 100%);
@@ -206,7 +234,7 @@ a {
 .hero-content h1::before {
     content: "";
     position: absolute;
-    z-index: -1;
+    z-index: -2;
     inset: -14% -12% -12% -10%;
     border-radius: 50%;
     background: radial-gradient(ellipse at 38% 45%, rgba(86, 64, 118, .30) 0%, rgba(66, 47, 100, .195) 42%, rgba(45, 33, 74, .09) 66%, rgba(14, 12, 35, 0) 82%);
@@ -240,20 +268,30 @@ a {
 .hero-content h1 strong::before {
     content: "";
     position: absolute;
-    z-index: -1;
-    inset: -12% -8%;
+    z-index: 0;
+    inset: -18% -12%;
     border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(207, 157, 35, .10) 0%, rgba(207, 157, 35, .035) 46%, rgba(207, 157, 35, 0) 78%);
+    background: radial-gradient(ellipse, rgba(203, 152, 45, .32) 0%, rgba(199, 140, 42, .16) 48%, rgba(199, 140, 42, 0) 82%);
     filter: blur(18px);
     pointer-events: none;
 }
 
+.hero-content h1 strong > span {
+    position: relative;
+    z-index: 1;
+    font-size: inherit;
+}
+
 .subTitle {
     margin: 38px 0 0;
-    color: #ffffff;
-    font-size: clamp(14px,1.35vw,20px);
-    line-height: 1.5;
-    text-shadow: 0 2px 5px rgba(3, 2, 17, .48);
+    width: min(549.834px, 100%);
+    color: #F2F5F7;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-shadow: none;
 }
 
 /* Imagens do hero */
@@ -297,6 +335,12 @@ a {
     width: 100%;
     height: 100%;
     object-fit: fill;
+}
+
+.hero-composicao picture {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .hero-asa,
@@ -408,11 +452,17 @@ a {
     top: 74.02%;
 }
 
+.star-7-reference,
+.star-8-reference {
+    display: none;
+}
+
 /* Onda abaixo do hero */
 
 .hero-wave {
     position: absolute;
     top: 0;
+    transform: translateY(1px);
     left: 0;
     right: 0;
     bottom: 0;
@@ -546,7 +596,11 @@ a {
 
 @media (max-width:1100px) {
     #header {
-        gap: 18px;
+        top: 12px;
+        width: calc(100% - 32px);
+        height: 72px;
+        padding: 0 12px;
+        gap: 10px;
     }
 
     .logo img {
@@ -554,16 +608,28 @@ a {
     }
 
     #header nav {
-        gap: 12px;
+        flex: 1;
+        gap: clamp(5px, .8vw, 9px);
     }
 
-    #header nav a,
+    #header nav a {
+        font-size: clamp(10px, 1.15vw, 13px);
+    }
+
     .acoes a {
         font-size: 13px;
     }
 
+    .acoes .btcadastro {
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
     #header .sobre {
-        margin-left: 6px;
+        margin-left: 0;
     }
 
     .hero-visual {
@@ -585,12 +651,17 @@ a {
 
 @media (max-width:760px) {
     #header {
-        height: 84px;
-        padding: 18px 5%;
+        top: 8px;
+        width: calc(100% - 20px);
+        height: 68px;
+        padding: 0 12px;
+        justify-content: space-between;
+        border-radius: 22px;
+        gap: 10px;
     }
 
     .logo img {
-        width: 120px;
+        width: 100px;
     }
 
     .menu-mobile {
@@ -632,13 +703,20 @@ a {
         font-size: 13px;
     }
 
+    .acoes .btcadastro {
+        height: 32px;
+        padding: 5px 9px;
+        font-size: 12px;
+        line-height: 20px;
+    }
+
     .hero {
         height: calc(100vh + 100px);
         min-height: 850px;
     }
 
     .hero-brilho-dourado {
-        top: 36%;
+        top: calc(36% + 5px);
         right: -8%;
         width: min(92vw, 430px);
         height: min(74vw, 350px);
@@ -2288,5 +2366,487 @@ a {
     border-radius: 50%;
     pointer-events: none;
     filter: blur(72px);
+}
+
+@media (min-width: 761px) {
+    .hero > .decor {
+        z-index: 5;
+    }
+
+    .hero-composicao .composicao-stars {
+        display: none;
+    }
+
+    .star-1 {
+        left: 27.14%;
+        top: 22.64%;
+    }
+
+    .star-2 {
+        left: 56.66%;
+        top: 33.33%;
+    }
+
+    .star-3 {
+        left: 84.52%;
+        top: 29.98%;
+    }
+
+    .star-4 {
+        left: 43.45%;
+        top: 48.64%;
+    }
+
+    .star-5 {
+        left: 96.70%;
+        top: 64.15%;
+    }
+
+    .star-6 {
+        left: 53.04%;
+        top: 74.42%;
+    }
+
+    .star-7-reference {
+        display: block;
+        left: 46.65%;
+        top: 93.29%;
+    }
+
+    .star-8-reference {
+        display: block;
+        left: 84.00%;
+        top: 95.39%;
+    }
+
+    .hero-brilho-dourado {
+        z-index: 2;
+        right: calc(8% + 20px);
+    }
+
+    .hero-brilho-azul-visual {
+        display: block;
+        z-index: 1;
+        top: calc(2% + 125px);
+        right: calc(8% - 10px);
+        width: min(32vw, 460px);
+        height: min(32vw, 460px);
+        border-radius: 714px;
+        background: radial-gradient(50% 50% at 50% 50%, #1B1651 0%, #0E0C23 100%);
+        opacity: 1;
+        filter: blur(34.400001525878906px);
+    }
+
+    .subTitle {
+        position: relative;
+        z-index: 1;
+    }
+
+    .hero-content h1 strong::before {
+        z-index: 0;
+        background: radial-gradient(ellipse, rgba(203, 152, 45, .32) 0%, rgba(199, 140, 42, .16) 48%, rgba(199, 140, 42, 0) 82%);
+    }
+
+    .hero-content h1::before {
+        z-index: -2;
+        inset: auto;
+        top: calc(50% + 10px);
+        left: calc(50% - 30px);
+        width: 851px;
+        height: 649px;
+        transform: translate(-50%, -50%);
+        border-radius: 851px;
+        background: radial-gradient(50% 50% at 50% 50%, #1B1651 0%, #0E0C23 100%);
+        filter: blur(34.400001525878906px);
+    }
+}
+
+@media (min-width: 1101px) {
+    .hero-composicao {
+        aspect-ratio: 766 / 877;
+        transform: translateY(-65px);
+    }
+
+    .hero-content {
+        margin-top: calc(96px + 109.89px - clamp(80px, 8vw, 138px));
+    }
+
+    .hero {
+        height: calc(100vh + 101.11px);
+        min-height: 821.11px;
+    }
+
+    .hero-wave img {
+        transform: scaleY(1.12);
+    }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+    .hero-content {
+        margin-top: calc(84px + 109.89px - clamp(80px, 8vw, 138px));
+    }
+}
+
+/* Ajustes responsivos do hero para tablet e celular. O desktop acima de 1100px
+   mantém as medidas e posições aprovadas no Figma. */
+@media (min-width: 901px) and (max-width: 1100px) {
+    .hero-container {
+        grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+        column-gap: clamp(14px, 2vw, 24px);
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(42px, 5.25vw, 58px);
+        letter-spacing: -1.35px;
+    }
+
+    .hero-content h1::before {
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: min(66vw, 430px);
+        transform: translateY(-50%);
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        margin-top: clamp(24px, 3vw, 34px);
+        font-size: clamp(16px, 1.8vw, 19px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        height: 100%;
+        min-height: 0;
+        margin-top: 0;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 50%;
+        right: -3%;
+        width: min(108%, 480px);
+        transform: translateY(-50%);
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+    #header {
+        width: calc(100% - 40px);
+        height: 68px;
+        padding: 0 12px;
+        justify-content: space-between;
+        gap: 12px;
+    }
+
+    .logo img {
+        width: clamp(110px, 14vw, 128px);
+    }
+
+    #header nav {
+        display: none;
+    }
+
+    #header nav.mobile-aberto {
+        display: flex;
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 22px;
+        border: 1px solid #39364a;
+        border-radius: 12px;
+        background: #19162f;
+        gap: 18px;
+    }
+
+    #header nav a {
+        font-size: 16px;
+    }
+
+    .acoes {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+
+    .acoes a {
+        font-size: 13px;
+    }
+
+    .acoes .btcadastro {
+        width: auto;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 13px;
+        line-height: 20px;
+    }
+
+    .menu-mobile {
+        display: block;
+        flex: 0 0 auto;
+    }
+
+    .hero {
+        height: auto;
+        min-height: 100svh;
+    }
+
+    .hero-container {
+        height: auto;
+        min-height: 100svh;
+        grid-template-columns: minmax(0, 1fr);
+        align-content: center;
+        padding: clamp(120px, 14svh, 144px) clamp(24px, 6vw, 56px) clamp(96px, 10svh, 120px);
+        gap: clamp(24px, 3.5vh, 36px);
+    }
+
+    .hero-content {
+        width: min(100%, 780px);
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(42px, 6vw, 54px);
+        letter-spacing: -1.25px;
+    }
+
+    .hero-content h1::before {
+        width: min(110vw, 680px);
+        height: min(82vw, 520px);
+    }
+
+    .hero-content::before {
+        left: -5%;
+        width: 110%;
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        max-width: 54ch;
+        margin-top: 24px;
+        font-size: clamp(16px, 2.1vw, 18px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        width: min(100%, 420px);
+        height: auto;
+        aspect-ratio: 766 / 782;
+        min-height: 0;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 0;
+        right: 0;
+        width: 100%;
+        aspect-ratio: 766 / 782;
+        transform: none;
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+
+    .hero-brilho-azul-visual {
+        display: block;
+        top: 43%;
+        left: 50%;
+        right: auto;
+        width: min(76vw, 390px);
+        height: min(76vw, 390px);
+        transform: translateX(-50%);
+        opacity: .19;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero {
+        height: auto;
+        min-height: min(100svh, 850px);
+    }
+
+    .hero-container {
+        height: auto;
+        min-height: min(100svh, 850px);
+        align-content: center;
+        padding: clamp(108px, 16svh, 125px) 6% clamp(82px, 10svh, 108px);
+        gap: clamp(24px, 4vh, 36px);
+    }
+
+    .hero-content {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .hero-content h1 {
+        --hero-title-size: clamp(34px, 7.3vw, 55px);
+        font-size: var(--hero-title-size);
+        letter-spacing: -1px;
+    }
+
+    .hero-content h1::before {
+        inset: -10% -4%;
+    }
+
+    .hero-content::before {
+        left: -5%;
+        width: 110%;
+        height: clamp(260px, 42vw, 340px);
+    }
+
+    .subTitle {
+        width: min(549.834px, 100%);
+        max-width: 54ch;
+        margin-top: 24px;
+        font-size: clamp(14px, 3.6vw, 16px);
+        line-height: 1.4;
+    }
+
+    .hero-visual {
+        width: min(90%, 340px);
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 766 / 782;
+        min-height: 0;
+        margin: 0 auto;
+        transform: none;
+    }
+
+    .hero-composicao {
+        top: 0;
+        right: 0;
+        width: 100%;
+        aspect-ratio: 766 / 782;
+        transform: none;
+    }
+
+    .hero-composicao-arte {
+        object-fit: contain;
+    }
+
+    .hero-brilho-roxo-right {
+        right: 0;
+        width: min(72vw, 360px);
+        height: min(72vw, 360px);
+    }
+
+    .hero-brilho-dourado {
+        right: 4%;
+        width: min(88vw, 360px);
+        height: min(70vw, 300px);
+    }
+
+    .hero-brilho-azul-visual {
+        display: block;
+        top: 43%;
+        left: 50%;
+        right: auto;
+        width: min(76vw, 360px);
+        height: min(76vw, 360px);
+        transform: translateX(-50%);
+        opacity: .19;
+    }
+}
+
+@media (max-width: 370px) {
+    #header {
+        width: calc(100% - 12px);
+        padding: 0 8px;
+        gap: 6px;
+    }
+
+    .logo img {
+        width: 86px;
+    }
+
+    .acoes {
+        gap: 6px;
+    }
+
+    .acoes a {
+        font-size: 12px;
+    }
+
+    .acoes .btcadastro {
+        height: 30px;
+        padding: 4px 7px;
+        font-size: 11px;
+    }
+
+    .menu-mobile {
+        padding: 6px;
+    }
+}
+
+/* As estrelas acompanham o layout empilhado sem sair dos limites da tela.
+   As coordenadas do desktop permanecem intactas a partir de 1101px. */
+@media (min-width: 761px) and (max-width: 1100px) {
+    .hero > .decor {
+        z-index: 3;
+    }
+
+    .hero > .decor .star {
+        width: clamp(4px, .55vw, 6px);
+        height: clamp(4px, .55vw, 6px);
+    }
+}
+
+@media (min-width: 761px) and (max-width: 900px) {
+    .star-1 { left: 2%; top: 13%; }
+    .star-2 { left: auto; right: 2%; top: 23%; }
+    .star-3 { left: 2%; top: 39%; }
+    .star-4 { left: auto; right: 2%; top: 53%; }
+    .star-5 { left: 2%; top: 70%; }
+    .star-6 { left: auto; right: 2%; top: 85%; }
+
+    .star-7-reference {
+        left: 8%;
+        top: 91%;
+    }
+
+    .star-8-reference {
+        left: auto;
+        right: 8%;
+        top: 39%;
+    }
+}
+
+@media (max-width: 760px) {
+    .hero > .decor {
+        z-index: 3;
+    }
+
+    .hero > .decor .star,
+    .hero-composicao .composicao-stars .star {
+        width: clamp(3px, 1.15vw, 5px);
+        height: clamp(3px, 1.15vw, 5px);
+    }
+
+    /* Distribui as estrelas pelas margens livres do título, subtítulo e arte. */
+    .star-1 { left: 1.5%; top: 12%; }
+    .star-2 { left: auto; right: 1.5%; top: 22%; }
+    .star-3 { left: 1.5%; top: 39%; }
+    .star-4 { left: auto; right: 1.5%; top: 53%; }
+    .star-5 { left: 1.5%; top: 70%; }
+    .star-6 { left: auto; right: 1.5%; top: 85%; }
+
+    /* No celular, as estrelas 7 e 8 acompanham a composição escalada. */
+    .hero-composicao .star-7 {
+        left: 10.99%;
+        top: 12.19%;
+    }
+
+    .hero-composicao .star-8 {
+        left: 69.93%;
+        top: 74.02%;
+    }
 }
 
