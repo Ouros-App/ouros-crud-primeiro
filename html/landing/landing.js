@@ -1,4 +1,6 @@
-const landingAssetBase = new URL('../assets/', document.currentScript?.src || window.location.href);
+const landingScriptUrl = new URL(document.currentScript?.src || 'landing/landing.js', window.location.href);
+const landingAssetBase = new URL('../assets/', landingScriptUrl);
+const landingSectionsBase = new URL('sections/', landingScriptUrl);
 const landingAsset = (path) => new URL(path, landingAssetBase).href;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -6,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const mounts = Array.from(document.querySelectorAll('[data-landing-section]'));
         await Promise.all(mounts.map(async (mount) => {
             const name = mount.dataset.landingSection;
-            const url = new URL('sections/' + encodeURIComponent(name) + '.html', window.location.href);
+            const url = new URL(encodeURIComponent(name) + '.html', landingSectionsBase);
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error('Não foi possível carregar a seção "' + name + '".');
@@ -24,6 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('landing-loading')?.remove();
     } catch (error) {
         console.error('Falha ao montar a landing Ouros:', error);
+        document.getElementById('conteudo-principal')?.setAttribute('aria-busy', 'false');
         document.getElementById('landing-loading')?.remove();
         const message = document.getElementById('landing-load-error');
         if (message) {
