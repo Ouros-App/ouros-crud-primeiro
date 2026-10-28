@@ -6,7 +6,7 @@
     <title>Recuperação de conta | Ouros</title>
     <link rel="stylesheet" href="../Style.css">
     <link rel="icon" type="image/png" href="../img/Asa-icon.png">
-    </head>
+</head>
 <body>
 
 <div class="LoginPage">
@@ -70,18 +70,15 @@
                 <h1 class="LoginTitulo">Recuperação de Conta</h1>
                 <p class="LoginSubtitulo">Redefina sua senha para continuar sendo um OUROS</p>
             </div>
-
-            <form onsubmit="event.preventDefault()">
+<div role="group">
                 <h2 class="LoginPergunta">Esqueceu sua senha?</h2>
-                <p class="LoginInstrucao">Digite seu e-mail e enviaremos um link para redefinir sua senha.</p>
-
-                <div class="LoginCampoGrupo">
+<div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
-                    <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
+                    <input class="LoginCampoInput" type="email" id="email" placeholder="seuemail@email.com" required disabled tabindex="-1">
                 </div>
 
-                <button type="submit" class="LoginBotao">Enviar link</button>
-            </form>
+                <button type="button" class="LoginBotao" disabled aria-disabled="true">Enviar link</button>
+            </div>
 
             <div class="LoginRodape">
                 <span>Lembrou sua senha?</span>

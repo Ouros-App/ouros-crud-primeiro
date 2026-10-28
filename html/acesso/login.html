@@ -6,7 +6,7 @@
     <title>Entrar | Ouros</title>
     <link rel="stylesheet" href="../Style.css">
     <link rel="icon" type="image/png" href="../img/Asa-icon.png">
-    </head>
+</head>
 <body>
 
 <div class="LoginPage">
@@ -72,24 +72,23 @@
                 <h1 class="LoginTitulo">Bem-vindo de volta !</h1>
                 <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
             </div>
-
-            <form onsubmit="event.preventDefault()">
+<div role="group">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
-                    <input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" required>
+                    <input class="LoginCampoInput" type="email" id="email" placeholder="seuemail@email.com" required disabled tabindex="-1">
                 </div>
 
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="senha">Senha</label>
-                    <input class="LoginCampoInput" type="password" id="senha" name="senha" placeholder="••••••••" required>
+                    <input class="LoginCampoInput" type="password" id="senha" placeholder="••••••••" required disabled tabindex="-1">
                 </div>
 
                 <div class="LoginUtilitario">
-                    <a class="LoginLinkEsqueci" href="recuperar-senha.html">Esqueceu sua senha?</a>
+                    <a class="LoginLinkEsqueci" href="RecuperarSenha.html">Esqueceu sua senha?</a>
                 </div>
 
-                <button type="submit" class="LoginBotao">Continuar</button>
-            </form>
+                <button type="button" class="LoginBotao" disabled aria-disabled="true">Continuar</button>
+            </div>
 
             <div class="LoginRodape">
                 <span>Ainda não tem uma conta?</span>
