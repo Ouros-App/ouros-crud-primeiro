@@ -286,43 +286,47 @@ document.addEventListener('DOMContentLoaded', async () => {
     const stepButtons = document.querySelectorAll('.passo-botao');
     const funcionamentoImage = document.getElementById('funcionamentoImagem');
     const funcionamentoVisual = document.getElementById('funcionamentoVisual');
+    const funcionamentoArte = document.getElementById('funcionamentoRecorte');
+    const funcionamentoAssetBase = funcionamentoVisual?.dataset.assetsBase || '../assets/';
     const funcionamentoViews = {
         empresa: [
-            { src: landingAsset('funcionamento-notebook-figma.png'), alt: 'Painel da plataforma exibido em um notebook' },
-            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
-            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
+            { src: 'imagem-1-empresa-passo-a-passo.svg', alt: 'Tablet com painel da empresa e indicadores de produção', offsetX: '-24px', offsetY: '-9px' },
+            { src: 'imagem-2-empresa-passo-a-passo.svg', alt: 'Dois tablets sobrepostos com o painel de ranking da empresa', offsetX: '-40px', scale: 1.323 },
+            { src: 'imagem-3-empresa-passo-a-passo.svg', alt: 'Tablet com metas e resultados de produção', offsetX: 'calc(clamp(0px, 1.5vw, 24px) - 34px)', offsetY: 'calc(clamp(0px, 1vw, 16px) + 31px)', scale: 1.1 }
         ],
         integrado: [
-            { src: landingAsset('funcionamento-integrado-figma.png'), alt: 'Tela de cadastro da plataforma em um celular' },
-            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' },
-            { duplo: true, alt: 'Dois celulares com as telas de acompanhamento da plataforma' }
+            { src: 'imagem-1-integrado-passo-a-passo.png', alt: 'Celular com formulário de cadastro do integrado', offsetX: '-15px', offsetY: '-53px', scale: 0.9261 },
+            { src: 'imagem-2-integrado-passo-a-passo.png', alt: 'Dois celulares com gráficos de consumo e produção', offsetX: '-42px', offsetY: '10px', scale: 1.2 },
+            { src: 'imagem-3-integrado-passo-a-passo.svg', alt: 'Celular com painel de ranking e a classificação de Marcela', width: 396, offsetX: '10px', offsetY: '-25px', scale: 0.83391 }
         ]
     };
-    const funcionamentoDuplo = document.getElementById('funcionamentoDuplo');
     let selectedProfile = 'empresa';
     let selectedStep = 0;
     let imageTransitionTimer;
 
+    const applyFunctioningView = (view) => {
+        if (!funcionamentoImage || !funcionamentoArte) {
+            return;
+        }
+
+        funcionamentoImage.src = `${funcionamentoAssetBase}${view.src}`;
+        funcionamentoImage.alt = view.alt;
+        funcionamentoArte.style.setProperty('--imagem-largura', view.width ? `${view.width}px` : '100%');
+        funcionamentoArte.style.setProperty('--imagem-deslocamento-x', view.offsetX || '0px');
+        funcionamentoArte.style.setProperty('--imagem-deslocamento-y', view.offsetY || '0px');
+        funcionamentoArte.style.setProperty('--imagem-escala', view.scale || 1);
+    };
+
     const showFunctioningView = () => {
         const view = funcionamentoViews[selectedProfile]?.[selectedStep];
-        if (!view || !funcionamentoImage || !funcionamentoVisual || !funcionamentoDuplo) {
+        if (!view || !funcionamentoImage || !funcionamentoVisual) {
             return;
         }
 
         window.clearTimeout(imageTransitionTimer);
         funcionamentoVisual.classList.add('trocando-imagem');
         imageTransitionTimer = window.setTimeout(() => {
-            const mostrarDuplo = view.duplo === true;
-            funcionamentoVisual.classList.toggle('mostrando-duplo', mostrarDuplo);
-            funcionamentoImage.style.display = mostrarDuplo ? 'none' : 'block';
-            funcionamentoDuplo.style.display = mostrarDuplo ? 'block' : 'none';
-
-            if (!mostrarDuplo) {
-                funcionamentoImage.src = view.src;
-                funcionamentoImage.alt = view.alt;
-            }
-
-            funcionamentoDuplo.setAttribute('aria-label', view.alt);
+            applyFunctioningView(view);
             window.requestAnimationFrame(() => {
                 window.requestAnimationFrame(() => funcionamentoVisual.classList.remove('trocando-imagem'));
             });
@@ -346,10 +350,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
 
+        document.getElementById('funcionamento')?.setAttribute('data-perfil', profile);
+
         stepButtons.forEach((button, index) => {
             const selected = index === step;
             const item = button.closest('[data-passo]');
             item?.classList.toggle('passo-destaque', selected);
+            item?.classList.toggle('passo-concluido', index < step);
             button.setAttribute('aria-pressed', String(selected));
         });
 
@@ -363,6 +370,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     stepButtons.forEach((button, index) => {
         button.addEventListener('click', () => selectFunctioningView(selectedProfile, index));
     });
+
+    if (funcionamentoImage && funcionamentoVisual && funcionamentoArte) {
+        applyFunctioningView(funcionamentoViews.empresa[0]);
+    }
 
     const featureSlider = document.querySelector('[data-slider="funcionalidades"]');
     if (featureSlider) {

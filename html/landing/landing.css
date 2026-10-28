@@ -886,7 +886,7 @@ a {
 .funcionamento {
     position: relative;
     overflow: hidden;
-    padding: 60px 0 50px;
+    padding: 48px 0 62.58px;
     color: #ffffff;
     background-color: #0e0c23;
 }
@@ -903,121 +903,143 @@ a {
 
 .funcionamento-brilho {
     z-index: 0;
-    top: 12%;
-    left: 4%;
-    width: min(55vw, 790px);
-    height: min(55vw, 790px);
-    background-color: #3928A6;
-    opacity: .16;
+    top: calc(50% + 10px);
+    left: 50%;
+    width: min(53.61vw, 675.75px);
+    height: min(40.94vw, 510.75px);
+    border-radius: 495px;
+    background: radial-gradient(50% 50% at 50% 50%, rgba(46, 38, 135, 0.90) 2.9%, rgba(14, 12, 35, 0.90) 100%);
+    filter: blur(34.400001525878906px);
+    transform: translate(-50%, -50%) scale(1.045);
 }
 
 .funcionamento > .landing-container {
     position: relative;
     z-index: 1;
+    width: 94%;
 }
 
 .funcionamento-grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr);
-    align-items: center;
+    grid-template-columns: minmax(0, 1.27fr) minmax(0, 1fr);
+    align-items: start;
     gap: 36px;
-    margin-top: 45px;
+    margin-top: 22px;
+}
+
+.funcionamento-cabecalho {
+    display: grid;
+    grid-template-columns: minmax(0, 1.27fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 36px;
 }
 
 .funcionamento .secao-titulo {
-    font-size: clamp(32px, 3.8vw, 54px);
+    position: relative;
+    z-index: 3;
+    width: 485px;
+    max-width: 100%;
+    color: #CB982D;
+    background: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 57.475px;
+    text-shadow: none;
 }
+
+.funcionamento .secao-titulo-linha {
+    width: 112px;
+    height: 4px;
+    margin-bottom: 18px;
+    border-radius: 999px;
+    background: #cb982d;
+}
+
 
 .funcionamento-visual {
+    position: relative;
     display: grid;
     place-items: center;
-    min-height: 566px;
+    width: 578px;
+    height: 510px;
+    min-height: 510px;
+    margin-left: 96.38px;
 }
 
-.funcionamento-visual > #funcionamentoImagem {
-    display: block;
-    width: 100%;
-    max-width: 756px;
-    height: 566px;
-    object-fit: contain;
-    transform: none;
-    transition: opacity 240ms ease, transform 240ms ease;
-}
-
-.funcionamento-duplo {
+.funcionamento-recorte {
     position: relative;
-    width: min(100%, 446px);
-    aspect-ratio: 446 / 451;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: min(var(--imagem-largura, 100%), 100%);
+    height: 100%;
+    overflow: visible;
+    transform: translate(var(--imagem-deslocamento-x, 0px), var(--imagem-deslocamento-y, 0px)) scale(var(--imagem-escala, 1));
     transition: opacity 240ms ease, transform 240ms ease;
 }
 
-.funcionamento-visual .funcionamento-duplo img {
-    position: absolute;
+.funcionamento-recorte > #funcionamentoImagem {
     display: block;
-    max-width: none;
-    height: auto;
-    object-fit: fill;
-    transform: none;
-    transition: opacity 240ms ease;
-}
-
-.funcionamento-visual .funcionamento-duplo-base {
-    inset: 0;
     width: 100%;
     height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
-.funcionamento-visual .funcionamento-duplo-tela-4 {
-    top: 0.89%;
-    left: 3.36%;
-    width: 43.95%;
-    height: 72.95%;
-}
-
-.funcionamento-visual .funcionamento-duplo-tela-3 {
-    top: 15.96%;
-    left: 46.86%;
-    width: 49.78%;
-    height: 80.93%;
-}
-
-.funcionamento-visual.trocando-imagem > #funcionamentoImagem,
-.funcionamento-visual.trocando-imagem .funcionamento-duplo {
+.funcionamento-visual.trocando-imagem > .funcionamento-recorte {
     opacity: 0;
-    transform: translateY(8px) scale(.98);
+    transform: translate(var(--imagem-deslocamento-x, 0px), calc(var(--imagem-deslocamento-y, 0px) + 8px)) scale(var(--imagem-escala, 1)) scale(.98);
 }
 
 .funcionamento-conteudo {
-    max-width: 470px;
+    width: 100%;
+    max-width: 545px;
+    grid-column: 2;
+    justify-self: start;
+    padding-top: 70px;
 }
 
 /* Botões Empresa e Integrado */
 
 .perfil-opcoes {
     display: flex;
-    width: 100%;
-    max-width: 345px;
-    margin: 0 auto 60px;
-    border: 1px solid #a38235;
-    border-radius: 30px;
+    grid-column: 2;
+    justify-self: center;
+    align-self: start;
+    width: 387.391px;
+    max-width: 100%;
+    height: 48.063px;
+    flex: 0 0 387.391px;
+    margin: 46.31px 0 0;
+    border: 1.129px solid #a7781a;
+    border-radius: 33.883px;
     overflow: hidden;
 }
 
 .perfil-opcao {
     flex: 1;
-    padding: 8px 14px;
+    padding: 8px 18px;
     border: 0;
-    border-radius: 30px;
+    border-radius: 33.883px;
     background: transparent;
     color: #ffffff;
     font: inherit;
-    font-size: 17px;
+    font-size: 22.588px;
+    font-weight: 500;
+    transition: color 200ms ease, background-color 200ms ease;
 }
 
 .perfil-opcao.selecionado {
-    background: #cf9d23;
-    color: #0e0c23;
+    background: linear-gradient(90deg, #d8a23a 0%, #a66b10 100%);
+    color: #0E0C23;
+    font-family: Poppins, sans-serif;
+    font-size: 22.588px;
+    font-style: normal;
     font-weight: 700;
+    line-height: normal;
 }
 
 /* Etapas clicáveis do funcionamento */
@@ -1030,21 +1052,29 @@ a {
 
 .funcionamento-passos li {
     position: relative;
-    padding: 0 0 36px 64px;
-    color: #a6a3b6;
+    --passo-circulo: 42.918px;
+    --passo-gap: 38.4px;
+    padding: 0 0 50px calc(var(--passo-circulo) + var(--passo-gap));
+    color: rgba(242, 245, 247, 0.4);
+    transition: color 200ms ease;
+}
+
+.funcionamento-passos li:last-child {
+    padding-bottom: 0;
 }
 
 .passo-ligacao {
     position: absolute;
-    top: 34px;
+    top: 42.918px;
     bottom: 0;
-    left: 16px;
-    width: 1px;
-    background: #726033;
+    left: 20.459px;
+    width: 2px;
+    background: rgba(242, 245, 247, 0.48);
+    transition: background-color 200ms ease;
 }
 
 .funcionamento-passos .passo-destaque {
-    color: #ffffff;
+    color: #f2f5f7;
 }
 
 .passo-botao {
@@ -1054,16 +1084,18 @@ a {
     left: 0;
     display: grid;
     place-items: center;
-    width: 34px;
-    height: 34px;
+    width: 42.918px;
+    height: 42.918px;
     padding: 0;
-    border: 1px solid #cf9d23;
+    border: 2.26px solid #aeb0b8;
     border-radius: 50%;
     color: #ffffff;
     background: transparent;
     font: inherit;
-    font-size: 16px;
+    font-size: 22.588px;
+    font-weight: 700;
     cursor: pointer;
+    transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease;
 }
 
 .passo-botao:focus-visible {
@@ -1072,21 +1104,99 @@ a {
 }
 
 .funcionamento-passos .passo-destaque .passo-botao {
-    background: #cf9d23;
+    border-color: #d8a23a;
+    background: linear-gradient(135deg, #d8a23a 0%, #a66b10 100%);
     color: #0e0c23;
 }
 
+.funcionamento-passos .passo-concluido .passo-botao {
+    border-color: #d8a23a;
+    color: #f2f5f7;
+}
+
+.funcionamento-passos .passo-concluido .passo-ligacao {
+    background: #d8a23a;
+}
+
 .funcionamento-passos h3 {
-    margin: 0 0 12px;
-    font-size: 22px;
-    line-height: 1.3;
+    margin: 0 0 8px;
+    color: #f2f5f7;
+    font-size: 22.588px;
+    line-height: 32.753px;
     font-weight: 700;
+    transition: color 200ms ease;
 }
 
 .funcionamento-passos p {
     margin: 0;
-    font-size: 17px;
-    line-height: 1.5;
+    color: #f2f5f7;
+    font-size: 16.941px;
+    font-weight: 500;
+    line-height: 35.012px;
+    transition: color 200ms ease;
+}
+
+.funcionamento-passos li:not(.passo-destaque) h3,
+.funcionamento-passos li:not(.passo-destaque) p {
+    color: rgba(242, 245, 247, 0.4);
+}
+
+@media (min-width: 1250px) {
+    #funcionamento[data-perfil="integrado"] .funcionamento-passos li[data-passo="3"] h3 {
+        width: max-content;
+        max-width: none;
+        font-size: 22.588px;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 1100px) {
+    .funcionamento > .landing-container {
+        width: 92%;
+    }
+
+    .funcionamento-cabecalho {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 28px;
+    }
+
+    .funcionamento .secao-titulo {
+        flex-basis: auto;
+        width: 100%;
+        font-size: clamp(38px, 5.3vw, 55px);
+    }
+
+    .perfil-opcoes {
+        grid-column: 1;
+        align-self: center;
+        margin-top: 0;
+    }
+
+    .funcionamento-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 24px;
+        margin-top: 58px;
+    }
+
+    .funcionamento-visual {
+        grid-column: 1;
+        width: 100%;
+        height: 510px;
+        min-height: 510px;
+        margin-left: 0;
+    }
+
+    .funcionamento-recorte {
+        width: min(var(--imagem-largura, 100%), 100%);
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .funcionamento-conteudo {
+        grid-column: 2;
+        max-width: none;
+        padding-top: 0;
+    }
 }
 
 /* Funcionalidades */
@@ -1900,42 +2010,136 @@ a {
 /* Rodapé */
 
 .rodape {
-    padding: 66px 0 26px;
+    height: 389px;
+    padding: 40px 0 14px;
     color: #ffffff;
     background: #05050b;
 }
 
+.rodape .landing-container {
+    width: calc(100% - 110px);
+    max-width: none;
+}
+
 .rodape-conteudo {
     display: grid;
-    grid-template-columns: minmax(250px, 2fr) repeat(3, minmax(120px, 1fr));
+    grid-template-columns: 556px 121px 180px 160px;
     gap: 36px;
-    padding-bottom: 64px;
+    padding-bottom: 70px;
+}
+
+.rodape-marca {
+    position: relative;
+    left: 0;
+}
+
+.rodape-logo {
+    display: block;
+    width: fit-content;
 }
 
 .rodape-logo img {
     display: block;
-    width: 142px;
+    width: 179px;
     height: auto;
 }
 
 .rodape-marca p {
-    margin: 28px 0 0;
+    width: 302px;
+    margin: 28px 0 40px;
     color: #93919b;
     font-size: 15px;
+    line-height: 1.5;
+}
+
+.rodape-contatos {
+    display: grid;
+    justify-items: start;
+    gap: 14px;
+}
+
+.rodape-contato {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    color: #8d8d8d;
+    font-size: 16px;
+    line-height: 24px;
+    white-space: nowrap;
+}
+
+.rodape-contato:hover {
+    color: #ffffff;
+}
+
+.rodape-contato:hover .rodape-contato-icone {
+    background-color: #cb982d;
+}
+
+.rodape-contato-email {
+    width: 211px;
+    gap: 11px;
+}
+
+.rodape-contato-icone {
+    display: block;
+    flex: 0 0 auto;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    -webkit-mask-size: contain;
+}
+
+.rodape-contato-icone-email {
+    flex: 0 0 21px;
+    width: 21px;
+    height: 16px;
+    mask-image: url("../assets/email.svg");
+    -webkit-mask-image: url("../assets/email.svg");
+}
+
+.rodape-contato-instagram {
+    width: 117px;
+    gap: 12px;
+}
+
+.rodape-contato-icone-instagram {
+    flex: 0 0 19px;
+    width: 19px;
+    height: 19px;
+    mask-image: url("../assets/instagram.svg");
+    -webkit-mask-image: url("../assets/instagram.svg");
 }
 
 .rodape-coluna {
-    display: grid;
-    align-content: start;
-    justify-items: start;
-    gap: 18px;
+    display: block;
+    padding-top: 13px;
 }
 
 .rodape-coluna h2 {
-    margin: 0 0 5px;
+    margin: 0 0 26px;
     color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.rodape-links {
+    display: grid;
+    justify-items: start;
+    gap: 28px;
+}
+
+.rodape-coluna-secundaria {
+    padding-top: 57px;
+}
+
+.rodape-coluna-equipe {
+    position: relative;
+    left: 142px;
 }
 
 .rodape-coluna a,
@@ -1943,10 +2147,11 @@ a {
     margin: 0;
     padding: 0;
     border: 0;
-    color: #9997a1;
+    color: #8d8d8d;
     background: transparent;
     font: inherit;
-    font-size: 14px;
+    font-size: 16px;
+    line-height: 20px;
     text-align: left;
 }
 
@@ -1958,11 +2163,12 @@ a {
 .rodape-base {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     gap: 20px;
-    padding-top: 22px;
+    padding-top: 37px;
     border-top: 1px solid #45434f;
-    color: #8e8b96;
-    font-size: 13px;
+    color: #8d8d8d;
+    font-size: 15px;
 }
 
 .rodape-base a {
@@ -3007,3 +3213,122 @@ a {
     }
 }
 
+
+/* Ajustes para as ilustrações e o rodapé em telas menores */
+@media (max-width: 1383px) {
+    .rodape {
+        height: auto;
+        padding-bottom: 26px;
+    }
+
+    .rodape-conteudo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rodape-marca {
+        grid-column: 1 / -1;
+    }
+
+    .rodape-coluna-equipe {
+        left: 0;
+    }
+}
+
+@media (max-width: 900px) {
+    .rodape .landing-container {
+        width: 92%;
+    }
+}
+
+@media (max-width: 760px) {
+    .funcionamento {
+        padding: 45px 0 54px;
+    }
+
+    .funcionamento > .landing-container {
+        width: 92%;
+    }
+
+    .funcionamento-cabecalho {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .funcionamento .secao-titulo {
+        width: 100%;
+        font-size: clamp(32px, 9vw, 46px);
+        line-height: 1.1;
+    }
+
+    .perfil-opcoes {
+        grid-column: 1;
+        justify-self: center;
+        width: min(100%, 388px);
+        height: 48px;
+        flex-basis: 48px;
+        margin: 0;
+    }
+
+    .funcionamento-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+        margin-top: 34px;
+    }
+
+    .funcionamento-visual {
+        grid-column: 1;
+        width: 100%;
+        height: clamp(300px, 82vw, 430px);
+        min-height: 0;
+        margin-left: 0;
+    }
+
+    .funcionamento-recorte {
+        width: min(var(--imagem-largura, 100%), 100%);
+        height: 100%;
+        max-width: 100%;
+    }
+
+    .funcionamento-recorte > #funcionamentoImagem {
+        height: 100%;
+        max-height: 100%;
+    }
+
+    .funcionamento-conteudo {
+        grid-column: 1;
+        max-width: none;
+        padding-top: 0;
+    }
+
+    .funcionamento-passos li {
+        --passo-gap: 20px;
+        padding-bottom: 32px;
+    }
+
+    .funcionamento-passos h3 {
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+    .funcionamento-passos p {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+@media (max-width: 600px) {
+    .rodape {
+        padding-top: 48px;
+    }
+
+    .rodape-conteudo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 30px 20px;
+        padding-bottom: 40px;
+    }
+
+    .rodape-base {
+        flex-direction: column;
+        font-size: 12px;
+    }
+}
