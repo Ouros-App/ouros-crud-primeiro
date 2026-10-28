@@ -2379,20 +2379,20 @@ a {
 
 /* Desafios em destaque */
 .desafios {
-    padding: clamp(64px, 8vw, 112px) 0;
+    padding: clamp(24px, 2vw, 32px) 0 96px;
     background: #faf7ec;
     color: #0e0c23;
 }
 
 .desafios-container {
-    width: min(90%, 1440px);
+    width: min(100%, 1440px);
     margin: 0 auto;
 }
 
 .desafiosTitle {
     width: fit-content;
     max-width: 100%;
-    margin: 0;
+    margin: 0 0 0 56px;
     color: #0e0c23;
     font-size: clamp(36px, 4vw, 58px);
     font-weight: 900;
@@ -2403,16 +2403,18 @@ a {
 .desafiosTitle::before {
     content: "";
     display: block;
-    width: 100%;
+    width: 112px;
     height: 3px;
     margin-bottom: 18px;
     background: currentColor;
 }
 
 .desafios-subtitle {
-    margin: 12px 0 32px;
-    color: #8d8d8d;
-    font-size: clamp(16px, 1.5vw, 21px);
+    margin: 12px 0 32px 56px;
+    color: #1c1a32;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 104.5%;
 }
 
 .desafios-slider {
@@ -2425,11 +2427,11 @@ a {
 
 .desafio-slide {
     display: none;
-    grid-template-columns: minmax(0, 1fr) minmax(0, .9fr);
-    align-items: center;
-    gap: clamp(24px, 5vw, 72px);
-    min-height: 360px;
-    padding: clamp(28px, 5vw, 72px);
+    grid-template-columns: minmax(0, 662px) minmax(0, 535px);
+    align-items: start;
+    gap: 126px;
+    min-height: 379px;
+    padding: 58px 41px 0 75px;
 }
 
 .desafio-slide.is-active {
@@ -2440,35 +2442,42 @@ a {
     margin: 0 0 16px;
     color: #0e0c23;
     font-size: clamp(24px, 2.8vw, 38px);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.15;
+}
+
+.desafio-conteudo {
+    padding-top: 18px;
 }
 
 .desafio-conteudo p {
     margin: 0;
-    color: #5f5a6a;
-    font-size: clamp(15px, 1.35vw, 18px);
-    line-height: 1.65;
+    color: #0e0c23;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 113%;
+    text-align: justify;
 }
 
 .desafio-slide > img {
     display: block;
-    width: min(100%, 420px);
-    max-height: 300px;
-    margin: 0 auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
     object-fit: contain;
+    border-radius: 28px;
 }
 
 .desafios-controles {
     display: flex;
     justify-content: center;
-    padding: 0 24px 24px;
+    padding: 50px 0 0;
 }
 
 .desafios-controles-grupo {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
 }
 
 .desafio-seta,
@@ -2476,21 +2485,22 @@ a {
     display: grid;
     place-items: center;
     padding: 0;
-    border: 1px solid #8d8d8d;
+    border: 0;
     background: transparent;
-    color: #8d8d8d;
+    color: #faf7ec;
     cursor: pointer;
 }
 
 .desafio-seta {
-    width: 38px;
-    height: 38px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
+    background: #0e0c23;
 }
 
 .desafio-seta svg {
-    width: 18px;
-    height: 18px;
+    width: 14px;
+    height: 14px;
     fill: none;
     stroke: currentColor;
     stroke-width: 1.8;
@@ -2500,24 +2510,30 @@ a {
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: #8d8d8d;
 }
 
 .desafio-pagina {
-    width: 9px;
-    height: 9px;
+    width: 12px;
+    height: 12px;
     border-radius: 50%;
+    background: #faf7ec;
 }
 
-.desafio-pagina.is-active,
+.desafio-pagina.is-active {
+    background: #0e0c23;
+}
+
 .desafio-seta:hover,
 .desafio-seta:focus-visible {
     background: #cb982d;
+    color: #0e0c23;
 }
 
-.desafio-seta:hover,
-.desafio-seta:focus-visible {
-    border-color: #cb982d;
-    color: #0e0c23;
+.desafio-pagina:hover:not(.is-active) {
+    background: #cb982d;
 }
 
 .desafio-seta:focus-visible,
@@ -2531,6 +2547,15 @@ a {
         padding: 56px 0;
     }
 
+    .desafios-container {
+        width: 90%;
+    }
+
+    .desafiosTitle,
+    .desafios-subtitle {
+        margin-left: 0;
+    }
+
     .desafios-subtitle {
         margin-bottom: 24px;
     }
@@ -2539,15 +2564,68 @@ a {
         grid-template-columns: 1fr;
         gap: 20px;
         min-height: 0;
-        padding: 28px 22px 22px;
+        padding: 32px 0 0;
+    }
+
+    .desafio-conteudo {
+        padding-top: 0;
     }
 
     .desafio-slide > img {
+        width: auto;
+        max-width: 100%;
         max-height: 220px;
+        margin: 0 auto;
+    }
+
+    .desafios-controles {
+        padding-top: 32px;
+    }
+
+    .desafios-subtitle,
+    .desafio-conteudo p {
+        font-size: 18px;
     }
 
     .desafios-controles {
         padding-bottom: 20px;
+    }
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+    .desafios-container {
+        width: 92%;
+    }
+
+    .desafiosTitle,
+    .desafios-subtitle {
+        margin-left: 0;
+    }
+
+    .desafio-slide {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 45%);
+        align-items: center;
+        gap: 32px;
+        min-height: 0;
+        padding: 40px 24px 0;
+    }
+
+    .desafio-conteudo {
+        padding-top: 0;
+    }
+
+    .desafios-controles {
+        padding-top: 36px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .funcionalidades .secao-titulo {
+        padding-left: 0;
+    }
+
+    .funcionalidades .secao-titulo-linha {
+        margin-left: 0;
     }
 }
 
@@ -2683,11 +2761,11 @@ a {
 
     .funcionalidades .secao-titulo {
         font-size: clamp(34px, 9vw, 46px);
-        padding-left: 32px;
+        padding-left: 0;
     }
 
     .funcionalidades .secao-titulo-linha {
-        margin-left: 32px;
+        margin-left: 0;
     }
 
     .funcionalidades-faixa {
