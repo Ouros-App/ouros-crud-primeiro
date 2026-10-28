@@ -47,7 +47,7 @@ public class Inicio extends HttpServlet {
 
         Paginacao paginacao = new Paginacao(Paginacao.lerPagina(request), 5, totalLotes);
         request.setAttribute("paginacao", paginacao);
-        request.setAttribute("lotes", loteDao.select_paginado(paginacao.getTamanho(), paginacao.getOffset()));
+        request.setAttribute("lotes", loteDao.select_paginado(paginacao.getTamanho(), paginacao.getOffset(), "chegada"));
 
         getServletContext().getRequestDispatcher("/WEB-INF/views/inicio.jsp").forward(request, response);
     }
