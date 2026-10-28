@@ -1,13 +1,16 @@
 package primeirobd.model;
 
 import java.sql.Date;
+import java.math.BigDecimal;
 
 public class RegistroAgua {
     // atributos da tabela
     private int id;
     private Date dtRegistro;
-    private int hidrometroInicio;
-    private int hidrometroFinal;
+    private BigDecimal hidrometroInicio;
+    private BigDecimal hidrometroFinal;
+    private String nomeGranja;
+    private String status;
     private int idLote;
 
     //construtor
@@ -24,16 +27,24 @@ public class RegistroAgua {
         return dtRegistro;
     }
 
-    public int getHidrometroInicio() {
+    public BigDecimal getHidrometroInicio() {
         return hidrometroInicio;
     }
 
-    public int getHidrometroFinal() {
+    public BigDecimal getHidrometroFinal() {
         return hidrometroFinal;
     }
 
     public int getIdLote() {
         return idLote;
+    }
+
+    public String getNomeGranja() {
+        return nomeGranja;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
 
@@ -47,16 +58,24 @@ public class RegistroAgua {
         this.dtRegistro = dtRegistro;
     }
 
-    public void setHidrometroInicio(int hidrometroInicio) {
+    public void setHidrometroInicio(BigDecimal hidrometroInicio) {
         this.hidrometroInicio = hidrometroInicio;
     }
 
-    public void setHidrometroFinal(int hidrometroFinal) {
+    public void setHidrometroFinal(BigDecimal hidrometroFinal) {
         this.hidrometroFinal = hidrometroFinal;
     }
 
     public void setIdLote(int idLote) {
         this.idLote = idLote;
+    }
+
+    public void setNomeGranja(String nomeGranja) {
+        this.nomeGranja = nomeGranja;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
@@ -66,6 +85,8 @@ public class RegistroAgua {
                 "\nDt_Registro: " + this.dtRegistro +
                 "\nHidrometro_Iniio: " + this.hidrometroInicio +
                 "\nHidrometro_Final: " + this.hidrometroFinal +
+                "\nNome_granja: " + this.nomeGranja +
+                "\nStatus: " + this.status +
                 "\nId_Lote: " + this.idLote+
                 "\n-------------------------------------------------------------";
     }

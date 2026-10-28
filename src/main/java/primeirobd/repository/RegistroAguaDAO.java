@@ -22,7 +22,7 @@ public interface RegistroAguaDAO {
     String update_hidroInic(double hidroNew, double hidroOld);
     String update_hidroFim(double hidroNew, double hidroOld);
 
-    int contar();
-    List<RegistroAgua> select_paginado(int tamanho, int offset);
+    int contar(String busca);
+    List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor);
 
 }

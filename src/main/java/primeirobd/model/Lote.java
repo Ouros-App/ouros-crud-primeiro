@@ -1,6 +1,7 @@
 package primeirobd.model;
 
 import java.sql.Date;
+import java.math.BigDecimal;   // novo import, no topo
 
 public class Lote {
     // atributos da tabela
@@ -11,7 +12,9 @@ public class Lote {
     private int galinhasEntregadas;
     private int galinhasRecebidas;
     private String nomeGranja;
-    private float ganho;
+    private BigDecimal ganho;
+
+
     private int idGranja;
 
     //contrutor
@@ -47,9 +50,7 @@ public class Lote {
     public String getNomeGranja() {
         return nomeGranja;
     }
-
-
-    public float getGanho() {
+    public BigDecimal getGanho() {
         return ganho;
     }
 
@@ -87,7 +88,7 @@ public class Lote {
         this.nomeGranja = nomeGranja;
     }
 
-    public void setGanho(float ganho) {
+    public void setGanho(BigDecimal ganho) {
         this.ganho = ganho;
     }
 

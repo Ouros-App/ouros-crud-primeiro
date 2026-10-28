@@ -81,19 +81,20 @@
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" name="buscaLote" id="buscaLote"  value="${param.buscaLote}" placeholder="Buscar...">
+                        <input type="text" name="buscaLote" id="buscaLote" value="${param.buscaLote}" placeholder="Buscar...">
+                    </div>
+
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor" name="ordenarPor" aria-label="Ordenar lotes por"
+                                onchange="this.form.submit()">
+                            <option value="chegada" ${empty param.ordenarPor || param.ordenarPor == 'chegada' ? 'selected' : ''}>Ordenar por: Chegada</option>
+                            <option value="entregues" ${param.ordenarPor == 'entregues' ? 'selected' : ''}>Ordenar por: Entregues</option>
+                            <option value="ganho" ${param.ordenarPor == 'ganho' ? 'selected' : ''}>Ordenar por: Ganho</option>
+                        </select>
                     </div>
                 </form>
 
-                <div class="OrdenarPor">
-                    <select id="ordenarPor">
-                        <option value="chegada">Ordenar por: Chegada</option>
-                        <option value="entregues">Ordenar por: Entregues</option>
-                        <option value="ganho">Ordenar por: Ganho</option>
-                    </select>
-                </div>
-
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('lote-novo.jsp')">
+                <button type="button" class="BotaoNovo" onclick="abrirFormulario('${pageContext.request.contextPath}/lotes?acao=inserir')">
                     + Novo lote
                 </button>
             </div>
@@ -120,6 +121,18 @@
                                 <td><c:out value="${lote.galinhasRecebidas}"/></td>
                                 <td><c:out value="${lote.dtChegada}"/></td>
                                 <td><c:out value="${lote.ganho}"/></td>
+                                <td>
+                                    <div class="ColunaAcoes">
+                                        <button type="button" class="BotaoAcao editar" title="Editar"
+                                                onclick="abrirFormulario('${pageContext.request.contextPath}/lotes?acao=editar&id=${lote.id}')">
+                                            <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                        </button>
+                                        <button type="button" class="BotaoAcao excluir" title="Excluir"
+                                                onclick="abrirFormulario('${pageContext.request.contextPath}/lotes?acao=excluir&id=${lote.id}')">
+                                            <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -136,6 +149,7 @@
                     <c:url var="urlAnterior" value="/lotes">
                         <c:param name="pagina" value="${paginacao.pagina - 1}" />
                         <c:param name="buscaLote" value="${param.buscaLote}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temAnterior}">
@@ -150,6 +164,7 @@
                         <c:url var="urlPagina" value="/lotes">
                             <c:param name="pagina" value="${numero}" />
                             <c:param name="buscaLote" value="${param.buscaLote}" />
+                            <c:param name="ordenarPor" value="${param.ordenarPor}" />
                         </c:url>
                         <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
                            href="${urlPagina}"
@@ -160,6 +175,7 @@
                     <c:url var="urlProxima" value="/lotes">
                         <c:param name="pagina" value="${paginacao.pagina + 1}" />
                         <c:param name="buscaLote" value="${param.buscaLote}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temProxima}">

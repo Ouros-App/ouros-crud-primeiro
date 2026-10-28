@@ -1,12 +1,15 @@
 package primeirobd.model;
 
 import java.sql.Date;
+import java.math.BigDecimal;
 
 public class RegistroEnergia {
     // atributos da tabela
     private int id;
-    private int consumo;
+    private BigDecimal consumo;
     private Date dtRegistro;
+    private String nomeGranja;
+    private String status;
     private int idLote;
 
     //construtor
@@ -20,7 +23,7 @@ public class RegistroEnergia {
         return id;
     }
 
-    public int getConsumo() {
+    public BigDecimal getConsumo() {
         return consumo;
     }
 
@@ -32,6 +35,14 @@ public class RegistroEnergia {
         return idLote;
     }
 
+    public String getNomeGranja() {
+        return nomeGranja;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
 
     //metodos setters
 
@@ -39,7 +50,7 @@ public class RegistroEnergia {
         this.id = id;
     }
 
-    public void setConsumo(int consumo) {
+    public void setConsumo(BigDecimal consumo) {
         this.consumo = consumo;
     }
 
@@ -51,12 +62,22 @@ public class RegistroEnergia {
         this.idLote = idLote;
     }
 
+    public void setNomeGranja(String nomeGranja) {
+        this.nomeGranja = nomeGranja;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "\nREGISTRO_ENERGIA" +
                 "\nId: " + this.id +
                 "\nConsumo: " + this.consumo +
                 "\nDt_Registro: " + this.dtRegistro +
+                "\nNome_granja: " + this.nomeGranja +
+                "\nStatus: " + this.status +
                 "\nId_Lote: " + this.idLote+
                 "\n-------------------------------------------------------------";
     }

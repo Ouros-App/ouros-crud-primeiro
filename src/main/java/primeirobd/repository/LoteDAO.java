@@ -23,7 +23,7 @@ public interface LoteDAO {
     String update_ganho(double ganhoNew, double ganhoOld);
 
     int contar();
-    List<Lote> select_paginado(int tamanho, int offset);
-    List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset);
+    List<Lote> select_paginado(int tamanho, int offset, String ordenarPor);
+    List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset, String ordenarPor);
     int contar_filtro_pesquisa(String busca);
 }

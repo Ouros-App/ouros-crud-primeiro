@@ -143,18 +143,19 @@
                             <circle cx="11" cy="11" r="7"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                         </svg>
-                        <input type="text" name="buscaMeta" id="buscaMeta" value="${param.buscaMeta}" placeholder="Buscar...">
+                        <input type="text" name="buscaMeta" id="buscaMeta" value="<c:out value='${param.buscaMeta}'/>" placeholder="Buscar...">
+                    </div>
+
+                    <div class="OrdenarPor">
+                        <select id="ordenarPor" name="ordenarPor" aria-label="Ordenar metas por"
+                                onchange="this.form.submit()">
+                            <option value="titulo" ${empty param.ordenarPor || param.ordenarPor == 'titulo' ? 'selected' : ''}>Ordenar por: Título</option>
+                            <option value="status" ${param.ordenarPor == 'status' ? 'selected' : ''}>Ordenar por: Status</option>
+                        </select>
                     </div>
                 </form>
 
-                <div class="OrdenarPor">
-                    <select id="ordenarPor">
-                        <option value="titulo">Ordenar por: Título</option>
-                        <option value="status">Ordenar por: Status</option>
-                    </select>
-                </div>
-
-                <button type="button" class="BotaoNovo" onclick="abrirFormulario('meta-nova.jsp')">
+                <button type="button" class="BotaoNovo" onclick="abrirFormulario('${pageContext.request.contextPath}/metas?acao=inserir&tipo=${tipo}')">
                     + Nova meta
                 </button>
             </div>
@@ -173,16 +174,36 @@
                     <tbody id="tabela-metas">
                     <c:forEach var="m" items="${metas}">
                         <c:choose>
-                            <c:when test="${m.status == 'Feito'}"><c:set var="classeStatus" value="positivo"/></c:when>
-                            <c:when test="${m.status == 'Falha'}"><c:set var="classeStatus" value="negativo"/></c:when>
-                            <c:otherwise><c:set var="classeStatus" value="neutro"/></c:otherwise>
+                            <c:when test="${m.status == 'FINALIZADA'}">
+                                <c:set var="classeStatus" value="positivo"/>
+                                <c:set var="textoStatus" value="Finalizada"/>
+                            </c:when>
+                            <c:when test="${m.status == 'EM_ANDAMENTO'}">
+                                <c:set var="classeStatus" value="neutro"/>
+                                <c:set var="textoStatus" value="Em andamento"/>
+                            </c:when>
+                            <c:otherwise>
+                                <c:set var="classeStatus" value="negativo"/>
+                                <c:set var="textoStatus" value="Não iniciada"/>
+                            </c:otherwise>
                         </c:choose>
                         <tr>
                             <td><c:out value="${m.titulo}"/></td>
                             <td><c:out value="${m.nomeGranja}"/></td>
                             <td><c:out value="${m.valorAlvo}"/></td>
-                            <td><span class="Status ${classeStatus}"><c:out value="${m.status}"/></span></td>
-                            <td></td>
+                            <td><span class="Status ${classeStatus}"><c:out value="${textoStatus}"/></span></td>
+                            <td>
+                                <div class="ColunaAcoes">
+                                    <button type="button" class="BotaoAcao editar" title="Editar"
+                                            onclick="abrirFormulario('${pageContext.request.contextPath}/metas?acao=editar&tipo=${tipo}&id=${m.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/pencil.svg" alt="Editar" width="16" height="16">
+                                    </button>
+                                    <button type="button" class="BotaoAcao excluir" title="Excluir"
+                                            onclick="abrirFormulario('${pageContext.request.contextPath}/metas?acao=excluir&tipo=${tipo}&id=${m.id}')">
+                                        <img src="${pageContext.request.contextPath}/img/bin.svg" alt="Excluir" width="16" height="16">
+                                    </button>
+                                </div>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -200,6 +221,7 @@
                         <c:param name="pagina" value="${paginacao.pagina - 1}" />
                         <c:param name="tipo" value="${tipo}" />
                         <c:param name="buscaMeta" value="${param.buscaMeta}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temAnterior}">
@@ -215,6 +237,7 @@
                             <c:param name="pagina" value="${numero}" />
                             <c:param name="tipo" value="${tipo}" />
                             <c:param name="buscaMeta" value="${param.buscaMeta}" />
+                            <c:param name="ordenarPor" value="${param.ordenarPor}" />
                         </c:url>
                         <a class="${numero == paginacao.pagina ? 'ativo' : ''}"
                            href="${urlPagina}"
@@ -226,6 +249,7 @@
                         <c:param name="pagina" value="${paginacao.pagina + 1}" />
                         <c:param name="tipo" value="${tipo}" />
                         <c:param name="buscaMeta" value="${param.buscaMeta}" />
+                        <c:param name="ordenarPor" value="${param.ordenarPor}" />
                     </c:url>
                     <c:choose>
                         <c:when test="${paginacao.temProxima}">

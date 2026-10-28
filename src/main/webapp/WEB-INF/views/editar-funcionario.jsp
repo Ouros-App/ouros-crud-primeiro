@@ -14,33 +14,33 @@
         <h1 id="editorTitulo">Editar Funcionário</h1>
         <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
     </header>
-    <form action="funcionarios" method="post" target="_top" data-editor="funcionario">
+    <form action="${pageContext.request.contextPath}/funcionarios" method="post" target="_top" data-editor="funcionario">
         <input type="hidden" name="acao" value="editar">
         <input type="hidden" name="id" value="${funcionarios.id}">
         <div class="EditorGrid">
             <div class="EditorCampo EditorCampo--full">
                 <label for="nome">Nome completo</label>
-                <input id="nome" name="nome" type="text" placeholder="Rafael Santos"  required>
+                <input id="nome" name="nome" type="text" placeholder="Rafael Santos" value="${funcionarios.nome}"  required>
             </div>
             <div class="EditorCampo">
                 <label for="cpf">CPF</label>
-                <input id="cpf" name="cpf" type="text" placeholder="000.000.000-00"  >
+                <input id="cpf" name="cpf" type="text" placeholder="000.000.000-00" value="${funcionarios.cpf}" >
             </div>
             <div class="EditorCampo">
                 <label for="setor">Setor</label>
-                <input id="setor" name="setor" type="text" placeholder="Manejo"  >
+                <input id="setor" name="setor" type="text" placeholder="Manejo" value="${funcionarios.setor}" >
             </div>
             <div class="EditorCampo">
                 <label for="email">E-mail</label>
-                <input id="email" name="email" type="email" placeholder="exemplo@gmail.com"  required>
+                <input id="email" name="email" type="email" placeholder="exemplo@gmail.com" value="${funcionarios.email}" required>
             </div>
             <div class="EditorCampo">
                 <label for="telefone">Telefone</label>
-                <input id="telefone" name="telefone" type="tel" placeholder="11 12345-6789"  >
+                <input id="telefone" name="telefone" type="tel" placeholder="11 12345-6789" value="${funcionarios.telefone}" >
             </div>
             <div class="EditorCampo">
                 <label for="empresa">Empresa</label>
-                <input id="empresa" name="empresa" type="text" placeholder="11 12345-6789"  >
+                <input id="empresa" name="empresa" type="text" placeholder="11 12345-6789" value="${funcionarios.nomeEmpresa}" >
             </div>
         </div>
         <footer class="EditorAcoes">

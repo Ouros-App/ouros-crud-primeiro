@@ -73,6 +73,7 @@ body {
 .MenuItem.registros,
 .MenuItem.metas,
 .MenuItem.empresa {
+.MenuItem.metas {
     font-weight: 600;
     background: linear-gradient(to right, #b98407, #bb830227);
 }
@@ -217,16 +218,6 @@ body {
     padding: 10px 14px;
 }
 
-.FormBusca {
-    flex: 1;
-    min-width: 200px;
-    display: flex;
-}
-
-.FormBusca .CampoBusca {
-    flex: 1;
-}
-
 .CampoBusca img,
 .CampoBusca svg {
     width: 16px;
@@ -259,6 +250,15 @@ body {
     color: #111827;
     outline: none;
     min-width: 160px;
+}
+
+.FormBusca {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
 }
 
 .OrdenarPor {
@@ -298,7 +298,8 @@ body {
     width: 100%;
     overflow-x: auto;
     border-radius: 10px;
-    overflow: hidden;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
     border: 1px solid #e5e7eb;
 }
 
@@ -325,6 +326,17 @@ body {
     border-bottom: 1px solid #e5e7eb;
     font-size: 14px;
     color: #1f2937;
+}
+
+.tabela td.DadoNumerico,
+.tabela td.DadoData {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.tabela td.DadoIndisponivel {
+    color: #9ca3af;
+    text-align: center;
 }
 
 .tabela tbody tr:last-child td {
@@ -401,21 +413,53 @@ body {
     transition: background-color 0.2s, color 0.2s;
 }
 
+.Paginacao a,
+.Paginacao span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.Paginacao a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
 .Paginacao button:hover {
     background-color: #f4f4f7;
 }
 
-.Paginacao button.ativo {
+.Paginacao a:hover {
+    background-color: #f4f4f7;
+}
+
+.Paginacao a.ativo {
     background-color: #0E0C23;
     color: #ffffff;
     font-weight: 600;
 }
 
-.Paginacao button.seta {
+.Paginacao button.ativo,
+.Paginacao span.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.Paginacao button.seta,
+.Paginacao a.seta {
     color: #9ca3af;
 }
 
-/* Paginação com links (<a>) */
 
 .RodapeTabela .Paginacao {
     display: flex;
@@ -466,6 +510,38 @@ body {
 .RodapeTabela .Paginacao .seta.desabilitada {
     cursor: default;
     pointer-events: none;
+}
+
+.Paginacao button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+}
+
+.CampoBusca:focus-within,
+.OrdenarPor select:focus-visible,
+.BotaoNovo:focus-visible,
+.Paginacao button:focus-visible,
+.Paginacao a:focus-visible {
+    outline: 3px solid rgba(244, 169, 0, 0.45);
+    outline-offset: 2px;
+}
+
+.TabelaVazia td {
+    padding: 32px 16px;
+    color: #6b7280;
+    text-align: center;
+}
+
+.VisuallyHidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* TOPBAR */
@@ -550,6 +626,11 @@ body {
 .AlternadorItem.ativo {
     background-color: #0E0C23;
     color: #ffffff;
+}
+
+.AlternadorItem:focus-visible {
+    outline: 3px solid rgba(244, 169, 0, 0.55);
+    outline-offset: 2px;
 }
 
 /* BADGES DE STATUS */
@@ -709,6 +790,41 @@ body {
     margin-bottom: 16px;
 }
 
+.InicioContagem {
+    min-height: 32px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.InicioPaginacao {
+    gap: 4px;
+}
+
+@media (max-width: 600px) {
+    .ConteudoInicio .BannerInicio {
+        padding: 24px 20px;
+    }
+
+    .ConteudoInicio .BannerStats {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 20px;
+    }
+
+    .ConteudoInicio .BannerStatItem span {
+        display: block;
+    }
+
+    .InicioContagem {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .InicioPaginacao {
+        justify-content: center;
+    }
+}
+
 @media (max-width: 1024px) {
     .CardsMetricas {
         grid-template-columns: repeat(2, 1fr);
@@ -725,7 +841,12 @@ body {
     }
 }
 
-/* Páginas de autenticação */
+/* ============================================
+   PÁGINA DE LOGIN
+   Reaproveita a mesma paleta do sistema:
+   #0E0C23 (navy), #f4a900 (laranja/dourado),
+   #f4f4f7 (fundo claro), #6b7280 / #9ca3af (texto neutro)
+============================================ */
 
 .LoginPage {
     width: 100%;
@@ -1350,6 +1471,31 @@ body {
     font-size: 0.72rem;
     color: #6b7280;
 }
+.RecuperarAjuda {
+    margin: -8px 0 16px;
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.RecuperarFeedback {
+    display: block;
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px 14px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.RecuperarFeedback--sucesso {
+    border-color: #b7dfc6;
+    background: #f1faf4;
+    color: #27633b;
+}
+.RecuperarFeedback--erro {
+    border-color: #f1c1c1;
+    background: #fff4f4;
+}
 
 .LoginRodape .LoginLinkEsqueci {
     font-size: inherit;
@@ -1477,10 +1623,69 @@ body {
 .EditorCampo--full {
     grid-column:1/-1
 }
+.EditorCampo[hidden] {
+    display:none
+}
+.EditorMetaEscopoAjuda {
+    margin:-4px 0 14px;
+    padding:10px 12px;
+    border-left:3px solid #dba32f;
+    border-radius:5px;
+    background:#faf7ef;
+    color:#5e5133;
+    font-size:12px;
+    line-height:1.5
+}
+.EditorRegistroTipoAjuda {
+    margin:-4px 0 14px;
+    padding:10px 12px;
+    border-left:3px solid #648e7e;
+    border-radius:5px;
+    background:#f0f7f3;
+    color:#355b4c;
+    font-size:12px;
+    line-height:1.5
+}
+.CadastroIntroducao {
+    margin:-8px 0 20px;
+    color:#6b7280;
+    font-size:13px;
+    line-height:1.55
+}
+.CadastroSenhaControle {
+    display:flex;
+    align-items:center;
+    gap:8px
+}
+.CadastroSenhaControle input {
+    flex:1
+}
+.CadastroSenhaToggle {
+    min-height:44px;
+    padding:0 12px;
+    border:1px solid #dce0ec;
+    border-radius:7px;
+    background:white;
+    color:#333342;
+    font:13px 'Poppins','Segoe UI',sans-serif;
+    cursor:pointer
+}
+.CadastroSenhaToggle:hover {
+    background:#f5f5fa
+}
+.CadastroSenhaToggle:focus-visible {
+    outline:2px solid #946700;
+    outline-offset:3px
+}
 .EditorCampo label,.EditorLabel {
     font-size:12px;
     line-height:1.4;
     color:#333342
+}
+.EditorCampoAjuda {
+    color:#6b7280;
+    font-size:12px;
+    line-height:1.45
 }
 .EditorCampo input,.EditorCampo select {
     width:100%;
@@ -1493,6 +1698,9 @@ body {
     font:13px 'Poppins','Segoe UI',sans-serif;
     color:#19191e;
     color-scheme:light
+}
+.EditorCampo input[type="number"],.EditorCampo input[type="date"] {
+    font-variant-numeric:tabular-nums
 }
 .EditorCampo input::placeholder {
     color:#939393;
@@ -1572,6 +1780,10 @@ body {
 }
 .EditorAviso {
     margin-top:16px;
+    padding:12px 14px;
+    border:1px solid #efd1c0;
+    border-radius:8px;
+    background:#fff7f2;
     font-size:12px;
     line-height:1.5;
     color:#702e14
@@ -1599,6 +1811,24 @@ body {
     .EditorCabecalho h1 {
         font-size:18px
     }
+        padding:20px 12px
+    }
+    .EditorCartao {
+        padding:24px 20px
+    }
+    .EditorGrid {
+        gap:10px
+    }
+    .EditorCampo .EditorAbas {
+        gap:4px
+    }
+    .EditorCampo .EditorAba {
+        padding:6px
+    }
+    .EditorCabecalho h1 {
+        font-size:18px
+    }
+
 }
 @media(max-width:420px) {
     .EditorGrid {
@@ -1607,6 +1837,12 @@ body {
     .EditorCampo--full {
         grid-column:auto
     }
+        grid-template-columns:1fr
+    }
+    .EditorCampo--full {
+        grid-column:auto
+    }
+
 }
 
 .EditorAba {
@@ -1893,4 +2129,321 @@ body {
 
 .ExcluirEmModal .ExcluirCartao {
     max-width: none;
+.FormularioModal::backdrop { background: rgba(14, 12, 35, 0.65); }
+.FormularioFrame { display: block; border: 0; width: 100%; height: 710px; max-height: calc(100dvh - 40px); }
+.EditorCartao { max-width: 708px; padding: 56px; border-radius: 16px; }
+.EditorCabecalho { margin-bottom: 20px; }
+.EditorCabecalho h1 { font-size: 28px; }
+.EditorCabecalho .EditorFechar { width: 28px; height: 28px; font-size: 28px; }
+.EditorGrid { gap: 12px 24px; }
+.EditorCampo label, .EditorLabel { font-size: 14px; }
+.EditorCampo input, .EditorCampo select { height: 60px; font-size: 14px; padding: 0 12px; border-radius: 11px; }
+.EditorAbas { margin-bottom: 20px; gap: 20px; }
+.EditorAba { font-size: 17px; padding: 8px 14px; border-radius: 10px; }
+.EditorCampo .EditorAbas { gap: 12px; }
+.EditorCampo .EditorAba { padding: 12px; flex: 1; }
+.EditorIcone { width: 18px; height: 24px; }
+.EditorAcoes { margin-top: 30px; gap: 16px; }
+.EditorCancelar, .EditorSalvar { min-width: 150px; min-height: 60px; font-size: 18px; border-radius: 11px; }
+.EditorEmModal { display: block; min-height: 0; padding: 0; background: transparent; }
+.EditorEmModal .EditorCartao { max-width: none; }
+@media (max-width: 600px) {
+    .EditorCartao { padding: 28px 22px; }
+    .EditorCabecalho h1 { font-size: 23px; }
+    .EditorGrid { gap: 12px; }
+    .EditorCampo input, .EditorCampo select { height: 48px; }
+    .EditorAba { font-size: 14px; }
+    .EditorCampo .EditorAba { padding: 9px 7px; }
+    .EditorCancelar, .EditorSalvar { min-width: 110px; min-height: 48px; font-size: 15px; }
 }
+
+/* Redefinição de senha */
+.RedefinirFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.RedefinirFormulario .LoginCampoGrupo {
+    margin-bottom: 0;
+}
+.RedefinirFormulario .LoginCampoInput:focus-visible,
+.RedefinirFormulario .LoginBotao:focus-visible,
+.LoginFormulario .LoginLinkEsqueci:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.RedefinirAjuda {
+    margin-top: -10px;
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.RedefinirFeedback {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #b42318;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.RedefinirRodape {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+@media (max-width: 480px) {
+    .RedefinirFormulario {
+        gap: 16px;
+    }
+    .RedefinirFeedback {
+        padding: 10px 12px;
+    }
+}
+
+/* Ajustes da tela de acesso */
+.LoginAcessoFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.LoginAcessoFormulario .LoginCampoGrupo {
+    margin-bottom: 0;
+}
+.LoginAcessoFormulario .LoginUtilitario {
+    margin: -4px 0 0;
+}
+.LoginAcessoFormulario .LoginCampoInput[aria-invalid="true"] {
+    border-color: #dc2626;
+}
+.LoginAcessoFormulario .LoginCampoInput:focus-visible,
+.LoginAcessoFormulario .LoginBotao:focus-visible,
+.LoginFormulario .LoginLinkEsqueci:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.LoginFormulario .LoginAcessoErro {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #b42318 !important;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+@media (max-width: 480px) {
+    .LoginAcessoFormulario {
+        gap: 18px;
+    }
+    .LoginFormulario .LoginAcessoErro {
+        padding: 10px 12px;
+    }
+}
+
+/* Ajustes da página de perfil */
+.PerfilFormulario {
+    width: 100%;
+    max-width: none;
+}
+.PerfilFormulario .FormGrid {
+    gap: 24px 28px;
+    margin-bottom: 0;
+}
+.PerfilSecao + .PerfilSecao {
+    margin-top: 30px;
+}
+.PerfilFormulario .SecaoTitulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+}
+.PerfilFormulario .SecaoTitulo::before {
+    content: "";
+    width: 4px;
+    height: 20px;
+    flex: 0 0 auto;
+    border-radius: 2px;
+    background: #f4a900;
+}
+.PerfilFormulario .FormAcoes {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+.PerfilFormulario .CampoInput:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 2px;
+}
+.PerfilInputArquivo {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
+}
+.PerfilInputArquivo:focus-visible + .PerfilFotoAcao {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.PerfilFotoAcao {
+    cursor: pointer;
+}
+.PerfilAvatarAcoes .PerfilFotoFeedback {
+    min-height: 1.2em;
+    color: #b42318;
+    line-height: 1.4;
+}
+@media (max-width: 640px) {
+    .PerfilFormulario {
+        padding: 22px 18px;
+    }
+    .PerfilFormulario .FormGrid {
+        gap: 18px;
+    }
+    .PerfilAvatarArea {
+        gap: 16px;
+    }
+    .PerfilFormulario .FormAcoes {
+        gap: 10px;
+    }
+}
+
+/* Confirmação de exclusão */
+.ExcluirPagina {
+    min-height: 100dvh;
+    margin: 0;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 12, 35, 0.65);
+    color: #111827;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+.ExcluirCartao {
+    width: 100%;
+    max-width: 340px;
+    padding: 32px 28px;
+    border-radius: 14px;
+    background: #fff;
+    text-align: center;
+}
+.ExcluirIlustracao {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e4e7f1;
+    color: #e51b23;
+}
+.ExcluirIlustracao svg {
+    width: 40px;
+    height: 40px;
+}
+.ExcluirCartao h1,
+.ExcluirCartao p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.ExcluirCartao h1 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.ExcluirCartao p {
+    margin: 0;
+}
+.ExcluirAcoes {
+    display: flex;
+    gap: 16px;
+    margin-top: 34px;
+}
+.ExcluirAcoes button {
+    flex: 1;
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.ExcluirCancelar {
+    color: #111827;
+    background: #e4e7f1;
+    border-color: #d9ddea !important;
+}
+.ExcluirConfirmar {
+    color: #fff;
+    background: #e51b23;
+}
+.ExcluirConfirmar:hover:not(:disabled) {
+    background: #c8141c;
+}
+.ExcluirCancelar:hover {
+    background: #d6dae6;
+}
+.ExcluirConfirmar svg {
+    width: 18px;
+    height: 18px;
+}
+.ExcluirAcoes button:focus-visible {
+    outline: 3px solid #635c93;
+    outline-offset: 3px;
+}
+.ExcluirConfirmar:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+.ExcluirCartao .ExcluirResultado {
+    margin-top: 18px;
+    padding: 10px 12px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #85232a;
+    font-size: 12px;
+    text-align: left;
+}
+.ExcluirEmModal {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+}
+.ExcluirEmModal .ExcluirCartao {
+    max-width: none;
+}
+@media (max-width: 480px) {
+    .ExcluirPagina {
+        padding: 16px;
+    }
+    .ExcluirCartao {
+        padding: 28px 20px;
+    }
+    .ExcluirAcoes {
+        gap: 10px;
+        margin-top: 24px;
+    }
+}
+

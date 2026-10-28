@@ -1,5 +1,6 @@
 package primeirobd.utils;
 import java.util.regex.Pattern;
+import java.util.Set;
 
 public class Validador {
     // E-mail: padrão comum
@@ -12,6 +13,12 @@ public class Validador {
 
     public static final Pattern SENHA_PATTERN =
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!.\\-_*]).{8,}$");
+
+    private static final Set<String> REGIOES =
+            Set.of("Sudeste", "Sul", "Centro-Oeste", "Nordeste", "Norte");
+
+    private static final Pattern CEP_PATTERN = Pattern.compile("^\\d{5}-?\\d{3}$");
+
 
 
     public static boolean isEmailValido(String email) {
@@ -27,6 +34,16 @@ public class Validador {
     public static boolean isSenhaValida(String senha) {
         if (senha == null) return false;
         return SENHA_PATTERN.matcher(senha).matches();
+    }
+
+    public static boolean isRegiaoValida(String regiao) {
+        if (regiao == null) return false;
+        return REGIOES.contains(regiao.trim());
+    }
+
+    public static boolean isCepValido(String cep) {
+        if (cep == null) return false;
+        return CEP_PATTERN.matcher(cep.trim()).matches();
     }
 
     /**
