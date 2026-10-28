@@ -60,6 +60,21 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
+    public int contar_all() {
+        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+
+        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
+            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
+            if (resultadoConsulta.next()){
+                return resultadoConsulta.getInt(1);
+            }
+            return 0;
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao contar. \n"+e.getMessage());
+        }
+    }
+
     public List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset, String ordenarPor) {
         String colunaOrdenacao;
         if ("status".equals(ordenarPor)) {

@@ -38,7 +38,7 @@ public class Inicio extends HttpServlet {
         request.setAttribute("totalGranjas", granjaDao.contar());
         request.setAttribute("totalLotes", totalLotes);
         request.setAttribute("totalFuncionarios", funcionarioDao.contar());
-        request.setAttribute("totalMetas", metaDao.contar());
+        request.setAttribute("totalMetas", metaDao.contar_all());
 
         request.setAttribute("frangosEmProducao", indicadoresDao.frangosEmProducao());
         request.setAttribute("consumoAgua", indicadoresDao.consumoAguaTotal());
