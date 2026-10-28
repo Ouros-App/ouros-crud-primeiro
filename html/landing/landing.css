@@ -3586,3 +3586,14 @@ a {
         padding: 28px;
     }
 }
+
+.secao-titulo-linha,
+.funcionamento .secao-titulo-linha,
+.funcionalidades .secao-titulo-linha,
+.ranking-titulo-linha,
+.planos .secao-titulo-linha,
+.faq-titulo .secao-titulo-linha,
+.desafiosTitle::before {
+    height: 3px;
+    border-radius: 3px;
+}
