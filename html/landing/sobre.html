@@ -53,10 +53,21 @@
                     <figcaption>Imagem provisória — foto oficial da equipe será adicionada depois</figcaption>
                 </figure>
 
+                <section class="sobre-historia" aria-labelledby="sobreHistoriaTitulo">
+                    <span class="sobre-historia-linha" aria-hidden="true"></span>
+                    <h2 id="sobreHistoriaTitulo">Nossa História <img src="../assets/asa-icone.svg" alt="" aria-hidden="true"></h2>
+                    <div class="sobre-historia-texto">
+                        <p>O OUROS nasceu de um projeto interdisciplinar da Germinare Tech, com a proposta de tornar a produção avícola mais eficiente e sustentável.</p>
+                        <p>Por meio da tecnologia, transformamos dados de consumo de água e energia em informações úteis, ajudando os produtores a acompanhar seus resultados, identificar melhorias e conquistar reconhecimento pelo desempenho sustentável.</p>
+                        <p>Mais do que monitorar indicadores, queremos conectar tecnologia, eficiência e sustentabilidade para impulsionar a evolução de cada integrado.</p>
+                    </div>
+                    <p class="sobre-historia-chamada">Promovendo eficiência e reconhecimento por uma produção mais sustentável</p>
+                </section>
+
                 <div class="sobre-anos">
                     <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
                         <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
-                        <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do primeiro ano; deslize para ver todas as pessoas">
+                        <div class="sobre-faixa-pessoas" id="pessoasPrimeiroAno" role="region" aria-label="Carrossel da equipe do primeiro ano">
                             <div class="sobre-pessoas">
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Alícia Emi Yamamoto, Dados e UX"><img class="sobre-pessoa-imagem" src="../assets/sobre-1-alicia.png" alt="Alícia Emi Yamamoto"><figcaption class="sobre-pessoa-info"><strong>Alícia Emi Yamamoto</strong><span>Dados | UX</span></figcaption></figure>
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="André Roger Nogueira Dias, Fullstack"><img class="sobre-pessoa-imagem" src="../assets/sobre-1-andre.png" alt="André Roger Nogueira Dias"><figcaption class="sobre-pessoa-info"><strong>André Roger Nogueira Dias</strong><span>Fullstack</span></figcaption></figure>
@@ -66,11 +77,19 @@
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Sofia Delim Fernandes, Dados e UX"><img class="sobre-pessoa-imagem" src="../assets/sobre-1-extra.png" alt="Sofia Delim Fernandes"><figcaption class="sobre-pessoa-info"><strong>Sofia Delim Fernandes</strong><span>Dados | UX</span></figcaption></figure>
                             </div>
                         </div>
+                        <div class="sobre-controles" role="group" aria-label="Navegação da equipe do primeiro ano">
+                            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
                     </section>
 
                     <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
                         <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
-                        <div class="sobre-faixa-pessoas" role="region" tabindex="0" aria-label="Equipe do segundo ano; deslize para ver todas as pessoas">
+                        <div class="sobre-faixa-pessoas" id="pessoasSegundoAno" role="region" aria-label="Carrossel da equipe do segundo ano">
                             <div class="sobre-pessoas">
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Julia Fonseca Watanabe, Fullstack"><img class="sobre-pessoa-imagem" src="../assets/sobre-2-primeira.png" alt="Julia Fonseca Watanabe"><figcaption class="sobre-pessoa-info"><strong>Julia Fonseca Watanabe</strong><span>Fullstack</span></figcaption></figure>
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Lucas Cayres Porto, Backend"><img class="sobre-pessoa-imagem" src="../assets/sobre-2-segunda.png" alt="Lucas Cayres Porto"><figcaption class="sobre-pessoa-info"><strong>Lucas Cayres Porto</strong><span>Backend</span></figcaption></figure>
@@ -79,6 +98,14 @@
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Nicolas Vlad Koyama, Dados e IA"><img class="sobre-pessoa-imagem" src="../assets/sobre-2-quinta.png" alt="Nicolas Vlad Koyama"><figcaption class="sobre-pessoa-info"><strong>Nicolas Vlad Koyama</strong><span>Dados | IA</span></figcaption></figure>
                                 <figure class="sobre-pessoa" tabindex="0" aria-label="Verena Marostica Marcelino, Fullstack"><img class="sobre-pessoa-imagem" src="../assets/sobre-2-sexta.png" alt="Verena Marostica Marcelino"><figcaption class="sobre-pessoa-info"><strong>Verena Marostica Marcelino</strong><span>Fullstack</span></figcaption></figure>
                             </div>
+                        </div>
+                        <div class="sobre-controles" role="group" aria-label="Navegação da equipe do segundo ano">
+                            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
                         </div>
                     </section>
                 </div>
@@ -145,6 +172,77 @@
             menuSobre.setAttribute('aria-label', 'Abrir menu');
             navegacaoSobre.classList.remove('sobre-nav-aberta');
         }));
+
+        document.querySelectorAll('.sobre-ano').forEach((carrossel) => {
+            const faixa = carrossel.querySelector('.sobre-faixa-pessoas');
+            const trilha = carrossel.querySelector('.sobre-pessoas');
+            if (!faixa || !trilha) return;
+
+            let pessoas = [];
+            let larguraCiclo = 0;
+            let deslocamentoInicial = 0;
+            let animando = false;
+            let temporizador;
+
+            const inicializar = () => {
+                trilha.querySelectorAll('[data-clone-carrossel="true"]').forEach((clone) => clone.remove());
+                pessoas = [...trilha.querySelectorAll(':scope > .sobre-pessoa:not([data-clone-carrossel])')];
+                if (pessoas.length < 2) return;
+
+                const estilo = getComputedStyle(trilha);
+                const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
+                const passo = pessoas[0].getBoundingClientRect().width + gap;
+                const quantidadeClones = Math.min(pessoas.length, Math.ceil(faixa.clientWidth / passo) + 1);
+                const criarClone = (pessoa) => {
+                    const clone = pessoa.cloneNode(true);
+                    clone.dataset.cloneCarrossel = 'true';
+                    clone.setAttribute('aria-hidden', 'true');
+                    clone.querySelectorAll('[tabindex]').forEach((item) => item.removeAttribute('tabindex'));
+                    return clone;
+                };
+
+                trilha.prepend(...pessoas.slice(-quantidadeClones).map(criarClone));
+                trilha.append(...pessoas.slice(0, quantidadeClones).map(criarClone));
+                deslocamentoInicial = pessoas.slice(-quantidadeClones).reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
+                larguraCiclo = pessoas.reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
+                faixa.scrollLeft = deslocamentoInicial;
+            };
+
+            const normalizar = () => {
+                if (!larguraCiclo) return;
+                if (faixa.scrollLeft < deslocamentoInicial - 1) {
+                    faixa.scrollLeft += larguraCiclo;
+                } else if (faixa.scrollLeft >= deslocamentoInicial + larguraCiclo - 1) {
+                    faixa.scrollLeft -= larguraCiclo;
+                }
+            };
+
+            carrossel.querySelectorAll('[data-sobre-direcao]').forEach((botao) => {
+                botao.addEventListener('click', () => {
+                    if (animando || !pessoas.length) return;
+                    const estilo = getComputedStyle(trilha);
+                    const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
+                    const passo = pessoas[0].getBoundingClientRect().width + gap;
+                    faixa.scrollTo({
+                        left: faixa.scrollLeft + (botao.dataset.sobreDirecao === 'anterior' ? -passo : passo),
+                        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+                    });
+                    animando = true;
+                    window.clearTimeout(temporizador);
+                    temporizador = window.setTimeout(() => {
+                        normalizar();
+                        animando = false;
+                    }, 450);
+                });
+            });
+
+            inicializar();
+            window.addEventListener('resize', () => {
+                window.clearTimeout(temporizador);
+                animando = false;
+                inicializar();
+            });
+        });
     </script>
 </body>
 </html>

@@ -376,6 +376,70 @@ a {
     transform: translateY(-50%);
 }
 
+.sobre-historia {
+    width: min(100%, 1074px);
+    margin: 82px auto 0;
+    color: #000;
+}
+
+.sobre-historia-linha {
+    display: block;
+    width: clamp(90px, 10.7vw, 205px);
+    height: 6px;
+    margin-bottom: 16px;
+    border-radius: 3px;
+    background: #CB982D;
+}
+
+.sobre-historia h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 41px;
+    color: #1C1A32;
+    font-size: clamp(28px, 3.68vw, 53px);
+    font-weight: 900;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.sobre-historia h2 img {
+    display: block;
+    width: clamp(28px, 3.8vw, 55px);
+    height: auto;
+    flex: 0 0 auto;
+}
+
+.sobre-historia-texto p {
+    margin: 0 0 32px;
+    color: #000;
+    font-size: clamp(18px, 1.81vw, 26px);
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+.sobre-historia-texto p:last-child {
+    margin-bottom: 0;
+}
+
+.sobre-historia-chamada {
+    display: flex;
+    width: min(100%, 1035px);
+    min-height: 66px;
+    align-items: center;
+    justify-content: center;
+    margin: 70px auto 0;
+    padding: 12px 28px;
+    border-radius: 50px;
+    background: #1C1A30;
+    color: #CB982D;
+    font-size: clamp(14px, 1.67vw, 24px);
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+}
+
 .sobre-anos {
     position: relative;
     left: 50%;
@@ -442,16 +506,11 @@ a {
 }
 
 .sobre-faixa-pessoas {
-    overflow-x: auto;
+    overflow: hidden;
     padding: 0;
     border-radius: 0;
     background: transparent;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-}
-
-.sobre-faixa-pessoas::-webkit-scrollbar {
-    display: none;
+    scroll-behavior: auto;
 }
 
 .sobre-pessoas {
@@ -459,6 +518,46 @@ a {
     width: max-content;
     min-width: 100%;
     gap: 10px;
+}
+
+.sobre-controles {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    margin-top: 47px;
+}
+
+.sobre-seta {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #0E0C23;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.sobre-seta:hover {
+    background: #28243f;
+}
+
+.sobre-seta svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.sobre-seta:focus-visible {
+    outline: 2px solid var(--sobre-gold);
+    outline-offset: 3px;
 }
 
 .sobre-pessoa {
@@ -530,7 +629,7 @@ a {
     .sobre-anos {
         width: 100vw;
         height: 1296px;
-        margin-top: 60px;
+        margin-top: 79px;
         padding: 86px 0 0;
         overflow: hidden;
         background: #0E0C23;
@@ -561,17 +660,6 @@ a {
         margin-left: 195px;
     }
 
-    .sobre-faixa-pessoas {
-        overflow-x: auto;
-        padding: 0;
-        border-radius: 0;
-        scrollbar-width: none;
-    }
-
-    .sobre-faixa-pessoas::-webkit-scrollbar {
-        display: none;
-    }
-
     .sobre-pessoas {
         display: flex;
         width: max-content;
@@ -589,6 +677,10 @@ a {
     .sobre-foto-equipe figcaption {
         max-width: 90%;
         margin: auto;
+    }
+
+    .sobre-historia {
+        margin-top: 82px;
     }
 }
 
@@ -737,6 +829,42 @@ a {
         font-size: clamp(8px, 2.5vw, 12px);
     }
 
+    .sobre-historia {
+        width: 100%;
+        margin-top: 34px;
+    }
+
+    .sobre-historia-linha {
+        width: 72px;
+        height: 3px;
+        margin-bottom: 12px;
+    }
+
+    .sobre-historia h2 {
+        gap: 5px;
+        margin-bottom: 18px;
+        font-size: clamp(20px, 6vw, 30px);
+    }
+
+    .sobre-historia h2 img {
+        width: 26px;
+    }
+
+    .sobre-historia-texto p {
+        margin-bottom: 16px;
+        font-size: 14px;
+        line-height: 1.55;
+        text-align: left;
+    }
+
+    .sobre-historia-chamada {
+        min-height: 44px;
+        margin-top: 24px;
+        padding: 10px 14px;
+        border-radius: 24px;
+        font-size: 12px;
+    }
+
     .sobre-pessoa-info {
         gap: 2px;
         padding: 8px 6px 6px;
@@ -788,6 +916,16 @@ a {
         width: clamp(46px, 21vw, 78px);
         flex-basis: clamp(46px, 21vw, 78px);
         border-radius: 8px;
+    }
+
+    .sobre-controles {
+        gap: 28px;
+        margin-top: 24px;
+    }
+
+    .sobre-seta {
+        width: 32px;
+        height: 32px;
     }
 }
 
@@ -842,6 +980,10 @@ a {
     .sobre-pessoa,
     .sobre-pessoa-imagem,
     .sobre-pessoa-info {
+        transition: none;
+    }
+
+    .sobre-seta {
         transition: none;
     }
 }

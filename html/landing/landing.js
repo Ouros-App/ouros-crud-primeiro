@@ -1,39 +1,8 @@
 const landingScriptUrl = new URL(document.currentScript?.src || 'landing/landing.js', window.location.href);
 const landingAssetBase = new URL('../assets/', landingScriptUrl);
-const landingSectionsBase = new URL('sections/', landingScriptUrl);
 const landingAsset = (path) => new URL(path, landingAssetBase).href;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const mounts = Array.from(document.querySelectorAll('[data-landing-section]'));
-        await Promise.all(mounts.map(async (mount) => {
-            const name = mount.dataset.landingSection;
-            const url = new URL(encodeURIComponent(name) + '.html', landingSectionsBase);
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Não foi possível carregar a seção "' + name + '".');
-            }
-
-            const template = document.createElement('template');
-            template.innerHTML = (await response.text()).trim();
-            if (!template.content.firstElementChild) {
-                throw new Error('A seção "' + name + '" está vazia.');
-            }
-            mount.replaceWith(template.content);
-        }));
-
-        document.getElementById('conteudo-principal')?.setAttribute('aria-busy', 'false');
-        document.getElementById('landing-loading')?.remove();
-    } catch (error) {
-        console.error('Falha ao montar a landing Ouros:', error);
-        document.getElementById('conteudo-principal')?.setAttribute('aria-busy', 'false');
-        document.getElementById('landing-loading')?.remove();
-        const message = document.getElementById('landing-load-error');
-        if (message) {
-            message.hidden = false;
-        }
-        return;
-    }
+document.addEventListener('DOMContentLoaded', () => {
     const desafiosSlider = document.getElementById('desafiosSlider');
     if (desafiosSlider) {
         const desafioSlides = Array.from(desafiosSlider.querySelectorAll('.desafio-slide'));
@@ -335,9 +304,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (featureSlider) {
         let originalCards = [];
         let cycleWidth = 0;
-        let pointerStart = 0;
-        let scrollStart = 0;
-        let dragging = false;
         let animationFrame = 0;
         let animationStartedAt = 0;
         let animationFrom = 0;
@@ -411,53 +377,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         featureSlider.addEventListener('scroll', () => {
-            if (!cycleWidth || dragging || animationFrame) {
+            if (!cycleWidth || animationFrame) {
                 return;
             }
             normalizeInfiniteSlider();
         }, { passive: true });
-
-        featureSlider.addEventListener('pointerdown', (event) => {
-            if (event.pointerType === 'mouse' && event.button !== 0) {
-                return;
-            }
-
-            window.cancelAnimationFrame(animationFrame);
-            animationFrame = 0;
-            animationStartedAt = 0;
-            dragging = true;
-            pointerStart = event.clientX;
-            scrollStart = featureSlider.scrollLeft;
-            featureSlider.classList.add('arrastando');
-            featureSlider.setPointerCapture(event.pointerId);
-        });
-
-        featureSlider.addEventListener('pointermove', (event) => {
-            if (dragging) {
-                featureSlider.scrollLeft = scrollStart - (event.clientX - pointerStart) * 0.7;
-            }
-        });
-
-        const stopDragging = () => {
-            dragging = false;
-            featureSlider.classList.remove('arrastando');
-            normalizeInfiniteSlider();
-        };
-        featureSlider.addEventListener('pointerup', stopDragging);
-        featureSlider.addEventListener('pointercancel', stopDragging);
-        featureSlider.addEventListener('lostpointercapture', stopDragging);
-
-        featureSlider.addEventListener('keydown', (event) => {
-            if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
-                return;
-            }
-
-            event.preventDefault();
-            const firstCard = originalCards[0];
-            const gap = parseFloat(getComputedStyle(featureSlider).columnGap) || 20;
-            const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : featureSlider.clientWidth;
-            slideBy(event.key === 'ArrowRight' ? distance : -distance);
-        });
 
         document.addEventListener('click', (event) => {
             const arrow = event.target.closest('[data-slider-direcao]');
