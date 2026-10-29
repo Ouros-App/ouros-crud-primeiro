@@ -632,7 +632,8 @@ a {
 
     .sobre-anos {
         width: 100vw;
-        height: 1296px;
+        height: auto;
+        min-height: 1296px;
         margin-top: 79px;
         padding: 86px 0 0;
         overflow: hidden;
