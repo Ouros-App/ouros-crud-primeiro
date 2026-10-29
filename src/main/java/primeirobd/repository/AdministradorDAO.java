@@ -15,9 +15,7 @@ public interface AdministradorDAO {
     String update_id(int idNew, int idOld);
     String update_email(String emailNew, String emailOld);
     String update_nome(String nomeNew, String nomeOld);
-    void marcarEmailComoVerificado(int administradorId);
     Administrador buscarPorEmail(String email);
-    void atualizarSenha(int administradorId, String senhaHash);
 
     Administrador buscarPorId(int id);
     void atualizarFotoPerfil(int id, String url);

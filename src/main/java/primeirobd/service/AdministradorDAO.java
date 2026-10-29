@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AdministradorDAO implements primeirobd.repository.AdministradorDAO {
-    public static final String SELECT_ALL = "SELECT id,nome,cpf,email,email_verificado FROM administrador";
+    public static final String SELECT_ALL = "SELECT id,nome,cpf,email FROM administrador";
     public static final String SELECT_NOME = "SELECT nome FROM administrador";
     public static final String SELECT_ID = "SELECT id FROM administrador";
     public static final String SELECT_EMAIL = "SELECT email, foto_perfil_url FROM administrador";
@@ -18,11 +18,10 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
     public static final String UPDATE_ID = "UPDATE administrador SET id = ? WHERE id = ?";
     public static final String UPDATE_EMAIL = "UPDATE administrador SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE administrador SET nome = ? WHERE nome = ?";
-    public static final String UPDATE_EMAIL_VERIFICADO = "UPDATE administrador SET email_verificado = true WHERE id = ?";
-    public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,email_verificado FROM administrador WHERE email = ?";
+    public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha FROM administrador WHERE email = ?";
     private static final String UPDATE_SENHA = "UPDATE administrador SET senha = ? WHERE id = ?";
     public static final String SELECT_BY_ID =
-            "SELECT a.id, a.nome, a.cpf, a.email, a.senha, a.email_verificado, " +
+            "SELECT a.id, a.nome, a.cpf, a.email, a.senha, " +
                     "a.foto_perfil_url, t.telefone " +
                     "FROM administrador a " +
                     "LEFT JOIN telefone_admin t ON t.usuario_id = a.id " +
@@ -73,7 +72,6 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
                 adm.setCpf(rs.getString("cpf"));
                 adm.setEmail(rs.getString("email"));
                 adm.setSenha(rs.getString("senha"));
-                adm.setEmailVerificado(rs.getBoolean("email_verificado"));
                 adm.setFotoPerfilUrl(rs.getString("foto_perfil_url"));
                 adm.setTelefone(rs.getString("telefone"));
 
@@ -115,7 +113,6 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
                 adm.setNome(rs.getString("nome"));
                 adm.setCpf(rs.getString("cpf"));
                 adm.setEmail(rs.getString("email"));
-                adm.setEmailVerificado(rs.getBoolean("email_verificado"));
                 informacoes.add(adm);
             }
             return informacoes;
@@ -277,17 +274,6 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
-    public void marcarEmailComoVerificado(int administradorId) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(UPDATE_EMAIL_VERIFICADO)) {
-            stmt.setInt(1, administradorId);
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao marcar email como verificado.\n" + e.getMessage());
-        }
-    }
-
     public Administrador buscarPorEmail(String email) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_EMAIL)) {
@@ -303,8 +289,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
                 adm.setNome(rs.getString("nome"));
                 adm.setCpf(rs.getString("cpf"));
                 adm.setEmail(rs.getString("email"));
-                adm.setSenha(rs.getString("senha")); // aqui vem o HASH, não a senha pura
-                adm.setEmailVerificado(rs.getBoolean("email_verificado"));
+                adm.setSenha(rs.getString("senha"));
                 return adm;
             }
 

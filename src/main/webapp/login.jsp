@@ -222,13 +222,6 @@
                            required>
                 </div>
 
-                <div class="LoginUtilitario">
-                    <a class="LoginLinkEsqueci"
-                       href="${pageContext.request.contextPath}/RecuperarSenha.jsp">
-                        Esqueceu sua senha?
-                    </a>
-                </div>
-
                 <button type="submit"
                         class="LoginBotao"
                         id="botaoLogin">
@@ -237,10 +230,6 @@
 
             </form>
 
-            <div class="LoginRodape">
-                <span>Ainda não tem uma conta?</span>
-
-            </div>
         </div>
     </div>
 </div>

@@ -7,7 +7,6 @@ public class Administrador {
     private String email;
     private String senha;
     private String cpf;
-    private boolean emailVerificado;
     private String nome;
     private String fotoPerfilUrl;
     private String telefone;
@@ -34,9 +33,6 @@ public class Administrador {
         return cpf;
     }
 
-    public boolean isEmailVerificado() {
-        return emailVerificado;
-    }
 
     public String getNome() {
         return nome;
@@ -67,9 +63,6 @@ public class Administrador {
         this.cpf = cpf;
     }
 
-    public void setEmailVerificado(boolean emailVerificado) {
-        this.emailVerificado = emailVerificado;
-    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -88,7 +81,6 @@ public class Administrador {
                 "\nEmail: " + this.email +
                 "\nSenha: " + this.senha +
                 "\nCpf: " + this.cpf +
-                "\nEmail_Verificado: " + this.emailVerificado +
                 "\nNome: " + this.nome +
                 "\n-------------------------------------------------------------";
     }
