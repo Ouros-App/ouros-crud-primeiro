@@ -32,7 +32,7 @@ public class CadastroServlet extends HttpServlet {
             HttpServletResponse response
     ) throws IOException, ServletException {
 
-        request.getRequestDispatcher("/cadastro.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/cadastro.jsp")
                 .forward(request, response);
     }
 

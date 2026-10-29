@@ -91,7 +91,7 @@
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="../img/Ouros.png" alt="Ouros">
+                <img src="../../img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>
@@ -154,7 +154,7 @@
             </ul>
 
             <img class="MascoteLogin"
-                 src="../img/Midas-Feliz.png"
+                 src="../../img/Midas-Feliz.png"
                  alt="Midas, mascote do Ouros">
         </section>
 
@@ -260,11 +260,6 @@
                     Continuar
                 </button>
             </form>
-
-            <div class="LoginRodape">
-                <span>Já tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="../login.jsp">Entrar</a>
-            </div>
 
         </section>
     </div>

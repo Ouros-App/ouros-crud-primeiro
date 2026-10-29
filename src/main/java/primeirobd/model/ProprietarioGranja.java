@@ -8,7 +8,6 @@ public class ProprietarioGranja {
     private int idGranja;
     private String nome;
     private String senha;
-    private boolean emailVerificado;
 
     //construtor
 
@@ -41,9 +40,6 @@ public class ProprietarioGranja {
         return senha;
     }
 
-    public boolean isEmailVerificado() {
-        return emailVerificado;
-    }
 
 
     //metodos setters
@@ -72,9 +68,6 @@ public class ProprietarioGranja {
         this.senha = senha;
     }
 
-    public void setEmailVerificado(boolean emailVerificado) {
-        this.emailVerificado = emailVerificado;
-    }
 
     @Override
     public String toString() {
@@ -85,7 +78,6 @@ public class ProprietarioGranja {
                 "\nId_Granja: " + this.idGranja +
                 "\nNome: " + this.nome +
                 "\nSenha: " + this.senha +
-                "\nEmail_Verificado: " + this.emailVerificado +
                 "\n-------------------------------------------------------------";
     }
 }
