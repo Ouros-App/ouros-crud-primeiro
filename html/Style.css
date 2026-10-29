@@ -2093,3 +2093,38 @@ body {
         opacity: 0.95;
     }
 }
+
+/* Seta de retorno da tela de login */
+.LoginPage--login .LoginVoltar {
+    position: absolute;
+    top: 10px;
+    left: 28px;
+    z-index: 5;
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.LoginPage--login .LoginVoltar svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.LoginPage--login .LoginVoltar:hover {
+    color: #D8A23A;
+}
+
+.LoginPage--login .LoginVoltar:focus-visible {
+    border-radius: 50%;
+    outline: 2px solid #D8A23A;
+    outline-offset: 2px;
+}
