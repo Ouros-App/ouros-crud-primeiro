@@ -1,39 +1,8 @@
 const landingScriptUrl = new URL(document.currentScript?.src || 'landing/landing.js', window.location.href);
 const landingAssetBase = new URL('../assets/', landingScriptUrl);
-const landingSectionsBase = new URL('sections/', landingScriptUrl);
 const landingAsset = (path) => new URL(path, landingAssetBase).href;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const mounts = Array.from(document.querySelectorAll('[data-landing-section]'));
-        await Promise.all(mounts.map(async (mount) => {
-            const name = mount.dataset.landingSection;
-            const url = new URL(encodeURIComponent(name) + '.html', landingSectionsBase);
-            const response = await fetch(url);
-            if (!response.ok) {
-                throw new Error('Não foi possível carregar a seção "' + name + '".');
-            }
-
-            const template = document.createElement('template');
-            template.innerHTML = (await response.text()).trim();
-            if (!template.content.firstElementChild) {
-                throw new Error('A seção "' + name + '" está vazia.');
-            }
-            mount.replaceWith(template.content);
-        }));
-
-        document.getElementById('conteudo-principal')?.setAttribute('aria-busy', 'false');
-        document.getElementById('landing-loading')?.remove();
-    } catch (error) {
-        console.error('Falha ao montar a landing Ouros:', error);
-        document.getElementById('conteudo-principal')?.setAttribute('aria-busy', 'false');
-        document.getElementById('landing-loading')?.remove();
-        const message = document.getElementById('landing-load-error');
-        if (message) {
-            message.hidden = false;
-        }
-        return;
-    }
+document.addEventListener('DOMContentLoaded', () => {
     const desafiosSlider = document.getElementById('desafiosSlider');
     if (desafiosSlider) {
         const desafioSlides = Array.from(desafiosSlider.querySelectorAll('.desafio-slide'));
