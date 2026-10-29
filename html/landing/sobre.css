@@ -527,6 +527,10 @@ a {
     margin-top: 47px;
 }
 
+.sobre-ano:last-child .sobre-controles {
+    margin-bottom: clamp(48px, 6vw, 88px);
+}
+
 .sobre-seta {
     display: grid;
     width: 36px;
@@ -535,14 +539,14 @@ a {
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: #0E0C23;
-    color: #fff;
+    background: #fff;
+    color: #000;
     cursor: pointer;
     transition: background-color .2s ease;
 }
 
 .sobre-seta:hover {
-    background: #28243f;
+    background: #ededed;
 }
 
 .sobre-seta svg {
