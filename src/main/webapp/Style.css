@@ -2572,3 +2572,31 @@ body {
 @media (max-width: 640px) {
     .BotaoBanner { position: static; margin-bottom: 16px; }
 }
+.LoginFormulario {
+    position: relative;
+}
+
+.BotaoVoltar {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #090471;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.BotaoVoltar:hover {
+    background-color: #f3f0e8;
+    transform: translateX(-3px);
+}
+
+.BotaoVoltar svg {
+    width: 25px;
+    height: 25px;
+}

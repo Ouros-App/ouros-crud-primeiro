@@ -5,11 +5,11 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-/**
- * Ajuda os formulários que abrem dentro de um modal (iframe).
- * Quando o salvamento dá certo, a resposta fecha o modal e recarrega a listagem
- * na janela inteira. Quando dá erro, o servlet devolve o próprio formulário
- * com as mensagens, que continua aparecendo dentro do modal.
+/*
+   Ajuda os formulários que abrem dentro de um modal (iframe).
+   Quando o salvamento dá certo, a resposta fecha o modal e recarrega a listagem
+   na janela inteira. Quando dá erro, o servlet devolve o próprio formulário
+   com as mensagens, que continua aparecendo dentro do modal.
  */
 public final class ModalUtil {
 
