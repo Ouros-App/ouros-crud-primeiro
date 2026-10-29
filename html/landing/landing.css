@@ -891,6 +891,8 @@ a {
 
 .funcionamento {
     position: relative;
+    z-index: 0;
+    isolation: isolate;
     overflow: hidden;
     padding: 48px 0 62.58px;
     color: #ffffff;
@@ -1208,6 +1210,8 @@ a {
 /* Funcionalidades */
 
 .funcionalidades {
+    position: relative;
+    z-index: 1;
     min-height: 617px;
     box-sizing: border-box;
     padding: 24px 0 62px;
@@ -2619,6 +2623,7 @@ a {
 
     .desafios-subtitle {
         margin-bottom: 24px;
+        line-height: 1.5;
     }
 
     .desafio-slide {
@@ -2647,6 +2652,11 @@ a {
     .desafios-subtitle,
     .desafio-conteudo p {
         font-size: 18px;
+    }
+
+    .desafio-conteudo p {
+        line-height: 1.6;
+        text-align: left;
     }
 
     .desafios-controles {
