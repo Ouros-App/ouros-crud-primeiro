@@ -197,6 +197,20 @@
                 </div>
             </div>
         </div>
+        <div class="SecaoNovoAdmin">
+            <div class="NovoAdminTexto">
+                <h2>Precisa de mais um administrador?</h2>
+                <p>
+                    Amplie o acesso ao Ouros e permita que outra pessoa
+                    também gerencie as informações da sua operação.
+                </p>
+            </div>
+
+            <a href="cadastro.jsp" class="BotaoNovoAdmin">
+                <span class="BotaoNovoAdminIcone">+</span>
+                Cadastrar novo administrador
+            </a>
+        </div>
 
     </div>
 
