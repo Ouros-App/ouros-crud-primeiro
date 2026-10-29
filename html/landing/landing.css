@@ -1390,11 +1390,6 @@ a {
     align-items: center;
     gap: 14px;
     border-radius: 12px;
-    transition: transform 180ms ease;
-}
-
-.ranking-beneficio:hover {
-    transform: translateX(4px);
 }
 
 .ranking-beneficio-icone {
