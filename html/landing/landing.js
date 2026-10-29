@@ -379,9 +379,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (featureSlider) {
         let originalCards = [];
         let cycleWidth = 0;
-        let pointerStart = 0;
-        let scrollStart = 0;
-        let dragging = false;
         let animationFrame = 0;
         let animationStartedAt = 0;
         let animationFrom = 0;
@@ -455,53 +452,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         featureSlider.addEventListener('scroll', () => {
-            if (!cycleWidth || dragging || animationFrame) {
+            if (!cycleWidth || animationFrame) {
                 return;
             }
             normalizeInfiniteSlider();
         }, { passive: true });
-
-        featureSlider.addEventListener('pointerdown', (event) => {
-            if (event.pointerType === 'mouse' && event.button !== 0) {
-                return;
-            }
-
-            window.cancelAnimationFrame(animationFrame);
-            animationFrame = 0;
-            animationStartedAt = 0;
-            dragging = true;
-            pointerStart = event.clientX;
-            scrollStart = featureSlider.scrollLeft;
-            featureSlider.classList.add('arrastando');
-            featureSlider.setPointerCapture(event.pointerId);
-        });
-
-        featureSlider.addEventListener('pointermove', (event) => {
-            if (dragging) {
-                featureSlider.scrollLeft = scrollStart - (event.clientX - pointerStart) * 0.7;
-            }
-        });
-
-        const stopDragging = () => {
-            dragging = false;
-            featureSlider.classList.remove('arrastando');
-            normalizeInfiniteSlider();
-        };
-        featureSlider.addEventListener('pointerup', stopDragging);
-        featureSlider.addEventListener('pointercancel', stopDragging);
-        featureSlider.addEventListener('lostpointercapture', stopDragging);
-
-        featureSlider.addEventListener('keydown', (event) => {
-            if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') {
-                return;
-            }
-
-            event.preventDefault();
-            const firstCard = originalCards[0];
-            const gap = parseFloat(getComputedStyle(featureSlider).columnGap) || 20;
-            const distance = firstCard ? firstCard.getBoundingClientRect().width + gap : featureSlider.clientWidth;
-            slideBy(event.key === 'ArrowRight' ? distance : -distance);
-        });
 
         document.addEventListener('click', (event) => {
             const arrow = event.target.closest('[data-slider-direcao]');
