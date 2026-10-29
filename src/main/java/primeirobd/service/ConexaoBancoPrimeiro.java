@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class ConexaoBancoPrimeiro {
 
     // carregando o .env
-    private static final Dotenv dotenv = Dotenv.load();
+    public static final  Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     // conexão única, compartilhada entre todos os DAOs
     private static Connection connection;

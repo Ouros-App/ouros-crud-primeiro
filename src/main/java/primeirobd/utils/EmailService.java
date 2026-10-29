@@ -9,16 +9,10 @@ import java.util.Properties;
 /*
 Classe responsável por enviar os emails do sistema:
 verificação de cadastro e recuperação de senha.
-
- * <dependency>
- *     <groupId>org.eclipse.angus</groupId>
- *     <artifactId>angus-mail</artifactId>
- *     <version>2.0.3</version>
- * </dependency>
  */
 public class EmailService {
     // carregando o .env
-    private static final Dotenv dotenv = Dotenv.load();
+    public static final  Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     // Endereço e porta do servidor SMTP que vai enviar o email.
     private static final String SMTP_HOST = "smtp.gmail.com";
