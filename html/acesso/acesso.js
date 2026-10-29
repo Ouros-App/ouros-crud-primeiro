@@ -26,6 +26,22 @@
         output.dataset.tipo = type;
     };
 
+    document.querySelectorAll("[data-voltar-anterior]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+            if (!document.referrer || window.history.length <= 1) return;
+
+            try {
+                const paginaAnterior = new URL(document.referrer);
+                if (paginaAnterior.origin !== window.location.origin) return;
+
+                event.preventDefault();
+                window.history.back();
+            } catch {
+                // O href do link continua apontando para a página inicial.
+            }
+        });
+    });
+
     document.querySelectorAll("[data-auth-form]").forEach((form) => {
         const cnpj = form.querySelector("#cnpj");
         const telefone = form.querySelector("#telefone");
