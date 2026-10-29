@@ -1791,6 +1791,39 @@ body {
     min-height: 100dvh;
 }
 
+.LoginPage .LoginVoltar {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    z-index: 2;
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: background-color .2s ease;
+}
+
+.LoginPage .LoginVoltar:hover {
+    background-color: rgba(255, 255, 255, .12);
+}
+
+.LoginPage .LoginVoltar svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+}
+
+.LoginPage .LoginVoltar:focus-visible {
+    outline: 2px solid #D8A23A;
+    outline-offset: 3px;
+}
+
 .LoginPage .LoginMarca {
     padding: 40px clamp(32px, 5.55vw, 80px);
 }
@@ -1983,6 +2016,11 @@ body {
         grid-template-columns: 1fr;
         gap: 0;
         padding-bottom: 16px;
+    }
+
+    .LoginPage .LoginVoltar {
+        top: 12px;
+        left: 12px;
     }
 
     .LoginPage .LoginMarca {
