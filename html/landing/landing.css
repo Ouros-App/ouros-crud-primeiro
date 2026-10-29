@@ -1234,18 +1234,13 @@ a {
     gap: 16px;
     margin-top: 34px;
     padding: 10px 0 20px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    cursor: grab;
-    user-select: none;
+    overflow: hidden;
+    cursor: default;
     touch-action: pan-y;
 }
 
 .funcionalidades-faixa.arrastando {
-    cursor: grabbing;
-    scroll-snap-type: none;
+    cursor: default;
 }
 
 .funcionalidade-card {
@@ -1255,7 +1250,6 @@ a {
     min-width: 0;
     min-height: 340px;
     overflow: hidden;
-    scroll-snap-align: start;
     border: 1px solid transparent;
     background: #f2f0ed;
     border-radius: 8px;
@@ -2464,6 +2458,46 @@ a {
     font-weight: 400;
     line-height: 113%;
     text-align: justify;
+}
+
+.funcionalidades-controles {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    margin-top: 27px;
+}
+
+.funcionalidades-seta {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #0e0c23;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .2s ease;
+}
+
+.funcionalidades-seta:hover {
+    background: #28243f;
+}
+
+.funcionalidades-seta svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.8;
+}
+
+.funcionalidades-seta:focus-visible {
+    outline: 2px solid #cb982d;
+    outline-offset: 3px;
 }
 
 .desafio-slide > img {
