@@ -39,10 +39,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const desafioSlides = Array.from(desafiosSlider.querySelectorAll('.desafio-slide'));
         const reduceDesafioMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
         let activeDesafioIndex = desafioSlides.findIndex((slide) => slide.classList.contains('is-active'));
-        let desafioRotationTimer;
-        let desafioRotationPaused = false;
-        let desafioPointerInside = false;
-        let desafioFocusWithin = false;
         let desafioTransitionInProgress = false;
         const desafioPageButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-indice]'));
         const desafioNavButtons = Array.from(desafiosSlider.querySelectorAll('[data-desafio-nav], [data-desafio-indice]'));
@@ -144,24 +140,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         };
 
-        const scheduleDesafioRotation = () => {
-            window.clearTimeout(desafioRotationTimer);
-            if (desafioSlides.length < 2 || desafioRotationPaused || reduceDesafioMotion.matches || document.hidden) {
-                return;
-            }
-
-            desafioRotationTimer = window.setTimeout(() => {
-                showDesafio(activeDesafioIndex + 1, 1);
-                scheduleDesafioRotation();
-            }, 6500);
-        };
-
         desafiosSlider.addEventListener('keydown', (event) => {
             if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
                 event.preventDefault();
                 const direction = event.key === 'ArrowRight' ? 1 : -1;
                 showDesafio(activeDesafioIndex + direction, direction);
-                scheduleDesafioRotation();
             }
         });
 
@@ -173,35 +156,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                     ? (targetIndex < activeDesafioIndex ? -1 : 1)
                     : (button.dataset.desafioNav === 'anterior' ? -1 : 1);
                 showDesafio(isPageButton ? targetIndex : activeDesafioIndex + direction, direction);
-                scheduleDesafioRotation();
             });
         });
-
-        desafiosSlider.addEventListener('pointerenter', () => {
-            desafioPointerInside = true;
-            desafioRotationPaused = true;
-            window.clearTimeout(desafioRotationTimer);
-        });
-        desafiosSlider.addEventListener('pointerleave', () => {
-            desafioPointerInside = false;
-            desafioRotationPaused = desafioFocusWithin;
-            scheduleDesafioRotation();
-        });
-        desafiosSlider.addEventListener('focusin', () => {
-            desafioFocusWithin = true;
-            desafioRotationPaused = true;
-            window.clearTimeout(desafioRotationTimer);
-        });
-        desafiosSlider.addEventListener('focusout', (event) => {
-            if (!desafiosSlider.contains(event.relatedTarget)) {
-                desafioFocusWithin = false;
-                desafioRotationPaused = desafioPointerInside;
-                scheduleDesafioRotation();
-            }
-        });
-        document.addEventListener('visibilitychange', scheduleDesafioRotation);
-        reduceDesafioMotion.addEventListener?.('change', scheduleDesafioRotation);
-        scheduleDesafioRotation();
     }
 
     const header = document.getElementById('header');
