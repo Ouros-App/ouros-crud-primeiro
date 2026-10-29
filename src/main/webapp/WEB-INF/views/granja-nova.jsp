@@ -51,7 +51,7 @@
             </div>
             <div class="EditorCampo">
                 <label for="cep">CEP</label>
-                <input id="cep" name="cep" type="text" placeholder="00000-000" maxlength="9" required>
+                <input id="cep" name="cep" type="text" inputmode="numeric" placeholder="00000-000" maxlength="9" data-validar="cep" required>
             </div>
             <div class="EditorCampo">
                 <label for="numero">Número</label>
@@ -94,5 +94,6 @@
         }).observe(document.querySelector('.EditorCartao'));
     }
 </script>
+<script src="${pageContext.request.contextPath}/js/validacao.js"></script>
 </body>
 </html>

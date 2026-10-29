@@ -103,6 +103,8 @@ public class CadastroServlet extends HttpServlet {
         // salva o telefone na tabela telefone_admin
         new TelefoneAdminDAO().insert(administradorId, telefone);
 
+        response.getWriter().write("Administrador cadastrado com sucesso!");
+
 
     }
 }

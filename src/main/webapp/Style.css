@@ -2424,3 +2424,55 @@ body {
         margin-top: 24px;
     }
 }
+
+/* ===== Validação dos formulários e avisos (toast) ===== */
+.EditorCampo .CampoErro {
+    display: block;
+    min-height: 0;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #b3261e;
+}
+.EditorCampo .CampoErro:empty { display: none; }
+.EditorCampo--erro label { color: #b3261e; }
+.EditorCampo--erro input,
+.EditorCampo--erro select {
+    border-color: #b3261e;
+    background: #fff8f7;
+}
+.EditorCampo--erro input:focus,
+.EditorCampo--erro select:focus { outline-color: #b3261e; }
+.EditorCampo input[readonly] { background: #f1f2f7; color: #6b6b78; cursor: not-allowed; }
+.EditorSalvar:disabled { opacity: .65; cursor: progress; }
+
+.Toast {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 9999;
+    max-width: min(380px, calc(100vw - 48px));
+    padding: 14px 18px;
+    border-radius: 12px;
+    font: 500 14px/1.4 'Poppins', 'Segoe UI', sans-serif;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(14, 12, 35, .25);
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .3s ease, transform .3s ease;
+}
+.Toast--visivel { opacity: 1; transform: translateY(0); }
+.Toast--ok { background: #2e7d4f; }
+.Toast--erro { background: #b3261e; }
+
+
+/* Botão "Novo administrador" no banner do início */
+.BotaoBanner {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    z-index: 2;
+    text-decoration: none;
+}
+@media (max-width: 640px) {
+    .BotaoBanner { position: static; margin-bottom: 16px; }
+}

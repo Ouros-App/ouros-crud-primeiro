@@ -12,8 +12,12 @@ import primeirobd.service.*;
 import primeirobd.model.*;
 import primeirobd.utils.Validador;
 
+import primeirobd.utils.ModalUtil;
+
 import java.io.IOException;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "Funcionarios", value = "/funcionarios")
 public class Funcionarios extends HttpServlet {
@@ -37,6 +41,8 @@ public class Funcionarios extends HttpServlet {
         String ordenarPor = request.getParameter("ordenarPor");
 
         if ("inserir".equals(acao)) {
+            // lista de empresas para o campo de empresa sugerir os nomes
+            request.setAttribute("empresas", new EmpresaDAO().select_all());
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/funcionario-novo.jsp")
                     .forward(request, response);
@@ -230,85 +236,140 @@ public class Funcionarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        try{
-            // pega os valores que o usuário inseriu no formulário
-            String acao = request.getParameter("acao");
-            String novoNome = request.getParameter("nome");
-            String novoCpf = request.getParameter("cpf");
-            String novoEmail = request.getParameter("email");
-            String novoSetor = request.getParameter("setor");
-            String novoTelefone = request.getParameter("telefone");
-            String novaEmpresa = request.getParameter("empresa");
+        String contexto = request.getContextPath();
+        String acao = request.getParameter("acao");
 
-        if ("editar".equals(acao)) {
-            if (    novoNome.isBlank()
-                    || novoCpf.isBlank()
-                    || novoEmail.isBlank()
-                    || novoSetor.isBlank()
-                    || novoTelefone.isBlank()
-                    || !Validador.isEmailValido(novoEmail)
-                    || !Validador.isCpfValido(novoCpf)
-                    || !Validador.isTelefoneValido(novoTelefone)) {
-                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=dados");
+        if ("excluir".equals(acao)) {
+            try {
+                funcionario.delete(Integer.parseInt(request.getParameter("id")));
+            } catch (NumberFormatException e) {
+                response.sendRedirect(contexto + "/funcionarios?erro=id");
                 return;
             }
-            int id = Integer.parseInt(request.getParameter("id"));
-            Funcionario atual = funcionario.select_by_id(id);
+            response.sendRedirect(contexto + "/funcionarios?ok=excluido");
+            return;
+        }
 
+        boolean inserir = "inserir".equals(acao);
+        boolean editar = "editar".equals(acao);
+
+        if (!inserir && !editar) {
+            response.sendRedirect(contexto + "/funcionarios");
+            return;
+        }
+
+        // pega os valores que o usuário inseriu no formulário
+        String nome = valor(request, "nome");
+        String cpf = valor(request, "cpf");
+        String email = valor(request, "email");
+        String setor = valor(request, "setor");
+        String telefone = valor(request, "telefone");
+        String nomeEmpresa = valor(request, "empresa");
+
+        // valida cada campo e guarda a mensagem de erro de quem falhou
+        Map<String, String> erros = new LinkedHashMap<>();
+
+        if (nome.isEmpty()) {
+            erros.put("nome", "Informe o nome.");
+        }
+        if (cpf.isEmpty()) {
+            erros.put("cpf", "Informe o CPF.");
+        } else if (!Validador.isCpfValido(cpf)) {
+            erros.put("cpf", "CPF inválido. Confira os 11 números (formato 000.000.000-00).");
+        }
+        if (setor.isEmpty()) {
+            erros.put("setor", "Informe o setor.");
+        }
+        if (email.isEmpty()) {
+            erros.put("email", "Informe o e-mail.");
+        } else if (!Validador.isEmailValido(email)) {
+            erros.put("email", "E-mail inválido. Use o formato nome@empresa.com.");
+        }
+        if (telefone.isEmpty()) {
+            erros.put("telefone", "Informe o telefone.");
+        } else if (!Validador.isTelefoneValido(telefone)) {
+            erros.put("telefone", "Telefone inválido. Use DDD + número, por exemplo (11) 91234-5678.");
+        }
+
+        EmpresaDAO empresaDAO = new EmpresaDAO();
+        List<Empresa> empresas = null;
+
+        if (inserir) {
+            if (nomeEmpresa.isEmpty()) {
+                erros.put("empresa", "Informe a empresa.");
+            } else {
+                empresas = empresaDAO.select_empresa_by_nome(nomeEmpresa);
+                if (empresas.isEmpty()) {
+                    erros.put("empresa", "Empresa não encontrada. Escolha uma da lista.");
+                }
+            }
+        }
+
+        int id = 0;
+        Funcionario atual = null;
+
+        if (editar) {
+            try {
+                id = Integer.parseInt(request.getParameter("id"));
+            } catch (NumberFormatException e) {
+                response.sendRedirect(contexto + "/funcionarios?erro=id");
+                return;
+            }
+            atual = funcionario.select_by_id(id);
             if (atual == null) {
-                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=naoencontrado");
+                response.sendRedirect(contexto + "/funcionarios?erro=naoencontrado");
                 return;
-            }
-
-            Funcionario editado = new Funcionario(id, novoNome.trim(), novoCpf.trim(),
-                    novoEmail.trim(), novoSetor.trim(), novoTelefone.trim());
-
-            boolean mudouFuncionario =
-                    !atual.getNome().equals(editado.getNome())
-                            || !atual.getCpf().equals(editado.getCpf())
-                            || !atual.getEmail().equals(editado.getEmail())
-                            || !atual.getSetor().equals(editado.getSetor());
-
-            boolean mudouTelefone = !Objects.equals(atual.getTelefone(), editado.getTelefone());
-
-            if (mudouFuncionario || mudouTelefone) {
-                funcionario.update_funcionario_com_telefone(editado, atual.getIdEmpresa());
             }
         }
-        else if("inserir".equals(acao)){
-            if (    novoNome.isBlank()
-                    || novoCpf.isBlank()
-                    || novoEmail.isBlank()
-                    || novoSetor.isBlank()
-                    || novoTelefone.isBlank()
-                    || !Validador.isEmailValido(novoEmail)
-                    || !Validador.isCpfValido(novoCpf)
-                    || !Validador.isTelefoneValido(novoTelefone)) {
-                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=dados");
-                return;
+
+        // com erro: devolve o formulário (dentro do modal) com as mensagens e o que a pessoa digitou
+        if (!erros.isEmpty()) {
+            request.setAttribute("erros", erros);
+
+            if (inserir) {
+                request.setAttribute("empresas", empresaDAO.select_all());
+                getServletContext()
+                        .getRequestDispatcher("/WEB-INF/views/funcionario-novo.jsp")
+                        .forward(request, response);
+            } else {
+                Funcionario digitado = new Funcionario(id, nome, cpf, email, setor, telefone);
+                digitado.setNomeEmpresa(atual.getNomeEmpresa());
+                request.setAttribute("funcionarios", digitado);
+                getServletContext()
+                        .getRequestDispatcher("/WEB-INF/views/editar-funcionario.jsp")
+                        .forward(request, response);
             }
-            EmpresaDAO empresaDAO = new EmpresaDAO();
+            return;
+        }
 
-            List<Empresa> empresas = empresaDAO.select_empresa_by_nome(novaEmpresa);
-
-            if (empresas.isEmpty()) {
-                response.sendRedirect(request.getContextPath() + "/funcionarios?erro=empresa");
-                return;
-            }
-
+        if (inserir) {
             funcionario.insert_funcionario_com_telefone(
-                    new Funcionario(novoNome.trim(), novoCpf.trim(), novoEmail.trim(), novoSetor.trim(), novoTelefone.trim()),
+                    new Funcionario(nome, cpf, email, setor, telefone),
                     empresas);
-        }
-        else if("excluir".equals(acao)) {
-            int id = Integer.parseInt(request.getParameter("id"));
-            funcionario.delete(id);
+            ModalUtil.concluir(request, response, "/funcionarios?ok=inserido");
+            return;
         }
 
-        response.sendRedirect(request.getContextPath() + "/funcionarios");
+        Funcionario editado = new Funcionario(id, nome, cpf, email, setor, telefone);
 
-        } catch (NullPointerException npe){
-            throw new RuntimeException(npe.getMessage(), npe);
+        boolean mudouFuncionario =
+                !Objects.equals(atual.getNome(), editado.getNome())
+                        || !Objects.equals(atual.getCpf(), editado.getCpf())
+                        || !Objects.equals(atual.getEmail(), editado.getEmail())
+                        || !Objects.equals(atual.getSetor(), editado.getSetor());
+
+        boolean mudouTelefone = !Objects.equals(atual.getTelefone(), editado.getTelefone());
+
+        if (mudouFuncionario || mudouTelefone) {
+            funcionario.update_funcionario_com_telefone(editado, atual.getIdEmpresa());
         }
+
+        ModalUtil.concluir(request, response, "/funcionarios?ok=editado");
+    }
+
+    // lê o parâmetro já sem espaços nas pontas (vazio se não veio)
+    private String valor(HttpServletRequest request, String nome) {
+        String v = request.getParameter(nome);
+        return v == null ? "" : v.trim();
     }
 }

@@ -291,5 +291,6 @@
         });
     })();
 </script>
+<script src="${pageContext.request.contextPath}/js/crud.js"></script>
 </body>
 </html>
