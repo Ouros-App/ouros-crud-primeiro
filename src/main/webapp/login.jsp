@@ -240,14 +240,8 @@
             <div class="LoginRodape">
                 <span>Ainda não tem uma conta?</span>
 
-                <a class="LoginLinkEsqueci"
-                   href="${pageContext.request.contextPath}/cadastro">
-                    Cadastre-se
-                </a>
             </div>
-
         </div>
-
     </div>
 </div>
 

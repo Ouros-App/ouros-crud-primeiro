@@ -24,8 +24,8 @@ public class AuthenticationFilter implements Filter {
             "/index.jsp",
             "/login",
             "/login.jsp",
-            "/cadastro",
             "/cadastro.jsp",
+            "/cadastro",
             "/verificar",
             "/recuperar-senha",
             "/redefinir-senha"

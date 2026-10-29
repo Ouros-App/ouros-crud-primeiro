@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/webapp/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 
     <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
@@ -91,7 +91,7 @@
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="img/Ouros.png" alt="Ouros">
+                <img src="../img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>
@@ -154,7 +154,7 @@
             </ul>
 
             <img class="MascoteLogin"
-                 src="img/Midas-Feliz.png"
+                 src="../img/Midas-Feliz.png"
                  alt="Midas, mascote do Ouros">
         </section>
 
@@ -263,7 +263,7 @@
 
             <div class="LoginRodape">
                 <span>Já tem uma conta?</span>
-                <a class="LoginLinkEsqueci" href="login.jsp">Entrar</a>
+                <a class="LoginLinkEsqueci" href="../login.jsp">Entrar</a>
             </div>
 
         </section>
