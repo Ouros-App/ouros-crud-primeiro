@@ -23,9 +23,7 @@ public class AuthenticationFilter implements Filter {
             "/index",
             "/index.jsp",
             "/login",
-            "/login.jsp",
-            "/cadastro.jsp",
-            "/cadastro"
+            "/login.jsp"
     );
 
     @Override
