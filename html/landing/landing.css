@@ -203,8 +203,6 @@ a {
 
 .hero-content {
     position: relative;
-    z-index: 2;
-    isolation: isolate;
 }
 
 .hero-content::before {
@@ -223,7 +221,7 @@ a {
 
 .hero-content h1 {
     position: relative;
-    z-index: 0;
+    z-index: 2;
     isolation: isolate;
     --hero-title-size: clamp(44px,5.35vw,77px);
     margin: 0;
@@ -289,6 +287,8 @@ a {
 }
 
 .subTitle {
+    position: relative;
+    z-index: 2;
     margin: 38px 0 0;
     width: min(549.834px, 100%);
     color: #F2F5F7;
@@ -2380,7 +2380,7 @@ a {
 /* Tipografia do título do hero conforme a referência desktop do Figma. */
 @media (min-width: 1101px) {
     .hero-content {
-        transform: translateX(10%);
+        left: 10%;
     }
 
     .hero-content h1 {
@@ -2778,7 +2778,7 @@ a {
 
     .subTitle {
         position: relative;
-        z-index: 1;
+        z-index: 2;
     }
 
     .hero-content h1 strong::before {
