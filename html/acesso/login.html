@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | Ouros</title>
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    <script src="acesso.js" defer></script>
+</head>
+<body>
+<main class="LoginPage LoginPage--login">
+    <div class="LoginShell">
+        <a
+            class="LoginVoltar"
+            href="../index.html"
+            data-voltar-anterior
+            aria-label="Voltar à tela anterior"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M19 12H5m7 7-7-7 7-7"></path>
+            </svg>
+        </a>
+        <section class="LoginMarca" aria-label="Sobre o Ouros">
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginDivisor"></div>
+            <p class="LoginTagline">Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span></p>
+            <ul class="LoginRecursos">
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.5c-3.5 4-6 7.4-6 10.7a6 6 0 0 0 12 0c0-3.3-2.5-6.7-6-10.7Z"></path></svg></span><div><h2 class="LoginRecursoTitulo">Registros</h2><p class="LoginRecursoTexto">Acompanhe o histórico de água e energia.</p></div></li>
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"></path><path d="M17 5h2a2 2 0 0 1 0 4h-1"></path><path d="M7 5H5a2 2 0 0 0 0 4h1"></path></svg></span><div><h2 class="LoginRecursoTitulo">Ranking</h2><p class="LoginRecursoTexto">Compare o desempenho da sua granja com outras.</p></div></li>
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path></svg></span><div><h2 class="LoginRecursoTitulo">Dashboards</h2><p class="LoginRecursoTexto">Visualize indicadores de consumo e desempenho.</p></div></li>
+            </ul>
+        </section>
+        <section class="LoginFormulario" aria-labelledby="formulario-titulo">
+            <header class="LoginCabecalho">
+                <h1 class="LoginTitulo" id="formulario-titulo">Bem-vindo de volta!</h1>
+                <p class="LoginSubtitulo">Faça login para acessar sua conta</p>
+            </header>
+            <form class="LoginFormEtapa" data-auth-form="login">
+                <div class="LoginCampoGrupo"><label class="LoginCampoLabel" for="email">Email</label><input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" autocomplete="email" required></div>
+                <div class="LoginCampoGrupo"><label class="LoginCampoLabel" for="senha">Senha</label><input class="LoginCampoInput" type="password" id="senha" name="senha" placeholder="••••••••" autocomplete="current-password" required></div>
+                <div class="LoginUtilitario"><a class="LoginLinkEsqueci" href="recuperar-senha.html">Esqueceu sua senha?</a></div>
+                <p class="LoginAviso" role="status" aria-live="polite"></p>
+                <button class="LoginBotao" type="submit">Continuar</button>
+            </form>
+
+            <div class="LoginRodape"><span>Ainda não tem uma conta?</span><a class="LoginLinkEsqueci" href="cadastro.html">Cadastre-se</a></div>
+        </section>
+    </div>
+</main>
+</body>
+</html>

@@ -20,6 +20,8 @@ public class AuthenticationFilter implements Filter {
 
     private static final Set<String> ROTAS_PUBLICAS = Set.of(
             "/",
+            "/landing",
+            "landing.jsp",
             "/index",
             "/index.jsp",
             "/login",
