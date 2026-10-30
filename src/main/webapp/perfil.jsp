@@ -14,11 +14,15 @@
 <div class="Layout">
 
     <aside class="Sidebar">
-        <div class="SidebarTopo">
-            <div class="LogoSidebar">
-                <img src="img/Ouros.png" alt="Ouros">
+        <a href="perfil.jsp" class="Usuario" aria-current="page">
+            <img src="img/imagemDefault.png" alt="Foto do usuário">
+            <div class="UsuarioInfo">
+                <strong>User</strong>
+                <span>Admin</span>
             </div>
+        </a>
 
+        <div class="SidebarCentro">
             <nav class="Menu" aria-label="Navegação principal">
                 <a href="inicio.jsp" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
@@ -41,13 +45,9 @@
             </nav>
         </div>
 
-        <a href="perfil.jsp" class="Usuario" aria-current="page">
-            <img src="img/imagemDefault.png" alt="Foto do usuário">
-            <div class="UsuarioInfo">
-                <strong>User</strong>
-                <span>Admin</span>
-            </div>
-        </a>
+        <div class="LogoSidebar">
+            <img src="img/Ouros.png" alt="Ouros">
+        </div>
     </aside>
 
     <main class="Conteudo">

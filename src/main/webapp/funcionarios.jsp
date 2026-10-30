@@ -15,11 +15,15 @@
 <div class="Layout">
 
     <aside class="Sidebar">
-        <div class="SidebarTopo">
-            <div class="LogoSidebar">
-                <img src="img/Ouros.png" alt="logo do ouros">
+        <a href="perfil" class="Usuario">
+          <img src="img/imagemDefault.png" alt="foto do usuário">
+            <div class="UsuarioInfo">
+                <strong>User</strong>
+                <span>Admin</span>
             </div>
+        </a>
 
+        <div class="SidebarCentro">
             <nav class="Menu">
                 <a href="inicio.jsp" class="MenuItem">
                     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
@@ -42,13 +46,9 @@
             </nav>
         </div>
 
-        <a href="perfil" class="Usuario">
-          <img src="img/imagemDefault.png" alt="foto do usuário">
-            <div class="UsuarioInfo">
-                <strong>User</strong>
-                <span>Admin</span>
-            </div>
-        </a>
+        <div class="LogoSidebar">
+            <img src="img/Ouros.png" alt="logo do ouros">
+        </div>
     </aside>
 
     <div class="Conteudo">
