@@ -2041,9 +2041,10 @@ a {
     flex-direction: column;
     align-items: center;
     width: min(100%, 868px);
-    height: 420px;
+    height: auto;
+    min-height: 500px;
     margin: 130px auto 0;
-    padding: 48px 39px 58px;
+    padding: 48px 39px 37.76px;
     overflow: hidden;
     border: 0;
     border-radius: 32px;
@@ -2097,6 +2098,62 @@ a {
     font-size: 19px;
     font-weight: 500;
     line-height: 1.5;
+}
+
+.faq-ajuda-botao {
+    position: relative;
+    z-index: 1;
+    display: block;
+    flex: 0 0 auto;
+    width: 313px;
+    height: 76.506px;
+    margin-top: auto;
+    color: #cb982d;
+    text-decoration: none;
+}
+
+.faq-ajuda-botao::before {
+    position: absolute;
+    inset: 9.936px 0 2.981px;
+    z-index: 0;
+    border-radius: 9.936px;
+    background: var(--Color, #0e0c23);
+    box-shadow: 0 3.974px 3.974px 0 rgba(0, 0, 0, .25);
+    content: "";
+}
+
+.faq-ajuda-botao-texto {
+    position: absolute;
+    top: 23.846px;
+    left: 28px;
+    z-index: 1;
+    display: flex;
+    width: 223.667px;
+    height: 42.503px;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    font-size: 23.846px;
+    font-weight: 500;
+    line-height: normal;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.faq-ajuda-botao-seta {
+    position: absolute;
+    top: 25.833px;
+    left: 255.667px;
+    z-index: 1;
+    display: block;
+    width: 31px;
+    height: 30.801px;
+}
+
+.faq-ajuda-botao:focus-visible {
+    border-radius: 10px;
+    outline: 2px solid #cb982d;
+    outline-offset: 3px;
 }
 
 /* Rodapé */
@@ -2755,9 +2812,9 @@ a {
 
     .faq-ajuda {
         height: auto;
-        min-height: 320px;
+        min-height: 350px;
         margin-top: 40px;
-        padding: 28px 20px 38px;
+        padding: 28px 20px 32px;
     }
 
     .faq-ajuda-icone {
@@ -2776,6 +2833,37 @@ a {
 
     .faq-ajuda-texto > span {
         font-size: 14px;
+    }
+
+    .faq-ajuda-botao {
+        display: flex;
+        width: min(100%, 313px);
+        height: 64px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        margin: 24px auto 0;
+        padding: 0 12px;
+    }
+
+    .faq-ajuda-botao::before {
+        inset: 0;
+    }
+
+    .faq-ajuda-botao-texto {
+        position: static;
+        display: block;
+        width: auto;
+        height: auto;
+        font-size: clamp(16px, 5vw, 20px);
+        line-height: 1.3;
+    }
+
+    .faq-ajuda-botao-seta {
+        position: static;
+        flex: 0 0 24px;
+        width: 24px;
+        height: 24px;
     }
 
     .faq-ajuda-mascote {

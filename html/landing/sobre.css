@@ -574,9 +574,8 @@ a {
     padding: 14px 12px 12px;
     background: linear-gradient(180deg, transparent, rgba(10, 8, 20, .88) 38%);
     color: #fff;
-    opacity: 0;
-    transform: translateY(8px);
-    transition: opacity 220ms ease, transform 220ms ease;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .sobre-pessoa-info strong {
@@ -595,12 +594,6 @@ a {
 .sobre-pessoa:focus-visible .sobre-pessoa-imagem {
     filter: brightness(.68);
     transform: scale(1.08);
-}
-
-.sobre-pessoa:hover .sobre-pessoa-info,
-.sobre-pessoa:focus-visible .sobre-pessoa-info {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 @media (min-width: 900px) {
