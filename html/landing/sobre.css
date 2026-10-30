@@ -332,7 +332,7 @@ a {
     font-weight: 800;
     line-height: 104%;
     text-align: center;
-    text-transform: uppercase;
+    text-transform: none;
 }
 
 .sobre-titulo-secao::before,

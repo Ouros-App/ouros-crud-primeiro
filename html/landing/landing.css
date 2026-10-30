@@ -1491,27 +1491,20 @@ a {
     position: relative;
     z-index: 0;
     display: grid;
-    width: 98%;
+    width: min(100%, 1218px);
+    height: 308px;
     grid-template-columns: 1.5fr 1fr 1fr;
     align-items: center;
     column-gap: 30px;
     row-gap: 22px;
     margin-top: 72px;
-    margin-left: 0.75%;
-    min-height: 280px;
+    margin-right: auto;
+    margin-left: auto;
     padding: 26px 40px;
     border-radius: 30px;
     background: #0e0c23;
     color: #ffffff;
     box-shadow: 0 12px 34px rgba(14, 12, 35, .12);
-    transform-origin: center;
-    transition: transform 220ms ease, box-shadow 220ms ease;
-}
-
-.ranking-calculo:hover {
-    z-index: 2;
-    transform: scale(1.05);
-    box-shadow: 0 22px 48px rgba(14, 12, 35, .26);
 }
 
 .ranking > .landing-container:not(.ranking-grid) {
@@ -1530,9 +1523,9 @@ a {
 
 .calculo-cabecalho h3 {
     flex: 0 0 auto;
-    width: 538px;
+    width: 537px;
     max-width: 100%;
-    height: 38px;
+    height: 43.029px;
     margin: 0;
     color: var(--Color-3, #CB982D);
     font-family: 'Poppins', sans-serif;
@@ -1552,9 +1545,9 @@ a {
     grid-column: 1;
     align-self: start;
     display: flex;
-    width: 492px;
+    width: 450px;
     max-width: 100%;
-    height: 97px;
+    height: 142px;
     flex-direction: column;
     justify-content: center;
 }
@@ -1564,7 +1557,7 @@ a {
     max-width: 100%;
     color: #FFF;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -2003,6 +1996,7 @@ a {
 
     .ranking-calculo {
         grid-template-columns: 1fr 1fr;
+        height: auto;
         min-height: 0;
     }
 
@@ -2628,6 +2622,7 @@ a {
 
     .ranking-calculo {
         margin-top: 50px;
+        height: auto;
         padding: 28px 22px;
         border-radius: 20px;
     }
