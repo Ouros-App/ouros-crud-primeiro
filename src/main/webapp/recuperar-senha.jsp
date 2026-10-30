@@ -1,25 +1,18 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 20260083-ieg
-  Date: 30/10/2026
-  Time: 07:35
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuperação de conta | Ouros</title>
-    <link rel="stylesheet" href="../Style.css">
-    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <script src="acesso.js" defer></script>
 </head>
 <body>
 <main class="LoginPage LoginPage--recuperacao">
     <div class="LoginShell">
         <section class="LoginMarca" aria-label="Sobre o Ouros">
-            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span></p>
             <ul class="LoginRecursos">
@@ -39,8 +32,8 @@
                 <p class="LoginAviso" role="status" aria-live="polite"></p>
                 <button class="LoginBotao" type="submit">Enviar link</button>
             </form>
-            <img class="MascoteLogin" src="../img/midas-acesso.png" alt="Midas, mascote do Ouros">
-            <div class="LoginRodape"><span>Lembrou sua senha?</span><a class="LoginLinkEsqueci" href="login.html">Voltar ao login</a></div>
+            <img class="MascoteLogin" src="${pageContext.request.contextPath}/img/midas-acesso.png" alt="Midas, mascote do Ouros">
+            <div class="LoginRodape"><span>Lembrou sua senha?</span><a class="LoginLinkEsqueci" href="WEB-INF/views/landing_page/acesso/login.html">Voltar ao login</a></div>
         </section>
     </div>
 </main>

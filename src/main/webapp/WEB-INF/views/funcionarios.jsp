@@ -92,7 +92,6 @@
                             <option value="setor" ${param.ordenarPor == 'setor' ? 'selected' : ''}>Ordenar por: Setor</option>
                         </select>
                     </div>
-                </form>
 
                     <div>
                         <button type="button" class="BotaoNovo" onclick="abrirForms('${pageContext.request.contextPath}/funcionarios?acao=inserir')">
@@ -199,13 +198,6 @@
 </div>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog>
-<dialog></dialog>
-<script>
-    function abrirForms(url) {
-        const d = document.getElementById('formularioModal');
-        d.querySelector('iframe').src = url;
-        d.showModal();
-    }
-</script>
+<script src="${pageContext.request.contextPath}/js/crud.js"></script>
 </body>
 </html>

@@ -24,8 +24,7 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     public static final String UPDATE_EMAIL = "UPDATE proprietario_granja SET email = ? WHERE email = ?";
     public static final String UPDATE_NOME = "UPDATE proprietario_granja SET nome = ? WHERE nome = ?";
      public static final String UPDATE_ID_GRANJA = "UPDATE proprietario_granja SET id_granja = ? WHERE id_granja = ?";
-    public static final String UPDATE_EMAIL_VERIFICADO = "UPDATE proprietario_granja SET email_verificado = true WHERE id = ?";
-    public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,id_granja,email_verificado FROM proprietario_granja WHERE email = ?";
+    public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,id_granja FROM proprietario_granja WHERE email = ?";
     private static final String UPDATE_SENHA = "UPDATE proprietario_granja SET senha = ? WHERE id = ?";
 
     public List<ProprietarioGranja> select_all() {
@@ -247,17 +246,6 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public void marcarEmailComoVerificado(int usuarioId) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(UPDATE_EMAIL_VERIFICADO)) {
-
-            stmt.setInt(1, usuarioId);
-            stmt.executeUpdate();
-
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao marcar email como verificado.\n" + e.getMessage());
-        }
-    }
     public ProprietarioGranja buscarPorEmail(String email) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_EMAIL)) {
@@ -275,7 +263,6 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
                 prg.setEmail(rs.getString("email"));
                 prg.setSenha(rs.getString("senha")); // aqui vem o HASH, não a senha pura
                 prg.setIdGranja(rs.getInt("id_granja"));
-                prg.setEmailVerificado(rs.getBoolean("email_verificado"));
                 return prg;
             }
 

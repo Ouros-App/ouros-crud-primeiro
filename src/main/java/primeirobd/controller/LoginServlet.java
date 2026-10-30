@@ -68,15 +68,6 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-        // Exige que o e-mail esteja verificado.
-        if (!administrador.isEmailVerificado()) {
-
-            response.sendRedirect(
-                    contexto + "/login.jsp?erro=naoverificado"
-            );
-            return;
-        }
-
         // Encerra a sessão anterior, se existir.
         HttpSession antiga = request.getSession(false);
 

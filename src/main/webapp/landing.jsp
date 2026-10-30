@@ -77,7 +77,7 @@
                         aria-label="Protótipo de celular OUROS integrado à asa dourada e à linha orbital"
                 >
                     <picture>
-                        <source media="(min-width: 1101px)" srcset="assets/hero-composicao-ouros-desktop.svg">
+                        <source media="(min-width: 1101px)" srcset="${pageContext.request.contextPath}/assets/hero-composicao-ouros-desktop.svg">
                         <img src="${pageContext.request.contextPath}/assets/hero-composicao-ouros.svg" class="hero-composicao-arte" alt="" aria-hidden="true">
                     </picture>
                     <div class="decor composicao-stars" aria-hidden="true">

@@ -337,13 +337,21 @@ a {
     background: #25223a;
 }
 
-.sobre-foto-equipe > img {
+.sobre-foto-equipe-placeholder {
     position: absolute;
     inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+    display: grid;
+    place-items: center;
+    background:
+            radial-gradient(ellipse at 28% 34%, rgba(207, 157, 35, .2), transparent 32%),
+            linear-gradient(135deg, #2a263b, #17152b 58%, #312b3d);
+}
+
+.sobre-foto-equipe-placeholder::before {
+    position: absolute;
+    inset: 10%;
+    border: 1px dashed rgba(207, 157, 35, .42);
+    content: '';
 }
 
 .sobre-foto-equipe::after {
@@ -352,6 +360,20 @@ a {
     background: linear-gradient(90deg, rgba(10, 8, 20, .16), rgba(10, 8, 20, .25));
     content: '';
     pointer-events: none;
+}
+
+.sobre-foto-equipe figcaption {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    right: 10px;
+    left: 10px;
+    color: #fff;
+    font-size: clamp(20px, 2.4vw, 36px);
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, .75);
+    transform: translateY(-50%);
 }
 
 .sobre-historia {
@@ -505,10 +527,6 @@ a {
     margin-top: 47px;
 }
 
-.sobre-ano:last-child .sobre-controles {
-    margin-bottom: clamp(48px, 6vw, 88px);
-}
-
 .sobre-seta {
     display: grid;
     width: 36px;
@@ -517,14 +535,14 @@ a {
     padding: 0;
     border: 0;
     border-radius: 50%;
-    background: #fff;
-    color: #000;
+    background: #0E0C23;
+    color: #fff;
     cursor: pointer;
     transition: background-color .2s ease;
 }
 
 .sobre-seta:hover {
-    background: #ededed;
+    background: #28243f;
 }
 
 .sobre-seta svg {
@@ -610,8 +628,7 @@ a {
 
     .sobre-anos {
         width: 100vw;
-        height: auto;
-        min-height: 1296px;
+        height: 1296px;
         margin-top: 79px;
         padding: 86px 0 0;
         overflow: hidden;

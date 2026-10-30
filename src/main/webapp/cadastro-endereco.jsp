@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro endereço | Ouros</title>
-    <link rel="stylesheet" href="../Style.css">
-    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
     <script src="acesso.js" defer></script>
 </head>
 <body>
 <main class="LoginPage LoginPage--cadastro2">
     <div class="LoginShell">
         <section class="LoginMarca" aria-label="Sobre o Ouros">
-            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginLogo"><img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros"></div>
             <div class="LoginDivisor"></div>
             <p class="LoginTagline">Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span></p>
             <ul class="LoginRecursos">
@@ -36,10 +36,10 @@
                 <div class="LoginCampoGrupo"><label class="LoginCampoLabel" for="logradouro">Logradouro</label><input class="LoginCampoInput" type="text" id="logradouro" name="logradouro" placeholder="Rua Augusta" autocomplete="street-address" required></div>
                 <div class="LoginCampoGrupo"><label class="LoginCampoLabel" for="pais">País</label><input class="LoginCampoInput" type="text" id="pais" name="pais" placeholder="Brasil" autocomplete="country-name" value="Brasil" required></div>
                 <p class="LoginAviso" role="status" aria-live="polite"></p>
-                <div class="LoginAcoesEtapa"><a class="LoginBotao LoginBotao--secundario" href="cadastro.html">Voltar</a><button class="LoginBotao" type="submit">Continuar</button></div>
+                <div class="LoginAcoesEtapa"><a class="LoginBotao LoginBotao--secundario" href="WEB-INF/views/landing_page/acesso/cadastro.html">Voltar</a><button class="LoginBotao" type="submit">Continuar</button></div>
             </form>
 
-            <div class="LoginRodape"><span>Já tem uma conta?</span><a class="LoginLinkEsqueci" href="login.html">Entrar</a></div>
+            <div class="LoginRodape"><span>Já tem uma conta?</span><a class="LoginLinkEsqueci" href="WEB-INF/views/landing_page/acesso/login.html">Entrar</a></div>
         </section>
     </div>
 </main>

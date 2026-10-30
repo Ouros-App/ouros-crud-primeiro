@@ -9,8 +9,7 @@ public class CloudinaryUtil {
 
     // Carrega as variáveis do arquivo .env.
     // ignoreIfMissing() permite iniciar mesmo se o arquivo não existir, mo dahora ;)
-    private static final Dotenv dotenv =
-            Dotenv.configure().ignoreIfMissing().load();
+    public static final  Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     // Procura uma configuração primeiro nas variáveis de ambiente.
     // Se não encontrar, procura no arquivo .env.

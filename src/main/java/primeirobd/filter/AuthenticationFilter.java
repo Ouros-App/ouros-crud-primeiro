@@ -21,16 +21,12 @@ public class AuthenticationFilter implements Filter {
     private static final Set<String> ROTAS_PUBLICAS = Set.of(
             "/",
             "/landing",
-            "landing.jsp",
+            "/landing.jsp",
+            "/sobre.jsp",
             "/index",
             "/index.jsp",
             "/login",
-            "/login.jsp",
-            "/cadastro",
-            "/cadastro.jsp",
-            "/verificar",
-            "/recuperar-senha",
-            "/redefinir-senha"
+            "/login.jsp"
     );
 
     @Override

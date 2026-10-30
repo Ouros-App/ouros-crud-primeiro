@@ -4,13 +4,9 @@ import org.mindrot.jbcrypt.BCrypt;
 import primeirobd.model.Administrador;
 import primeirobd.service.AdministradorDAO;
 import primeirobd.service.TelefoneAdminDAO;
-import primeirobd.service.VerificacaoEmailDAO;
-import primeirobd.utils.EmailService;
-import primeirobd.utils.TokenUtil;
 import primeirobd.utils.Validador;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,15 +19,12 @@ import jakarta.servlet.http.HttpServletResponse;
 
     Validador        -> confere se os campos têm o formato correto (regex)
     AdministradorDAO -> conversa com o banco de dados
-    TokenUtil        -> gera o token de verificação
-    EmailService     -> envia o email com o link de verificação
  */
 @WebServlet(name = "cadastro", value = "/cadastro")
 public class CadastroServlet extends HttpServlet {
 
     // objetos
     private final AdministradorDAO dao = new AdministradorDAO();
-    private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
 
     @Override
     protected void doGet(
@@ -39,7 +32,7 @@ public class CadastroServlet extends HttpServlet {
             HttpServletResponse response
     ) throws IOException, ServletException {
 
-        request.getRequestDispatcher("/cadastro.jsp")
+        request.getRequestDispatcher("/WEB-INF/views/cadastro.jsp")
                 .forward(request, response);
     }
 
@@ -110,13 +103,8 @@ public class CadastroServlet extends HttpServlet {
         // salva o telefone na tabela telefone_admin
         new TelefoneAdminDAO().insert(administradorId, telefone);
 
-        // token aleatorio
-        String token = TokenUtil.gerarToken();
-        verificacaoDao.salvarToken(administradorId, token, LocalDateTime.now().plusHours(24));
+        response.getWriter().write("Administrador cadastrado com sucesso!");
 
-        // envia o email (hell yeah)
-        EmailService.enviarEmailVerificacao(email, token);
 
-        response.getWriter().write("Cadastro realizado! Verifique seu email para confirmar.");
     }
 }
