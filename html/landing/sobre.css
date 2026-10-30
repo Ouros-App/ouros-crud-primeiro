@@ -270,14 +270,16 @@ a {
     position: relative;
     z-index: 0;
     isolation: isolate;
-    margin-top: 3px;
+    width: min(246px, 100%);
+    margin: 3px auto 0;
     color: #CB982D;
     font-family: 'Poppins', sans-serif;
-    font-size: 96px;
+    font-size: 64px;
     font-style: normal;
-    font-weight: 800;
-    line-height: 103.5%;
-    text-shadow: 7px 15px 9.2px rgba(14, 12, 35, .44);
+    font-weight: 700;
+    line-height: 136%;
+    text-align: center;
+    text-shadow: 0 9px 9.2px rgba(14, 12, 35, .44);
 }
 
 .sobre-hero h1 strong::before {
