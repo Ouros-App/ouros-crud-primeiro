@@ -34,14 +34,14 @@ a {
     left: 50%;
     z-index: 1000;
     display: flex;
-    width: min(1278px, calc(100% - 160px));
-    height: 80px;
+    width: min(1086px, calc(100% - 32px));
+    height: 56px;
     align-items: center;
     justify-content: center;
-    gap: 86px;
+    gap: 16.15px;
     padding: 0 14px;
     border: 1px solid rgba(232, 232, 220, .18);
-    border-radius: 30px;
+    border-radius: 25.5px;
     background: rgba(14, 12, 35, .50);
     backdrop-filter: blur(16px);
     color: #fff;
@@ -54,7 +54,7 @@ a {
 
 .sobre-logo img {
     display: block;
-    width: 149px;
+    width: 130px;
     height: auto;
 }
 
@@ -62,7 +62,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 19px;
+    gap: 16.15px;
 }
 
 .sobre-nav a,
@@ -91,36 +91,33 @@ a {
 }
 
 .sobre-acoes .sobre-entrar {
-    font-size: 17px;
-}
-
-.sobre-acoes .sobre-cadastro {
     display: inline-flex;
-    width: 117px;
-    height: 38px;
+    width: 99.45px;
+    height: 32.3px;
     align-items: center;
     justify-content: center;
-    padding: 0 18px;
+    padding: 0;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: #cb982d;
     color: var(--sobre-navy);
-    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.45px;
     font-weight: 500;
     line-height: normal;
     text-align: center;
     transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
 }
 
-.sobre-acoes .sobre-cadastro:hover,
-.sobre-acoes .sobre-cadastro:focus-visible {
+.sobre-acoes .sobre-entrar:hover,
+.sobre-acoes .sobre-entrar:focus-visible {
     border-color: rgba(232, 232, 220, .68);
     border-radius: 12px;
     background: #0e0c23;
     color: #fff;
 }
 
-.sobre-acoes .sobre-cadastro:focus-visible {
+.sobre-acoes .sobre-entrar:focus-visible {
     outline: 2px solid var(--sobre-gold);
     outline-offset: 3px;
 }
@@ -735,7 +732,7 @@ a {
         font-size: clamp(14px, 3.6vw, 20px);
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: clamp(88px, 17vw, 95px);
         height: clamp(34px, 7.17vw, 40px);
         padding: 5px 9px;
@@ -943,7 +940,7 @@ a {
         font-size: 13px;
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -1220,7 +1217,7 @@ a {
         font-size: 12px;
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: 82px;
         height: 32px;
         padding: 4px 7px;

@@ -24,15 +24,15 @@ a {
     left: 50%;
     transform: translateX(-50%);
     z-index: 1000;
-    width: min(1278px, calc(100% - 160px));
-    height: 80px;
+    width: min(1086px, calc(100% - 32px));
+    height: 56px;
     padding: 0 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 86px;
+    gap: 16.15px;
     border: 1px solid rgba(232, 232, 220, .18);
-    border-radius: 30px;
+    border-radius: 25.5px;
     background: rgba(14, 12, 35, .50);
     backdrop-filter: blur(16px);
 }
@@ -43,7 +43,7 @@ a {
 
 .logo img {
     display: block;
-    width: 149px;
+    width: 130px;
     height: auto;
 }
 
@@ -52,7 +52,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 19px;
+    gap: 16.15px;
 }
 
 #header nav a {
@@ -85,19 +85,19 @@ a {
     gap: 16px;
 }
 
-.acoes .btcadastro {
+.acoes .entrar {
     display: inline-flex;
-    width: 117px;
-    height: 38px;
+    width: 99.45px;
+    height: 32.3px;
     align-items: center;
     justify-content: center;
-    padding: 0 18px;
+    padding: 0;
     border: 1px solid transparent;
-    border-radius: 8px;
+    border-radius: 6.8px;
     background: #cb982d;
     color: #0e0c23;
     font-family: 'Poppins', sans-serif;
-    font-size: 17px;
+    font-size: 14.45px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -106,15 +106,15 @@ a {
     transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
 }
 
-.acoes .btcadastro:hover,
-.acoes .btcadastro:focus-visible {
+.acoes .entrar:hover,
+.acoes .entrar:focus-visible {
     border-color: rgba(232, 232, 220, .68);
     border-radius: 12px;
     background: #0e0c23;
     color: #fff;
 }
 
-.acoes .btcadastro:focus-visible {
+.acoes .entrar:focus-visible {
     outline: 2px solid #cf9d23;
     outline-offset: 3px;
 }
@@ -620,7 +620,7 @@ a {
         font-size: 13px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -708,7 +708,7 @@ a {
         font-size: clamp(14px, 3.6vw, 20px);
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: clamp(88px, 17vw, 95px);
         height: clamp(34px, 7.17vw, 40px);
         padding: 5px 9px;
@@ -3270,7 +3270,7 @@ a {
         font-size: 13px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -3743,7 +3743,7 @@ a {
         font-size: 12px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: 82px;
         height: 32px;
         padding: 4px 7px;
