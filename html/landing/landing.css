@@ -1235,10 +1235,25 @@ a {
     transform: none;
 }
 
+.funcionalidades-titulo .secao-titulo-linha {
+    width: 108px;
+    height: 3px;
+    margin-bottom: 20px;
+    background: #1C1A32;
+}
+
 .funcionalidades .secao-titulo {
+    width: 550px;
+    max-width: 100%;
+    height: 65px;
     padding-left: 0;
-    font-size: clamp(36px, 3.68vw, 53px);
-    line-height: 1.045;
+    color: var(--Color-4, #1C1A32);
+    font-family: 'Poppins', sans-serif;
+    font-size: 55px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 104.5%;
+    letter-spacing: -0.55px;
 }
 
 .funcionalidades-faixa {
@@ -1302,17 +1317,31 @@ a {
 }
 
 .funcionalidade-card h3 {
-    margin: 0 0 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 246px;
+    max-width: 100%;
+    height: 30px;
+    margin: 0 0 6px;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
     font-size: 20px;
+    font-style: normal;
     font-weight: 600;
-    line-height: 1.045;
+    line-height: 104.5%;
 }
 
 .funcionalidade-card p {
+    width: 252px;
+    max-width: 100%;
     margin: 0;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
     font-size: 15px;
-    line-height: 1.45;
-    color: #252331;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 145%;
 }
 
 /* Seção do ranking */
@@ -2765,6 +2794,7 @@ a {
     }
 
     .funcionalidades .secao-titulo {
+        height: auto;
         padding-left: 0;
     }
 
