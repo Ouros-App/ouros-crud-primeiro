@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Executa as operações de empresas e suas consultas paginadas.
 public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
 
     public static final String SELECT_ALL =
@@ -51,6 +52,7 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
                     "ORDER BY id " +
                     "LIMIT ? OFFSET ?";
 
+// Conta registros para que a camada de apresentação monte as páginas.
     public int contar() {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
@@ -87,6 +89,7 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
+// LIMIT e OFFSET recebem valores saneados para evitar paginação inválida.
     public List<Empresa> select_paginado(int tamanho, int offset) {
         List<Empresa> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();

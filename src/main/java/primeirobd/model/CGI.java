@@ -1,18 +1,22 @@
 package primeirobd.model;
 
 public class CGI {
-    // atributos do cgi (Consumo Geral do Integrado)
+    // Agrupa os indicadores de consumo geral do integrado, incluindo água, energia e quantidade de aves.
+
+    // Leituras e indicadores que compõem o consumo do integrado.
     private double hidrometroInicio;
     private double hidrometroFinal;
     private int galinhasEntregadas;
     private double consumoEnergetico;
 
-    //construtor
+
+    // Construtor vazio usado pelo acesso a dados.
     public CGI(){
 
     }
 
-    //metodos getters
+
+    // Acessores para leitura dos indicadores.
     public double getConsumoEnergetico() {
         return consumoEnergetico;
     }
@@ -30,7 +34,8 @@ public class CGI {
     }
 
 
-    //metodos setters
+
+    // Acessores para atualização dos indicadores.
     public void setConsumoEnergetico(double consumoEnergetico) {
         this.consumoEnergetico = consumoEnergetico;
     }
@@ -48,6 +53,7 @@ public class CGI {
     }
 
     @Override
+    // Apresentação dos indicadores registrados.
     public String toString() {
         return "\nCGI" +
                 "\nConsumo_Energetico: " + this.consumoEnergetico +

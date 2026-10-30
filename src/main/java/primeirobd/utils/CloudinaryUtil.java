@@ -5,10 +5,11 @@ import io.github.cdimascio.dotenv.Dotenv;
 import java.io.IOException;
 import java.util.Map;
 
+// Faz upload de imagens usando credenciais fora do código-fonte.
 public class CloudinaryUtil {
 
     // Carrega as variáveis do arquivo .env.
-    // ignoreIfMissing() permite iniciar mesmo se o arquivo não existir, mo dahora ;)
+    // Permite iniciar sem arquivo .env; as chaves são validadas no uso.
     public static final  Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     // Procura uma configuração primeiro nas variáveis de ambiente.
@@ -53,6 +54,7 @@ public class CloudinaryUtil {
     }
 
     // Recebe a imagem em formato de bytes e envia ao Cloudinary.
+// O arquivo é enviado como imagem e a URL segura é retornada para persistência.
     public static String enviarFoto(byte[] arquivo)
             throws IOException {
 
@@ -65,7 +67,7 @@ public class CloudinaryUtil {
                         // Organiza as imagens dentro desta pasta
                         "folder", "interback/perfis",
 
-                        // Informa que o arquivo deve ser tratado como uma imagem, afinal... eh uma imagem
+                        // Informa ao serviço que o arquivo deve ser tratado como imagem.
                         "resource_type", "image"
                 )
         );
@@ -75,7 +77,7 @@ public class CloudinaryUtil {
     }
 
     // Impede que outras classes criem instâncias desta classe.
-    // Como os métodos são estáticos, não precisamos de um objeto •ᴗ•
+    // Os métodos são estáticos, portanto a classe não precisa ser instanciada.
     private CloudinaryUtil() {
     }
 }

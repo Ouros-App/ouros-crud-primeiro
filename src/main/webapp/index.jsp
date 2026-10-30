@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- Página inicial de encaminhamento. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,6 +11,7 @@
     <base href="${pageContext.request.contextPath}/">
 </head>
 <body>
+<!-- Área principal da tela. -->
 <a href="inicio" class="MenuItem inicio">
     <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
     <a href="login" class="MenuItem">

@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <fmt:setLocale value="pt_BR"/>
+<!-- Painel inicial do sistema. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,6 +14,7 @@
     <base href="${pageContext.request.contextPath}/">
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <div class="Layout">
 
@@ -114,7 +116,8 @@
 
             <div class="Painel">
                 <div class="tabela">
-                    <table>
+                    <!-- Dados exibidos em tabela. -->
+<table>
                         <thead>
                         <tr>
                             <th>Lote</th>

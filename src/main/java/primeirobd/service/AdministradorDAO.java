@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Centraliza consultas e alterações dos administradores no banco.
 public class AdministradorDAO implements primeirobd.repository.AdministradorDAO {
     public static final String SELECT_ALL = "SELECT id,nome,cpf,email FROM administrador";
     public static final String SELECT_NOME = "SELECT nome FROM administrador";
@@ -41,7 +42,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
-    // true se OUTRO administrador já usa esse e-mail
+    // Retorna se outro administrador já usa o e-mail.
     public boolean emailEmUsoPorOutro(String email, int id) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(EXISTS_EMAIL_OUTRO)) {
@@ -55,6 +56,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
+    // A consulta também carrega a foto e o telefone usados no perfil.
     public Administrador buscarPorId(int id) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_ID)) {
@@ -274,6 +276,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
         }
     }
 
+    // A senha retornada deve ser tratada como hash, nunca como texto puro.
     public Administrador buscarPorEmail(String email) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_EMAIL)) {
@@ -282,7 +285,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (!rs.next()) {
-                    return null; // nenhum administrador com esse email
+                    return null; // Nenhum administrador foi encontrado com esse e-mail.
                 }
                 Administrador adm = new Administrador();
                 adm.setId(rs.getInt("id"));

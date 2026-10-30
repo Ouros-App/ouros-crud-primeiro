@@ -10,6 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+// Executa operações dos proprietários associados às granjas.
 public class ProprietarioGranjaDAO implements primeirobd.repository.ProprietarioGranjaDAO {
     public static final String SELECT_ALL = "SELECT id,nome,cpf,email,id_granja FROM proprietario_granja";
     public static final String SELECT_NOME = "SELECT nome FROM proprietario_granja";
@@ -246,6 +247,7 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
+// A senha lida do banco é um hash usado apenas na autenticação.
     public ProprietarioGranja buscarPorEmail(String email) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_EMAIL)) {
@@ -254,14 +256,14 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
 
             try (ResultSet rs = stmt.executeQuery()) {
                 if (!rs.next()) {
-                    return null; // nenhum usuário com esse email
+                    return null; // Nenhum usuário foi encontrado com esse e-mail.
                 }
                 ProprietarioGranja prg = new ProprietarioGranja();
                 prg.setId(rs.getInt("id"));
                 prg.setNome(rs.getString("nome"));
                 prg.setCpf(rs.getString("cpf"));
                 prg.setEmail(rs.getString("email"));
-                prg.setSenha(rs.getString("senha")); // aqui vem o HASH, não a senha pura
+                prg.setSenha(rs.getString("senha")); // O valor lido é o hash, não a senha em texto puro.
                 prg.setIdGranja(rs.getInt("id_granja"));
                 return prg;
             }
@@ -270,6 +272,7 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
             throw new RuntimeException("Erro ao buscar usuário por email.\n" + e.getMessage());
         }
     }
+// Persiste somente o hash já preparado pela camada de autenticação.
     public void atualizarSenha(int usuarioId, String senhaHash) {
         try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = conexao.prepareStatement(UPDATE_SENHA)) {

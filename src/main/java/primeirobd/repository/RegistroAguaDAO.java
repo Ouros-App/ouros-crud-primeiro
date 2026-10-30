@@ -7,21 +7,23 @@ import java.sql.*;
 import java.util.List;
 
 public interface RegistroAguaDAO {
+    // Busca registros de água por diferentes critérios.
     List<RegistroAgua> select_all();
     List<RegistroAgua> select_lote();
     List<RegistroAgua> select_data();
     List<RegistroAgua> select_hidroInic();
     List<RegistroAgua> select_hidroFim();
-    //---------------------------------------------
+    // Remove e salva registros de água.
     String delete(int id);
     String insert(RegistroAgua reA);
-    //---------------------------------------------
+    // Atualiza os dados do registro de água.
     String update_id(int idNew, int idOld);
     String update_idLote(String lotNew, String lotOld);
     String update_data(Date dataNew, Date dataOld);
     String update_hidroInic(double hidroNew, double hidroOld);
     String update_hidroFim(double hidroNew, double hidroOld);
 
+    // Conta e busca registros filtrados com ordenação e paginação.
     int contar(String busca);
     List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor);
 

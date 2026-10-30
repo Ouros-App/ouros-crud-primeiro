@@ -2,6 +2,7 @@ package primeirobd.utils;
 import java.util.regex.Pattern;
 import java.util.Set;
 
+// Reúne validações de formato usadas nos formulários.
 public class Validador {
     // E-mail: padrão comum
     private static final Pattern EMAIL_PATTERN =
@@ -52,6 +53,7 @@ public class Validador {
        Valida o CPF de verdade: formato + dígitos verificadores +
        rejeita sequências repetidas (111.111.111-11 etc, que passam no formato mas são inválidas)
      */
+// Confere formato, dígitos verificadores e sequências repetidas.
     public static boolean isCpfValido(String cpf) {
         if (cpf == null) return false;
 
@@ -90,6 +92,7 @@ public class Validador {
         return dv2 == nums[10];
     }
 
+// Confere formato, dígitos verificadores e valores repetidos.
     public static boolean isCnpjValido(String cnpj) {
         if (cnpj == null) return false;
         cnpj = cnpj.trim();

@@ -9,14 +9,14 @@ body {
     background-color: #ffffff;
 }
 
-/* LAYOUT */
+/* Estrutura geral das páginas. */
 
 .Layout {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* Menu lateral e identificação do usuário. */
 
 .Sidebar {
     width: 220px;
@@ -137,7 +137,7 @@ body {
     color: #9ca3af;
 }
 
-/* CONTEÚDO */
+/* Área principal e títulos. */
 
 .Conteudo {
     flex: 1;
@@ -188,7 +188,7 @@ body {
     background-color: #d99400;
 }
 
-/* PAINEL */
+/* Cartões, filtros e ações. */
 
 .Painel {
     background-color: #ffffff;
@@ -291,7 +291,7 @@ body {
     pointer-events: none;
 }
 
-/* TABELA */
+/* Listagens em tabela. */
 
 .tabela {
     width: 100%;
@@ -377,7 +377,7 @@ body {
     height: 16px;
 }
 
-/* RODAPÉ */
+/* Rodapé das tabelas e paginação. */
 
 .RodapeTabela {
     display: flex;
@@ -543,7 +543,7 @@ body {
     border: 0;
 }
 
-/* TOPBAR */
+/* Barra superior das telas. */
 
 .Topbar {
     display: flex;
@@ -595,7 +595,7 @@ body {
     background: linear-gradient(135deg, #f4a900, #b98407);
 }
 
-/* ALTERNADOR (ABAS) */
+/* Abas de seleção. */
 
 .Alternador {
     display: inline-flex;
@@ -632,7 +632,7 @@ body {
     outline-offset: 2px;
 }
 
-/* BADGES DE STATUS */
+/* Indicadores de status. */
 
 .Status {
     display: inline-block;
@@ -658,7 +658,7 @@ body {
     color: #b32424;
 }
 
-/* DASHBOARD */
+/* Indicadores do painel inicial. */
 
 .BannerInicio {
     position: relative;
@@ -840,12 +840,7 @@ body {
     }
 }
 
-/* ============================================
-   PÁGINA DE LOGIN
-   Reaproveita a mesma paleta do sistema:
-   #0E0C23 (navy), #f4a900 (laranja/dourado),
-   #f4f4f7 (fundo claro), #6b7280 / #9ca3af (texto neutro)
-============================================ */
+/* Seção de estilos complementares. */
 
 .LoginPage {
     width: 100%;
@@ -874,7 +869,7 @@ body {
     overflow: hidden;
 }
 
-/* Painel de marca (lado esquerdo) */
+/* Área de marca das telas de acesso. */
 
 .LoginMarca {
     position: relative;
@@ -974,7 +969,7 @@ body {
     max-width: 328px;
 }
 
-/* Mesmo mascote, com escala e posição consistentes nas três telas de acesso. */
+/* Mascote das telas de acesso. */
 .MascoteLogin {
     position: absolute;
     right: 38px;
@@ -985,7 +980,7 @@ body {
     pointer-events: none;
 }
 
-/* Mascote da tela "esqueci minha senha" */
+/* Mascote da recuperação de senha. */
 .MascoteSenha {
     position: absolute;
     right: 20px;
@@ -995,7 +990,7 @@ body {
     pointer-events: none;
 }
 
-/* Painel de formulário (lado direito) */
+/* Área de formulário das telas de acesso. */
 
 .LoginFormulario {
     justify-self: center;
@@ -1201,7 +1196,7 @@ body {
 
 }
 
-/* Medidas específicas do protótipo de recuperação de conta. */
+/* Medidas da recuperação de conta. */
 .LoginPage--recuperacao .LoginFormulario {
     justify-content: flex-start;
     padding-top: 72px;
@@ -1298,13 +1293,7 @@ body {
     }
 }
 
-/* ============================================
-   FORMULÁRIO DE CADASTRO
-   Usado nas páginas "Nova granja", "Novo lote",
-   "Novo funcionário", "Novo registro" e "Nova meta".
-   Label sempre em cima do campo, com espaço de
-   sobra — evita o visual apertado.
-============================================ */
+/* Seção de estilos complementares. */
 
 .FormPainel {
     background-color: #ffffff;
@@ -1404,10 +1393,7 @@ body {
     }
 }
 
-/* ============================================
-   PERFIL
-   Área do avatar no topo da página de perfil
-============================================ */
+/* Seção de estilos complementares. */
 
 .PerfilAvatarArea {
     display: flex;
@@ -1457,7 +1443,7 @@ body {
     margin-bottom: 16px;
 }
 
-/* Rodapé de link centralizado, usado na tela de "Esqueceu sua senha" */
+/* Link inferior das telas de acesso. */
 
 .LoginRodape {
     display: flex;
@@ -1498,7 +1484,7 @@ body {
     font-size: inherit;
 }
 
-/* RESPONSIVO */
+/* Ajustes para telas menores. */
 
 @media (max-width: 768px) {
     .Layout {
@@ -1566,7 +1552,7 @@ body {
     }
 }
 
-/* FORMULÁRIOS DE CADASTRO E EDIÇÃO */
+/* Campos dos formulários. */
 .EditorPagina {
     min-height:100dvh;
     background:#c6cad4;
@@ -1834,7 +1820,7 @@ body {
 
 
 
-/* Pop-ups sobre a listagem — referência Figma */
+/* Janelas de formulário sobre as listagens. */
 .FormularioModal {
     margin: auto;
     padding: 0;
@@ -1978,7 +1964,7 @@ body {
     }
 }
 
-/* Confirmação de exclusão */
+/* Janelas de confirmação. */
 
 .FormularioModal.FormularioModal--excluir {
     width: min(340px, calc(100vw - 32px));
@@ -2133,7 +2119,7 @@ body {
     .EditorCancelar, .EditorSalvar { min-width: 110px; min-height: 48px; font-size: 15px; }
 }
 
-/* Redefinição de senha */
+/* Formulário de redefinição de senha. */
 .RedefinirFormulario {
     display: flex;
     flex-direction: column;
@@ -2180,7 +2166,7 @@ body {
     }
 }
 
-/* Ajustes da tela de acesso */
+/* Ajustes das telas de acesso. */
 .LoginAcessoFormulario {
     display: flex;
     flex-direction: column;
@@ -2222,7 +2208,7 @@ body {
     }
 }
 
-/* Ajustes da página de perfil */
+/* Ajustes da tela de perfil. */
 .PerfilFormulario {
     width: 100%;
     max-width: none;
@@ -2298,7 +2284,7 @@ body {
     }
 }
 
-/* Confirmação de exclusão */
+/* Janelas de confirmação. */
 .ExcluirPagina {
     min-height: 100dvh;
     margin: 0;
@@ -2425,7 +2411,7 @@ body {
     }
 }
 
-/* Seção de cadastro de novo administrador */
+/* Cadastro de novo administrador. */
 .SecaoNovoAdmin {
     display: flex;
     align-items: center;

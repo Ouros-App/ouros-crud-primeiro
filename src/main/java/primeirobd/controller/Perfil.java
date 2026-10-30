@@ -21,10 +21,8 @@ import java.io.InputStream;
 @WebServlet(name = "Perfil", value = "/perfil")
 
 /*
-  Permite receber requisições contendo arquivos enviados por formulários.
-
-  maxFileSize: tamanho máximo de um arquivo = 2 MB.
-  maxRequestSize: tamanho máximo da requisição inteira = 3 MB.
+   Permite receber a foto enviada pelo formulário e limita o tamanho do arquivo
+   e da requisição completa.
  */
 @MultipartConfig(
         maxFileSize = 2 * 1024 * 1024,
@@ -34,7 +32,7 @@ public class Perfil extends HttpServlet {
 
     private static final long LIMITE_FOTO = 2 * 1024 * 1024;
 
-    // dao do adm
+    // Acesso aos dados do administrador.
     private final AdministradorDAO dao = new AdministradorDAO();
 
     @Override
@@ -43,11 +41,8 @@ public class Perfil extends HttpServlet {
             HttpServletResponse response
     ) throws ServletException, IOException {
 
-        /*
-           Procura uma sessão existente.
-           O false impede que uma nova sessão seja criada
-           caso o usuário ainda não tenha uma.
-         */
+        // Usa a sessão existente; sem ela, o usuário precisa fazer login.
+
         HttpSession sessao = request.getSession(false);
 
         if (sessao == null ||
@@ -59,13 +54,13 @@ public class Perfil extends HttpServlet {
             return;
         }
 
-        // Recupera o ID do administrador armazenado na sessão.
+        // Recupera da sessão o administrador que está acessando o perfil.
         int id = (Integer) sessao.getAttribute("administradorId");
 
-        // Busca os dados do administrador no banco de dados.
+        // Busca os dados atualizados do administrador.
         Administrador adm = dao.buscarPorId(id);
 
-        // se não existir, então mostra 404
+        // Sem cadastro correspondente, informa que o recurso não existe.
         if (adm == null) {
             response.sendError(
                     HttpServletResponse.SC_NOT_FOUND,
@@ -74,7 +69,7 @@ public class Perfil extends HttpServlet {
             return;
         }
 
-        // manda pro jsp
+        // Envia os dados para a página de perfil.
         request.setAttribute("administrador", adm);
 
         request.getRequestDispatcher(
@@ -83,7 +78,7 @@ public class Perfil extends HttpServlet {
     }
 
 
-    // o post remove a foto ou salva dados pessoais, senha e foto
+    // Remove a foto ou salva os dados pessoais, a senha e uma nova foto.
     @Override
     protected void doPost(
             HttpServletRequest request,
@@ -92,10 +87,10 @@ public class Perfil extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        // recupera a sessão existente
+        // Recupera a sessão existente para autorizar a alteração.
         HttpSession sessao = request.getSession(false);
 
-        // sem sessao não pode alterar o perfil
+        // Sem uma sessão válida, não é permitido alterar o perfil.
         if (sessao == null ||
                 sessao.getAttribute("administradorId") == null) {
 
@@ -105,30 +100,28 @@ public class Perfil extends HttpServlet {
             return;
         }
 
-        // identifica qual administrador está fazendo a alteração.
+        // Identifica o administrador que está fazendo a alteração.
         int id = (Integer) sessao.getAttribute("administradorId");
 
         try {
 
-            /*
-               verifica se o formulário solicitou a remoção da foto.
-               o parâmetro removerFoto precisa ter o valor "true".
-             */
+            // Remove a foto somente quando o formulário envia a confirmação explícita.
+
             String remover = request.getParameter("removerFoto");
 
             if ("true".equals(remover)) {
 
-                // atualiza o banco, deixando a URL da foto como null.
+                // Remove do cadastro a referência para a foto.
                 dao.atualizarFotoPerfil(id, null);
 
-                // redireciona e informa que a foto foi removida
+                // Volta ao perfil informando que a foto foi removida.
                 response.sendRedirect(
                         request.getContextPath() + "/perfil?foto=removida"
                 );
                 return;
             }
 
-            // dados enviados pelo formulário
+            // Lê os dados enviados pelo formulário.
             String nome = request.getParameter("nome");
             String telefone = request.getParameter("telefone");
             String senhaAtual = request.getParameter("senhaAtual");
@@ -138,7 +131,7 @@ public class Perfil extends HttpServlet {
             nome = nome == null ? "" : nome.trim();
             telefone = telefone == null ? "" : telefone.trim();
 
-            // dados atuais do banco (usados para conferir a senha atual)
+            // Busca os dados atuais, inclusive para conferir a senha.
             Administrador atual = dao.buscarPorId(id);
 
             if (atual == null) {
@@ -149,7 +142,7 @@ public class Perfil extends HttpServlet {
                 return;
             }
 
-            // 1) VALIDAÇÕES (nada é gravado antes de passar por todas)
+            // Valida tudo antes de alterar qualquer informação.
             StringBuilder erros = new StringBuilder();
 
             if (nome.isEmpty()) {
@@ -160,8 +153,7 @@ public class Perfil extends HttpServlet {
                 erros.append("- Telefone inválido.\n");
             }
 
-            // só é troca de senha se a pessoa preencheu a nova senha ou a confirmação.
-            // a senha atual sozinha pode vir do preenchimento automático do navegador.
+            // Só troca a senha quando a nova senha ou a confirmação foi preenchida.
             boolean trocarSenha = (senhaNova != null && !senhaNova.isEmpty())
                     || (senhaConfirma != null && !senhaConfirma.isEmpty());
 
@@ -181,7 +173,7 @@ public class Perfil extends HttpServlet {
                 }
             }
 
-            // foto (opcional): valida tamanho e tipo
+            // A foto é opcional, mas precisa ter tamanho e formato permitidos.
             Part parte = request.getPart("foto");
             boolean temFoto = parte != null && parte.getSize() > 0;
 
@@ -198,7 +190,7 @@ public class Perfil extends HttpServlet {
                 }
             }
 
-            // se houve erro, volta para a página mantendo o que foi digitado
+            // Em caso de erro, retorna ao formulário com os dados já preenchidos.
             if (erros.length() > 0) {
                 atual.setNome(nome);
                 atual.setTelefone(telefone);
@@ -210,22 +202,22 @@ public class Perfil extends HttpServlet {
                 return;
             }
 
-            // 2) UPLOAD DA FOTO (antes de gravar, para não salvar pela metade)
+            // Envia a foto antes de gravar os demais dados, evitando um cadastro incompleto.
             String urlFoto = null;
 
             if (temFoto) {
                 byte[] bytes;
 
-                // try-with-resources fecha o fluxo automaticamente
+                // O fluxo é fechado automaticamente ao terminar a leitura.
                 try (InputStream entrada = parte.getInputStream()) {
                     bytes = entrada.readAllBytes();
                 }
 
-                // envia para o Cloudinary, que devolve a URL da imagem
+                // Envia a imagem e recebe o endereço que será salvo no cadastro.
                 urlFoto = CloudinaryUtil.enviarFoto(bytes);
             }
 
-            // 3) GRAVAÇÃO NO BANCO
+            // Grava os dados validados no banco.
             dao.atualizarDados(id, nome);
 
             if (!telefone.isEmpty()) {
@@ -240,24 +232,22 @@ public class Perfil extends HttpServlet {
                 dao.atualizarFotoPerfil(id, urlFoto);
             }
 
-            // sucesso
+            // Conclui a alteração e informa o sucesso ao usuário.
             response.sendRedirect(
                     request.getContextPath() + "/perfil?salvo=1"
             );
 
         } catch (IllegalStateException e) {
 
-            /*
-               exceção relacionada ao estado da requisição multipart,
-               incluindo limites de tamanho, ou à configuração do Cloudinary.
-             */
+            // Trata problemas no envio da foto ou nos limites da requisição.
+
             throw new ServletException(
                     "Verifique o tamanho da imagem e as configurações do Cloudinary.", e
             );
 
         } catch (Exception e) {
 
-            // outras falhas: envio da imagem ou atualização do banco
+            // Trata outras falhas no envio da imagem ou na atualização do banco.
             throw new ServletException(
                     "Não foi possível salvar o perfil.", e
             );

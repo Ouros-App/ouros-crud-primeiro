@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!-- Formulário de edição de granja. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,12 +11,14 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
+<!-- Área principal da tela. -->
 <main class="EditorCartao" aria-labelledby="editorTitulo">
     <header class="EditorCabecalho">
         <h1 id="editorTitulo">Editar Granja</h1>
         <a class="EditorFechar" href="${pageContext.request.contextPath}/granjas" aria-label="Fechar">×</a>
     </header>
-    <form action="${pageContext.request.contextPath}/granjas" method="post" target="_top">
+    <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/granjas" method="post" target="_top">
         <input type="hidden" name="acao" value="editar">
         <input type="hidden" name="id" value="${granjaSelecionada.id}">
         <div class="EditorGrid">
@@ -69,6 +72,7 @@
         </footer>
     </form>
 </main>
+<!-- Comportamentos da tela. -->
 <script>
     if (window.parent !== window) {
         document.body.classList.add('EditorEmModal');

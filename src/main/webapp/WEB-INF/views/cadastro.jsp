@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- Tela de criação de conta. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -154,6 +155,7 @@
 </head>
 
 <body>
+<!-- Área principal da tela. -->
 
 <main class="LoginPage">
     <div class="LoginShell">
@@ -256,7 +258,8 @@
                  role="alert"
                  aria-live="polite"></div>
 
-            <form action="${pageContext.request.contextPath}/cadastro"
+            <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/cadastro"
                   method="post"
                   id="formCadastro">
 
@@ -347,6 +350,7 @@
     </div>
 </main>
 
+<!-- Comportamentos da tela. -->
 <script>
     const formularioCadastro = document.getElementById("formCadastro");
     const senhaCadastro = document.getElementById("senha");

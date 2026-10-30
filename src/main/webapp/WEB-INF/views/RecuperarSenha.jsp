@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!-- Tela para solicitar recuperação de senha. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -12,6 +13,7 @@
     <link rel="icon" type="image/png" href="img/Asa-icon.png">
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <div class="LoginPage">
     <div class="LoginShell">
@@ -76,7 +78,8 @@
             </div>
 
 
-            <form action="RecuperarSenha" method="post">
+            <!-- Campos e ações da tela. -->
+<form action="RecuperarSenha" method="post">
                 <div class="LoginCampoGrupo">
                     <label class="LoginCampoLabel" for="email">Email</label>
                     <input class="LoginCampoInput" type="email" id="email" name="email"
@@ -85,7 +88,7 @@
 
                 <button type="submit" class="LoginBotao">Enviar link</button>
 
-                <%-- mensagens vindas do servlet (?status=... e ?erro=...) --%>
+                <!-- mensagens vindas do servlet (?status=... e ?erro=...) -->
                 <c:if test="${param.status == 'enviado'}">
                     <p class="LoginSubtitulo" role="status">
                         Se esse e-mail estiver cadastrado, enviamos um link para redefinir sua senha.

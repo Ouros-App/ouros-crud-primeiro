@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Persiste leituras de água e calcula o status comparativo na listagem.
 public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     public static final String SELECT_ALL = "SELECT * FROM registro_agua";
     public static final String SELECT_ID_LOTE = "SELECT id_lote FROM registro_agua";
@@ -75,6 +76,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
+// A ordenação é escolhida por uma lista fixa antes de montar o SQL.
     public List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor) {
         String colunaOrdenacao;
         if ("lote".equals(ordenarPor)) {
@@ -131,6 +133,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
+// Atualiza a leitura completa mantendo seus valores numéricos no banco.
     public String update_registro(RegistroAgua rea) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
@@ -146,7 +149,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    // metodo select :D
+    // Lista os registros para consultas administrativas.
     public List<RegistroAgua> select_all() {
         List<RegistroAgua> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -236,7 +239,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    // metodo insert :O
+    // Insere um novo registro.
     public String insert(RegistroAgua rea) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
@@ -251,7 +254,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    // metodo delete :)
+    // Exclui o registro identificado.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
@@ -263,7 +266,7 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    // metodo update :P
+    // Atualiza o registro identificado.
     public String update_id(int idNew,int idOld ){
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {

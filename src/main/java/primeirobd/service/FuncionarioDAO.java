@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Reúne operações de funcionários, telefones, filtros e paginação.
 public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
     public static final String SELECT_ALL = "SELECT * FROM funcionario";
     public static final String SELECT_NOME = "SELECT nome FROM funcionario";
@@ -169,6 +170,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
+// A lista fixa de colunas evita SQL dinâmico vindo diretamente do usuário.
     private String colunaOrdem(String ordenarPor) {
         return "setor".equals(ordenarPor) ? "funcionario.setor" : "funcionario.nome"; // whitelist
     }
@@ -364,7 +366,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    // metodo select :D
+    // Lista os registros para consultas administrativas.
     public List<Funcionario> select_all() {
         List<Funcionario> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -472,7 +474,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    // metodo delete :)
+    // Exclui o registro identificado.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(DELETE_FUNCIONARIO_E_TELEFONE)){
@@ -485,7 +487,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    // metodo insert :O
+    // Insere um novo registro.
     public String insert_funcionario_com_telefone(Funcionario fun, List<Empresa> empresas) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(INSERT_FUNCIONARIO_COM_TELEFONE)) {
@@ -506,7 +508,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
-    // metodo update :P
+    // Atualiza o registro identificado.
     public String update_id(int idNew, int idOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
@@ -585,6 +587,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         }
     }
 
+// Atualiza funcionário e telefone na mesma transação.
     public String update_funcionario_com_telefone(Funcionario fun, int idEmpresa) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try {

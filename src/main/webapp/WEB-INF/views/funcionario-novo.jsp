@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!-- Formulário de novo funcionário. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -9,11 +10,13 @@
 <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
+<!-- Área principal da tela. -->
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
 <h1 id="editorTitulo">Novo Funcionário</h1>
 <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
+<!-- Campos e ações da tela. -->
 <form action="${pageContext.request.contextPath}/funcionarios" method="post" target="_top" data-editor="funcionario">
 <input type="hidden" name="acao" value="inserir">
 <div class="EditorGrid">
@@ -50,6 +53,7 @@
 </p>
 </form>
 </main>
+<!-- Comportamentos da tela. -->
 <script>
 (() => {
  const form=document.querySelector('[data-editor]'); if(!form)return;

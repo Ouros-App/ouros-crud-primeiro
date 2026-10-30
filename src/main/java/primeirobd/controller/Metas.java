@@ -23,15 +23,15 @@ public class Metas extends HttpServlet {
     private MetaDAO meta;
     private GranjaDAO granja;
 
-    // valores aceitos pelo CHECK chk_meta_status
+    // Valores permitidos para o status da meta.
     private static final Set<String> STATUS = Set.of("NAO_INICIADA", "EM_ANDAMENTO", "FINALIZADA");
 
-    // tipos de meta que já existem no banco (o formulário oferece AGUA e ENERGIA)
+    // Tipos de meta aceitos pelo cadastro.
     private static final Set<String> TIPOS_META = Set.of(
             "AGUA", "ENERGIA", "CUSTO", "DESEMPENHO", "SANIDADE", "MORTALIDADE",
             "SUSTENTABILIDADE", "INFRAESTRUTURA", "ESTADUAL", "REGIONAL", "GLOBAL");
 
-    // maior valor que cabe em numeric(10,2)
+    // Maior valor permitido pelo campo numérico do banco.
     private static final BigDecimal LIMITE = new BigDecimal("99999999.99");
 
     @Override
@@ -46,11 +46,11 @@ public class Metas extends HttpServlet {
 
         String acao = request.getParameter("acao");
 
-        // alternador: ?tipo=individual (padrão) ou ?tipo=estadual
+        // Define qual aba de metas será exibida.
         boolean individual = !"estadual".equals(request.getParameter("tipo"));
         request.setAttribute("tipo", individual ? "individual" : "estadual");
 
-        // abre o formulário de nova meta (carregado dentro do modal)
+        // Abre o formulário de nova meta dentro do modal.
         if ("inserir".equals(acao)) {
             request.setAttribute("granjas", granja.select_all());
             getServletContext()
@@ -59,7 +59,7 @@ public class Metas extends HttpServlet {
             return;
         }
 
-        // abre o formulário de edição
+        // Abre o formulário de edição da meta selecionada.
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -79,7 +79,7 @@ public class Metas extends HttpServlet {
             return;
         }
 
-        // abre a confirmação de exclusão
+        // Abre a confirmação de exclusão da meta selecionada.
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -132,7 +132,7 @@ public class Metas extends HttpServlet {
         String acao = request.getParameter("acao");
         String contexto = request.getContextPath();
         boolean individual = !"estadual".equals(request.getParameter("tipo"));
-        // depois de salvar ou excluir, volta para a aba (individual ou estadual) da meta
+        // Mantém a aba selecionada depois de salvar ou excluir.
         String tipoVolta = individual ? "individual" : "estadual";
 
         if ("excluir".equals(acao)) {
@@ -152,7 +152,7 @@ public class Metas extends HttpServlet {
             return;
         }
 
-        // pega os valores que o usuário inseriu no formulário
+        // Lê os dados enviados pelo formulário.
         String titulo = request.getParameter("titulo");
         String descricao = request.getParameter("descricao");
         String tipoMeta = request.getParameter("tipoValor");
@@ -167,7 +167,7 @@ public class Metas extends HttpServlet {
         try {
             alvo = new BigDecimal(request.getParameter("alvo")).setScale(2, RoundingMode.HALF_UP);
 
-            // só a meta individual tem granja
+            // Metas individuais precisam indicar uma granja.
             if (individual) {
                 idGranja = Integer.parseInt(request.getParameter("granja"));
             }
@@ -191,7 +191,7 @@ public class Metas extends HttpServlet {
             return;
         }
 
-        // na meta individual a granja precisa existir
+        // Confirma que a granja informada existe antes de salvar.
         if (individual) {
             boolean granjaExiste = false;
 
@@ -215,7 +215,7 @@ public class Metas extends HttpServlet {
         met.setValorAlvo(alvo);
         met.setIndividual(individual);
 
-        // o CHECK do banco exige: individual tem granja, estadual não tem
+        // Mantém os campos de granja, região e estado de acordo com o tipo da meta.
         if (individual) {
             met.setIdGranja(idGranja);
             met.setRegiao(null);

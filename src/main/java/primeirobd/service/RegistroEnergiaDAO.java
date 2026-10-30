@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Persiste consumos de energia e expõe sua classificação comparativa.
 public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergiaDAO {
     public static final String SELECT_ALL = "SELECT * FROM registro_energia";
     public static final String SELECT_ID_LOTE = "SELECT id_lote FROM registro_energia";
@@ -73,6 +74,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
+// O parâmetro de ordenação nunca é incorporado diretamente ao SQL.
     public List<RegistroEnergia> select_paginado(String busca, int tamanho, int offset, String ordenarPor) {
         // Nunca inserir diretamente um parâmetro do usuário no ORDER BY.
         String colunaOrdenacao;
@@ -108,7 +110,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    // Metodo select por id (usado nos formulários de editar e excluir).
+    // Busca um registro para edição ou exclusão.
     public RegistroEnergia select_by_id(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
@@ -130,6 +132,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
     // metodo update completo (todos os campos do registro são editáveis)
+// Atualiza data, consumo e lote do registro.
     public String update_registro(RegistroEnergia ree) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
@@ -144,7 +147,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    // metodo select :D
+    // Lista os registros para consultas administrativas.
     public List<RegistroEnergia> select_all() {
         List<RegistroEnergia> resultado = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -217,7 +220,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
 
-    // metodo insert :O
+    // Insere um novo registro.
     public String insert(RegistroEnergia ree) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
@@ -231,7 +234,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    // metodo delete :)
+    // Exclui o registro identificado.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
@@ -243,7 +246,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    // metodo update :P
+    // Atualiza o registro identificado.
     public String update_id(int idNew,int idOld ){
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {

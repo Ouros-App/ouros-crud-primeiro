@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!-- Lista de funcionários cadastrados. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,6 +12,7 @@
     <base href="${pageContext.request.contextPath}/">
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <div class="Layout">
 
@@ -75,7 +77,8 @@
         <div class="Painel">
 
             <div>
-                <form action="${pageContext.request.contextPath}/funcionarios" method="get" class="FormBusca">
+                <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/funcionarios" method="get" class="FormBusca">
                     <div class="CampoBusca">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="7"></circle>
@@ -105,7 +108,8 @@
             <br>
 
             <div class="tabela">
-                <table>
+                <!-- Dados exibidos em tabela. -->
+<table>
                     <thead>
                     <tr>
                         <th>Nome</th>
@@ -199,6 +203,7 @@
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de funcionários" class="FormularioFrame"></iframe></dialog>
 <dialog></dialog>
+<!-- Comportamentos da tela. -->
 <script>
     function abrirForms(url) {
         const d = document.getElementById('formularioModal');

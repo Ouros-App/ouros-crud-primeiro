@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!-- Lista de metas cadastradas. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -64,6 +65,7 @@
     </style>
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <div class="Layout">
 
@@ -135,7 +137,8 @@
             </div>
 
             <div class="Filtros">
-                <form action="${pageContext.request.contextPath}/metas" method="get" class="FormBusca">
+                <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/metas" method="get" class="FormBusca">
                     <input type="hidden" name="tipo" value="${tipo}">
                     <div class="CampoBusca">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -160,7 +163,8 @@
             </div>
 
             <div class="tabela">
-                <table>
+                <!-- Dados exibidos em tabela. -->
+<table>
                     <thead>
                     <tr>
                         <th>Título</th>
@@ -267,6 +271,7 @@
 </div>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de metas" class="FormularioFrame"></iframe></dialog>
+<!-- Comportamentos da tela. -->
 <script>
     (function () {
         const dialog = document.getElementById('formularioModal');

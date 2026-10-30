@@ -35,7 +35,7 @@ public class Lotes extends HttpServlet{
 
         String acao = request.getParameter("acao");
 
-        // abre o formulário de novo lote (carregado dentro do modal)
+        // Abre o formulário de novo lote dentro do modal.
         if ("inserir".equals(acao)) {
             request.setAttribute("granjas", granja.select_all());
             getServletContext()
@@ -44,7 +44,7 @@ public class Lotes extends HttpServlet{
             return;
         }
 
-        // abre o formulário de edição
+        // Abre o formulário de edição do lote selecionado.
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -64,7 +64,7 @@ public class Lotes extends HttpServlet{
             return;
         }
 
-        // abre a confirmação de exclusão
+        // Abre a confirmação de exclusão do lote selecionado.
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));

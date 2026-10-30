@@ -2,6 +2,7 @@ package primeirobd.service;
 
 import java.sql.*;
 
+// Mantém o telefone associado ao administrador.
 public class TelefoneAdminDAO {
 
     private static final String INSERT =
@@ -20,7 +21,8 @@ public class TelefoneAdminDAO {
         }
     }
 
-    // atualiza se já existe; se não existe, insere
+    // Atualiza o telefone ou insere o vínculo quando necessário.
+// Atualiza o telefone existente ou cria o vínculo quando necessário.
     public void salvar(int usuarioId, String telefone) {
         try (Connection c = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = c.prepareStatement(UPDATE)) {

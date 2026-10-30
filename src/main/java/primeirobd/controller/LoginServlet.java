@@ -81,7 +81,7 @@ public class LoginServlet extends HttpServlet {
         sessao.setAttribute("administradorId", administrador.getId());
         sessao.setAttribute("administradorNome", administrador.getNome());
 
-        // CORREÇÃO: utiliza o servlet /inicio.
+        // Após o login, direciona o administrador para a página inicial.
         response.sendRedirect(contexto + "/inicio");
     }
 }

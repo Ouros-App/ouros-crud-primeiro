@@ -3,7 +3,9 @@ package primeirobd.model;
 import java.math.BigDecimal;
 
 public class Meta {
-    // atributos da tabela
+    // Representa uma meta de acompanhamento, com escopo, situação e valor esperado.
+
+    // Identificação, escopo, situação e valor esperado da meta.
     private int id;
     private String descricao;
     private String estado;
@@ -16,12 +18,14 @@ public class Meta {
     private BigDecimal valorAlvo;
     private String nomeGranja;
 
-    //construtor
+
+    // Construtor vazio usado pelo acesso a dados.
     public Meta() {
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados da meta.
     public int getId() {
         return id;
     }
@@ -66,8 +70,9 @@ public class Meta {
         return nomeGranja;
     }
 
-//metodos setters
 
+
+    // Acessores para atualização dos dados da meta.
     public void setId(int id) {
         this.id = id;
     }
@@ -104,7 +109,7 @@ public class Meta {
         this.titulo = titulo;
     }
 
-    public void setValorAlvo(BigDecimal valorAlvo) {   // era float
+    public void setValorAlvo(BigDecimal valorAlvo) {
         this.valorAlvo = valorAlvo;
     }
 
@@ -113,6 +118,7 @@ public class Meta {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nMETA" +
                 "\nId: " + this.id +

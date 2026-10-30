@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Reúne dados de granjas, endereços, responsáveis e indicadores.
 public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
     public static final String SELECT_ALL =
@@ -232,6 +233,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
 
     // Paginação integrada à busca, à localização e à ordenação.
+// A consulta combina filtros, ordenação segura, paginação e cálculo de CGI.
     public List<Granja> select_paginado(
             int tamanho,
             int offset,
@@ -361,7 +363,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                 gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
                 gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
 
-                // Preserva o cálculo antigo sem acessar posição inexistente.
+                // Mantém o cálculo antigo sem acessar uma posição inexistente.
                 if (contador < informacoesCGI.size()
                         && informacoesCGI.get(contador).getGalinhasEntregadas() > 0) {
                     gra.setCgi(CalculoCGI.calcularCGI(gra, informacoesCGI, contador));
@@ -470,7 +472,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    // Metodo select por id
+    // Busca uma granja pelo identificador.
     public Granja select_by_id(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
@@ -499,7 +501,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
         }
     }
 
-    // Metodo insert
+    // Insere a granja e seu endereço relacionado.
     public String insert(Granja gra) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
@@ -522,7 +524,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
         }
     }
 
-    // Metodo update na tabela de granja e de endereco
+    // Atualiza granja e endereço na mesma transação.
     public String update_granja_com_endereco(Granja gra) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try {
@@ -556,7 +558,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
         }
     }
 
-    // Metodo delete.
+    // Exclui a granja e suas dependências relacionadas.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 
@@ -571,7 +573,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    // Metodos update.
+    // Métodos de atualização compatíveis com a interface legada.
     public String update_id(int idNew, int idOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 

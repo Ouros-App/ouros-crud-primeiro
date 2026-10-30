@@ -28,7 +28,7 @@ public class Funcionarios extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Descobre qual página foi pedida .-.
+        // Lê a página solicitada para montar a lista paginada.
         int pagina = Paginacao.lerPagina(request);
 
         String buscaUsuario = request.getParameter("buscaFuncionario");
@@ -231,7 +231,7 @@ public class Funcionarios extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         try{
-            // pega os valores que o usuário inseriu no formulário
+            // Lê os dados enviados pelo formulário.
             String acao = request.getParameter("acao");
             String novoNome = request.getParameter("nome");
             String novoCpf = request.getParameter("cpf");

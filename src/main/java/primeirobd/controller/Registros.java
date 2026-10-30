@@ -25,7 +25,7 @@ public class Registros extends HttpServlet {
 
     private static final int TAMANHO_PAGINA = 5;
 
-    // maior valor que cabe em numeric(10,2)
+    // Maior valor permitido pelo campo numérico do banco.
     private static final BigDecimal LIMITE = new BigDecimal("99999999.99");
 
     private final RegistroAguaDAO registroAguaDAO = new RegistroAguaDAO();
@@ -53,7 +53,7 @@ public class Registros extends HttpServlet {
 
         request.setAttribute("tipoAtual", tipo);
 
-        // abre o formulário de novo registro (carregado dentro do modal)
+        // Abre o formulário de novo registro dentro do modal.
         if ("inserir".equals(acao)) {
             request.setAttribute("lotes", loteDAO.select_all_join_paginado());
             request.getRequestDispatcher("/WEB-INF/views/registro-novo.jsp")
@@ -61,7 +61,7 @@ public class Registros extends HttpServlet {
             return;
         }
 
-        // abre o formulário de edição ou a confirmação de exclusão
+        // Abre a edição ou a confirmação de exclusão do registro selecionado.
         if ("editar".equals(acao) || "excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));

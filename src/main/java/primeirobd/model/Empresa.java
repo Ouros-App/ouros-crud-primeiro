@@ -1,14 +1,17 @@
 package primeirobd.model;
 
 public class Empresa {
-    // variáveis
+    // Representa uma empresa integrada ao sistema e seus dados corporativos.
+
+    // Identificação e dados corporativos da empresa.
     private int id;
     private String nome;
     private String telefoneCorporativo;
     private String emailCorporativo;
     private String cnpj;
 
-    // construtor
+
+    // Construtor vazio usado pelo acesso a dados.
     public Empresa() {
     }
 
@@ -19,7 +22,8 @@ public class Empresa {
         this.cnpj = cnpj;
     }
 
-    // getters
+
+    // Acessores para leitura dos dados corporativos.
     public int getId() {
         return id;
     }
@@ -40,7 +44,8 @@ public class Empresa {
         return cnpj;
     }
 
-    // setters
+
+    // Acessores para atualização dos dados corporativos.
     public void setId(int id) {
         this.id = id;
     }
@@ -62,6 +67,7 @@ public class Empresa {
     }
 
     @Override
+    // Apresentação resumida dos dados da empresa.
     public String toString() {
         return "\nEMPRESA" +
                 "\nID: " + this.id +

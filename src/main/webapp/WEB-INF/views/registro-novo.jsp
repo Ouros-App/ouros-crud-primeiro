@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!-- Formulário de novo registro de consumo. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,12 +11,14 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
+<!-- Área principal da tela. -->
 <main class="EditorCartao" aria-labelledby="editorTitulo">
     <header class="EditorCabecalho">
         <h1 id="editorTitulo">Novo Registro de água</h1>
         <a class="EditorFechar" href="${pageContext.request.contextPath}/registros?tipo=${tipoAtual}" aria-label="Fechar">×</a>
     </header>
-    <form action="${pageContext.request.contextPath}/registros" method="post" target="_top">
+    <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/registros" method="post" target="_top">
         <input type="hidden" name="acao" value="inserir">
         <div class="EditorAbas" role="group" aria-label="Tipo">
             <button type="button" data-valor="agua" aria-pressed="true" class="EditorAba ativa">
@@ -57,6 +60,7 @@
         </footer>
     </form>
 </main>
+<!-- Comportamentos da tela. -->
 <script>
     // alterna entre água e energia (só muda o tipo enviado e os rótulos)
     (() => {

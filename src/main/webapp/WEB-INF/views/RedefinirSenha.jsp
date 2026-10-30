@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!-- Tela para definir uma nova senha. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -8,6 +9,7 @@
     <base href="${pageContext.request.contextPath}/">
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <c:choose>
 
@@ -15,7 +17,8 @@
     <c:when test="${tokenValido}">
         <h1>Crie uma nova senha</h1>
 
-        <form action="RedefinirSenha" method="post">
+        <!-- Campos e ações da tela. -->
+<form action="RedefinirSenha" method="post">
             <input type="hidden" name="token" value="<c:out value='${token}'/>">
 
             <label for="novaSenha">Nova senha</label><br>
