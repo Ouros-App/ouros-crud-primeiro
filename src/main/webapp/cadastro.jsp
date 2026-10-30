@@ -146,7 +146,7 @@
                 <span class="LoginSeparadorLinha"></span>
             </div>
 
-            <button type="button" class="LoginGoogle" aria-label="Entrar com Google">
+            <button type="button" class="LoginGoogle" aria-label="Entrar com Google" disabled aria-disabled="true">
                 <span class="LoginGoogleIcone" aria-hidden="true"></span>
                 Entrar com Google
             </button>
