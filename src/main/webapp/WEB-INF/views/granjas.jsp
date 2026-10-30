@@ -8,7 +8,7 @@
     <title>Granjas</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <base href="${pageContext.request.contextPath}/">
     <style>
         .RodapeTabela .Paginacao {
             display: flex;

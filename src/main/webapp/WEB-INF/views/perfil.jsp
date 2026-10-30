@@ -13,7 +13,7 @@
     <link rel="icon" type="image/png"
           href="${pageContext.request.contextPath}/img/Asa-icon.png">
 
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <base href="${pageContext.request.contextPath}/">
 </head>
 
 <body>
