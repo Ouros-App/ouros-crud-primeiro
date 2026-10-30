@@ -948,7 +948,7 @@ a {
 .funcionamento .secao-titulo {
     position: relative;
     z-index: 3;
-    width: 485px;
+    width: 590px;
     max-width: 100%;
     color: #CB982D;
     background: none;
@@ -1132,8 +1132,9 @@ a {
 .funcionamento-passos h3 {
     margin: 0 0 8px;
     color: #f2f5f7;
-    font-size: 22.588px;
-    line-height: 32.753px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 23.521px;
+    line-height: 34.105px;
     font-weight: 700;
     transition: color 200ms ease;
 }
@@ -1141,9 +1142,10 @@ a {
 .funcionamento-passos p {
     margin: 0;
     color: #f2f5f7;
-    font-size: 16.941px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17.641px;
     font-weight: 500;
-    line-height: 35.012px;
+    line-height: 36.457px;
     transition: color 200ms ease;
 }
 
@@ -1156,7 +1158,7 @@ a {
     #funcionamento[data-perfil="integrado"] .funcionamento-passos li[data-passo="3"] h3 {
         width: max-content;
         max-width: none;
-        font-size: 22.588px;
+        font-size: 23.521px;
         white-space: nowrap;
     }
 }
