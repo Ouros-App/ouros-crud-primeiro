@@ -67,8 +67,7 @@ a {
     white-space: nowrap;
 }
 
-#header nav a:hover,
-.entrar:hover {
+#header nav a:hover {
     color: #cf9d23;
 }
 
@@ -85,7 +84,7 @@ a {
     gap: 16px;
 }
 
-.acoes .btcadastro {
+.acoes .entrar {
     display: inline-flex;
     width: 117px;
     height: 38px;
@@ -106,15 +105,15 @@ a {
     transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
 }
 
-.acoes .btcadastro:hover,
-.acoes .btcadastro:focus-visible {
+.acoes .entrar:hover,
+.acoes .entrar:focus-visible {
     border-color: rgba(232, 232, 220, .68);
     border-radius: 12px;
     background: #0e0c23;
     color: #fff;
 }
 
-.acoes .btcadastro:focus-visible {
+.acoes .entrar:focus-visible {
     outline: 2px solid #cf9d23;
     outline-offset: 3px;
 }
@@ -620,7 +619,7 @@ a {
         font-size: 13px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -703,7 +702,7 @@ a {
         font-size: 13px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         height: 32px;
         padding: 5px 9px;
         font-size: 12px;
@@ -3237,7 +3236,7 @@ a {
         font-size: 13px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -3433,7 +3432,7 @@ a {
         font-size: 12px;
     }
 
-    .acoes .btcadastro {
+    .acoes .entrar {
         height: 30px;
         padding: 4px 7px;
         font-size: 11px;
