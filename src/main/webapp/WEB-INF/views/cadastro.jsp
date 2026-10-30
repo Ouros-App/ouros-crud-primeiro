@@ -10,18 +10,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/webapp/Style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 
-    <base href="${pageContext.request.contextPath}/">
-
     <style>
-        .LoginFormulario > .LoginGoogle {
-            width: min(490px, 100%);
-            max-width: 490px;
-            height: 56px;
-            flex: 0 0 56px;
-            box-sizing: border-box;
+
+        html,
+        body,
+        .LoginFormulario {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        .LoginFormulario::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .LoginFormulario {
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .LoginMensagem {
@@ -48,6 +62,61 @@
             color: #176b3a;
             background: #edfff3;
             border: 1px solid #bde5ca;
+        }
+
+        .LoginFormulario .LoginCabecalho {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .LoginFormulario .LoginCabecalho > div {
+            width: min(490px, 100%);
+            margin: 0 auto;
+        }
+
+        .LoginVoltar {
+            position: absolute;
+            top: 50%;
+            left: 28px;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: inherit;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .LoginVoltar:hover,
+        .LoginVoltar:focus-visible {
+            background: rgba(0, 0, 0, 0.07);
+        }
+
+        .LoginVoltar svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s;
+        }
+
+        .LoginVoltar:hover svg {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 860px) {
+            .LoginVoltar {
+                left: 12px;
+            }
+
+            .LoginFormulario .LoginCabecalho > div {
+                padding-left: 48px;
+                box-sizing: border-box;
+            }
         }
 
         @media (min-width: 861px) and (max-height: 820px) {
@@ -91,7 +160,7 @@
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="../../img/Ouros.png" alt="Ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>
@@ -154,19 +223,32 @@
             </ul>
 
             <img class="MascoteLogin"
-                 src="../../img/Midas-Feliz.png"
+                 src="${pageContext.request.contextPath}/img/Midas-Feliz.png"
                  alt="Midas, mascote do Ouros">
         </section>
 
         <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
 
             <header class="LoginCabecalho">
-                <h1 class="LoginTitulo" id="cadastro-titulo">
-                    Bem-vindo!
-                </h1>
-                <p class="LoginSubtitulo">
-                    Crie sua conta para ser um OUROS
-                </p>
+                <a href="${pageContext.request.contextPath}/inicio"
+                   class="LoginVoltar"
+                   aria-label="Voltar para o início">
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         aria-hidden="true">
+                        <path d="M19 12H5"></path>
+                        <path d="M12 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+
+                <div>
+                    <h1 class="LoginTitulo" id="cadastro-titulo">Bem-vindo!</h1>
+                    <p class="LoginSubtitulo">Crie sua conta de administrador</p>
+                </div>
             </header>
 
             <div id="mensagemCadastro"
@@ -351,7 +433,7 @@
         botaoCadastro.textContent = "Enviando...";
 
         try {
-            const resposta = await fetch(formularioCadastro.action, {
+            const resposta = await fetch(formularioCadastro.getAttribute("action"), {
                 method: "POST",
                 body: new URLSearchParams(new FormData(formularioCadastro)),
                 headers: {
@@ -371,7 +453,7 @@
             }
 
             mostrarMensagem(
-                texto || "Cadastro realizado! Verifique seu e-mail.",
+                texto || "Cadastro realizado! Verifique seu email para ativar a conta.",
                 "sucesso"
             );
 

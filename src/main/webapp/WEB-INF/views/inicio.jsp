@@ -206,7 +206,7 @@
                 </p>
             </div>
 
-            <a href="cadastro.jsp" class="BotaoNovoAdmin">
+            <a href="cadastro" class="BotaoNovoAdmin">
                 <span class="BotaoNovoAdminIcone">+</span>
                 Cadastrar novo administrador
             </a>
