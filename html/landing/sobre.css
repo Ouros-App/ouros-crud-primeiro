@@ -909,17 +909,20 @@ a {
     }
 
     .sobre-faixa-pessoas {
+        width: 100%;
         padding: 0;
         border-radius: 0;
     }
 
     .sobre-pessoas {
+        width: 100%;
+        min-width: 100%;
         gap: 8px;
     }
 
     .sobre-pessoa {
-        width: clamp(46px, 21vw, 78px);
-        flex-basis: clamp(46px, 21vw, 78px);
+        width: calc((100% - 8px) / 2);
+        flex-basis: calc((100% - 8px) / 2);
         border-radius: 8px;
     }
 
