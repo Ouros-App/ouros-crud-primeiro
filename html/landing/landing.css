@@ -255,31 +255,16 @@ a {
 }
 
 .hero-content h1 strong {
-    position: relative;
-    z-index: 0;
-    isolation: isolate;
-    width: fit-content;
-    max-width: 100%;
-    font-size: calc(var(--hero-title-size) * 1.12);
-    color: #b9871f;
-    font-weight: 800;
+    display: inline;
+    font-size: inherit;
+    line-height: inherit;
+    color: #CB982D;
+    font-weight: inherit;
+    text-shadow: inherit;
 }
 
 .hero-content h1 strong::before {
-    content: "";
-    position: absolute;
-    z-index: 0;
-    inset: -18% -12%;
-    border-radius: 50%;
-    background: radial-gradient(ellipse, rgba(203, 152, 45, .32) 0%, rgba(199, 140, 42, .16) 48%, rgba(199, 140, 42, 0) 82%);
-    filter: blur(18px);
-    pointer-events: none;
-}
-
-.hero-content h1 strong > span {
-    position: relative;
-    z-index: 1;
-    font-size: inherit;
+    content: none;
 }
 
 .subTitle {
@@ -2766,6 +2751,28 @@ a {
 @media (max-width: 370px) {
     .funcionalidades-titulo {
         width: calc(100vw - 12px);
+    }
+}
+
+/* Tipografia do título do hero conforme a referência desktop do Figma. */
+@media (min-width: 1101px) {
+    .hero-content h1 {
+        --hero-title-size: 64px;
+        color: #FFF;
+        font-family: 'Poppins', sans-serif;
+        font-size: 64px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 98.5%;
+        text-shadow: 0 8px 4.6px rgba(14, 12, 35, 0.24);
+    }
+
+    .hero-content h1 span,
+    .hero-content h1 strong {
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+        text-shadow: inherit;
     }
 }
 
