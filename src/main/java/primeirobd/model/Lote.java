@@ -1,10 +1,12 @@
 package primeirobd.model;
 
 import java.sql.Date;
-import java.math.BigDecimal;   // novo import, no topo
+import java.math.BigDecimal;
 
 public class Lote {
-    // atributos da tabela
+    // Representa um lote de aves, suas datas, quantidades e a granja de origem.
+
+    // Identificação, datas, quantidades e resultado financeiro do lote.
     private int id;
     private Date dtChegada;
     private Date dtEntrega;
@@ -17,12 +19,14 @@ public class Lote {
 
     private int idGranja;
 
-    //contrutor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Lote() {
     }
-    //metodos getters
 
+
+    // Acessores para leitura dos dados do lote.
     public int getId() {
         return id;
     }
@@ -58,8 +62,9 @@ public class Lote {
         return idGranja;
     }
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados do lote.
     public void setId(int id) {
         this.id = id;
     }
@@ -97,6 +102,7 @@ public class Lote {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nLOTE" +
                 "\nId: " + this.id +

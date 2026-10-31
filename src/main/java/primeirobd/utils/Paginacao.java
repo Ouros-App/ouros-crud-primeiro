@@ -2,6 +2,7 @@ package primeirobd.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 
+// Concentra limites, páginas, offsets e indicadores de navegação.
 public class Paginacao {
 
     private final int pagina;
@@ -9,6 +10,7 @@ public class Paginacao {
     private final int total;
     private final int totalPaginas;
 
+// Normaliza tamanho, total e número da página para evitar valores inválidos.
     public Paginacao(int paginaPedida, int tamanho, int total) {
 
         this.tamanho = Math.max(1, tamanho);
@@ -58,6 +60,7 @@ public class Paginacao {
         return totalPaginas;
     }
 
+// O offset é calculado a partir de páginas que começam em um.
     public int getOffset() {
         return (pagina - 1) * tamanho;
     }

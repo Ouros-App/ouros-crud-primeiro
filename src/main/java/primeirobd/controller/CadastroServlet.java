@@ -14,16 +14,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 /*
-    servlet responsavel por receber o cadastro do administrador
-    valida os dados e DISPARA O EMAIL(finalmente)
-
-    Validador        -> confere se os campos têm o formato correto (regex)
-    AdministradorDAO -> conversa com o banco de dados
+   Recebe o cadastro do administrador, valida os dados e grava as informações
+   no banco. O telefone é salvo em uma tabela separada depois do cadastro.
  */
 @WebServlet(name = "cadastro", value = "/cadastro")
 public class CadastroServlet extends HttpServlet {
 
-    // objetos
     private final AdministradorDAO dao = new AdministradorDAO();
 
     @Override
@@ -41,7 +37,7 @@ public class CadastroServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // campos do formulario
+        // Lê os dados enviados pelo formulário de cadastro.
         String nome = request.getParameter("nome");
         String cpf = request.getParameter("cpf");
         String email = request.getParameter("email");
@@ -53,7 +49,7 @@ public class CadastroServlet extends HttpServlet {
         StringBuilder erros = new StringBuilder();
         String confirmarSenha = request.getParameter("confirmarSenha");
 
-        // validar com o REGEX (eba ele ta aq)
+        // Reúne todas as mensagens de validação antes de responder ao usuário.
         if (nome == null || nome.trim().isEmpty()) {
             erros.append("- Nome é obrigatório\n");
         }
@@ -73,14 +69,14 @@ public class CadastroServlet extends HttpServlet {
             erros.append("- As senhas não coincidem\n");
         }
 
-        // se der qualquer erro eh pq ta errado
+        // Interrompe o cadastro quando algum campo não atende às regras.
         if (erros.length() > 0) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             response.getWriter().write("Erro no cadastro:\n" + erros);
             return;
         }
 
-        // nao pode ter dois caras com o mesmo email ou cpf neh
+        // Evita cadastros duplicados por e-mail ou CPF.
         if (dao.existsByEmail(email)) {
             response.setStatus(HttpServletResponse.SC_CONFLICT);
             response.getWriter().write("Já existe um cadastro com esse email.");
@@ -92,10 +88,10 @@ public class CadastroServlet extends HttpServlet {
             return;
         }
 
-        // senha criptografada
+        // A senha é armazenada apenas depois de ser protegida por hash.
         String senhaHash = BCrypt.hashpw(senha, BCrypt.gensalt());
 
-        // salva o administrador
+        // Grava os dados principais do administrador.
         Administrador adm = new Administrador();
         adm.setNome(nome.trim());
         adm.setCpf(cpf);
@@ -104,7 +100,7 @@ public class CadastroServlet extends HttpServlet {
 
         int administradorId = dao.insert(adm);
 
-        // salva o telefone na tabela telefone_admin
+        // O telefone fica em uma tabela própria, ligada ao administrador.
         new TelefoneAdminDAO().insert(administradorId, telefone);
 
         response.getWriter().write("Administrador cadastrado com sucesso!");

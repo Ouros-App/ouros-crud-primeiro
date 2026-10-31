@@ -1,7 +1,9 @@
 package primeirobd.model;
 
 public class Funcionario {
-    // atributos da tabela
+    // Representa um funcionário e o vínculo dele com uma empresa.
+
+    // Identificação, contato e vínculo empresarial do funcionário.
     private int id;
     private String cpf;
     private String email;
@@ -11,11 +13,13 @@ public class Funcionario {
     private String telefone;
     private String nomeEmpresa;
 
-    //construtores
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Funcionario() {
     }
 
+    // Construtores para criação com os dados disponíveis do funcionário.
     public Funcionario(String nome, String cpf, String email, String setor, String telefone) {
         this.email = email;
         this.cpf = cpf;
@@ -33,8 +37,9 @@ public class Funcionario {
         this.id = id;
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados do funcionário.
     public int getId() {
         return id;
     }
@@ -65,8 +70,9 @@ public class Funcionario {
 
     public String getNomeEmpresa() { return nomeEmpresa; }
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados do funcionário.
     public void setId(int id) {
         this.id = id;
     }
@@ -100,6 +106,7 @@ public class Funcionario {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nFUNCIONARIO" +
                 "\nId: " + this.id +

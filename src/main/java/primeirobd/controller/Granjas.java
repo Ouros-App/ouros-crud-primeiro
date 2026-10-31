@@ -36,7 +36,7 @@ public class Granjas extends HttpServlet {
 
         String acao = request.getParameter("acao");
 
-        // abre o formulário de nova granja (carregado dentro do modal)
+        // Abre o formulário de nova granja dentro do modal.
         if ("inserir".equals(acao)) {
             request.setAttribute("empresas", empresa.select_all());
             getServletContext()
@@ -45,7 +45,7 @@ public class Granjas extends HttpServlet {
             return;
         }
 
-        // abre o formulário de edição
+        // Abre o formulário de edição da granja selecionada.
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -65,7 +65,7 @@ public class Granjas extends HttpServlet {
             return;
         }
 
-        // abre a confirmação de exclusão
+        // Abre a confirmação de exclusão da granja selecionada.
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
@@ -158,7 +158,7 @@ public class Granjas extends HttpServlet {
             return;
         }
 
-        // pega os valores que o usuário inseriu no formulário
+        // Lê os dados enviados pelo formulário.
         String nome = request.getParameter("nome");
         String regiao = request.getParameter("regiao");
         String municipio = request.getParameter("municipio");
@@ -167,7 +167,7 @@ public class Granjas extends HttpServlet {
         int area = Integer.parseInt(request.getParameter("area"));
         int idEmpresa = Integer.parseInt(request.getParameter("empresa"));
 
-        // campos que só existem na criação
+        // Estes campos são usados apenas ao criar o endereço da granja.
         String cep = request.getParameter("cep");
         String logradouro = request.getParameter("logradouro");
         int numero = Integer.parseInt(request.getParameter("numero"));

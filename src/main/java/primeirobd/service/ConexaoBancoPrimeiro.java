@@ -6,9 +6,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+// Abre a conexão PostgreSQL a partir de configurações externas.
 public class ConexaoBancoPrimeiro {
 
-    // carregando o .env
+    // Carrega as configurações externas do ambiente.
     public static final  Dotenv dotenv = Dotenv.configure().ignoreIfMissing().load();
 
     // conexão única, compartilhada entre todos os DAOs
@@ -18,7 +19,8 @@ public class ConexaoBancoPrimeiro {
     private ConexaoBancoPrimeiro() {
     }
 
-    // classe da conexao
+    // Obtém a conexão usada pelos DAOs.
+    // Reaproveita a conexão enquanto ela estiver aberta.
     public static Connection getConnection() {
         try {
             if (connection == null || connection.isClosed()) {

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+// Consulta indicadores agregados de produção, água, energia e metas.
 public class IndicadoresDAO {
 
     // Frangos de lotes que ainda não foram entregues (sem data de entrega ou entrega futura)
@@ -42,6 +43,7 @@ public class IndicadoresDAO {
         return consultar(SELECT_METAS_CONCLUIDAS, null);
     }
 
+    // Executa a consulta agregadora e devolve zero quando não há resultado.
     private long consultar(String sql, Integer parametro) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
 

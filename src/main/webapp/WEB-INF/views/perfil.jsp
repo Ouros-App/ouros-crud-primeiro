@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
+<!-- Tela de perfil do administrador. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -13,12 +14,13 @@
     <link rel="icon" type="image/png"
           href="${pageContext.request.contextPath}/img/Asa-icon.png">
 
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <base href="${pageContext.request.contextPath}/">
 </head>
 
 <body>
+<!-- Área principal da tela. -->
 
-<%-- Usa a foto salva ou a imagem padrão. --%>
+<!-- Usa a foto salva ou a imagem padrão. -->
 <c:choose>
     <c:when test="${not empty administrador.fotoPerfilUrl}">
         <c:set var="fotoPerfil"
@@ -32,7 +34,7 @@
 
 <div class="Layout">
 
-    <%-- BARRA LATERAL --%>
+    <!-- BARRA LATERAL -->
     <aside class="Sidebar">
 
         <div class="SidebarTopo">
@@ -89,7 +91,7 @@
             </nav>
         </div>
 
-        <%-- Foto e nome do administrador na barra lateral. --%>
+        <!-- Foto e nome do administrador na barra lateral. -->
         <a href="perfil" class="Usuario">
             <img src="<c:out value='${fotoPerfil}'/>"
                  alt="Foto do usuário">
@@ -104,7 +106,7 @@
 
     </aside>
 
-    <%-- CONTEÚDO PRINCIPAL --%>
+    <!-- CONTEÚDO PRINCIPAL -->
     <div class="Conteudo">
 
         <div class="hero">
@@ -126,13 +128,14 @@
             </div>
         </c:if>
 
-            <form class="FormPainel"
+            <!-- Campos e ações da tela. -->
+<form class="FormPainel"
                   action="perfil"
                   method="post"
                   enctype="multipart/form-data"
                   style="max-width: 100%;">
 
-                <%-- FOTO DE PERFIL --%>
+                <!-- FOTO DE PERFIL -->
                 <div class="PerfilAvatarArea">
 
                     <img class="PerfilFoto"
@@ -166,7 +169,7 @@
                                accept="image/png, image/jpeg"
                                hidden>
 
-                        <%-- Informa ao servlet se a foto deve ser removida. --%>
+                        <!-- Informa ao servlet se a foto deve ser removida. -->
                         <input type="hidden"
                                name="removerFoto"
                                id="removerFoto"
@@ -175,7 +178,7 @@
                     </div>
                 </div>
 
-                <%-- DADOS PESSOAIS --%>
+                <!-- DADOS PESSOAIS -->
                 <div class="SecaoTitulo">Dados pessoais</div>
 
                 <div class="FormGrid">
@@ -213,7 +216,7 @@
 
                 </div>
 
-                <%-- ALTERAÇÃO DE SENHA --%>
+                <!-- ALTERAÇÃO DE SENHA -->
                 <div class="SecaoTitulo">Alterar senha</div>
 
                 <div class="FormGrid">
@@ -252,7 +255,7 @@
 
                 </div>
 
-                <%-- AÇÕES --%>
+                <!-- AÇÕES -->
                 <div class="FormAcoes">
 
                     <a class="BotaoSecundario" href="inicio">
@@ -271,6 +274,7 @@
     </div>
 </div>
 
+<!-- Comportamentos da tela. -->
 <script>
     const inputFoto = document.getElementById("inputFoto");
     const previewFoto = document.getElementById("previewFoto");

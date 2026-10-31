@@ -2,6 +2,7 @@ package primeirobd.utils;
 import java.util.regex.Pattern;
 import java.util.Set;
 
+// Reúne validações de formato usadas nos formulários.
 public class Validador {
     // E-mail: padrão comum
     private static final Pattern EMAIL_PATTERN =
@@ -9,7 +10,7 @@ public class Validador {
 
     // Telefone BR: aceita (11) 91234-5678, 11912345678, (11) 1234-5678, 1134567890, com/sem DDD e 9º dígito
     private static final Pattern TELEFONE_PATTERN =
-            Pattern.compile("^\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}$");
+            Pattern.compile("^(\\(?\\d{2}\\)?\\s?)?9?\\d{4}-?\\d{4}$");
 
     public static final Pattern SENHA_PATTERN =
             Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#$%^&+=!.\\-_*]).{8,}$");
@@ -18,6 +19,8 @@ public class Validador {
             Set.of("Sudeste", "Sul", "Centro-Oeste", "Nordeste", "Norte");
 
     private static final Pattern CEP_PATTERN = Pattern.compile("^\\d{5}-?\\d{3}$");
+
+    private static final Pattern CNPJ_PATTERN = Pattern.compile("^(\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}|\\d{14})$");
 
 
 
@@ -46,10 +49,11 @@ public class Validador {
         return CEP_PATTERN.matcher(cep.trim()).matches();
     }
 
-    /**
-     * Valida o CPF de verdade: formato + dígitos verificadores +
-     * rejeita sequências repetidas (111.111.111-11 etc, que passam no formato mas são inválidas)
+    /*
+       Valida o CPF de verdade: formato + dígitos verificadores +
+       rejeita sequências repetidas (111.111.111-11 etc, que passam no formato mas são inválidas)
      */
+// Confere formato, dígitos verificadores e sequências repetidas.
     public static boolean isCpfValido(String cpf) {
         if (cpf == null) return false;
 
@@ -87,4 +91,32 @@ public class Validador {
 
         return dv2 == nums[10];
     }
+
+// Confere formato, dígitos verificadores e valores repetidos.
+    public static boolean isCnpjValido(String cnpj) {
+        if (cnpj == null) return false;
+        cnpj = cnpj.trim();
+        if (!CNPJ_PATTERN.matcher(cnpj).matches()) return false;
+
+        String n = cnpj.replaceAll("\\D", "");
+
+        // rejeita sequências repetidas (00000000000000, 11111111111111...)
+        if (n.chars().distinct().count() == 1) return false;
+
+        int[] p1 = {5,4,3,2,9,8,7,6,5,4,3,2};
+        int[] p2 = {6,5,4,3,2,9,8,7,6,5,4,3,2};
+
+        return digito(n, p1) == n.charAt(12) - '0'
+                && digito(n, p2) == n.charAt(13) - '0';
+    }
+
+    private static int digito(String n, int[] pesos) {
+        int soma = 0;
+        for (int i = 0; i < pesos.length; i++) {
+            soma += (n.charAt(i) - '0') * pesos[i];
+        }
+        int r = soma % 11;
+        return r < 2 ? 0 : 11 - r;
+    }
 }
+

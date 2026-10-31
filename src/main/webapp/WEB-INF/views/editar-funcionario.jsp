@@ -10,11 +10,13 @@
 <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
+<!-- Área principal da tela. -->
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
 <h1 id="editorTitulo">Editar Funcionário</h1>
 <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
+<!-- Campos e ações da tela. -->
 <form action="${pageContext.request.contextPath}/funcionarios" method="post" autocomplete="off">
 <input type="hidden" name="acao" value="editar">
 <input type="hidden" name="id" value="<c:out value='${funcionarios.id}'/>">
@@ -56,6 +58,39 @@
 <p class="EditorAviso" role="status" hidden></p>
 </form>
 </main>
+<!-- Comportamentos da tela. -->
+<script>
+    if (window.parent !== window) {
+        document.body.classList.add('EditorEmModal');
+
+        const urlLista = '${pageContext.request.contextPath}/funcionarios';
+
+        function fecharFormulario(event) {
+            event.preventDefault();
+            try {
+                // mesma origem: fecha o <dialog> do pai diretamente
+                window.parent.document.getElementById('formularioModal').close();
+            } catch (e) {
+                // origem diferente: volta para a listagem na janela inteira
+                window.top.location.href = urlLista;
+            }
+        }
+
+        document.querySelectorAll('.EditorFechar, .EditorCancelar').forEach(function (link) {
+            link.addEventListener('click', fecharFormulario);
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') { event.stopImmediatePropagation(); fecharFormulario(event); }
+        }, true);
+
+        new ResizeObserver(function () {
+            window.parent.postMessage(
+                {type:'ouros:altura-formulario',
+                    height:Math.ceil(document.querySelector('.EditorCartao').getBoundingClientRect().height)},
+                '*');
+        }).observe(document.querySelector('.EditorCartao'));
+    }
+</script>
 <script src="${pageContext.request.contextPath}/js/validacao.js"></script>
 <script src="${pageContext.request.contextPath}/js/crud.js"></script>
 </body>

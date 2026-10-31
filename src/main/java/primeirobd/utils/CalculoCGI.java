@@ -12,7 +12,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 
+// Calcula o índice ponderado de consumo de água e energia.
 public class CalculoCGI {
+// A quantidade entregue é a base dos dois consumos normalizados.
     public static double calcularCGI(Granja granja, List<CGI> informacoes, int contador){
         // variaveis
         double hidrometroInicio = informacoes.get(contador).getHidrometroInicio();

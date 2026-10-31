@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
+<!-- Confirmação de exclusão de meta. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,13 +11,15 @@
     <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="ExcluirPagina">
+<!-- Área principal da tela. -->
 <main class="ExcluirCartao" aria-labelledby="excluirTitulo" aria-describedby="excluirAviso">
     <div class="ExcluirIlustracao" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M8 3h8l1 2h4v2H3V5h4l1-2Zm-3 6h14v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z"/></svg>
     </div>
     <h1 id="excluirTitulo">Tem certeza que deseja excluir a meta <c:out value="${metaSelecionada.titulo}"/>?</h1>
     <p id="excluirAviso">Essa ação não pode ser desfeita!</p>
-    <form action="${pageContext.request.contextPath}/metas" method="post" target="_top" id="excluirForm">
+    <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/metas" method="post" target="_top" id="excluirForm">
         <input type="hidden" name="acao" value="excluir">
         <input type="hidden" name="id" value="${metaSelecionada.id}">
         <input type="hidden" name="tipo" value="${metaSelecionada.individual ? 'individual' : 'estadual'}">
@@ -29,6 +32,7 @@
         </div>
     </form>
 </main>
+<!-- Comportamentos da tela. -->
 <script>
     function fecharFormulario() {
         window.parent.document.getElementById('formularioModal').close();

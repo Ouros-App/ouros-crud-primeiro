@@ -1,8 +1,10 @@
 package primeirobd.model;
 
 public class Administrador {
+    // Representa os dados de acesso e contato de um administrador do sistema.
 
-    // variaveis
+
+    // Identificação e dados usados no cadastro do administrador.
     private int id;
     private String email;
     private String senha;
@@ -11,12 +13,14 @@ public class Administrador {
     private String fotoPerfilUrl;
     private String telefone;
 
-    // construtor
+
+    // Construtor vazio usado pelo acesso a dados.
     public Administrador() {
     }
 
-    //getters
 
+
+    // Acessores para leitura dos atributos do modelo.
     public int getId() {
         return id;
     }
@@ -45,8 +49,9 @@ public class Administrador {
     public String getTelefone() { return telefone; }
 
 
-    // setter
 
+
+    // Acessores para atualização dos atributos do modelo.
     public void setId(int id) {
         this.id = id;
     }
@@ -75,6 +80,7 @@ public class Administrador {
     public void setTelefone(String telefone) { this.telefone = telefone; }
 
 
+    // Apresentação resumida dos dados principais da entidade.
     public String toString() {
         return "\nADMINISTRADOR" +
                 "\nId: " + this.id +

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -12,15 +13,29 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
-
     <style>
-        .LoginFormulario > .LoginGoogle {
-            width: min(490px, 100%);
-            max-width: 490px;
-            height: 56px;
-            flex: 0 0 56px;
-            box-sizing: border-box;
+
+        html,
+        body,
+        .LoginFormulario {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        html::-webkit-scrollbar,
+        body::-webkit-scrollbar,
+        .LoginFormulario::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        .LoginFormulario {
+            position: relative;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         .LoginMensagem {
@@ -47,6 +62,61 @@
             color: #176b3a;
             background: #edfff3;
             border: 1px solid #bde5ca;
+        }
+
+        .LoginFormulario .LoginCabecalho {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .LoginFormulario .LoginCabecalho > div {
+            width: min(490px, 100%);
+            margin: 0 auto;
+        }
+
+        .LoginVoltar {
+            position: absolute;
+            top: 50%;
+            left: 28px;
+            transform: translateY(-50%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            color: inherit;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: background 0.2s;
+        }
+
+        .LoginVoltar:hover,
+        .LoginVoltar:focus-visible {
+            background: rgba(0, 0, 0, 0.07);
+        }
+
+        .LoginVoltar svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.2s;
+        }
+
+        .LoginVoltar:hover svg {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 860px) {
+            .LoginVoltar {
+                left: 12px;
+            }
+
+            .LoginFormulario .LoginCabecalho > div {
+                padding-left: 48px;
+                box-sizing: border-box;
+            }
         }
 
         @media (min-width: 861px) and (max-height: 820px) {
@@ -84,13 +154,14 @@
 </head>
 
 <body>
+<!-- Área principal da tela. -->
 
 <main class="LoginPage">
     <div class="LoginShell">
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="img/Ouros.png" alt="Ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>
@@ -177,12 +248,25 @@
         </a>
 
             <header class="LoginCabecalho">
-                <h1 class="LoginTitulo" id="cadastro-titulo">
-                    Bem-vindo!
-                </h1>
-                <p class="LoginSubtitulo">
-                    Crie sua conta para ser um OUROS
-                </p>
+                <a href="${pageContext.request.contextPath}/inicio"
+                   class="LoginVoltar"
+                   aria-label="Voltar para o início">
+                    <svg viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="2"
+                         stroke-linecap="round"
+                         stroke-linejoin="round"
+                         aria-hidden="true">
+                        <path d="M19 12H5"></path>
+                        <path d="M12 19l-7-7 7-7"></path>
+                    </svg>
+                </a>
+
+                <div>
+                    <h1 class="LoginTitulo" id="cadastro-titulo">Bem-vindo!</h1>
+                    <p class="LoginSubtitulo">Crie sua conta de administrador</p>
+                </div>
             </header>
 
             <div id="mensagemCadastro"
@@ -190,7 +274,8 @@
                  role="alert"
                  aria-live="polite"></div>
 
-            <form action="${pageContext.request.contextPath}/cadastro"
+            <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/cadastro"
                   method="post"
                   id="formCadastro">
 
@@ -281,6 +366,7 @@
     </div>
 </main>
 
+<!-- Comportamentos da tela. -->
 <script>
     const formularioCadastro = document.getElementById("formCadastro");
     const senhaCadastro = document.getElementById("senha");
@@ -367,7 +453,7 @@
         botaoCadastro.textContent = "Enviando...";
 
         try {
-            const resposta = await fetch(formularioCadastro.action, {
+            const resposta = await fetch(formularioCadastro.getAttribute("action"), {
                 method: "POST",
                 body: new URLSearchParams(new FormData(formularioCadastro)),
                 headers: {

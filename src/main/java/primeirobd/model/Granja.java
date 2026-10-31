@@ -1,7 +1,9 @@
 package primeirobd.model;
 
 public class Granja {
-    // atributos da tabela
+    // Representa uma granja, sua capacidade, localização e vínculo com a empresa responsável.
+
+    // Identificação, estrutura, localização e vínculo empresarial da granja.
     private int id;
     private int areaPropriedade;
     private int capacidadeDeAves;
@@ -17,13 +19,15 @@ public class Granja {
     private String municipio;
     private String estado;
 
-    //construtor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Granja() {
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados da granja.
     public int getId() {
         return id;
     }
@@ -71,8 +75,9 @@ public class Granja {
     public String getEstado() { return estado; }
 
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados da granja.
     public void setId(int id) {
         this.id = id;
     }
@@ -120,6 +125,7 @@ public class Granja {
     public void setEstado(String estado) { this.estado = estado; }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nGRANJA" +
                 "\nId: " + this.id +

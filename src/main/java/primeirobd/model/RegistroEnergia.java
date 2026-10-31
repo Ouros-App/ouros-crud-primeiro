@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.math.BigDecimal;
 
 public class RegistroEnergia {
-    // atributos da tabela
+    // Representa uma medição de energia associada a um lote e a uma granja.
+
+    // Identificação, consumo, data e vínculo do registro de energia.
     private int id;
     private BigDecimal consumo;
     private Date dtRegistro;
@@ -12,13 +14,15 @@ public class RegistroEnergia {
     private String status;
     private int idLote;
 
-    //construtor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public RegistroEnergia() {
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados da medição.
     public int getId() {
         return id;
     }
@@ -44,8 +48,9 @@ public class RegistroEnergia {
     }
 
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados da medição.
     public void setId(int id) {
         this.id = id;
     }
@@ -71,6 +76,7 @@ public class RegistroEnergia {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nREGISTRO_ENERGIA" +
                 "\nId: " + this.id +

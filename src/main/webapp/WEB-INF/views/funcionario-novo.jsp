@@ -10,11 +10,13 @@
 <link rel="icon" href="${pageContext.request.contextPath}/img/Asa-icon.png">
 </head>
 <body class="EditorPagina">
+<!-- Área principal da tela. -->
 <main class="EditorCartao" aria-labelledby="editorTitulo">
 <header class="EditorCabecalho">
 <h1 id="editorTitulo">Novo Funcionário</h1>
 <a class="EditorFechar" href="${pageContext.request.contextPath}/funcionarios" aria-label="Fechar">×</a>
 </header>
+<!-- Campos e ações da tela. -->
 <form action="${pageContext.request.contextPath}/funcionarios" method="post" autocomplete="off">
 <input type="hidden" name="acao" value="inserir">
 <div class="EditorGrid">
@@ -59,6 +61,7 @@
 <p class="EditorAviso" role="status" hidden></p>
 </form>
 </main>
+<!-- Comportamentos da tela. -->
 <script src="${pageContext.request.contextPath}/js/validacao.js"></script>
 <script src="${pageContext.request.contextPath}/js/crud.js"></script>
 </body>

@@ -9,6 +9,38 @@ body {
     margin: 0;
     background: #faf7ec;
     font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+}
+
+/* Estrutura geral das páginas. */
+
+.Layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Menu lateral e identificação do usuário. */
+
+.Sidebar {
+    width: 220px;
+    background: linear-gradient(#071228,#071531,#091f4d,#06173a,#071228);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 16px;
+    flex-shrink: 0;
+}
+
+.SidebarTopo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.LogoSidebar img {
+    width: 150px;
+    max-width: 100%;
     color: #0e0c23;
 }
 
@@ -49,6 +81,28 @@ a {
 
 #header nav {
     flex: 0 0 auto;
+.UsuarioInfo {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    overflow: hidden;
+}
+
+.UsuarioInfo span {
+    font-size: 11px;
+    color: #9ca3af;
+}
+
+/* Área principal e títulos. */
+
+.Conteudo {
+    flex: 1;
+    padding: 40px;
+    min-width: 0;
+    background-color: #f4f4f7;
+}
+
+.hero {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,6 +113,137 @@ a {
     color: #ffffff;
     font-size: 14px;
     white-space: nowrap;
+    transition: background-color 0.2s;
+}
+
+.BotaoNovo:hover {
+    background-color: #d99400;
+}
+
+/* Cartões, filtros e ações. */
+
+.Painel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.Filtros {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.CampoBusca {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.CampoBusca img,
+.CampoBusca svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    opacity: 0.5;
+}
+
+.CampoBusca input {
+    border: none;
+    background: transparent;
+    outline: none;
+    font-size: 14px;
+    font-family: inherit;
+    width: 100%;
+    color: #111827;
+}
+
+.CampoBusca input::placeholder {
+    color: #9ca3af;
+}
+
+.CampoSetor {
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    min-width: 160px;
+}
+
+.FormBusca {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.OrdenarPor {
+    position: relative;
+    display: inline-flex;
+}
+
+.OrdenarPor select {
+    appearance: none;
+    background-color: #f4f4f7;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 10px 32px 10px 14px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #111827;
+    outline: none;
+    cursor: pointer;
+}
+
+.OrdenarPor::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid #6b7280;
+    border-bottom: 2px solid #6b7280;
+    transform: translateY(-70%) rotate(45deg);
+    pointer-events: none;
+}
+
+/* Listagens em tabela. */
+
+.tabela {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 10px;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    border: 1px solid #e5e7eb;
+}
+
+.tabela table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 640px;
+}
+
+.tabela th,
+.tabela td {
+    padding: 16px;
+    text-align: left;
 }
 
 .acoes a {
@@ -99,6 +284,128 @@ a {
     font-family: 'Poppins', sans-serif;
     font-size: 17px;
     font-style: normal;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.BotaoAcao.editar:hover {
+    color: #f4a900;
+}
+
+.BotaoAcao.excluir:hover {
+    color: #dc2626;
+}
+
+.BotaoAcao svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Rodapé das tabelas e paginação. */
+
+.RodapeTabela {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.Contagem {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.Paginacao {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.Paginacao button {
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.Paginacao a,
+.Paginacao span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+.Paginacao a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.Paginacao button:hover {
+    background-color: #f4f4f7;
+}
+
+.Paginacao a:hover {
+    background-color: #f4f4f7;
+}
+
+.Paginacao a.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.Paginacao button.ativo,
+.Paginacao span.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.Paginacao button.seta,
+.Paginacao a.seta {
+    color: #9ca3af;
+}
+
+
+.RodapeTabela .Paginacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.RodapeTabela .Paginacao a,
+.RodapeTabela .Paginacao .seta {
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 36px;
+    padding: 0 8px;
+    border: none;
+    border-radius: 9px;
+    background: transparent;
+    color: #17172f;
+    font-family: inherit;
+    font-size: 16px;
     font-weight: 500;
     line-height: normal;
     text-align: center;
@@ -136,6 +443,7 @@ a {
     margin: 5px 0;
 }
 
+/* Barra superior das telas. */
 .hero-brilho-roxo-right {
     z-index: 0;
     top: -3vh;
@@ -274,12 +582,62 @@ a {
     background: radial-gradient(ellipse, rgba(203, 152, 45, .32) 0%, rgba(199, 140, 42, .16) 48%, rgba(199, 140, 42, 0) 82%);
     filter: blur(18px);
     pointer-events: none;
+    object-fit: cover;
+    cursor: pointer;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #f4a900, #b98407);
+}
+
+/* Abas de seleção. */
+
+.Alternador {
+    display: inline-flex;
+    background-color: #eceaf3;
+    padding: 4px;
+    border-radius: 10px;
+    gap: 4px;
+    margin-bottom: 20px;
+}
+
+.AlternadorItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.AlternadorItem.ativo {
+    background-color: #0E0C23;
+    color: #ffffff;
+}
+
+.AlternadorItem:focus-visible {
+    outline: 3px solid rgba(244, 169, 0, 0.55);
+    outline-offset: 2px;
 }
 
 .hero-content h1 strong > span {
     position: relative;
     z-index: 1;
     font-size: inherit;
+/* Indicadores de status. */
+
+.Status {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
 }
 
 .subTitle {
@@ -296,6 +654,14 @@ a {
 
 /* Imagens do hero */
 
+.Status.negativo {
+    background-color: #f7d2d2;
+    color: #b32424;
+}
+
+/* Indicadores do painel inicial. */
+
+.BannerInicio {
 .hero-visual {
     position: relative;
     height: 100%;
@@ -1436,6 +1802,16 @@ a {
     width: 85%;
 }
 
+/* Mascote das telas de acesso. */
+.MascoteLogin {
+    position: absolute;
+    right: 38px;
+    bottom: 12px;
+    width: 211px;
+    height: auto;
+    transform: translateX(15%);
+    pointer-events: none;
+}
 .calculo-cabecalho {
     display: flex;
     grid-column: 1 / -1;
@@ -1444,6 +1820,15 @@ a {
     min-width: 0;
 }
 
+/* Mascote da recuperação de senha. */
+.MascoteSenha {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: clamp(80px, 28%, 150px);
+    height: auto;
+    pointer-events: none;
+}
 .calculo-cabecalho h3 {
     flex: 0 0 auto;
     margin: 0;
@@ -1453,6 +1838,7 @@ a {
     line-height: 1.15;
 }
 
+/* Área de formulário das telas de acesso. */
 .calculo-titulo-divisor {
     flex: 1 1 auto;
     height: 1px;
@@ -1838,6 +2224,11 @@ a {
     line-height: 1.6;
 }
 
+/* Medidas da recuperação de conta. */
+.LoginPage--recuperacao .LoginFormulario {
+    justify-content: flex-start;
+    padding-top: 72px;
+}
 .resultado-preco strong {
     color: #dba72d;
 }
@@ -1906,6 +2297,52 @@ a {
     margin-bottom: 20px;
 }
 
+    .LoginRecursos,
+    .MascoteLogin,
+    .MascoteSenha {
+        display: none;
+    }
+
+    .LoginMarca {
+        padding: 28px 24px;
+    }
+
+    .LoginFormulario {
+        justify-self: center;
+        width: calc(100% - 16px);
+        height: auto;
+        min-height: min(889px, calc(100dvh - 16px));
+        margin: 8px auto;
+        padding: 28px 24px;
+    }
+
+    .LoginPage--recuperacao .LoginFormulario {
+        min-height: min(889px, calc(100dvh - 16px));
+        padding-top: 48px;
+    }
+
+    .LoginPage--recuperacao .LoginCabecalho {
+        margin-bottom: 64px;
+    }
+}
+
+@media (max-width: 480px) {
+    .LoginPage {
+        padding: 0;
+    }
+}
+
+/* Seção de estilos complementares. */
+
+.FormPainel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 36px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    max-width: 720px;
+}
+
+.FormGrid {
 .faq-lista {
     display: grid;
     gap: 11px;
@@ -2027,6 +2464,47 @@ a {
     text-align: center;
 }
 
+.PerfilAvatarAcoes p {
+    font-size: 0.8rem;
+    color: #9ca3af;
+}
+
+.PerfilAvatarBotoes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.BotaoPequeno {
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.SecaoTitulo {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+/* Link inferior das telas de acesso. */
+
+.LoginRodape {
+    display: flex;
+    align-items: center;
+    width: min(100%, 868px);
+    height: auto;
+    min-height: 500px;
+    margin: 130px auto 0;
+    padding: 48px 39px 37.76px;
+    overflow: hidden;
+    border: 0;
+    border-radius: 32px;
+    color: #211704;
+    background: linear-gradient(135deg, #60431f 0%, #765629 30%, #9a7539 43%, #b28642 51%, #a87d40 56%, #896432 76%, #60431f 100%);
+    text-align: center;
+}
+
 .faq-ajuda-brilho {
     z-index: 0;
     top: -20%;
@@ -2052,6 +2530,94 @@ a {
     filter: brightness(.68) contrast(1.22) saturate(1.15);
 }
 
+.LoginRodape .LoginLinkEsqueci {
+    font-size: inherit;
+}
+
+/* Ajustes para telas menores. */
+
+@media (max-width: 768px) {
+    .Layout {
+        flex-direction: column;
+    }
+
+    .Sidebar {
+        width: 100dvw;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 12px 16px;
+    }
+
+    .Menu {
+        display: none;
+    }
+
+    .Conteudo {
+        padding: 20px;
+    }
+
+    .hero {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .BotaoNovo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .RodapeTabela {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .Paginacao {
+        justify-content: center;
+    }
+
+    .ColunaAcoes {
+        gap: 16px;
+    }
+
+    .FormAcoes {
+        flex-direction: column-reverse;
+    }
+
+    .FormAcoes .BotaoNovo,
+    .FormAcoes .BotaoSecundario {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (min-width: 768px) {
+    .Sidebar {
+        position: fixed;
+        height: 100dvh;
+    }
+
+    .Conteudo {
+        margin-left: 220px;
+    }
+}
+
+/* Campos dos formulários. */
+.EditorPagina {
+    min-height:100dvh;
+    background:#c6cad4;
+    display:grid;
+    place-items:center;
+    padding:40px 20px;
+    color:#101016;
+    font-family:'Poppins','Segoe UI',sans-serif
+}
+.EditorCartao {
+    width:100%;
+    max-width:560px;
+    background:#e4e7f1;
+    border-radius:10px;
+    padding:36px 40px 32px
 .faq-ajuda-texto {
     z-index: 1;
     display: grid;
@@ -2277,6 +2843,17 @@ a {
     line-height: 20px;
     text-align: left;
 }
+    .FormularioModal {
+        margin: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 16px;
+        width: min(708px, calc(100vw - 32px));
+        max-width: none;
+        max-height: calc(100dvh - 40px);
+        background: #e4e7f1;
+        overflow: auto;
+    }
 
 .rodape-coluna a:hover,
 .rodape-base a:hover {
@@ -2507,8 +3084,12 @@ a {
     line-height: 1.15;
 }
 
-.desafio-conteudo {
-    padding-top: 18px;
+/* Janelas de confirmação. */
+
+.FormularioModal.FormularioModal--excluir {
+    width: min(340px, calc(100vw - 32px));
+    background: #fff;
+    border-radius: 14px;
 }
 
 .desafio-conteudo p {
@@ -2836,6 +3417,47 @@ a {
     .faq-ajuda-mascote {
         left: 2px;
         width: 88px;
+/* Formulário de redefinição de senha. */
+.RedefinirFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.RedefinirFormulario .LoginCampoGrupo {
+    margin-bottom: 0;
+}
+.RedefinirFormulario .LoginCampoInput:focus-visible,
+.RedefinirFormulario .LoginBotao:focus-visible,
+.LoginFormulario .LoginLinkEsqueci:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.RedefinirAjuda {
+    margin-top: -10px;
+    color: #6b7280;
+    font-size: 0.8rem;
+    line-height: 1.5;
+}
+.RedefinirFeedback {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #b42318;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+.RedefinirRodape {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+@media (max-width: 480px) {
+    .RedefinirFormulario {
+        gap: 16px;
     }
 
     .rodape {
@@ -2883,6 +3505,42 @@ a {
     .calcular-preco {
         grid-column: 1;
         width: 100%;
+/* Ajustes das telas de acesso. */
+.LoginAcessoFormulario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.LoginAcessoFormulario .LoginCampoGrupo {
+    margin-bottom: 0;
+}
+.LoginAcessoFormulario .LoginUtilitario {
+    margin: -4px 0 0;
+}
+.LoginAcessoFormulario .LoginCampoInput[aria-invalid="true"] {
+    border-color: #dc2626;
+}
+.LoginAcessoFormulario .LoginCampoInput:focus-visible,
+.LoginAcessoFormulario .LoginBotao:focus-visible,
+.LoginFormulario .LoginLinkEsqueci:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.LoginFormulario .LoginAcessoErro {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 12px 14px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #b42318 !important;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+@media (max-width: 480px) {
+    .LoginAcessoFormulario {
+        gap: 18px;
     }
 
     .funcionamento-conteudo {
@@ -2930,6 +3588,69 @@ a {
     .ranking-beneficios {
         min-height: 0;
         gap: 16px;
+/* Ajustes da tela de perfil. */
+.PerfilFormulario {
+    width: 100%;
+    max-width: none;
+}
+.PerfilFormulario .FormGrid {
+    gap: 24px 28px;
+    margin-bottom: 0;
+}
+.PerfilSecao + .PerfilSecao {
+    margin-top: 30px;
+}
+.PerfilFormulario .SecaoTitulo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 20px;
+}
+.PerfilFormulario .SecaoTitulo::before {
+    content: "";
+    width: 4px;
+    height: 20px;
+    flex: 0 0 auto;
+    border-radius: 2px;
+    background: #f4a900;
+}
+.PerfilFormulario .FormAcoes {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+}
+.PerfilFormulario .CampoInput:focus-visible {
+    outline: 2px solid #946700;
+    outline-offset: 2px;
+}
+.PerfilInputArquivo {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+    clip-path: inset(50%);
+}
+.PerfilInputArquivo:focus-visible + .PerfilFotoAcao {
+    outline: 2px solid #946700;
+    outline-offset: 3px;
+}
+.PerfilFotoAcao {
+    cursor: pointer;
+}
+.PerfilAvatarAcoes .PerfilFotoFeedback {
+    min-height: 1.2em;
+    color: #b42318;
+    line-height: 1.4;
+}
+@media (max-width: 640px) {
+    .PerfilFormulario {
         padding: 22px 18px;
     }
 
@@ -3323,6 +4044,117 @@ a {
         transform: translateX(-50%);
         opacity: .19;
     }
+/* Janelas de confirmação. */
+.ExcluirPagina {
+    min-height: 100dvh;
+    margin: 0;
+    padding: 24px;
+    display: grid;
+    place-items: center;
+    background: rgba(14, 12, 35, 0.65);
+    color: #111827;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+.ExcluirCartao {
+    width: 100%;
+    max-width: 340px;
+    padding: 32px 28px;
+    border-radius: 14px;
+    background: #fff;
+    text-align: center;
+}
+.ExcluirIlustracao {
+    width: 88px;
+    height: 88px;
+    margin: 0 auto 22px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #e4e7f1;
+    color: #e51b23;
+}
+.ExcluirIlustracao svg {
+    width: 40px;
+    height: 40px;
+}
+.ExcluirCartao h1,
+.ExcluirCartao p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+.ExcluirCartao h1 {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+.ExcluirCartao p {
+    margin: 0;
+}
+.ExcluirAcoes {
+    display: flex;
+    gap: 16px;
+    margin-top: 34px;
+}
+.ExcluirAcoes button {
+    flex: 1;
+    min-width: 0;
+    min-height: 42px;
+    padding: 8px 10px;
+    border: 1px solid transparent;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.ExcluirCancelar {
+    color: #111827;
+    background: #e4e7f1;
+    border-color: #d9ddea !important;
+}
+.ExcluirConfirmar {
+    color: #fff;
+    background: #e51b23;
+}
+.ExcluirConfirmar:hover:not(:disabled) {
+    background: #c8141c;
+}
+.ExcluirCancelar:hover {
+    background: #d6dae6;
+}
+.ExcluirConfirmar svg {
+    width: 18px;
+    height: 18px;
+}
+.ExcluirAcoes button:focus-visible {
+    outline: 3px solid #635c93;
+    outline-offset: 3px;
+}
+.ExcluirConfirmar:disabled {
+    background: #9ca3af;
+    cursor: not-allowed;
+}
+.ExcluirCartao .ExcluirResultado {
+    margin-top: 18px;
+    padding: 10px 12px;
+    border: 1px solid #f1c1c1;
+    border-radius: 8px;
+    background: #fff4f4;
+    color: #85232a;
+    font-size: 12px;
+    text-align: left;
+}
+.ExcluirEmModal {
+    display: block;
+    min-height: 0;
+    padding: 0;
+    background: transparent;
+}
+.ExcluirEmModal .ExcluirCartao {
+    max-width: none;
 }
 
 @media (max-width: 760px) {
@@ -3548,6 +4380,23 @@ a {
         grid-template-columns: minmax(0, 1fr);
         gap: 24px;
     }
+/* Cadastro de novo administrador. */
+.SecaoNovoAdmin {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 28px 32px;
+
+    background: linear-gradient(120deg, #071228, #0b2450);
+    border: 1px solid rgba(185, 132, 7, 0.35);
+    border-radius: 16px;
+
+    box-shadow: 0 8px 24px rgba(7, 18, 40, 0.12);
+}
 
     .funcionamento .secao-titulo {
         width: 100%;

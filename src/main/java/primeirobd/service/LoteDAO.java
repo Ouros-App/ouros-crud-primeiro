@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.sql.*;
 import java.util.List;
 
+// Executa operações de lotes e seus registros de consumo relacionados.
 public class LoteDAO implements primeirobd.repository.LoteDAO {
     public static final String SELECT_ALL = "SELECT * FROM lote;";
     public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id ORDER BY lote.id";
@@ -96,6 +97,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
+// A ordenação aceita somente colunas previamente definidas.
     public List<Lote> select_paginado(int tamanho, int offset, String ordenarPor) {
         // Nunca inserir diretamente um parâmetro do usuário no ORDER BY.
         String colunaOrdenacao;
@@ -169,7 +171,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // Metodo select por id (usado nos formulários de editar e excluir).
+    // Busca um registro para edição ou exclusão.
     public Lote select_by_id(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
@@ -194,7 +196,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // metodo insert :O
+    // Insere um novo registro.
 
     // metodo update completo (todos os campos do lote são editáveis)
     public String update_lote(Lote lot) {
@@ -215,7 +217,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // metodo select :D
+    // Lista os registros para consultas administrativas.
     public List<Lote> select_all() {
         List<Lote> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -254,7 +256,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                 lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
                 lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
                 lot.setGanho(resultadoConsulta.getBigDecimal("ganho"));
-                // falta  o status aqui
+                // O status não é retornado por esta consulta.
                 informacoes.add(lot);
             }
             return informacoes;
@@ -330,7 +332,8 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // metodo delete :)
+    // Exclui o registro identificado.
+// Remove primeiro os registros de água e energia ligados ao lote.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_LOTE_E_REGISTROS)) {
@@ -342,7 +345,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // metodo insert :O
+    // Insere um novo registro.
     public String insert(Lote lot) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
@@ -360,7 +363,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    // metodo update :P
+    // Atualiza o registro identificado.
     public String update_id(int idNew, int idOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {

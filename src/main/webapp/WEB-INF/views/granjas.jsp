@@ -9,7 +9,7 @@
     <title>Granjas</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/Style.css">
     <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/img/Asa-icon.png">
-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+    <base href="${pageContext.request.contextPath}/">
     <style>
         .RodapeTabela .Paginacao {
             display: flex;
@@ -59,6 +59,7 @@
     </style>
 </head>
 <body>
+<!-- Área principal da tela. -->
 
 <div class="Layout">
 
@@ -125,7 +126,8 @@
         <div class="Painel">
 
             <div class="Filtros">
-                <form action="${pageContext.request.contextPath}/granjas" method="get" class="FormBusca" id="formBuscaGranjas">
+                <!-- Campos e ações da tela. -->
+<form action="${pageContext.request.contextPath}/granjas" method="get" class="FormBusca" id="formBuscaGranjas">
                     <div class="CampoBusca">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="7"></circle>
@@ -149,7 +151,8 @@
             </div>
 
             <div class="tabela">
-                <table>
+                <!-- Dados exibidos em tabela. -->
+<table>
                     <thead>
                     <tr>
                         <th>Granja</th>
@@ -242,6 +245,7 @@
 </div>
 
 <dialog class="FormularioModal" aria-label="Formulário" id="formularioModal"><iframe title="Formulário de granjas" class="FormularioFrame"></iframe></dialog>
+<!-- Comportamentos da tela. -->
 <script>
     (function () {
         const dialog = document.getElementById('formularioModal');

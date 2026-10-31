@@ -14,6 +14,7 @@ import primeirobd.model.Administrador;
 import primeirobd.service.AdministradorDAO;
 
 @WebFilter("/*")
+// Protege as rotas da aplicação e compartilha o administrador autenticado com as JSPs.
 public class AuthenticationFilter implements Filter {
 
     private final AdministradorDAO administradorDao = new AdministradorDAO();
@@ -56,6 +57,7 @@ public class AuthenticationFilter implements Filter {
         }
 
         // Verifica se existe uma sessão autenticada.
+        // Não cria sessão nova: sem sessão existente, o acesso segue para o login.
         HttpSession sessao = req.getSession(false);
 
         boolean autenticado = sessao != null

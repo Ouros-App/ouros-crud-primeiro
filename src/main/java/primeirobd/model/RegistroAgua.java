@@ -4,7 +4,9 @@ import java.sql.Date;
 import java.math.BigDecimal;
 
 public class RegistroAgua {
-    // atributos da tabela
+    // Representa uma medição de água associada a um lote e a uma granja.
+
+    // Identificação, data, leituras do hidrômetro e vínculo do registro.
     private int id;
     private Date dtRegistro;
     private BigDecimal hidrometroInicio;
@@ -13,12 +15,14 @@ public class RegistroAgua {
     private String status;
     private int idLote;
 
-    //construtor
+
+    // Construtor vazio usado pelo acesso a dados.
     public RegistroAgua() {
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados da medição.
     public int getId() {
         return id;
     }
@@ -48,8 +52,9 @@ public class RegistroAgua {
     }
 
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados da medição.
     public void setId(int id) {
         this.id = id;
     }
@@ -79,6 +84,7 @@ public class RegistroAgua {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nREGISTRO_AGUA" +
                 "\nId: " + this.id +

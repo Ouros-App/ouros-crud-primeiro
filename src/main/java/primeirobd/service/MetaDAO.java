@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Types;
 
+// Administra metas individuais ou gerais vinculadas às granjas.
 public class MetaDAO implements primeirobd.repository.MetaDAO {
     public static final String SELECT_ALL = "SELECT * FROM meta";
     public static final String SELECT_ID_GRANJA= "SELECT id_granja FROM meta";
@@ -75,6 +76,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
+    // Filtra por tipo e texto antes de aplicar a ordenação e a paginação.
     public List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset, String ordenarPor) {
         String colunaOrdenacao;
         if ("status".equals(ordenarPor)) {
@@ -138,6 +140,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     }
 
     // metodo update completo (todos os campos da meta são editáveis)
+// Metas gerais não recebem uma granja vinculada.
     public String update_meta(Meta met) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
@@ -162,7 +165,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    // metodo select :D
+    // Lista os registros para consultas administrativas.
     public List<Meta> select_all() {
         List<Meta> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
@@ -264,7 +267,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    // metodo delete :)
+    // Exclui o registro identificado.
     public String delete(int id) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
@@ -277,7 +280,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    // metodo insert :O
+    // Insere um novo registro.
     public String insert(Meta met) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
@@ -298,7 +301,7 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    // metodo update :P
+    // Atualiza o registro identificado.
     public String update_id(int idNew, int idOld) {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
