@@ -14,17 +14,17 @@
 </head>
 <body class="pagina-sobre">
     <header class="sobre-header" id="header">
-        <a class="sobre-logo" href="${pageContext.request.contextPath}/" aria-label="Ouros — voltar ao início">
+        <a class="sobre-logo" href="${pageContext.request.contextPath}/landing.jsp" aria-label="Ouros — voltar ao início">
             <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
         </a>
         <nav class="sobre-nav" id="navegacaoSobre" aria-label="Navegação principal">
-            <a href="${pageContext.request.contextPath}/#inicio">Início</a>
-            <a href="${pageContext.request.contextPath}/#desafios">Desafios</a>
-            <a href="${pageContext.request.contextPath}/#funcionamento">Passo a Passo</a>
-            <a href="${pageContext.request.contextPath}/#funcionalidades">Funcionalidades</a>
-            <a href="${pageContext.request.contextPath}/#ranking">Ranking</a>
-            <a href="${pageContext.request.contextPath}/#planos">Planos</a>
-            <a href="${pageContext.request.contextPath}/#faq">FAQ</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#inicio">Início</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#desafios">Desafios</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#funcionamento">Passo a Passo</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#funcionalidades">Funcionalidades</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#ranking">Ranking</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#planos">Planos</a>
+            <a href="${pageContext.request.contextPath}/landing.jsp#faq">FAQ</a>
             <a class="sobre-link-atual" href="${pageContext.request.contextPath}/sobre.jsp" aria-current="page">Sobre nós</a>
         </nav>
         <div class="sobre-acoes">
@@ -117,7 +117,7 @@
     <footer class="rodape" id="sobre">
         <div class="landing-container rodape-conteudo">
             <div class="rodape-marca">
-                <a class="rodape-logo" href="${pageContext.request.contextPath}/#inicio" aria-label="Ouros — voltar ao início">
+                <a class="rodape-logo" href="${pageContext.request.contextPath}/landing.jsp#inicio" aria-label="Ouros — voltar ao início">
                     <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
                 </a>
                 <p>Desempenho que gera reconhecimento</p>
@@ -135,16 +135,16 @@
             <nav class="rodape-coluna" aria-label="Links do projeto">
                 <h2>Projeto</h2>
                 <div class="rodape-links">
-                    <a href="${pageContext.request.contextPath}/#inicio">Início</a>
-                    <a href="${pageContext.request.contextPath}/#desafios">Desafios</a>
-                    <a href="${pageContext.request.contextPath}/#funcionamento">Passo a Passo</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#inicio">Início</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#desafios">Desafios</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#funcionamento">Passo a Passo</a>
                 </div>
             </nav>
             <nav class="rodape-coluna rodape-coluna-secundaria" aria-label="Mais links do projeto">
                 <div class="rodape-links">
-                    <a href="${pageContext.request.contextPath}/#funcionalidades">Funcionalidades</a>
-                    <a href="${pageContext.request.contextPath}/#planos">Planos</a>
-                    <a href="${pageContext.request.contextPath}/#faq">FAQ</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#funcionalidades">Funcionalidades</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#planos">Planos</a>
+                    <a href="${pageContext.request.contextPath}/landing.jsp#faq">FAQ</a>
                 </div>
             </nav>
             <nav class="rodape-coluna rodape-coluna-equipe" aria-label="Links da equipe">
