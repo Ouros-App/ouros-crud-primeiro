@@ -1,5 +1,5 @@
 const landingScriptUrl = new URL(document.currentScript?.src || 'landing/landing.js', window.location.href);
-const landingAssetBase = new URL('../assets/', landingScriptUrl);
+const landingAssetBase = new URL('assets/', landingScriptUrl);
 const landingAsset = (path) => new URL(path, landingAssetBase).href;
 
 document.addEventListener('DOMContentLoaded', () => {

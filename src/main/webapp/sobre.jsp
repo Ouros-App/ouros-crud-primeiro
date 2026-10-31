@@ -1,257 +1,249 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sobre nós | Ouros</title>
-  <meta name="description" content="Conheça as pessoas por trás do Ouros.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/sobre.css">
-  <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sobre nós | Ouros</title>
+    <meta name="description" content="Conheça as pessoas por trás do Ouros.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/sobre.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/assets/Asa-icon.png">
 </head>
 <body class="pagina-sobre">
-<header class="sobre-header" id="header">
-  <a class="sobre-logo" href="${pageContext.request.contextPath}/
-+" aria-label="Ouros — voltar ao início">
-    <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
-  </a>
-  <nav class="sobre-nav" id="navegacaoSobre" aria-label="Navegação principal">
-    <a href="${pageContext.request.contextPath}/
-    +#inicio">Início</a>
-    <a href="${pageContext.request.contextPath}/
-    +#desafios">Desafios</a>
-    <a href="${pageContext.request.contextPath}/
-    +#funcionamento">Passo a Passo</a>
-    <a href="${pageContext.request.contextPath}/
-    +#funcionalidades">Funcionalidades</a>
-    <a href="${pageContext.request.contextPath}/
-    +#ranking">Ranking</a>
-    <a href="${pageContext.request.contextPath}/
-    +#planos">Planos</a>
-    <a href="${pageContext.request.contextPath}/
-    +#faq">FAQ</a>
-    <a class="sobre-link-atual" href="sobre.html" aria-current="page">Sobre nós</a>
-  </nav>
-  <div class="sobre-acoes">
-    <a class="sobre-entrar" href="${pageContext.request.contextPath}/acesso/login.html">Entrar</a>
-    <a class="sobre-cadastro" href="${pageContext.request.contextPath}/acesso/cadastro.html">Cadastro</a>
-  </div>
-  <button class="sobre-menu" id="menuSobre" type="button" aria-label="Abrir menu" aria-controls="navegacaoSobre" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</header>
-
-<main>
-  <section class="sobre-hero" id="inicio" aria-labelledby="sobreTitulo">
-    <img class="sobre-asa-fundo" src="${pageContext.request.contextPath}/assets/Asa.png" alt="" aria-hidden="true">
-    <div class="sobre-estrelas" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span><span class="star star-7"></span><span class="star star-8"></span><span class="star star-9"></span><span class="star star-10"></span></div>
-    <h1 id="sobreTitulo"><span>Conheça a equipe</span><span>por trás do</span><strong>OUROS</strong></h1>
-    <svg class="sobre-onda" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 89C100 80 128 44 240 50c104 6 114 50 226 49 109-1 133-37 242-34 100 3 127 37 232 35 112-2 147-45 256-45 101 0 156 34 244 43v62H0V89Z" fill="#faf7ec"/>
-    </svg>
-  </section>
-
-  <section class="sobre-equipe" aria-labelledby="tituloEquipe">
-    <div class="sobre-container">
-      <h2 class="sobre-titulo-secao" id="tituloEquipe"><span>Conheça a nossa equipe</span></h2>
-      <figure class="sobre-foto-equipe">
-        <img src="${pageContext.request.contextPath}/assets/equipe-oficial.png" alt="Integrantes da equipe OUROS reunidos em frente a um jardim">
-      </figure>
-
-      <section class="sobre-historia" aria-labelledby="sobreHistoriaTitulo">
-        <span class="sobre-historia-linha" aria-hidden="true"></span>
-        <h2 id="sobreHistoriaTitulo">Nossa História <img src="${pageContext.request.contextPath}/assets/asa-icone.svg" alt="" aria-hidden="true"></h2>
-        <div class="sobre-historia-texto">
-          <p>O OUROS nasceu de um projeto interdisciplinar da Germinare Tech, com a proposta de tornar a produção avícola mais eficiente e sustentável.</p>
-          <p>Por meio da tecnologia, transformamos dados de consumo de água e energia em informações úteis, ajudando os produtores a acompanhar seus resultados, identificar melhorias e conquistar reconhecimento pelo desempenho sustentável.</p>
-          <p>Mais do que monitorar indicadores, queremos conectar tecnologia, eficiência e sustentabilidade para impulsionar a evolução de cada integrado.</p>
+    <header class="sobre-header" id="header">
+        <a class="sobre-logo" href="${pageContext.request.contextPath}/" aria-label="Ouros — voltar ao início">
+            <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
+        </a>
+        <nav class="sobre-nav" id="navegacaoSobre" aria-label="Navegação principal">
+            <a href="${pageContext.request.contextPath}/#inicio">Início</a>
+            <a href="${pageContext.request.contextPath}/#desafios">Desafios</a>
+            <a href="${pageContext.request.contextPath}/#funcionamento">Passo a Passo</a>
+            <a href="${pageContext.request.contextPath}/#funcionalidades">Funcionalidades</a>
+            <a href="${pageContext.request.contextPath}/#ranking">Ranking</a>
+            <a href="${pageContext.request.contextPath}/#planos">Planos</a>
+            <a href="${pageContext.request.contextPath}/#faq">FAQ</a>
+            <a class="sobre-link-atual" href="${pageContext.request.contextPath}/sobre.jsp" aria-current="page">Sobre nós</a>
+        </nav>
+        <div class="sobre-acoes">
+            <a class="sobre-entrar" href="${pageContext.request.contextPath}/login">Entrar</a>
         </div>
-        <p class="sobre-historia-chamada">Promovendo eficiência e reconhecimento por uma produção mais sustentável</p>
-      </section>
+        <button class="sobre-menu" id="menuSobre" type="button" aria-label="Abrir menu" aria-controls="navegacaoSobre" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
 
-      <div class="sobre-anos">
-        <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
-          <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
-          <div class="sobre-faixa-pessoas" id="pessoasPrimeiroAno" role="region" aria-label="Carrossel da equipe do primeiro ano">
-            <div class="sobre-pessoas">
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Alícia Emi Yamamoto, Dados e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-alicia.png" alt="Alícia Emi Yamamoto"><figcaption class="sobre-pessoa-info"><strong>Alícia Emi Yamamoto</strong><span>Dados | UX</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="André Roger Nogueira Dias, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-andre.png" alt="André Roger Nogueira Dias"><figcaption class="sobre-pessoa-info"><strong>André Roger Nogueira Dias</strong><span>Fullstack</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Eduardo Ventura da Cruz, Backend e Frontend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-eduardo.png" alt="Eduardo Ventura da Cruz"><figcaption class="sobre-pessoa-info"><strong>Eduardo Ventura da Cruz</strong><span>Backend | Frontend</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Fernando do Nascimento, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-f-nascimento.png" alt="Fernando do Nascimento"><figcaption class="sobre-pessoa-info"><strong>Fernando do Nascimento</strong><span>Backend</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Fernando Neto Zaia, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-zaia.png" alt="Fernando Neto Zaia"><figcaption class="sobre-pessoa-info"><strong>Fernando Neto Zaia</strong><span>Backend</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Sofia Delim Fernandes, Dados e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-extra.png" alt="Sofia Delim Fernandes"><figcaption class="sobre-pessoa-info"><strong>Sofia Delim Fernandes</strong><span>Dados | UX</span></figcaption></figure>
+    <main>
+        <section class="sobre-hero" id="inicio" aria-labelledby="sobreTitulo">
+            <div class="sobre-asa-fundo" aria-hidden="true">
+                <img src="${pageContext.request.contextPath}/assets/Asa.png" alt="">
             </div>
-          </div>
-          <div class="sobre-controles" role="group" aria-label="Navegação da equipe do primeiro ano">
-            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
+            <div class="sobre-estrelas" aria-hidden="true"><span class="star star-1"></span><span class="star star-2"></span><span class="star star-3"></span><span class="star star-4"></span><span class="star star-5"></span><span class="star star-6"></span><span class="star star-7"></span><span class="star star-8"></span><span class="star star-9"></span><span class="star star-10"></span></div>
+            <h1 id="sobreTitulo"><span>Conheça a equipe</span><span>por trás do</span><strong>Ouros</strong></h1>
+            <svg class="sobre-onda" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0 89C100 80 128 44 240 50c104 6 114 50 226 49 109-1 133-37 242-34 100 3 127 37 232 35 112-2 147-45 256-45 101 0 156 34 244 43v62H0V89Z" fill="#faf7ec"/>
+            </svg>
         </section>
 
-        <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
-          <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
-          <div class="sobre-faixa-pessoas" id="pessoasSegundoAno" role="region" aria-label="Carrossel da equipe do segundo ano">
-            <div class="sobre-pessoas">
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Julia Fonseca Watanabe, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-primeira.png" alt="Julia Fonseca Watanabe"><figcaption class="sobre-pessoa-info"><strong>Julia Fonseca Watanabe</strong><span>Fullstack</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Lucas Cayres Porto, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-segunda.png" alt="Lucas Cayres Porto"><figcaption class="sobre-pessoa-info"><strong>Lucas Cayres Porto</strong><span>Backend</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Lucas de Carvalho Ramos, Dados"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-terceira.png" alt="Lucas de Carvalho Ramos"><figcaption class="sobre-pessoa-info"><strong>Lucas de Carvalho Ramos</strong><span>Dados</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Marcella Alves de Liberal, Frontend e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-quarta.png" alt="Marcella Alves de Liberal"><figcaption class="sobre-pessoa-info"><strong>Marcella Alves de Liberal</strong><span>Frontend | UX</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Nicolas Vlad Koyama, Dados e IA"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-quinta.png" alt="Nicolas Vlad Koyama"><figcaption class="sobre-pessoa-info"><strong>Nicolas Vlad Koyama</strong><span>Dados | IA</span></figcaption></figure>
-              <figure class="sobre-pessoa" tabindex="0" aria-label="Verena Marostica Marcelino, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-sexta.png" alt="Verena Marostica Marcelino"><figcaption class="sobre-pessoa-info"><strong>Verena Marostica Marcelino</strong><span>Fullstack</span></figcaption></figure>
+        <section class="sobre-equipe" aria-labelledby="tituloEquipe">
+            <div class="sobre-container">
+                <h2 class="sobre-titulo-secao" id="tituloEquipe"><span>Conheça a nossa equipe</span></h2>
+                <figure class="sobre-foto-equipe">
+                    <img src="${pageContext.request.contextPath}/assets/equipe-oficial.png" alt="Integrantes da equipe OUROS reunidos em frente a um jardim">
+                </figure>
+
+                <section class="sobre-historia" aria-labelledby="sobreHistoriaTitulo">
+                    <span class="sobre-historia-linha" aria-hidden="true"></span>
+                    <h2 id="sobreHistoriaTitulo">Nossa história <img src="${pageContext.request.contextPath}/assets/asa-icone.svg" alt="" aria-hidden="true"></h2>
+                    <div class="sobre-historia-texto">
+                        <p>O OUROS nasceu de um projeto interdisciplinar da Germinare Tech, com o objetivo de desenvolver uma solução tecnológica para um desafio real da cadeia produtiva de frangos: o desperdício de recursos e a necessidade de melhorar a eficiência nas granjas.</p>
+                        <p>Acreditamos no potencial da tecnologia para transformar a maneira como as empresas e os produtores tomam decisões. Ao desenvolver o OUROS, direcionamos nosso olhar para os produtores integrados, buscando uma forma de tornar o acompanhamento do consumo de água e energia mais simples, eficiente e estratégico. Foi assim que surgiu nossa proposta: uma plataforma que transforma dados em informações úteis, incentiva a melhoria contínua e valoriza o desempenho sustentável de cada integrado.</p>
+                        <p>Mais do que monitorar indicadores, queremos conectar tecnologia, eficiência e sustentabilidade para impulsionar a evolução de cada integrado.</p>
+                    </div>
+                    <p class="sobre-historia-chamada">Promovendo eficiência e reconhecimento por uma produção mais sustentável</p>
+                </section>
+
+                <div class="sobre-anos">
+                    <section class="sobre-ano" aria-labelledby="tituloPrimeiroAno">
+                        <h3 class="sobre-ano-titulo" id="tituloPrimeiroAno"><span>1º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
+                        <div class="sobre-faixa-pessoas" id="pessoasPrimeiroAno" role="region" aria-label="Carrossel da equipe do primeiro ano">
+                            <div class="sobre-pessoas">
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Alícia Emi Yamamoto, Dados e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-alicia.png" alt="Alícia Emi Yamamoto"><figcaption class="sobre-pessoa-info"><strong>Alícia Emi Yamamoto</strong><span>Dados | UX</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="André Roger Nogueira Dias, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-andre.png" alt="André Roger Nogueira Dias"><figcaption class="sobre-pessoa-info"><strong>André Roger Nogueira Dias</strong><span>Fullstack</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Eduardo Ventura da Cruz, Backend e Frontend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-eduardo.png" alt="Eduardo Ventura da Cruz"><figcaption class="sobre-pessoa-info"><strong>Eduardo Ventura da Cruz</strong><span>Backend | Frontend</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Fernando do Nascimento, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-f-nascimento.png" alt="Fernando do Nascimento"><figcaption class="sobre-pessoa-info"><strong>Fernando do Nascimento</strong><span>Backend</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Fernando Neto Zaia, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-zaia.png" alt="Fernando Neto Zaia"><figcaption class="sobre-pessoa-info"><strong>Fernando Neto Zaia</strong><span>Backend</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Sofia Delim Fernandes, Dados e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-1-extra.png" alt="Sofia Delim Fernandes"><figcaption class="sobre-pessoa-info"><strong>Sofia Delim Fernandes</strong><span>Dados | UX</span></figcaption></figure>
+                            </div>
+                        </div>
+                        <div class="sobre-controles" role="group" aria-label="Navegação da equipe do primeiro ano">
+                            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </section>
+
+                    <section class="sobre-ano" aria-labelledby="tituloSegundoAno">
+                        <h3 class="sobre-ano-titulo" id="tituloSegundoAno"><span>2º Ano</span><span class="sobre-ano-ponto" aria-hidden="true"></span></h3>
+                        <div class="sobre-faixa-pessoas" id="pessoasSegundoAno" role="region" aria-label="Carrossel da equipe do segundo ano">
+                            <div class="sobre-pessoas">
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Julia Fonseca Watanabe, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-primeira.png" alt="Julia Fonseca Watanabe"><figcaption class="sobre-pessoa-info"><strong>Julia Fonseca Watanabe</strong><span>Fullstack</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Lucas Cayres Porto, Backend"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-segunda.png" alt="Lucas Cayres Porto"><figcaption class="sobre-pessoa-info"><strong>Lucas Cayres Porto</strong><span>Backend</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Lucas de Carvalho Ramos, Dados"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-terceira.png" alt="Lucas de Carvalho Ramos"><figcaption class="sobre-pessoa-info"><strong>Lucas de Carvalho Ramos</strong><span>Dados</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Marcella Alves de Liberal, Frontend e UX"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-quarta.png" alt="Marcella Alves de Liberal"><figcaption class="sobre-pessoa-info"><strong>Marcella Alves de Liberal</strong><span>Frontend | UX</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Nicolas Vlad Koyama, Dados e IA"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-quinta.png" alt="Nicolas Vlad Koyama"><figcaption class="sobre-pessoa-info"><strong>Nicolas Vlad Koyama</strong><span>Dados | IA</span></figcaption></figure>
+                                <figure class="sobre-pessoa" tabindex="0" aria-label="Verena Marostica Marcelino, Fullstack"><img class="sobre-pessoa-imagem" src="${pageContext.request.contextPath}/assets/sobre-2-sexta.png" alt="Verena Marostica Marcelino"><figcaption class="sobre-pessoa-info"><strong>Verena Marostica Marcelino</strong><span>Fullstack</span></figcaption></figure>
+                            </div>
+                        </div>
+                        <div class="sobre-controles" role="group" aria-label="Navegação da equipe do segundo ano">
+                            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                            </button>
+                            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
+                                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </section>
+                </div>
             </div>
-          </div>
-          <div class="sobre-controles" role="group" aria-label="Navegação da equipe do segundo ano">
-            <button class="sobre-seta" type="button" data-sobre-direcao="anterior" aria-label="Ver integrante anterior">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button class="sobre-seta" type="button" data-sobre-direcao="proximo" aria-label="Ver próximo integrante">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
         </section>
-      </div>
-    </div>
-  </section>
-</main>
+    </main>
 
-<footer class="rodape" id="sobre">
-  <div class="landing-container rodape-conteudo">
-    <div class="rodape-marca">
-      <a class="rodape-logo" href="${pageContext.request.contextPath}/
-      +#inicio" aria-label="Ouros — voltar ao início">
-        <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
-      </a>
-      <p>Desempenho que gera reconhecimento</p>
-      <div class="rodape-contatos">
-        <a class="rodape-contato rodape-contato-email" href="mailto:ouros.app@gmail.com">
-          <span class="rodape-contato-icone rodape-contato-icone-email" aria-hidden="true"></span>
-          <span>ouros.app@gmail.com</span>
-        </a>
-        <a class="rodape-contato rodape-contato-instagram" href="https://www.instagram.com/ouros_app/" target="_blank" rel="noopener noreferrer">
-          <span class="rodape-contato-icone rodape-contato-icone-instagram" aria-hidden="true"></span>
-          <span>ouros_app</span>
-        </a>
-      </div>
-    </div>
-    <nav class="rodape-coluna" aria-label="Links do projeto">
-      <h2>Projeto</h2>
-      <div class="rodape-links">
-        <a href="${pageContext.request.contextPath}/
-        +#inicio">Início</a>
-        <a href="${pageContext.request.contextPath}/landing.jsp#desafios">Desafios</a>
-        <a href="${pageContext.request.contextPath}/landing.jsp#funcionamento">Passo a Passo</a>
-      </div>
-    </nav>
-    <nav class="rodape-coluna rodape-coluna-secundaria" aria-label="Mais links do projeto">
-      <div class="rodape-links">
-        <a href="${pageContext.request.contextPath}/landing.jsp#funcionalidades">Funcionalidades</a>
-        <a href="${pageContext.request.contextPath}/landing.jsp#planos">Planos</a>
-        <a href="${pageContext.request.contextPath}/landing.jsp#faq">FAQ</a>
-      </div>
-    </nav>
-    <nav class="rodape-coluna rodape-coluna-equipe" aria-label="Links da equipe">
-      <h2>Equipe</h2>
-      <div class="rodape-links">
-        <a href="sobre.html#inicio">Sobre Nós</a>
-      </div>
-    </nav>
-  </div>
-  <div class="landing-container rodape-base">
-    <span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span>
-  </div>
-</footer>
+    <footer class="rodape" id="sobre">
+        <div class="landing-container rodape-conteudo">
+            <div class="rodape-marca">
+                <a class="rodape-logo" href="${pageContext.request.contextPath}/#inicio" aria-label="Ouros — voltar ao início">
+                    <img src="${pageContext.request.contextPath}/assets/Ouros.svg" alt="Ouros">
+                </a>
+                <p>Desempenho que gera reconhecimento</p>
+                <div class="rodape-contatos">
+                    <a class="rodape-contato rodape-contato-email" href="mailto:ouros.app@gmail.com">
+                        <span class="rodape-contato-icone rodape-contato-icone-email" aria-hidden="true"></span>
+                        <span>ouros.app@gmail.com</span>
+                    </a>
+                    <a class="rodape-contato rodape-contato-instagram" href="https://www.instagram.com/ouros_app/" target="_blank" rel="noopener noreferrer">
+                        <span class="rodape-contato-icone rodape-contato-icone-instagram" aria-hidden="true"></span>
+                        <span>ouros_app</span>
+                    </a>
+                </div>
+            </div>
+            <nav class="rodape-coluna" aria-label="Links do projeto">
+                <h2>Projeto</h2>
+                <div class="rodape-links">
+                    <a href="${pageContext.request.contextPath}/#inicio">Início</a>
+                    <a href="${pageContext.request.contextPath}/#desafios">Desafios</a>
+                    <a href="${pageContext.request.contextPath}/#funcionamento">Passo a Passo</a>
+                </div>
+            </nav>
+            <nav class="rodape-coluna rodape-coluna-secundaria" aria-label="Mais links do projeto">
+                <div class="rodape-links">
+                    <a href="${pageContext.request.contextPath}/#funcionalidades">Funcionalidades</a>
+                    <a href="${pageContext.request.contextPath}/#planos">Planos</a>
+                    <a href="${pageContext.request.contextPath}/#faq">FAQ</a>
+                </div>
+            </nav>
+            <nav class="rodape-coluna rodape-coluna-equipe" aria-label="Links da equipe">
+                <h2>Equipe</h2>
+                <div class="rodape-links">
+                    <a href="${pageContext.request.contextPath}/sobre.jsp#inicio">Sobre Nós</a>
+                </div>
+            </nav>
+        </div>
+        <div class="landing-container rodape-base">
+            <span>© <span id="anoAtual">2026</span> Ouros. Todos os direitos reservados.</span>
+        </div>
+    </footer>
 
-<script>
-  const menuSobre = document.getElementById('menuSobre');
-  const navegacaoSobre = document.getElementById('navegacaoSobre');
-  menuSobre.addEventListener('click', () => {
-    const abrir = menuSobre.getAttribute('aria-expanded') !== 'true';
-    menuSobre.setAttribute('aria-expanded', String(abrir));
-    menuSobre.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
-    navegacaoSobre.classList.toggle('sobre-nav-aberta', abrir);
-  });
-  navegacaoSobre.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
-    menuSobre.setAttribute('aria-expanded', 'false');
-    menuSobre.setAttribute('aria-label', 'Abrir menu');
-    navegacaoSobre.classList.remove('sobre-nav-aberta');
-  }));
-
-  document.querySelectorAll('.sobre-ano').forEach((carrossel) => {
-    const faixa = carrossel.querySelector('.sobre-faixa-pessoas');
-    const trilha = carrossel.querySelector('.sobre-pessoas');
-    if (!faixa || !trilha) return;
-
-    let pessoas = [];
-    let larguraCiclo = 0;
-    let deslocamentoInicial = 0;
-    let animando = false;
-    let temporizador;
-
-    const inicializar = () => {
-      trilha.querySelectorAll('[data-clone-carrossel="true"]').forEach((clone) => clone.remove());
-      pessoas = [...trilha.querySelectorAll(':scope > .sobre-pessoa:not([data-clone-carrossel])')];
-      if (pessoas.length < 2) return;
-
-      const estilo = getComputedStyle(trilha);
-      const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
-      const passo = pessoas[0].getBoundingClientRect().width + gap;
-      const quantidadeClones = Math.min(pessoas.length, Math.ceil(faixa.clientWidth / passo) + 1);
-      const criarClone = (pessoa) => {
-        const clone = pessoa.cloneNode(true);
-        clone.dataset.cloneCarrossel = 'true';
-        clone.setAttribute('aria-hidden', 'true');
-        clone.querySelectorAll('[tabindex]').forEach((item) => item.removeAttribute('tabindex'));
-        return clone;
-      };
-
-      trilha.prepend(...pessoas.slice(-quantidadeClones).map(criarClone));
-      trilha.append(...pessoas.slice(0, quantidadeClones).map(criarClone));
-      deslocamentoInicial = pessoas.slice(-quantidadeClones).reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
-      larguraCiclo = pessoas.reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
-      faixa.scrollLeft = deslocamentoInicial;
-    };
-
-    const normalizar = () => {
-      if (!larguraCiclo) return;
-      if (faixa.scrollLeft < deslocamentoInicial - 1) {
-        faixa.scrollLeft += larguraCiclo;
-      } else if (faixa.scrollLeft >= deslocamentoInicial + larguraCiclo - 1) {
-        faixa.scrollLeft -= larguraCiclo;
-      }
-    };
-
-    carrossel.querySelectorAll('[data-sobre-direcao]').forEach((botao) => {
-      botao.addEventListener('click', () => {
-        if (animando || !pessoas.length) return;
-        const estilo = getComputedStyle(trilha);
-        const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
-        const passo = pessoas[0].getBoundingClientRect().width + gap;
-        faixa.scrollTo({
-          left: faixa.scrollLeft + (botao.dataset.sobreDirecao === 'anterior' ? -passo : passo),
-          behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    <script>
+        const menuSobre = document.getElementById('menuSobre');
+        const navegacaoSobre = document.getElementById('navegacaoSobre');
+        menuSobre.addEventListener('click', () => {
+            const abrir = menuSobre.getAttribute('aria-expanded') !== 'true';
+            menuSobre.setAttribute('aria-expanded', String(abrir));
+            menuSobre.setAttribute('aria-label', abrir ? 'Fechar menu' : 'Abrir menu');
+            navegacaoSobre.classList.toggle('sobre-nav-aberta', abrir);
         });
-        animando = true;
-        window.clearTimeout(temporizador);
-        temporizador = window.setTimeout(() => {
-          normalizar();
-          animando = false;
-        }, 450);
-      });
-    });
+        navegacaoSobre.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+            menuSobre.setAttribute('aria-expanded', 'false');
+            menuSobre.setAttribute('aria-label', 'Abrir menu');
+            navegacaoSobre.classList.remove('sobre-nav-aberta');
+        }));
 
-    inicializar();
-    window.addEventListener('resize', () => {
-      window.clearTimeout(temporizador);
-      animando = false;
-      inicializar();
-    });
-  });
-</script>
+        document.querySelectorAll('.sobre-ano').forEach((carrossel) => {
+            const faixa = carrossel.querySelector('.sobre-faixa-pessoas');
+            const trilha = carrossel.querySelector('.sobre-pessoas');
+            if (!faixa || !trilha) return;
+
+            let pessoas = [];
+            let larguraCiclo = 0;
+            let deslocamentoInicial = 0;
+            let animando = false;
+            let temporizador;
+
+            const inicializar = () => {
+                trilha.querySelectorAll('[data-clone-carrossel="true"]').forEach((clone) => clone.remove());
+                pessoas = [...trilha.querySelectorAll(':scope > .sobre-pessoa:not([data-clone-carrossel])')];
+                if (pessoas.length < 2) return;
+
+                const estilo = getComputedStyle(trilha);
+                const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
+                const passo = pessoas[0].getBoundingClientRect().width + gap;
+                const quantidadeClones = Math.min(pessoas.length, Math.ceil(faixa.clientWidth / passo) + 1);
+                const criarClone = (pessoa) => {
+                    const clone = pessoa.cloneNode(true);
+                    clone.dataset.cloneCarrossel = 'true';
+                    clone.setAttribute('aria-hidden', 'true');
+                    clone.querySelectorAll('[tabindex]').forEach((item) => item.removeAttribute('tabindex'));
+                    return clone;
+                };
+
+                trilha.prepend(...pessoas.slice(-quantidadeClones).map(criarClone));
+                trilha.append(...pessoas.slice(0, quantidadeClones).map(criarClone));
+                deslocamentoInicial = pessoas.slice(-quantidadeClones).reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
+                larguraCiclo = pessoas.reduce((total, pessoa) => total + pessoa.getBoundingClientRect().width + gap, 0);
+                faixa.scrollLeft = deslocamentoInicial;
+            };
+
+            const normalizar = () => {
+                if (!larguraCiclo) return;
+                if (faixa.scrollLeft < deslocamentoInicial - 1) {
+                    faixa.scrollLeft += larguraCiclo;
+                } else if (faixa.scrollLeft >= deslocamentoInicial + larguraCiclo - 1) {
+                    faixa.scrollLeft -= larguraCiclo;
+                }
+            };
+
+            carrossel.querySelectorAll('[data-sobre-direcao]').forEach((botao) => {
+                botao.addEventListener('click', () => {
+                    if (animando || !pessoas.length) return;
+                    const estilo = getComputedStyle(trilha);
+                    const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
+                    const passo = pessoas[0].getBoundingClientRect().width + gap;
+                    faixa.scrollTo({
+                        left: faixa.scrollLeft + (botao.dataset.sobreDirecao === 'anterior' ? -passo : passo),
+                        behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+                    });
+                    animando = true;
+                    window.clearTimeout(temporizador);
+                    temporizador = window.setTimeout(() => {
+                        normalizar();
+                        animando = false;
+                    }, 450);
+                });
+            });
+
+            inicializar();
+            window.addEventListener('resize', () => {
+                window.clearTimeout(temporizador);
+                animando = false;
+                inicializar();
+            });
+        });
+    </script>
 </body>
 </html>
