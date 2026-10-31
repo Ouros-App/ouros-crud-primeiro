@@ -51,6 +51,7 @@ public class CadastroServlet extends HttpServlet {
         response.setContentType("text/plain;charset=UTF-8");
 
         StringBuilder erros = new StringBuilder();
+        String confirmarSenha = request.getParameter("confirmarSenha");
 
         // validar com o REGEX (eba ele ta aq)
         if (nome == null || nome.trim().isEmpty()) {
@@ -67,6 +68,9 @@ public class CadastroServlet extends HttpServlet {
         }
         if (!Validador.isSenhaValida(senha)) {
             erros.append("- Senha não atende aos requisitos mínimos\n");
+        }
+        if (senha == null || !senha.equals(confirmarSenha)) {
+            erros.append("- As senhas não coincidem\n");
         }
 
         // se der qualquer erro eh pq ta errado

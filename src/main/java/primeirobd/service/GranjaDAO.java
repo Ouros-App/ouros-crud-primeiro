@@ -64,7 +64,6 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     public static final String UPDATE_ENDERECO =
             "UPDATE endereco_granja SET municipio = ?, estado = ? WHERE id_granja = ?";
 
-    // substitui DELETE_BY_ID: não há ON DELETE CASCADE, então apaga os dependentes primeiro
     public static final String DELETE_GRANJA_E_DEPENDENCIAS =
             "WITH alvo AS (SELECT ?::int AS id), " +
                     "apaga_avaliacao AS (DELETE FROM avaliacao WHERE id_dica IN " +

@@ -91,7 +91,7 @@
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="../../img/Ouros.png" alt="Ouros">
+                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>
