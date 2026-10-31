@@ -72,14 +72,19 @@ a {
     white-space: nowrap;
 }
 
-.sobre-nav a:hover,
-.sobre-nav .sobre-link-atual {
+.sobre-nav a:hover:not(.sobre-link-atual),
+.sobre-entrar:hover {
     color: var(--sobre-gold);
 }
 
 .sobre-nav .sobre-link-atual {
     text-decoration: underline;
     text-underline-offset: 3px;
+}
+
+.sobre-nav .sobre-link-atual,
+.sobre-nav .sobre-link-atual:hover {
+    color: #fff;
 }
 
 .sobre-acoes {
