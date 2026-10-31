@@ -73,8 +73,7 @@ a {
 }
 
 .sobre-nav a:hover,
-.sobre-nav .sobre-link-atual,
-.sobre-entrar:hover {
+.sobre-nav .sobre-link-atual {
     color: var(--sobre-gold);
 }
 

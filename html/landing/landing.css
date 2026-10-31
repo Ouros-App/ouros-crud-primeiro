@@ -70,8 +70,7 @@ a {
     white-space: nowrap;
 }
 
-#header nav a:hover,
-.entrar:hover {
+#header nav a:hover {
     color: #cf9d23;
 }
 
@@ -3089,7 +3088,6 @@ a {
         opacity: .19;
     }
 }
-
 
 /* As estrelas acompanham o layout empilhado sem sair dos limites da tela.
    As coordenadas do desktop permanecem intactas a partir de 1101px. */
