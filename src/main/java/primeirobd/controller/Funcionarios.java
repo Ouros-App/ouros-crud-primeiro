@@ -236,15 +236,9 @@ public class Funcionarios extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        try{
-            // Lê os dados enviados pelo formulário.
-            String acao = request.getParameter("acao");
-            String novoNome = request.getParameter("nome");
-            String novoCpf = request.getParameter("cpf");
-            String novoEmail = request.getParameter("email");
-            String novoSetor = request.getParameter("setor");
-            String novoTelefone = request.getParameter("telefone");
-            String novaEmpresa = request.getParameter("empresa");
+        String contexto = request.getContextPath();
+        // Lê a ação enviada pelo formulário (inserir, editar ou excluir).
+        String acao = request.getParameter("acao");
 
         if ("excluir".equals(acao)) {
             try {

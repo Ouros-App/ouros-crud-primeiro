@@ -229,23 +229,6 @@
         </section>
 
         <section class="LoginFormulario" aria-labelledby="cadastro-titulo">
-        <a href="${pageContext.request.contextPath}/inicio"
-           class="BotaoVoltar"
-           title="Voltar ao início"
-           aria-label="Voltar ao início">
-
-            <svg viewBox="0 0 24 24"
-                 fill="none"
-                 stroke="currentColor"
-                 stroke-width="2"
-                 stroke-linecap="round"
-                 stroke-linejoin="round">
-
-                <path d="M19 12H5"></path>
-                <path d="M12 19l-7-7 7-7"></path>
-            </svg>
-
-        </a>
 
             <header class="LoginCabecalho">
                 <a href="${pageContext.request.contextPath}/inicio"

@@ -838,19 +838,19 @@ a {
 /* Imagens provisórias dos desafios */
 
 .cards .card.card-1 {
-    background: url('../assets/gastos.svg') center/cover;
+    background: url('assets/gastos.svg') center/cover;
 }
 
 .cards .card.card-2 {
-    background: url('../assets/desperdicio.svg') center/cover;
+    background: url('assets/desperdicio.svg') center/cover;
 }
 
 .cards .card.card-3 {
-    background: url('../assets/estimativas.svg') center/cover;
+    background: url('assets/estimativas.svg') center/cover;
 }
 
 .cards .card.card-4 {
-    background: url('../assets/papel.svg') center/cover;
+    background: url('assets/papel.svg') center/cover;
 }
 
 /* Container e títulos das seções inferiores */
@@ -1316,7 +1316,7 @@ a {
     z-index: -1;
     width: min(118.34vw, 1704px);
     height: min(68.89vw, 992px);
-    background: url("../assets/linhas-douradas-ranking.png") center / 100% 100% no-repeat;
+    background: url("assets/linhas-douradas-ranking.png") center / 100% 100% no-repeat;
     content: "";
     pointer-events: none;
     transform: translateX(-50%);
@@ -1979,8 +1979,8 @@ a {
     width: 24px;
     height: 24px;
     background-color: currentColor;
-    -webkit-mask: url('../assets/faq-seta.svg') center / contain no-repeat;
-    mask: url('../assets/faq-seta.svg') center / contain no-repeat;
+    -webkit-mask: url('assets/faq-seta.svg') center / contain no-repeat;
+    mask: url('assets/faq-seta.svg') center / contain no-repeat;
     transform: rotate(0deg);
     transition: transform 180ms ease;
 }
@@ -2179,8 +2179,8 @@ a {
     flex: 0 0 21px;
     width: 21px;
     height: 16px;
-    mask-image: url("../assets/email.svg");
-    -webkit-mask-image: url("../assets/email.svg");
+    mask-image: url("assets/email.svg");
+    -webkit-mask-image: url("assets/email.svg");
 }
 
 .rodape-contato-instagram {
@@ -2192,8 +2192,8 @@ a {
     flex: 0 0 19px;
     width: 19px;
     height: 19px;
-    mask-image: url("../assets/instagram.svg");
-    -webkit-mask-image: url("../assets/instagram.svg");
+    mask-image: url("assets/instagram.svg");
+    -webkit-mask-image: url("assets/instagram.svg");
 }
 
 .rodape-coluna {

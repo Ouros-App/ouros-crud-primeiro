@@ -1082,8 +1082,8 @@ a {
     flex: 0 0 21px;
     width: 21px;
     height: 16px;
-    mask-image: url("../assets/email.svg");
-    -webkit-mask-image: url("../assets/email.svg");
+    mask-image: url("assets/email.svg");
+    -webkit-mask-image: url("assets/email.svg");
 }
 
 .rodape-contato-instagram {
@@ -1095,8 +1095,8 @@ a {
     flex: 0 0 19px;
     width: 19px;
     height: 19px;
-    mask-image: url("../assets/instagram.svg");
-    -webkit-mask-image: url("../assets/instagram.svg");
+    mask-image: url("assets/instagram.svg");
+    -webkit-mask-image: url("assets/instagram.svg");
 }
 
 .rodape-coluna {
