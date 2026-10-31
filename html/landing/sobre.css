@@ -73,8 +73,7 @@ a {
 }
 
 .sobre-nav a:hover,
-.sobre-nav .sobre-link-atual,
-.sobre-entrar:hover {
+.sobre-nav .sobre-link-atual {
     color: var(--sobre-gold);
 }
 
@@ -91,10 +90,6 @@ a {
 }
 
 .sobre-acoes .sobre-entrar {
-    font-size: 17px;
-}
-
-.sobre-acoes .sobre-cadastro {
     display: inline-flex;
     width: 117px;
     height: 38px;
@@ -112,15 +107,15 @@ a {
     transition: background-color .2s ease, color .2s ease, border-color .2s ease, border-radius .2s ease;
 }
 
-.sobre-acoes .sobre-cadastro:hover,
-.sobre-acoes .sobre-cadastro:focus-visible {
+.sobre-acoes .sobre-entrar:hover,
+.sobre-acoes .sobre-entrar:focus-visible {
     border-color: rgba(232, 232, 220, .68);
     border-radius: 12px;
     background: #0e0c23;
     color: #fff;
 }
 
-.sobre-acoes .sobre-cadastro:focus-visible {
+.sobre-acoes .sobre-entrar:focus-visible {
     outline: 2px solid var(--sobre-gold);
     outline-offset: 3px;
 }
@@ -735,7 +730,7 @@ a {
         font-size: clamp(14px, 3.6vw, 20px);
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: clamp(88px, 17vw, 95px);
         height: clamp(34px, 7.17vw, 40px);
         padding: 5px 9px;
@@ -943,7 +938,7 @@ a {
         font-size: 13px;
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: auto;
         height: 34px;
         padding: 6px 12px;
@@ -1220,7 +1215,7 @@ a {
         font-size: 12px;
     }
 
-    .sobre-acoes .sobre-cadastro {
+    .sobre-acoes .sobre-entrar {
         width: 82px;
         height: 32px;
         padding: 4px 7px;
