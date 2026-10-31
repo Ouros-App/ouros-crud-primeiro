@@ -490,7 +490,7 @@ public class FuncionarioDAO implements primeirobd.repository.FuncionarioDAO {
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
         try (PreparedStatement ps = conexao.prepareStatement(INSERT_FUNCIONARIO_COM_TELEFONE)) {
 
-            fun.setIdEmpresa(empresas.getFirst().getId());
+            fun.setIdEmpresa(empresas.get(0).getId());
 
             ps.setString(1, fun.getNome());
             ps.setString(2, fun.getCpf());

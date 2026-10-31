@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -91,7 +90,7 @@
 
         <section class="LoginMarca" aria-label="Sobre o Ouros">
             <div class="LoginLogo">
-                <img src="${pageContext.request.contextPath}/img/Ouros.png" alt="Ouros">
+                <img src="img/Ouros.png" alt="Ouros">
             </div>
 
             <div class="LoginDivisor"></div>

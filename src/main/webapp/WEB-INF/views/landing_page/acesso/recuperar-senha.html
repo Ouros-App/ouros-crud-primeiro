@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de conta | Ouros</title>
+    <link rel="stylesheet" href="../Style.css">
+    <link rel="icon" type="image/png" href="../img/Asa-icon.png">
+    <script src="../../../../acesso.js" defer></script>
+</head>
+<body>
+<main class="LoginPage LoginPage--recuperacao">
+    <div class="LoginShell">
+        <section class="LoginMarca" aria-label="Sobre o Ouros">
+            <div class="LoginLogo"><img src="../img/Ouros.png" alt="Ouros"></div>
+            <div class="LoginDivisor"></div>
+            <p class="LoginTagline">Monitoramento inteligente para granjas mais <span class="destaque">eficientes.</span></p>
+            <ul class="LoginRecursos">
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.5c-3.5 4-6 7.4-6 10.7a6 6 0 0 0 12 0c0-3.3-2.5-6.7-6-10.7Z"></path></svg></span><div><h2 class="LoginRecursoTitulo">Registros</h2><p class="LoginRecursoTexto">Acompanhe o histórico de água e energia.</p></div></li>
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 21h8"></path><path d="M12 17v4"></path><path d="M7 4h10v5a5 5 0 0 1-10 0V4Z"></path><path d="M17 5h2a2 2 0 0 1 0 4h-1"></path><path d="M7 5H5a2 2 0 0 0 0 4h1"></path></svg></span><div><h2 class="LoginRecursoTitulo">Ranking</h2><p class="LoginRecursoTexto">Compare o desempenho da sua granja com outras.</p></div></li>
+                <li class="LoginRecursoItem"><span class="LoginRecursoIcone" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"></path><path d="M7 15l4-4 3 3 5-6"></path></svg></span><div><h2 class="LoginRecursoTitulo">Dashboards</h2><p class="LoginRecursoTexto">Visualize indicadores de consumo e desempenho.</p></div></li>
+            </ul>
+        </section>
+        <section class="LoginFormulario" aria-labelledby="formulario-titulo">
+            <header class="LoginCabecalho">
+                <h1 class="LoginTitulo" id="formulario-titulo">Recuperação de Conta</h1>
+                <p class="LoginSubtitulo">Redefina sua senha para continuar sendo um OUROS</p>
+            </header>
+            <div class="LoginRecuperacaoIntro"><h2 class="LoginPergunta">Esqueceu sua senha?</h2><p class="LoginInstrucao">Digite seu e-mail e enviaremos um link para redefinir sua senha.</p></div>
+            <form class="LoginFormEtapa" data-auth-form="recuperacao">
+                <div class="LoginCampoGrupo"><label class="LoginCampoLabel" for="email">Email</label><input class="LoginCampoInput" type="email" id="email" name="email" placeholder="seuemail@email.com" autocomplete="email" required></div>
+                <p class="LoginAviso" role="status" aria-live="polite"></p>
+                <button class="LoginBotao" type="submit">Enviar link</button>
+            </form>
+            <img class="MascoteLogin" src="../img/midas-acesso.png" alt="Midas, mascote do Ouros">
+            <div class="LoginRodape"><span>Lembrou sua senha?</span><a class="LoginLinkEsqueci" href="login.html">Voltar ao login</a></div>
+        </section>
+    </div>
+</main>
+</body>
+</html>
