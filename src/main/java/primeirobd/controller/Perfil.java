@@ -70,7 +70,7 @@ public class Perfil extends HttpServlet {
         }
 
         // Envia os dados para a página de perfil.
-        request.setAttribute("administrador", adm);
+        request.setAttribute("administrador", administradorModel);
 
         request.getRequestDispatcher(
                 "/WEB-INF/views/perfil.jsp"
@@ -112,7 +112,7 @@ public class Perfil extends HttpServlet {
             if ("true".equals(remover)) {
 
                 // Remove do cadastro a referência para a foto.
-                dao.updateFotoPerfil(id, null);
+                administradorDao.updateFotoPerfil(id, null);
 
                 // Volta ao perfil informando que a foto foi removida.
                 response.sendRedirect(
@@ -134,7 +134,7 @@ public class Perfil extends HttpServlet {
             // Busca os dados atuais, inclusive para conferir a senha.
             Administrador administradorAtual = administradorDao.selectById(id);
 
-            if (atual == null) {
+            if (administradorAtual == null) {
                 response.sendError(
                         HttpServletResponse.SC_NOT_FOUND,
                         "Administrador não encontrado."
@@ -192,8 +192,8 @@ public class Perfil extends HttpServlet {
 
             // Em caso de erro, retorna ao formulário com os dados já preenchidos.
             if (erros.length() > 0) {
-                atual.setNome(nome);
-                atual.setTelefone(telefone);
+                administradorAtual.setNome(nome);
+                administradorAtual.setTelefone(telefone);
 
                 request.setAttribute("erro", erros.toString());
                 request.setAttribute("administrador", administradorAtual);
