@@ -1,24 +1,32 @@
 package primeirobd.model;
 
 import java.sql.Date;
+import java.math.BigDecimal;
 
 public class Lote {
-    // atributos da tabela
+    // Representa um lote de aves, suas datas, quantidades e a granja de origem.
+
+    // Identificação, datas, quantidades e resultado financeiro do lote.
     private int id;
     private Date dtChegada;
     private Date dtEntrega;
     private Date dtNascimento;
     private int galinhasEntregadas;
     private int galinhasRecebidas;
-    private float ganho;
+    private String nomeGranja;
+    private BigDecimal ganho;
+
+
     private int idGranja;
 
-    //contrutor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Lote() {
     }
-    //metodos getters
 
+
+    // Acessores para leitura dos dados do lote.
     public int getId() {
         return id;
     }
@@ -43,7 +51,10 @@ public class Lote {
         return galinhasRecebidas;
     }
 
-    public float getGanho() {
+    public String getNomeGranja() {
+        return nomeGranja;
+    }
+    public BigDecimal getGanho() {
         return ganho;
     }
 
@@ -51,8 +62,9 @@ public class Lote {
         return idGranja;
     }
 
-    //metodos setters
 
+
+    // Acessores para atualização dos dados do lote.
     public void setId(int id) {
         this.id = id;
     }
@@ -77,7 +89,11 @@ public class Lote {
         this.galinhasRecebidas = galinhasRecebidas;
     }
 
-    public void setGanho(float ganho) {
+    public void setNomeGranja(String nomeGranja) {
+        this.nomeGranja = nomeGranja;
+    }
+
+    public void setGanho(BigDecimal ganho) {
         this.ganho = ganho;
     }
 
@@ -86,16 +102,18 @@ public class Lote {
     }
 
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nLOTE" +
-                "\nId:" + this.id +
-                "\nDt_Chegada:" + this.dtChegada +
-                "\nDt_Entrega:" + this.dtEntrega +
-                "\nDt_Nascimento:" + this.dtNascimento +
-                "\nGalinhas_Entregadas:" + this.galinhasEntregadas +
-                "\nGalinhas_Recebidas:" + this.galinhasRecebidas +
-                "\nGanho:" + this.ganho +
-                "\nId_Granja:" + this.idGranja+
+                "\nId: " + this.id +
+                "\nDt_Chegada: " + this.dtChegada +
+                "\nDt_Entrega: " + this.dtEntrega +
+                "\nDt_Nascimento: " + this.dtNascimento +
+                "\nGalinhas_Entregadas: " + this.galinhasEntregadas +
+                "\nGalinhas_Recebidas: " + this.galinhasRecebidas +
+                "\nNome granja: " + this.nomeGranja +
+                "\nGanho: " + this.ganho +
+                "\nId_Granja: " + this.idGranja+
                 "\n-------------------------------------------------------------";
     }
 }

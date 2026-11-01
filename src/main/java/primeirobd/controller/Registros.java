@@ -1,0 +1,235 @@
+package primeirobd.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import primeirobd.model.Lote;
+import primeirobd.model.RegistroAgua;
+import primeirobd.model.RegistroEnergia;
+import primeirobd.service.LoteDAO;
+import primeirobd.service.RegistroAguaDAO;
+import primeirobd.service.RegistroEnergiaDAO;
+import primeirobd.utils.Paginacao;
+
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+@WebServlet(name = "Registros", value = "/registros" )
+public class Registros extends HttpServlet {
+
+    private static final int TAMANHO_PAGINA = 5;
+
+    // Maior valor permitido pelo campo numérico do banco.
+    private static final BigDecimal LIMITE = new BigDecimal("99999999.99");
+
+    private final RegistroAguaDAO registroAguaDAO = new RegistroAguaDAO();
+    private final RegistroEnergiaDAO registroEnergiaDAO = new RegistroEnergiaDAO();
+    private final LoteDAO loteDAO = new LoteDAO();
+
+    @Override
+    protected void doGet(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+
+        String acao = request.getParameter("acao");
+        String tipo = request.getParameter("tipo");
+
+        if (tipo == null || tipo.isBlank()) {
+            tipo = "agua";
+        }
+
+        tipo = tipo.toLowerCase();
+
+        if (!tipo.equals("agua") && !tipo.equals("energia")) {
+            tipo = "agua";
+        }
+
+        request.setAttribute("tipoAtual", tipo);
+
+        // Abre o formulário de novo registro dentro do modal.
+        if ("inserir".equals(acao)) {
+            request.setAttribute("lotes", loteDAO.selectPaginadoSemParametros());
+            request.getRequestDispatcher("/WEB-INF/views/registro-novo.jsp")
+                    .forward(request, response);
+            return;
+        }
+
+        // Abre a edição ou a confirmação de exclusão do registro selecionado.
+        if ("editar".equals(acao) || "excluir".equals(acao)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Object selecionado = tipo.equals("energia")
+                        ? registroEnergiaDAO.selectById(id)
+                        : registroAguaDAO.selectById(id);
+
+                if (selecionado == null) {
+                    response.sendRedirect(request.getContextPath() + "/registros?tipo=" + tipo + "&erro=naoencontrado");
+                    return;
+                }
+                request.setAttribute("registroSelecionado", selecionado);
+
+                String jsp;
+                if ("editar".equals(acao)) {
+                    request.setAttribute("lotes", loteDAO.selectPaginadoSemParametros());
+                    jsp = "/WEB-INF/views/editar-registro.jsp";
+                } else {
+                    jsp = "/WEB-INF/views/excluir-registro.jsp";
+                }
+                request.getRequestDispatcher(jsp).forward(request, response);
+            } catch (NumberFormatException e) {
+                response.sendRedirect(request.getContextPath() + "/registros?tipo=" + tipo + "&erro=id");
+            }
+            return;
+        }
+
+        int pagina = Paginacao.lerPagina(request);
+
+        String busca = request.getParameter("buscaRegistro");
+        busca = (busca == null) ? "" : busca.trim();
+        String termo = "%" + busca + "%";
+
+        String ordenarPor = request.getParameter("ordenarPor");
+        if (ordenarPor == null || ordenarPor.isBlank()) {
+            ordenarPor = "data";
+        }
+
+        if (tipo.equals("energia")) {
+            int total = registroEnergiaDAO.contarBusca(termo);
+
+            Paginacao paginacao = new Paginacao(pagina, TAMANHO_PAGINA, total);
+
+            request.setAttribute("registroEnergias", registroEnergiaDAO.selectPaginadoComBusca(
+                    termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor));
+            request.setAttribute("paginacao", paginacao);
+
+        } else {
+            int total = registroAguaDAO.contarBusca(termo);
+
+            Paginacao paginacao = new Paginacao(pagina, TAMANHO_PAGINA, total);
+
+            request.setAttribute("registroAguas", registroAguaDAO.selectPaginadoComBusca(
+                    termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor));
+            request.setAttribute("paginacao", paginacao);
+        }
+
+        request.getRequestDispatcher(
+                "/WEB-INF/views/registros.jsp"
+        ).forward(request, response);
+    }
+
+    @Override
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
+        String acao = request.getParameter("acao");
+        String contexto = request.getContextPath();
+        String tipo = "energia".equals(request.getParameter("tipo")) ? "energia" : "agua";
+
+        if ("excluir".equals(acao)) {
+            try {
+                int id = Integer.parseInt(request.getParameter("id"));
+                if (tipo.equals("energia")) {
+                    registroEnergiaDAO.delete(id);
+                } else {
+                    registroAguaDAO.delete(id);
+                }
+            } catch (NumberFormatException e) {
+                response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=id");
+                return;
+            }
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo);
+            return;
+        }
+
+        if (!"inserir".equals(acao) && !"editar".equals(acao)) {
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo);
+            return;
+        }
+
+        int idRegistro = 0;
+        int idLote;
+        LocalDate data;
+        BigDecimal inicial;
+        BigDecimal fim;
+
+        try {
+            idLote = Integer.parseInt(request.getParameter("lote"));
+            data = LocalDate.parse(request.getParameter("data"));
+            inicial = new BigDecimal(request.getParameter("medidorInicial")).setScale(2, RoundingMode.HALF_UP);
+            fim = new BigDecimal(request.getParameter("medidorFinal")).setScale(2, RoundingMode.HALF_UP);
+
+            if ("editar".equals(acao)) {
+                idRegistro = Integer.parseInt(request.getParameter("id"));
+            }
+        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=dados");
+            return;
+        }
+
+        if (inicial.signum() < 0
+                || fim.compareTo(inicial) < 0
+                || fim.compareTo(LIMITE) > 0) {
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=medidor");
+            return;
+        }
+
+        Lote loteModel = loteDAO.selectById(idLote);
+        if (loteModel == null) {
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=lote");
+            return;
+        }
+
+        if (data.isBefore(loteModel.getDtChegada().toLocalDate())
+                || (loteModel.getDtEntrega() != null && data.isAfter(loteModel.getDtEntrega().toLocalDate()))) {
+            response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=data");
+            return;
+        }
+
+        if (tipo.equals("agua")) {
+            RegistroAgua registroAgua = new RegistroAgua();
+            registroAgua.setIdLote(idLote);
+            registroAgua.setDtRegistro(Date.valueOf(data));
+            registroAgua.setHidrometroInicio(inicial);
+            registroAgua.setHidrometroFinal(fim);
+
+            if ("inserir".equals(acao)) {
+                registroAguaDAO.insert(registroAgua);
+            } else {
+                if (registroAguaDAO.selectById(idRegistro) == null) {
+                    response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=naoencontrado");
+                    return;
+                }
+                registroAgua.setId(idRegistro);
+                registroAguaDAO.updateRegistro(registroAgua);
+            }
+        } else {
+            RegistroEnergia registroEnergia = new RegistroEnergia();
+            registroEnergia.setIdLote(idLote);
+            registroEnergia.setDtRegistro(Date.valueOf(data));
+            registroEnergia.setConsumo(fim.subtract(inicial));
+
+            if ("inserir".equals(acao)) {
+                registroEnergiaDAO.insert(registroEnergia);
+            } else {
+                if (registroEnergiaDAO.selectById(idRegistro) == null) {
+                    response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=naoencontrado");
+                    return;
+                }
+                registroEnergia.setId(idRegistro);
+                registroEnergiaDAO.updateRegistro(registroEnergia);
+            }
+        }
+
+        response.sendRedirect(contexto + "/registros?tipo=" + tipo);
+    }
+}

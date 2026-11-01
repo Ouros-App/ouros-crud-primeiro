@@ -1,21 +1,45 @@
 package primeirobd.model;
 
 public class Funcionario {
-    // atributos da tabela
+    // Representa um funcionário e o vínculo dele com uma empresa.
+
+    // Identificação, contato e vínculo empresarial do funcionário.
     private int id;
     private String cpf;
     private String email;
     private int idEmpresa;
     private String nome;
     private String setor;
+    private String telefone;
+    private String nomeEmpresa;
 
-    //construtor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Funcionario() {
     }
 
-    //metodos getters
+    // Construtores para criação com os dados disponíveis do funcionário.
+    public Funcionario(String nome, String cpf, String email, String setor, String telefone) {
+        this.email = email;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.setor = setor;
+        this.telefone = telefone;
+    }
 
+    public Funcionario(int id, String nome, String cpf, String email, String setor, String telefone) {
+        this.email = email;
+        this.cpf = cpf;
+        this.nome = nome;
+        this.setor = setor;
+        this.telefone = telefone;
+        this.id = id;
+    }
+
+
+
+    // Acessores para leitura dos dados do funcionário.
     public int getId() {
         return id;
     }
@@ -40,8 +64,15 @@ public class Funcionario {
         return setor;
     }
 
-    //metodos setters
+    public String getTelefone() {
+        return telefone;
+    }
 
+    public String getNomeEmpresa() { return nomeEmpresa; }
+
+
+
+    // Acessores para atualização dos dados do funcionário.
     public void setId(int id) {
         this.id = id;
     }
@@ -66,7 +97,16 @@ public class Funcionario {
         this.setor = setor;
     }
 
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setNomeEmpresa(String nomeEmpresa) {
+        this.nomeEmpresa = nomeEmpresa;
+    }
+
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nFUNCIONARIO" +
                 "\nId: " + this.id +
@@ -74,7 +114,8 @@ public class Funcionario {
                 "\nEmail: " + this.email +
                 "\nId_Empresa: " + this.idEmpresa +
                 "\nNome: " + this.nome +
-                "\nSetor: " + this.setor+
+                "\nSetor: " + this.setor +
+                "\nTelefone: " + this.telefone +
                 "\n-------------------------------------------------------------";
     }
 }

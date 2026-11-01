@@ -1,21 +1,33 @@
 package primeirobd.model;
 
 public class Granja {
-    // atributos da tabela
+    // Representa uma granja, sua capacidade, localização e vínculo com a empresa responsável.
+
+    // Identificação, estrutura, localização e vínculo empresarial da granja.
     private int id;
     private int areaPropriedade;
     private int capacidadeDeAves;
     private int idEmpresa;
     private String nome;
+    private String nomeResponsavel;
+    private String localizacao;
     private String regiao;
+    private double cgi;
+    private String cep;
+    private int numero;
+    private String logradouro;
+    private String municipio;
+    private String estado;
 
-    //construtor
 
+
+    // Construtor vazio usado pelo acesso a dados.
     public Granja() {
     }
 
-    //metodos getters
 
+
+    // Acessores para leitura dos dados da granja.
     public int getId() {
         return id;
     }
@@ -40,9 +52,32 @@ public class Granja {
         return regiao;
     }
 
+    public String getLocalizacao() {
+        return localizacao;
+    }
 
-    //metodos setters
+    public String getNomeResponsavel() {
+        return nomeResponsavel;
+    }
 
+    public double getCgi() {
+        return cgi;
+    }
+
+    public String getCep() { return cep; }
+
+    public int getNumero() { return numero; }
+
+    public String getLogradouro() { return logradouro; }
+
+    public String getMunicipio() { return municipio; }
+
+    public String getEstado() { return estado; }
+
+
+
+
+    // Acessores para atualização dos dados da granja.
     public void setId(int id) {
         this.id = id;
     }
@@ -67,15 +102,41 @@ public class Granja {
         this.regiao = regiao;
     }
 
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
+    }
+
+    public void setNomeResponsavel(String nomeResponsavel) {
+        this.nomeResponsavel = nomeResponsavel;
+    }
+
+    public void setCgi(double cgi) {
+        this.cgi = cgi;
+    }
+
+    public void setCep(String cep) { this.cep = cep; }
+
+    public void setNumero(int numero) { this.numero = numero; }
+
+    public void setLogradouro(String logradouro) { this.logradouro = logradouro; }
+
+    public void setMunicipio(String municipio) { this.municipio = municipio; }
+
+    public void setEstado(String estado) { this.estado = estado; }
+
     @Override
+    // Apresentação resumida dos dados da entidade.
     public String toString() {
         return "\nGRANJA" +
                 "\nId: " + this.id +
                 "\nArea_Propriedade: " + this.areaPropriedade +
                 "\nCapacidade_De_Aves: " + this.capacidadeDeAves +
                 "\nId_Empresa: " + this.idEmpresa +
-                "\nMome: " + this.nome +
-                "Regiao: " + this.regiao+
+                "\nNome: " + this.nome +
+                "\nResponsável: " + this.nomeResponsavel +
+                "\nLocalização: " + this.localizacao +
+                "\nRegiao: " + this.regiao +
+                "\nCGI: " + this.cgi +
                 "\n-------------------------------------------------------------";
     }
 }
