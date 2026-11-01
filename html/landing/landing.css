@@ -51,7 +51,7 @@ a {
 }
 
 #header nav {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3332,7 +3332,7 @@ a {
     }
 
     .hero-content {
-        margin-top: calc(72px + 109.89px - clamp(80px, 8vw, 138px));
+        margin-top: calc(96px + 109.89px - clamp(80px, 8vw, 138px));
     }
 
     .hero {
