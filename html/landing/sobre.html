@@ -223,8 +223,9 @@
                     const estilo = getComputedStyle(trilha);
                     const gap = parseFloat(estilo.columnGap) || parseFloat(estilo.gap) || 0;
                     const passo = pessoas[0].getBoundingClientRect().width + gap;
+                    const avanco = passo * (window.matchMedia('(max-width: 760px)').matches ? 2 : 1);
                     faixa.scrollTo({
-                        left: faixa.scrollLeft + (botao.dataset.sobreDirecao === 'anterior' ? -passo : passo),
+                        left: faixa.scrollLeft + (botao.dataset.sobreDirecao === 'anterior' ? -avanco : avanco),
                         behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
                     });
                     animando = true;
