@@ -33,7 +33,7 @@ public class Perfil extends HttpServlet {
     private static final long LIMITE_FOTO = 2 * 1024 * 1024;
 
     // Acesso aos dados do administrador.
-    private final AdministradorDAO dao = new AdministradorDAO();
+    private final AdministradorDAO administradorDao = new AdministradorDAO();
 
     @Override
     protected void doGet(
@@ -58,10 +58,10 @@ public class Perfil extends HttpServlet {
         int id = (Integer) sessao.getAttribute("administradorId");
 
         // Busca os dados atualizados do administrador.
-        Administrador adm = dao.selectById(id);
+        Administrador administradorModel = administradorDao.selectById(id);
 
         // Sem cadastro correspondente, informa que o recurso não existe.
-        if (adm == null) {
+        if (administradorModel == null) {
             response.sendError(
                     HttpServletResponse.SC_NOT_FOUND,
                     "Administrador não encontrado."
@@ -132,7 +132,7 @@ public class Perfil extends HttpServlet {
             telefone = telefone == null ? "" : telefone.trim();
 
             // Busca os dados atuais, inclusive para conferir a senha.
-            Administrador atual = dao.selectById(id);
+            Administrador administradorAtual = administradorDao.selectById(id);
 
             if (atual == null) {
                 response.sendError(
@@ -158,14 +158,14 @@ public class Perfil extends HttpServlet {
                     || (senhaConfirma != null && !senhaConfirma.isEmpty());
 
             if (trocarSenha) {
-                if (senhaAtual == null || atual.getSenha() == null
-                        || !BCrypt.checkpw(senhaAtual, atual.getSenha())) {
+                if (senhaAtual == null || administradorAtual.getSenha() == null
+                        || !BCrypt.checkpw(senhaAtual, administradorAtual.getSenha())) {
                     erros.append("- Senha atual incorreta.\n");
                 }
                 if (!Validador.isSenhaValida(senhaNova)) {
                     erros.append("- A nova senha não atende aos requisitos mínimos.\n");
-                } else if (atual.getSenha() != null
-                        && BCrypt.checkpw(senhaNova, atual.getSenha())) {
+                } else if (administradorAtual.getSenha() != null
+                        && BCrypt.checkpw(senhaNova, administradorAtual.getSenha())) {
                     erros.append("- A nova senha deve ser diferente da atual.\n");
                 }
                 if (senhaNova == null || !senhaNova.equals(senhaConfirma)) {
@@ -196,7 +196,7 @@ public class Perfil extends HttpServlet {
                 atual.setTelefone(telefone);
 
                 request.setAttribute("erro", erros.toString());
-                request.setAttribute("administrador", atual);
+                request.setAttribute("administrador", administradorAtual);
                 request.getRequestDispatcher("/WEB-INF/views/perfil.jsp")
                         .forward(request, response);
                 return;
@@ -218,18 +218,18 @@ public class Perfil extends HttpServlet {
             }
 
             // Grava os dados validados no banco.
-            dao.updateDados(id, nome);
+            administradorDao.updateDados(id, nome);
 
             if (!telefone.isEmpty()) {
                 new TelefoneAdminDAO().salvar(id, telefone);
             }
 
             if (trocarSenha) {
-                dao.updateSenha(id, BCrypt.hashpw(senhaNova, BCrypt.gensalt()));
+                administradorDao.updateSenha(id, BCrypt.hashpw(senhaNova, BCrypt.gensalt()));
             }
 
             if (urlFoto != null) {
-                dao.updateFotoPerfil(id, urlFoto);
+                administradorDao.updateFotoPerfil(id, urlFoto);
             }
 
             // Conclui a alteração e informa o sucesso ao usuário.
