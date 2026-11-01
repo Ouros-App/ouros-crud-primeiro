@@ -65,7 +65,7 @@ CGI = ((consumo de água / galinhas entregues) × 0,7
 ```
 src/main/java/primeirobd/
 ├── controller/   # Servlets (Inicio, Granjas, Lotes, Funcionarios, Registros, Metas,
-│                 #           Perfil, Login, Cadastro, Verificar e Recuperar/Redefinir senha)
+│                 #           Perfil, Login, Cadastro)
 ├── filter/       # AuthenticationFilter (protege as rotas privadas)
 ├── model/        # Entidades (Administrador, Granja, Lote, Funcionario, Meta, Registro*, CGI...)
 ├── repository/   # Interfaces dos DAOs
