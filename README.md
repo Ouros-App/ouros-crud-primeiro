@@ -141,7 +141,6 @@ src/main/webapp/
 
 - Consultas com `PreparedStatement` (proteção contra SQL Injection); colunas de `ORDER BY` restritas por lista de valores permitidos.
 - Senhas com hash BCrypt e tokens gerados com `SecureRandom`.
-- Tokens de verificação e recuperação com expiração e uso único.
 - Rotas privadas protegidas por filtro de autenticação.
 - Saída de dados nas JSPs escapada com `<c:out>`.
 
