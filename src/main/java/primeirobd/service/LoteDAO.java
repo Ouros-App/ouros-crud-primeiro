@@ -9,35 +9,35 @@ import java.util.List;
 
 // Executa operações de lotes e seus registros de consumo relacionados.
 public class LoteDAO implements primeirobd.repository.LoteDAO {
-    public static final String SELECT_ALL = "SELECT * FROM lote;";
-    public static final String SELECT_ALL_JOIN_PAGINADO = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id ORDER BY lote.id";
-    public static final String SELECT_ENTREGUES = "SELECT galinhas_entregadas FROM lote";
-    public static final String SELECT_RECEBIDAS = "SELECT galinhas_recebidas FROM lote";
-    public static final String SELECT_CHEGADA = "SELECT dt_chegada FROM lote";
-    public static final String SELECT_GANHO = "SELECT ganho FROM lote";
-    public static final String SELECT_BY_ID =
+    public static final String comandoSelectAll = "SELECT * FROM lote;";
+    public static final String comandoSelectPaginadoSemParametros = "SELECT *, granja.nome FROM lote JOIN granja ON lote.id_granja = granja.id ORDER BY lote.id";
+    public static final String comandoSelectGalinhasEntregues = "SELECT galinhas_entregadas FROM lote";
+    public static final String comandoSelectGalinhasRecebidas = "SELECT galinhas_recebidas FROM lote";
+    public static final String comandoSelectDataChegada = "SELECT dt_chegada FROM lote";
+    public static final String comandoSelectGanho = "SELECT ganho FROM lote";
+    public static final String comandoSelectById =
             "SELECT id, galinhas_entregadas, galinhas_recebidas, dt_nascimento, " +
                     "dt_chegada, dt_entrega, ganho, id_granja " +
                     "FROM lote WHERE id = ?";
     //----------------------------------------------------------------------------------------
-    public static final String DELETE_LOTE_E_REGISTROS =
+    public static final String comandoDeleteLoteERegistro =
             "WITH alvo AS (SELECT ?::int AS id), " +
                     "apaga_registro_agua AS (DELETE FROM registro_agua WHERE id_lote = (SELECT id FROM alvo)), " +
                     "apaga_registro_energia AS (DELETE FROM registro_energia WHERE id_lote = (SELECT id FROM alvo)) " +
                     "DELETE FROM lote WHERE id = (SELECT id FROM alvo)";
 
-    public static final String INSERT = "INSERT INTO lote (galinhas_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?)";
+    public static final String comandoInsert = "INSERT INTO lote (galinhas_entregadas,galinhas_recebidas,dt_nascimento,dt_chegada,dt_entrega,ganho,id_granja) VALUES (?,?,?,?,?,?,?)";
     //----------------------------------------------------------------------------------------
-    public static final String UPDATE_ALL =
+    public static final String comandoUpdateAll =
             "UPDATE lote SET galinhas_entregadas = ?, galinhas_recebidas = ?, dt_nascimento = ?, " +
                     "dt_chegada = ?, dt_entrega = ?, ganho = ?, id_granja = ? WHERE id = ?";
-    public static final String UPDATE_ID = "UPDATE lote SET id = ? WHERE id = ?";
-    public static final String UPDATE_ENTREGUES = "UPDATE lote SET galinhas_entregadas = ? WHERE galinhas_entregadas = ?";
-    public static final String UPDATE_RECEBIDAS = "UPDATE lote SET galinhas_recebidas = ? WHERE galinhas_recebidas = ?";
-    public static final String UPDATE_CHEGADA = "UPDATE lote SET dt_chegada = ? WHERE dt_chegada = ?";
-    public static final String UPDATE_GANHO = "UPDATE lote SET ganho = ? WHERE ganho = ?";
-    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM lote";
-    public static final String SELECT_PAGINADO =
+    public static final String comandoUpdateId = "UPDATE lote SET id = ? WHERE id = ?";
+    public static final String comandoUpdateGalinhasEntregues = "UPDATE lote SET galinhas_entregadas = ? WHERE galinhas_entregadas = ?";
+    public static final String comandoUpdateGalinhasRecebidas = "UPDATE lote SET galinhas_recebidas = ? WHERE galinhas_recebidas = ?";
+    public static final String comandoUpdateDataChegada = "UPDATE lote SET dt_chegada = ? WHERE dt_chegada = ?";
+    public static final String comandoUpdateGanho = "UPDATE lote SET ganho = ? WHERE ganho = ?";
+    public static final String comandoSelectCount =  "SELECT COUNT(*) FROM lote";
+    public static final String comandoSelectPaginado =
             "SELECT lote.id, " +
                     "granja.nome, " +
                     "lote.galinhas_entregadas, " +
@@ -50,7 +50,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                     "LIMIT ? OFFSET ?";
 
 
-    public static final String SELECT_PAGINADO_FILTROS =
+    public static final String comandoSelectPaginadoComBusca =
             "SELECT lote.id, " +
                     "granja.nome, " +
                     "lote.galinhas_entregadas, " +
@@ -63,19 +63,19 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
                     "ORDER BY %s, lote.id " +
                     "LIMIT ? OFFSET ?";
 
-    public static final String SELECT_COUNT_FILTRO =
+    public static final String comandoSelectCountComBusca =
             "SELECT COUNT(*) FROM lote " +
                     "JOIN granja ON granja.id = lote.id_granja " +
                     "WHERE granja.nome LIKE ?";
 
-    public int contar_filtro_pesquisa(String busca) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBusca(String busca) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT_FILTRO)) {
-            preparoConsultaSQL.setString(1, busca);
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCountComBusca)) {
+            ps.setString(1, busca);
 
-            try (ResultSet resultado = preparoConsultaSQL.executeQuery()) {
-                return resultado.next() ? resultado.getInt(1) : 0;
+            try (ResultSet rs = ps.executeQuery()) {
+                return rs.next() ? rs.getInt(1) : 0;
             }
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao contar. \n" + e.getMessage());
@@ -83,12 +83,12 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     }
 
     public int contar() {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-            if (resultadoConsulta.next()){
-                return resultadoConsulta.getInt(1);
+        try(PreparedStatement ps = connection.prepareStatement(comandoSelectCount);
+            ResultSet rs = ps.executeQuery()){
+            if (rs.next()){
+                return rs.getInt(1);
             }
             return 0;
 
@@ -98,7 +98,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     }
 
 // A ordenação aceita somente colunas previamente definidas.
-    public List<Lote> select_paginado(int tamanho, int offset, String ordenarPor) {
+    public List<Lote> selectPaginado(int tamanho, int offset, String ordenarPor) {
         // Nunca inserir diretamente um parâmetro do usuário no ORDER BY.
         String colunaOrdenacao;
         if ("entregues".equals(ordenarPor)) {
@@ -108,23 +108,23 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         } else {
             colunaOrdenacao = "lote.dt_chegada";
         }
-        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+        String query = String.format(comandoSelectPaginado, colunaOrdenacao);
 
         List<Lote> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(query)) {
-            preparoConsultaSQL.setInt(1, tamanho);
-            preparoConsultaSQL.setInt(2, offset);
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, tamanho);
+            ps.setInt(2, offset);
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Lote lot = new Lote();
-                    lot.setId(resultadoConsulta.getInt("id"));
-                    lot.setNomeGranja(resultadoConsulta.getString("nome"));
-                    lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
-                    lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
-                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                    lot.setGanho(resultadoConsulta.getBigDecimal("ganho"));
+                    lot.setId(rs.getInt("id"));
+                    lot.setNomeGranja(rs.getString("nome"));
+                    lot.setGalinhasEntregadas(rs.getInt("galinhas_entregadas"));
+                    lot.setGalinhasRecebidas(rs.getInt("galinhas_recebidas"));
+                    lot.setDtChegada(rs.getDate("dt_chegada"));
+                    lot.setGanho(rs.getBigDecimal("ganho"));
                     resultado.add(lot);
                 }
             }
@@ -134,7 +134,7 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    public List<Lote> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset, String ordenarPor) {
+    public List<Lote> selectPaginadoComBusca(String busca, int tamanho, int offset, String ordenarPor) {
         // Nunca inserir diretamente um parâmetro do usuário no ORDER BY.
         String colunaOrdenacao;
         if ("entregues".equals(ordenarPor)) {
@@ -144,24 +144,24 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         } else {
             colunaOrdenacao = "lote.dt_chegada";
         }
-        String query = String.format(SELECT_PAGINADO_FILTROS, colunaOrdenacao);
+        String query = String.format(comandoSelectPaginadoComBusca, colunaOrdenacao);
 
         List<Lote> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(query)) {
-            preparoConsultaSQL.setString(1, busca);
-            preparoConsultaSQL.setInt(2, tamanho);
-            preparoConsultaSQL.setInt(3, offset);
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, busca);
+            ps.setInt(2, tamanho);
+            ps.setInt(3, offset);
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Lote lot = new Lote();
-                    lot.setId(resultadoConsulta.getInt("id"));
-                    lot.setNomeGranja(resultadoConsulta.getString("nome"));
-                    lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
-                    lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
-                    lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                    lot.setGanho(resultadoConsulta.getBigDecimal("ganho"));
+                    lot.setId(rs.getInt("id"));
+                    lot.setNomeGranja(rs.getString("nome"));
+                    lot.setGalinhasEntregadas(rs.getInt("galinhas_entregadas"));
+                    lot.setGalinhasRecebidas(rs.getInt("galinhas_recebidas"));
+                    lot.setDtChegada(rs.getDate("dt_chegada"));
+                    lot.setGanho(rs.getBigDecimal("ganho"));
                     resultado.add(lot);
                 }
             }
@@ -172,9 +172,9 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     }
 
     // Busca um registro para edição ou exclusão.
-    public Lote select_by_id(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+    public Lote selectById(int id) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectById)) {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -199,9 +199,9 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     // Insere um novo registro.
 
     // metodo update completo (todos os campos do lote são editáveis)
-    public String update_lote(Lote lot) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
+    public String updateLote(Lote lot) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateAll)) {
             ps.setInt(1, lot.getGalinhasEntregadas());
             ps.setInt(2, lot.getGalinhasRecebidas());
             ps.setDate(3, lot.getDtNascimento());
@@ -218,34 +218,34 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     }
 
     // Lista os registros para consultas administrativas.
-    public List<Lote> select_all() {
-        List<Lote> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Lote> selectAll() {
+        List<Lote> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Lote lot = new Lote();
-                lot.setId(resultadoConsulta.getInt("id"));
-                lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                lot.setDtEntrega(resultadoConsulta.getDate("dt_entrega"));
-                lot.setDtNascimento(resultadoConsulta.getDate("dt_nascimento"));
-                lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
-                lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
-                lot.setGanho(resultadoConsulta.getBigDecimal("ganho"));
-                lot.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                informacoes.add(lot);
+                lot.setId(rs.getInt("id"));
+                lot.setDtChegada(rs.getDate("dt_chegada"));
+                lot.setDtEntrega(rs.getDate("dt_entrega"));
+                lot.setDtNascimento(rs.getDate("dt_nascimento"));
+                lot.setGalinhasEntregadas(rs.getInt("galinhas_entregadas"));
+                lot.setGalinhasRecebidas(rs.getInt("galinhas_recebidas"));
+                lot.setGanho(rs.getBigDecimal("ganho"));
+                lot.setIdGranja(rs.getInt("id_granja"));
+                resultado.add(lot);
             }
-            return informacoes;
+            return resultado;
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<Lote> select_all_join_paginado(){
+    public List<Lote> selectPaginadoSemParametros(){
         List<Lote> informacoes = new ArrayList<>();
         Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL_JOIN_PAGINADO);
+        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(comandoSelectPaginadoSemParametros);
              ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
 
             while (resultadoConsulta.next()) {
@@ -265,68 +265,68 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
         }
     }
 
-    public List<Lote> select_ganho() {
-        List<Lote> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_GANHO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Lote> selectGanho() {
+        List<Lote> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectGanho);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Lote lot = new Lote();
-                lot.setGanho(resultadoConsulta.getBigDecimal("ganho"));
-                informacoes.add(lot);
+                lot.setGanho(rs.getBigDecimal("ganho"));
+                resultado.add(lot);
             }
-            return informacoes;
+            return resultado;
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
-    public List<Lote> select_recebida() {
-        List<Lote> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_RECEBIDAS);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Lote> selectGalinhasRecebidas() {
+        List<Lote> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectGalinhasRecebidas);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Lote lot = new Lote();
-                lot.setGalinhasRecebidas(resultadoConsulta.getInt("galinhas_recebidas"));
-                informacoes.add(lot);
+                lot.setGalinhasRecebidas(rs.getInt("galinhas_recebidas"));
+                resultado.add(lot);
             }
-            return informacoes;
-        } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
-        }
-    }
-
-    public List<Lote> select_entregue() {
-        List<Lote> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ENTREGUES);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-
-            while (resultadoConsulta.next()) {
-                Lote lot = new Lote();
-                lot.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
-                informacoes.add(lot);
-            }
-            return informacoes;
+            return resultado;
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<Lote> select_chegada() {
-        List<Lote> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_CHEGADA);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Lote> selectGalinhasEntregues() {
+        List<Lote> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectGalinhasEntregues);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Lote lot = new Lote();
-                lot.setDtChegada(resultadoConsulta.getDate("dt_chegada"));
-                informacoes.add(lot);
+                lot.setGalinhasEntregadas(rs.getInt("galinhas_entregadas"));
+                resultado.add(lot);
             }
-            return informacoes;
+            return resultado;
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
+        }
+    }
+
+    public List<Lote> selectDataChegada() {
+        List<Lote> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectDataChegada);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Lote lot = new Lote();
+                lot.setDtChegada(rs.getDate("dt_chegada"));
+                resultado.add(lot);
+            }
+            return resultado;
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
@@ -335,10 +335,10 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     // Exclui o registro identificado.
 // Remove primeiro os registros de água e energia ligados ao lote.
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_LOTE_E_REGISTROS)) {
-            preparoConsultaSQL.setInt(1, id);
-            preparoConsultaSQL.execute();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteLoteERegistro)) {
+            ps.setInt(1, id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
@@ -347,16 +347,16 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
 
     // Insere um novo registro.
     public String insert(Lote lot) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setInt(1, lot.getGalinhasEntregadas());
-            preparoConsultaSQL.setInt(2, lot.getGalinhasRecebidas());
-            preparoConsultaSQL.setDate(3, lot.getDtNascimento());
-            preparoConsultaSQL.setDate(4, lot.getDtChegada());
-            preparoConsultaSQL.setDate(5, lot.getDtEntrega());
-            preparoConsultaSQL.setBigDecimal(6, lot.getGanho());
-            preparoConsultaSQL.setInt(7, lot.getIdGranja());
-            preparoConsultaSQL.executeUpdate();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsert)) {
+            ps.setInt(1, lot.getGalinhasEntregadas());
+            ps.setInt(2, lot.getGalinhasRecebidas());
+            ps.setDate(3, lot.getDtNascimento());
+            ps.setDate(4, lot.getDtChegada());
+            ps.setDate(5, lot.getDtEntrega());
+            ps.setBigDecimal(6, lot.getGanho());
+            ps.setInt(7, lot.getIdGranja());
+            ps.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
@@ -364,60 +364,60 @@ public class LoteDAO implements primeirobd.repository.LoteDAO {
     }
 
     // Atualiza o registro identificado.
-    public String update_id(int idNew, int idOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1, idNew);
-            preparoConsultaSQL.setInt(2, idOld);
-            preparoConsultaSQL.execute();
+    public String updateId(int idNew, int idOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1, idNew);
+            ps.setInt(2, idOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_entregues(int entreguesNew, int entreguesOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ENTREGUES)) {
-            preparoConsultaSQL.setInt(1, entreguesNew);
-            preparoConsultaSQL.setInt(2, entreguesOld);
-            preparoConsultaSQL.execute();
+    public String updateGalinhasEntregues(int entreguesNew, int entreguesOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateGalinhasEntregues)) {
+            ps.setInt(1, entreguesNew);
+            ps.setInt(2, entreguesOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_recebidas(int recebidasNew, int recebidasOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_RECEBIDAS)) {
-            preparoConsultaSQL.setInt(1, recebidasNew);
-            preparoConsultaSQL.setInt(2, recebidasOld);
-            preparoConsultaSQL.execute();
+    public String updateGalinhasRecebidas(int recebidasNew, int recebidasOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateGalinhasRecebidas)) {
+            ps.setInt(1, recebidasNew);
+            ps.setInt(2, recebidasOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_chegada(Date chegadaNew, Date chegadaOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_CHEGADA)) {
-            preparoConsultaSQL.setDate(1, chegadaNew);
-            preparoConsultaSQL.setDate(2, chegadaOld);
-            preparoConsultaSQL.execute();
+    public String updateDataChegada(Date chegadaNew, Date chegadaOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateDataChegada)) {
+            ps.setDate(1, chegadaNew);
+            ps.setDate(2, chegadaOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_ganho(double ganhoNew, double ganhoOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_GANHO)) {
-            preparoConsultaSQL.setDouble(1, ganhoNew);
-            preparoConsultaSQL.setDouble(2, ganhoOld);
-            preparoConsultaSQL.execute();
+    public String updateGanho(double ganhoNew, double ganhoOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateGanho)) {
+            ps.setDouble(1, ganhoNew);
+            ps.setDouble(2, ganhoOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());

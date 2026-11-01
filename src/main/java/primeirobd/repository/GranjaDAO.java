@@ -1,5 +1,6 @@
 package primeirobd.repository;
 
+import primeirobd.model.CGI;
 import primeirobd.model.Funcionario;
 import primeirobd.model.Granja;
 
@@ -7,21 +8,25 @@ import java.util.List;
 
 public interface GranjaDAO {
     // Busca granjas por diferentes critérios.
-    List<Granja> select_all();
-    List<Granja> select_nome();
-    List<Granja> select_regiao();
-    List<Granja> select_capacidade();
+    List<Granja> selectAll();
+    List<CGI> selectCgi();
+    List<Granja> selectNome();
+    List<Granja> selectRegiao();
+    List<Granja> selectCapacidade();
+    Granja selectById(int id);
     // Remove e salva granjas.
     String delete(int id);
-    String insert(Granja gra);
+    String insert(Granja granja);
     // Atualiza os dados da granja.
-    String update_id(int idNew, int idOld);
-    String update_nome(String nomeNew, String nomeOld);
-    String update_capacidade(String capacidadeNew, String capacidadeOld);
-    String update_regiao(String regiaoNew, String regiaoOld);
-    String update_area(int areaNew, int areaOld);
-    String update_idEmpresa(int idEmpresaNew, int idEmpresaOld);
+    String updateId(int idNew, int idOld);
+    String updateNome(String nomeNew, String nomeOld);
+    String updateCapacidade(String capacidadeNew, String capacidadeOld);
+    String updateRegiao(String regiaoNew, String regiaoOld);
+    String updateArea(int areaNew, int areaOld);
+    String updateIdEmpresa(int idEmpresaNew, int idEmpresaOld);
+    String updateGranjaComEndereco(Granja granja);
     // Conta e busca granjas filtradas com paginação.
     int contar();
-    List<Granja> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset);
+    int contarBuscaELocalizacao(String busca, String localizacao);
+    List<Granja> selectPaginadoComBusca(String busca, int tamanho, int offset);
 }

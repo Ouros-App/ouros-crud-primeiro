@@ -38,7 +38,7 @@ public class Inicio extends HttpServlet {
         request.setAttribute("totalGranjas", granjaDao.contar());
         request.setAttribute("totalLotes", totalLotes);
         request.setAttribute("totalFuncionarios", funcionarioDao.contar());
-        request.setAttribute("totalMetas", metaDao.contar_all());
+        request.setAttribute("totalMetas", metaDao.contarAllMetas());
 
         request.setAttribute("frangosEmProducao", indicadoresDao.frangosEmProducao());
         request.setAttribute("consumoAgua", indicadoresDao.consumoAguaTotal());
@@ -47,7 +47,7 @@ public class Inicio extends HttpServlet {
 
         Paginacao paginacao = new Paginacao(Paginacao.lerPagina(request), 5, totalLotes);
         request.setAttribute("paginacao", paginacao);
-        request.setAttribute("lotes", loteDao.select_paginado(paginacao.getTamanho(), paginacao.getOffset(), "chegada"));
+        request.setAttribute("lotes", loteDao.selectPaginado(paginacao.getTamanho(), paginacao.getOffset(), "chegada"));
 
         getServletContext().getRequestDispatcher("/WEB-INF/views/inicio.jsp").forward(request, response);
     }

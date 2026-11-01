@@ -48,7 +48,7 @@ public class MainSelectTeste {
 //        // realizando comando select
 //        System.out.println(graDAO.select_all());
 //        System.out.println("======================================================================");
-        System.out.println(empreDAO.select_all());
+        System.out.println(empreDAO.selectAll());
 //        //realizando comando select
 //        System.out.println(lotDAO.select_all());
 //        System.out.println("======================================================================");

@@ -38,7 +38,7 @@ public class Granjas extends HttpServlet {
 
         // Abre o formulário de nova granja dentro do modal.
         if ("inserir".equals(acao)) {
-            request.setAttribute("empresas", empresa.select_all());
+            request.setAttribute("empresas", empresa.selectAll());
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/granja-nova.jsp")
                     .forward(request, response);
@@ -49,13 +49,13 @@ public class Granjas extends HttpServlet {
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Granja selecionada = granja.select_by_id(id);
+                Granja selecionada = granja.selectById(id);
                 if (selecionada == null) {
                     response.sendRedirect(request.getContextPath() + "/granjas?erro=naoencontrado");
                     return;
                 }
                 request.setAttribute("granjaSelecionada", selecionada);
-                request.setAttribute("empresas", empresa.select_all());
+                request.setAttribute("empresas", empresa.selectAll());
                 getServletContext()
                         .getRequestDispatcher("/WEB-INF/views/editar-granja.jsp")
                         .forward(request, response);
@@ -69,7 +69,7 @@ public class Granjas extends HttpServlet {
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Granja selecionada = granja.select_by_id(id);
+                Granja selecionada = granja.selectById(id);
                 if (selecionada == null) {
                     response.sendRedirect(request.getContextPath() + "/granjas?erro=naoencontrado");
                     return;
@@ -105,7 +105,7 @@ public class Granjas extends HttpServlet {
         buscaGranja = buscaGranja.trim();
         localizacao = localizacao.trim();
 
-        int total = granja.contar(buscaGranja, localizacao);
+        int total = granja.contarBuscaELocalizacao(buscaGranja, localizacao);
 
         Paginacao paginacao = new Paginacao(
                 pagina,
@@ -113,7 +113,7 @@ public class Granjas extends HttpServlet {
                 total
         );
 
-        List<Granja> granjas = granja.select_paginado(
+        List<Granja> granjas = granja.selectPaginado(
                 paginacao.getTamanho(),
                 paginacao.getOffset(),
                 buscaGranja,
@@ -211,18 +211,18 @@ public class Granjas extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + "/granjas?erro=id");
                 return;
             }
-            if (granja.select_by_id(id) == null) {
+            if (granja.selectById(id) == null) {
                 response.sendRedirect(request.getContextPath() + "/granjas?erro=naoencontrado");
                 return;
             }
             gra.setId(id);
-            granja.update_granja_com_endereco(gra);
+            granja.updateGranjaComEndereco(gra);
         }
 
         response.sendRedirect(request.getContextPath() + "/granjas");
     }
     private boolean empresaExiste(int idEmpresa) {
-        for (Empresa e : empresa.select_all()) {
+        for (Empresa e : empresa.selectAll()) {
             if (e.getId() == idEmpresa) {
                 return true;
             }

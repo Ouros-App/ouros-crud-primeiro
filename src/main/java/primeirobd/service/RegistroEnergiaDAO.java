@@ -10,23 +10,23 @@ import java.util.List;
 
 // Persiste consumos de energia e expõe sua classificação comparativa.
 public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergiaDAO {
-    public static final String SELECT_ALL = "SELECT * FROM registro_energia";
-    public static final String SELECT_ID_LOTE = "SELECT id_lote FROM registro_energia";
-    public static final String SELECT_DATA = "SELECT dt_registro FROM registro_energia";
-    public static final String SELECT_CONSUMO = "SELECT consumo FROM registro_energia";
-    public static final String DELETE_BY_ID = "DELETE FROM registro_energia WHERE id = ?";
-    public static final String INSERT = "INSERT INTO registro_energia (dt_registro,consumo,id_lote) VALUES (?,?,?)";
-    public static final String UPDATE_ID = "UPDATE registro_energia SET id = ? WHERE id = ?";
-    public static final String UPDATE_ID_LOTE = "UPDATE registro_energia SET id_lote = ? WHERE id_lote = ?";
-    public static final String UPDATE_DATA = "UPDATE registro_energia SET dt_registro = ? WHERE dt_registro = ?";
-    public static final String UPDATE_CONSUMO = "UPDATE registro_energia SET consumo = ? WHERE consumo = ?";
-    public static final String SELECT_COUNT =
+    public static final String comandoSelectAll = "SELECT * FROM registro_energia";
+    public static final String comandoSelectIdLote = "SELECT id_lote FROM registro_energia";
+    public static final String comandoSelectData = "SELECT dt_registro FROM registro_energia";
+    public static final String comandoSelectConsumo = "SELECT consumo FROM registro_energia";
+    public static final String comandoDeleteById = "DELETE FROM registro_energia WHERE id = ?";
+    public static final String comandoInsert = "INSERT INTO registro_energia (dt_registro,consumo,id_lote) VALUES (?,?,?)";
+    public static final String comandoUpdateId = "UPDATE registro_energia SET id = ? WHERE id = ?";
+    public static final String comandoUpdateidLote = "UPDATE registro_energia SET id_lote = ? WHERE id_lote = ?";
+    public static final String comandoUpdateData = "UPDATE registro_energia SET dt_registro = ? WHERE dt_registro = ?";
+    public static final String comandoupdateConsumo = "UPDATE registro_energia SET consumo = ? WHERE consumo = ?";
+    public static final String comandoSelectCount =
             "SELECT COUNT(*) FROM registro_energia re " +
                     "JOIN lote l ON l.id = re.id_lote " +
                     "JOIN granja g ON g.id = l.id_granja " +
                     "WHERE g.nome ILIKE ?";
 
-    public static final String SELECT_PAGINADO =
+    public static final String comandoSelectPaginado =
             "SELECT re.id, re.dt_registro, re.consumo, re.id_lote, " +
                     "       g.nome AS nome_granja, " +
                     "       CASE " +
@@ -54,16 +54,16 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
                     "ORDER BY %s, re.id DESC " +
                     "LIMIT ? OFFSET ?";
 
-    public static final String SELECT_BY_ID =
+    public static final String comandoSelectById =
             "SELECT id, dt_registro, consumo, id_lote FROM registro_energia WHERE id = ?";
 
-    public static final String UPDATE_ALL =
+    public static final String comandoUpdateAll =
             "UPDATE registro_energia SET dt_registro = ?, consumo = ?, id_lote = ? WHERE id = ?";
 
-    public int contar(String busca) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBusca(String busca) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_COUNT)) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCount)) {
             ps.setString(1, busca);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -75,7 +75,7 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
 // O parâmetro de ordenação nunca é incorporado diretamente ao SQL.
-    public List<RegistroEnergia> select_paginado(String busca, int tamanho, int offset, String ordenarPor) {
+    public List<RegistroEnergia> selectPaginadoComBusca(String busca, int tamanho, int offset, String ordenarPor) {
         // Nunca inserir diretamente um parâmetro do usuário no ORDER BY.
         String colunaOrdenacao;
         if ("lote".equals(ordenarPor)) {
@@ -83,11 +83,11 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         } else {
             colunaOrdenacao = "re.dt_registro DESC";
         }
-        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+        String query = String.format(comandoSelectPaginado, colunaOrdenacao);
 
         List<RegistroEnergia> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(query)) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
             ps.setInt(3, offset);
@@ -111,9 +111,9 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
     // Busca um registro para edição ou exclusão.
-    public RegistroEnergia select_by_id(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+    public RegistroEnergia selectById(int id) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectById)) {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -133,9 +133,9 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
 
     // metodo update completo (todos os campos do registro são editáveis)
 // Atualiza data, consumo e lote do registro.
-    public String update_registro(RegistroEnergia ree) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
+    public String updateRegistro(RegistroEnergia ree) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateAll)) {
             ps.setDate(1, ree.getDtRegistro());
             ps.setBigDecimal(2, ree.getConsumo());
             ps.setInt(3, ree.getIdLote());
@@ -148,18 +148,18 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
     // Lista os registros para consultas administrativas.
-    public List<RegistroEnergia> select_all() {
+    public List<RegistroEnergia> selectAll() {
         List<RegistroEnergia> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 RegistroEnergia ree = new RegistroEnergia();
-                ree.setId(resultadoConsulta.getInt("id"));
-                ree.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                ree.setConsumo(resultadoConsulta.getBigDecimal("consumo"));
-                ree.setIdLote(resultadoConsulta.getInt("id_lote"));
+                ree.setId(rs.getInt("id"));
+                ree.setDtRegistro(rs.getDate("dt_registro"));
+                ree.setConsumo(rs.getBigDecimal("consumo"));
+                ree.setIdLote(rs.getInt("id_lote"));
                 resultado.add(ree);
             }
             return resultado;
@@ -168,15 +168,15 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    public List<RegistroEnergia> select_lote() {
+    public List<RegistroEnergia> selectLote() {
         List<RegistroEnergia> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ID_LOTE);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectIdLote);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 RegistroEnergia ree = new RegistroEnergia();
-                ree.setIdLote(resultadoConsulta.getInt("id_lote"));
+                ree.setIdLote(rs.getInt("id_lote"));
                 resultado.add(ree);
             }
             return resultado;
@@ -185,15 +185,15 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    public List<RegistroEnergia> select_data() {
+    public List<RegistroEnergia> selectData() {
         List<RegistroEnergia> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_DATA);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectData);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 RegistroEnergia ree = new RegistroEnergia();
-                ree.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
+                ree.setDtRegistro(rs.getDate("dt_registro"));
                 resultado.add(ree);
             }
             return resultado;
@@ -202,15 +202,15 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
         }
     }
 
-    public List<RegistroEnergia> select_consumo() {
+    public List<RegistroEnergia> selectConsumo() {
         List<RegistroEnergia> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_CONSUMO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectConsumo);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 RegistroEnergia ree = new RegistroEnergia();
-                ree.setConsumo(resultadoConsulta.getBigDecimal("consumo"));
+                ree.setConsumo(rs.getBigDecimal("consumo"));
                 resultado.add(ree);
             }
             return resultado;
@@ -222,12 +222,12 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
 
     // Insere um novo registro.
     public String insert(RegistroEnergia ree) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setDate(1, ree.getDtRegistro());
-            preparoConsultaSQL.setBigDecimal(2, ree.getConsumo());
-            preparoConsultaSQL.setInt(3, ree.getIdLote());
-            preparoConsultaSQL.executeUpdate();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsert)) {
+            ps.setDate(1, ree.getDtRegistro());
+            ps.setBigDecimal(2, ree.getConsumo());
+            ps.setInt(3, ree.getIdLote());
+            ps.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
@@ -236,10 +236,10 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
 
     // Exclui o registro identificado.
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
-            preparoConsultaSQL.setInt(1,id);
-            preparoConsultaSQL.execute();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteById)) {
+            ps.setInt(1,id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
@@ -247,48 +247,23 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
     // Atualiza o registro identificado.
-    public String update_id(int idNew,int idOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1,idNew);
-            preparoConsultaSQL.setInt(2,idOld);
-            preparoConsultaSQL.execute();
+    public String updateId(int idNew,int idOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1,idNew);
+            ps.setInt(2,idOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
-    public String update_idLote(String lotNew,String lotOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID_LOTE)) {
-            preparoConsultaSQL.setString(1,lotNew);
-            preparoConsultaSQL.setString(2,lotOld);
-            preparoConsultaSQL.execute();
-            return "Item atualizado com sucesso no banco de dados";
-        } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
-        }
-    }
-
-
-    public String update_data(Date dataNew, Date dataOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_DATA)){
-            preparoConsultaSQL.setDate(1,dataNew);
-            preparoConsultaSQL.setDate(2,dataOld);
-            preparoConsultaSQL.execute();
-            return "Item atualizado com sucesso no banco de dados";
-        } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
-        }
-    }
-
-    public String update_consumo(double consNew,double consOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_CONSUMO)) {
-            preparoConsultaSQL.setDouble(1,consNew);
-            preparoConsultaSQL.setDouble(2,consOld);
-            preparoConsultaSQL.execute();
+    public String updateIdLote(String lotNew,String lotOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateidLote)) {
+            ps.setString(1,lotNew);
+            ps.setString(2,lotOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
@@ -296,5 +271,27 @@ public class RegistroEnergiaDAO implements primeirobd.repository.RegistroEnergia
     }
 
 
+    public String updateData(Date dataNew, Date dataOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateData)){
+            ps.setDate(1,dataNew);
+            ps.setDate(2,dataOld);
+            ps.execute();
+            return "Item atualizado com sucesso no banco de dados";
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+        }
+    }
 
+    public String updateConsumo(double consNew,double consOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoupdateConsumo)) {
+            ps.setDouble(1,consNew);
+            ps.setDouble(2,consOld);
+            ps.execute();
+            return "Item atualizado com sucesso no banco de dados";
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+        }
+    }
 }

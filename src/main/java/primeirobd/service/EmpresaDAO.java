@@ -12,39 +12,39 @@ import java.util.List;
 // Executa as operações de empresas e suas consultas paginadas.
 public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
 
-    public static final String SELECT_ALL =
+    public static final String comandoSelectAll =
             "SELECT id, nome, telefone_corporativo, email_corporativo, cnpj FROM empresa ORDER BY id";
 
-    public static final String SELECT_NOME = "SELECT id, nome, telefone_corporativo, email_corporativo, cnpj FROM empresa WHERE nome LIKE ? ORDER BY id";
+    public static final String comandoSelectNome = "SELECT id, nome, telefone_corporativo, email_corporativo, cnpj FROM empresa WHERE nome LIKE ? ORDER BY id";
 
-    public static final String DELETE_BY_ID =
+    public static final String comandoDeleteById =
             "DELETE FROM empresa WHERE id = ?";
 
-    public static final String INSERT =
+    public static final String comandoInsert =
             "INSERT INTO empresa (nome, telefone_corporativo, email_corporativo, cnpj) VALUES (?,?,?,?)";
 
-    public static final String UPDATE =
+    public static final String comandoUpdateAll =
             "UPDATE empresa SET nome = ?, telefone_corporativo = ?, email_corporativo = ?, cnpj = ? WHERE id = ?";
 
-    public static final String EXISTS_BY_CNPJ =
+    public static final String comandoExistsByCnpj =
             "SELECT 1 FROM empresa WHERE cnpj = ?";
 
-    public static final String SELECT_COUNT =
+    public static final String comandoSelectCount =
             "SELECT COUNT(*) FROM empresa";
 
-    public static final String SELECT_COUNT_FILTRO =
+    public static final String comandoSelectCountBusca =
             "SELECT COUNT(*) FROM empresa " +
                     "WHERE nome ILIKE ? OR telefone_corporativo ILIKE ? " +
                     "OR email_corporativo ILIKE ? OR cnpj ILIKE ?";
 
     // ORDER BY garante que a ordem das páginas seja sempre a mesma.
-    public static final String SELECT_PAGINADO =
+    public static final String comandoSelectPaginado =
             "SELECT id, nome, telefone_corporativo, email_corporativo, cnpj " +
                     "FROM empresa " +
                     "ORDER BY id " +
                     "LIMIT ? OFFSET ?";
 
-    public static final String SELECT_PAGINADO_FILTRO_PESQUISA =
+    public static final String comandoSelectPaginadoComBusca =
             "SELECT id, nome, telefone_corporativo, email_corporativo, cnpj " +
                     "FROM empresa " +
                     "WHERE nome ILIKE ? OR telefone_corporativo ILIKE ? " +
@@ -54,12 +54,12 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
 
 // Conta registros para que a camada de apresentação monte as páginas.
     public int contar() {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCount);
+             ResultSet rs = ps.executeQuery()) {
 
-            if (resultadoConsulta.next()) {
-                return resultadoConsulta.getInt(1);
+            if (rs.next()) {
+                return rs.getInt(1);
             }
             return 0;
 
@@ -68,18 +68,18 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public int contar_filtro_pesquisa(String busca) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBusca(String busca) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT_FILTRO)) {
-            preparoConsultaSQL.setString(1, busca);
-            preparoConsultaSQL.setString(2, busca);
-            preparoConsultaSQL.setString(3, busca);
-            preparoConsultaSQL.setString(4, busca);
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCountBusca)) {
+            ps.setString(1, busca);
+            ps.setString(2, busca);
+            ps.setString(3, busca);
+            ps.setString(4, busca);
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                if (resultadoConsulta.next()) {
-                    return resultadoConsulta.getInt(1);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
                 }
                 return 0;
             }
@@ -90,21 +90,21 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
     }
 
 // LIMIT e OFFSET recebem valores saneados para evitar paginação inválida.
-    public List<Empresa> select_paginado(int tamanho, int offset) {
+    public List<Empresa> selectPaginado(int tamanho, int offset) {
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO)) {
-            preparoConsultaSQL.setInt(1, Math.max(1, tamanho));
-            preparoConsultaSQL.setInt(2, Math.max(0, offset));
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectPaginado)) {
+            ps.setInt(1, Math.max(1, tamanho));
+            ps.setInt(2, Math.max(0, offset));
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Empresa empresa = new Empresa();
-                    empresa.setNome(resultadoConsulta.getString("nome"));
-                    empresa.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
-                    empresa.setEmailCorporativo(resultadoConsulta.getString("email_corporativo"));
-                    empresa.setCnpj(resultadoConsulta.getString("cnpj"));
+                    empresa.setNome(rs.getString("nome"));
+                    empresa.setTelefoneCorporativo(rs.getString("telefone_corporativo"));
+                    empresa.setEmailCorporativo(rs.getString("email_corporativo"));
+                    empresa.setCnpj(rs.getString("cnpj"));
                     resultado.add(empresa);
                 }
             }
@@ -114,25 +114,25 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public List<Empresa> select_paginado_filtro_pesquisa(String busca, int tamanho, int offset) {
+    public List<Empresa> selectPaginadoComBusca(String busca, int tamanho, int offset) {
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_PAGINADO_FILTRO_PESQUISA)) {
-            preparoConsultaSQL.setString(1, busca);
-            preparoConsultaSQL.setString(2, busca);
-            preparoConsultaSQL.setString(3, busca);
-            preparoConsultaSQL.setString(4, busca);
-            preparoConsultaSQL.setInt(5, Math.max(1, tamanho));
-            preparoConsultaSQL.setInt(6, Math.max(0, offset));
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectPaginadoComBusca)) {
+            ps.setString(1, busca);
+            ps.setString(2, busca);
+            ps.setString(3, busca);
+            ps.setString(4, busca);
+            ps.setInt(5, Math.max(1, tamanho));
+            ps.setInt(6, Math.max(0, offset));
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Empresa empresa = new Empresa();
-                    empresa.setNome(resultadoConsulta.getString("nome"));
-                    empresa.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
-                    empresa.setEmailCorporativo(resultadoConsulta.getString("email_corporativo"));
-                    empresa.setCnpj(resultadoConsulta.getString("cnpj"));
+                    empresa.setNome(rs.getString("nome"));
+                    empresa.setTelefoneCorporativo(rs.getString("telefone_corporativo"));
+                    empresa.setEmailCorporativo(rs.getString("email_corporativo"));
+                    empresa.setCnpj(rs.getString("cnpj"));
                     resultado.add(empresa);
                 }
             }
@@ -143,20 +143,20 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public List<Empresa> select_all() {
+    public List<Empresa> selectAll() {
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Empresa empresa = new Empresa();
-                empresa.setId(resultadoConsulta.getInt("id"));
-                empresa.setNome(resultadoConsulta.getString("nome"));
-                empresa.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
-                empresa.setEmailCorporativo(resultadoConsulta.getString("email_corporativo"));
-                empresa.setCnpj(resultadoConsulta.getString("cnpj"));
+                empresa.setId(rs.getInt("id"));
+                empresa.setNome(rs.getString("nome"));
+                empresa.setTelefoneCorporativo(rs.getString("telefone_corporativo"));
+                empresa.setEmailCorporativo(rs.getString("email_corporativo"));
+                empresa.setCnpj(rs.getString("cnpj"));
                 resultado.add(empresa);
             }
             return resultado;
@@ -165,15 +165,15 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public boolean select_exists_empresa(String nomeEmpresa){
+    public boolean selectExistsEmpresa(String nomeEmpresa){
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_NOME)) {
-            preparoConsultaSQL.setString(1, nomeEmpresa);
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectNome)) {
+            ps.setString(1, nomeEmpresa);
 
-            try(ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-                if(!resultadoConsulta.wasNull()){
+            try(ResultSet rs = ps.executeQuery()){
+                if(!rs.wasNull()){
                     return true;
                 }
             }
@@ -183,21 +183,21 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public List<Empresa> select_empresa_by_nome(String nomeEmpresa) {
+    public List<Empresa> selectEmpresaByNome(String nomeEmpresa) {
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_NOME)) {
-            preparoConsultaSQL.setString(1, nomeEmpresa);
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectNome)) {
+            ps.setString(1, nomeEmpresa);
 
-            try(ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-                while (resultadoConsulta.next()) {
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
                     Empresa empresa = new Empresa();
-                    empresa.setId(resultadoConsulta.getInt("id"));
-                    empresa.setNome(resultadoConsulta.getString("nome"));
-                    empresa.setTelefoneCorporativo(resultadoConsulta.getString("telefone_corporativo"));
-                    empresa.setEmailCorporativo(resultadoConsulta.getString("email_corporativo"));
-                    empresa.setCnpj(resultadoConsulta.getString("cnpj"));
+                    empresa.setId(rs.getInt("id"));
+                    empresa.setNome(rs.getString("nome"));
+                    empresa.setTelefoneCorporativo(rs.getString("telefone_corporativo"));
+                    empresa.setEmailCorporativo(rs.getString("email_corporativo"));
+                    empresa.setCnpj(rs.getString("cnpj"));
                     resultado.add(empresa);
                 }
             }
@@ -207,17 +207,17 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public List<Empresa> select_id(String nomeEmpresa) {
+    public List<Empresa> selectId(String nomeEmpresa) {
         List<Empresa> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_NOME)) {
-            preparoConsultaSQL.setString(1, nomeEmpresa);
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectNome)) {
+            ps.setString(1, nomeEmpresa);
 
-            try(ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-                while (resultadoConsulta.next()) {
+            try(ResultSet rs = ps.executeQuery()){
+                while (rs.next()) {
                     Empresa empresa = new Empresa();
-                    empresa.setId(resultadoConsulta.getInt("id"));
+                    empresa.setId(rs.getInt("id"));
                     resultado.add(empresa);
                 }
             }
@@ -228,13 +228,13 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
     }
 
 //    public boolean existsByCnpj(String cnpj) {
-//        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+//        Connection connection = ConexaoBancoPrimeiro.getConnection();
 //
-//        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(EXISTS_BY_CNPJ)) {
-//            preparoConsultaSQL.setString(1, cnpj);
+//        try (PreparedStatement ps = connection.prepareStatement(comandoExistsByCnpj)) {
+//            ps.setString(1, cnpj);
 //
-//            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-//                return resultadoConsulta.next();
+//            try (ResultSet rs = ps.executeQuery()) {
+//                return rs.next();
 //            }
 //
 //        } catch (SQLException e) {
@@ -242,15 +242,15 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
 //        }
 //    }
 
-    public String insert(Empresa emp) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String insert(Empresa empresa) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setString(1, emp.getNome());
-            preparoConsultaSQL.setString(2, emp.getTelefoneCorporativo());
-            preparoConsultaSQL.setString(3, emp.getEmailCorporativo());
-            preparoConsultaSQL.setString(4, emp.getCnpj());
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsert)) {
+            ps.setString(1, empresa.getNome());
+            ps.setString(2, empresa.getTelefoneCorporativo());
+            ps.setString(3, empresa.getEmailCorporativo());
+            ps.setString(4, empresa.getCnpj());
+            ps.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -258,16 +258,16 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
         }
     }
 
-    public String update(Empresa emp) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateAll(Empresa empresa) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE)) {
-            preparoConsultaSQL.setString(1, emp.getNome());
-            preparoConsultaSQL.setString(2, emp.getTelefoneCorporativo());
-            preparoConsultaSQL.setString(3, emp.getEmailCorporativo());
-            preparoConsultaSQL.setString(4, emp.getCnpj());
-            preparoConsultaSQL.setInt(5, emp.getId());
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateAll)) {
+            ps.setString(1, empresa.getNome());
+            ps.setString(2, empresa.getTelefoneCorporativo());
+            ps.setString(3, empresa.getEmailCorporativo());
+            ps.setString(4, empresa.getCnpj());
+            ps.setInt(5, empresa.getId());
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -276,11 +276,11 @@ public class EmpresaDAO implements primeirobd.repository.EmpresaDAO {
     }
 
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
-            preparoConsultaSQL.setInt(1, id);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteById)) {
+            ps.setInt(1, id);
+            ps.executeUpdate();
             return "Item apagado com sucesso no banco de dados";
 
         } catch (SQLException e) {

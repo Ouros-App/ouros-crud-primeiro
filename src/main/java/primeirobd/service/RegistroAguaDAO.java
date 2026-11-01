@@ -8,25 +8,25 @@ import java.util.List;
 
 // Persiste leituras de água e calcula o status comparativo na listagem.
 public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
-    public static final String SELECT_ALL = "SELECT * FROM registro_agua";
-    public static final String SELECT_ID_LOTE = "SELECT id_lote FROM registro_agua";
-    public static final String SELECT_DATA = "SELECT dt_registro FROM registro_agua";
-    public static final String SELECT_HIDRO_INIC = "SELECT hidrometro_inicio FROM registro_agua";
-    public static final String SELECT_HIDRO_FIM = "SELECT hidrometro_fim FROM registro_agua";
-    public static final String DELETE_BY_ID = "DELETE FROM registro_agua WHERE id = ?";
-    public static final String INSERT = "INSERT INTO registro_agua (dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?)";
-    public static final String UPDATE_ID = "UPDATE registro_agua SET id = ? WHERE id = ?";
-    public static final String UPDATE_ID_LOTE = "UPDATE registro_agua SET id_lote = ? WHERE id_lote = ?";
-    public static final String UPDATE_DATA = "UPDATE registro_agua SET dt_registro = ? WHERE dt_registro = ?";
-    public static final String UPDATE_HIDRO_INIC = "UPDATE registro_agua SET hidrometro_inicio = ? WHERE hidrometro_inicio = ?";
-    public static final String UPDATE_HIDRO_FIM = "UPDATE registro_agua SET hidrometro_final = ? WHERE hidrometro_final = ?";
-    public static final String SELECT_COUNT =
+    public static final String comandoSelectAll = "SELECT * FROM registro_agua";
+    public static final String comandoSelectIdLote = "SELECT id_lote FROM registro_agua";
+    public static final String comandoSelectDataRegistro = "SELECT dt_registro FROM registro_agua";
+    public static final String comandoSelectHidrometroInicio = "SELECT hidrometro_inicio FROM registro_agua";
+    public static final String comandoSelectHidrometroFim = "SELECT hidrometro_fim FROM registro_agua";
+    public static final String comandoDeleteById = "DELETE FROM registro_agua WHERE id = ?";
+    public static final String comandoInsert = "INSERT INTO registro_agua (dt_registro,hidrometro_inicio,hidrometro_final,id_lote) VALUES (?,?,?,?)";
+    public static final String comandoUpdateId = "UPDATE registro_agua SET id = ? WHERE id = ?";
+    public static final String comandoUpdateIdLote = "UPDATE registro_agua SET id_lote = ? WHERE id_lote = ?";
+    public static final String comandoUpdateData = "UPDATE registro_agua SET dt_registro = ? WHERE dt_registro = ?";
+    public static final String comandoUpdateHidrometroInicio = "UPDATE registro_agua SET hidrometro_inicio = ? WHERE hidrometro_inicio = ?";
+    public static final String comandoUpdateHidrometroFim = "UPDATE registro_agua SET hidrometro_final = ? WHERE hidrometro_final = ?";
+    public static final String comandoSelectCount =
             "SELECT COUNT(*) FROM registro_agua ra " +
                     "JOIN lote l ON l.id = ra.id_lote " +
                     "JOIN granja g ON g.id = l.id_granja " +
                     "WHERE g.nome ILIKE ?";
 
-    public static final String SELECT_PAGINADO =
+    public static final String comandoSelectPaginado =
             "SELECT ra.id, ra.dt_registro, ra.hidrometro_inicio, ra.hidrometro_final, ra.id_lote, " +
                     "       g.nome AS nome_granja, " +
                     "       CASE " +
@@ -54,18 +54,18 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
                     "ORDER BY %s, ra.id DESC " +
                     "LIMIT ? OFFSET ?";
 
-    public static final String SELECT_BY_ID =
+    public static final String comandoSelectById =
             "SELECT id, dt_registro, hidrometro_inicio, hidrometro_final, id_lote " +
                     "FROM registro_agua WHERE id = ?";
 
-    public static final String UPDATE_ALL =
+    public static final String comandoUpdateAll =
             "UPDATE registro_agua SET dt_registro = ?, hidrometro_inicio = ?, " +
                     "hidrometro_final = ?, id_lote = ? WHERE id = ?";
 
-    public int contar(String busca) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBusca(String busca) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_COUNT)) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCount)) {
             ps.setString(1, busca);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -77,33 +77,33 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     }
 
 // A ordenação é escolhida por uma lista fixa antes de montar o SQL.
-    public List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor) {
+    public List<RegistroAgua> selectPaginadoComBusca(String busca, int tamanho, int offset, String ordenarPor) {
         String colunaOrdenacao;
         if ("lote".equals(ordenarPor)) {
             colunaOrdenacao = "ra.id_lote DESC";
         } else {
             colunaOrdenacao = "ra.dt_registro DESC";
         }
-        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+        String query = String.format(comandoSelectPaginado, colunaOrdenacao);
 
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(query)) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, busca);
             ps.setInt(2, tamanho);
             ps.setInt(3, offset);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    RegistroAgua rea = new RegistroAgua();
-                    rea.setId(rs.getInt("id"));
-                    rea.setDtRegistro(rs.getDate("dt_registro"));
-                    rea.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
-                    rea.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
-                    rea.setIdLote(rs.getInt("id_lote"));
-                    rea.setNomeGranja(rs.getString("nome_granja"));
-                    rea.setStatus(rs.getString("status"));
-                    resultado.add(rea);
+                    RegistroAgua registroAgua = new RegistroAgua();
+                    registroAgua.setId(rs.getInt("id"));
+                    registroAgua.setDtRegistro(rs.getDate("dt_registro"));
+                    registroAgua.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                    registroAgua.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                    registroAgua.setIdLote(rs.getInt("id_lote"));
+                    registroAgua.setNomeGranja(rs.getString("nome_granja"));
+                    registroAgua.setStatus(rs.getString("status"));
+                    resultado.add(registroAgua);
                 }
             }
             return resultado;
@@ -112,21 +112,21 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    public RegistroAgua select_by_id(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+    public RegistroAgua selectById(int id) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectById)) {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
                 if (!rs.next()) return null;
 
-                RegistroAgua rea = new RegistroAgua();
-                rea.setId(rs.getInt("id"));
-                rea.setDtRegistro(rs.getDate("dt_registro"));
-                rea.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
-                rea.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
-                rea.setIdLote(rs.getInt("id_lote"));
-                return rea;
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setId(rs.getInt("id"));
+                registroAgua.setDtRegistro(rs.getDate("dt_registro"));
+                registroAgua.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                registroAgua.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                registroAgua.setIdLote(rs.getInt("id_lote"));
+                return registroAgua;
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao buscar registro de água.\n" + e.getMessage(), e);
@@ -134,14 +134,14 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     }
 
 // Atualiza a leitura completa mantendo seus valores numéricos no banco.
-    public String update_registro(RegistroAgua rea) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
-            ps.setDate(1, rea.getDtRegistro());
-            ps.setBigDecimal(2, rea.getHidrometroInicio());
-            ps.setBigDecimal(3, rea.getHidrometroFinal());
-            ps.setInt(4, rea.getIdLote());
-            ps.setInt(5, rea.getId());
+    public String updateRegistro(RegistroAgua registroAgua) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateAll)) {
+            ps.setDate(1, registroAgua.getDtRegistro());
+            ps.setBigDecimal(2, registroAgua.getHidrometroInicio());
+            ps.setBigDecimal(3, registroAgua.getHidrometroFinal());
+            ps.setInt(4, registroAgua.getIdLote());
+            ps.setInt(5, registroAgua.getId());
             ps.executeUpdate();
             return "Registro atualizado com sucesso";
         } catch (SQLException e) {
@@ -150,20 +150,20 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     }
 
     // Lista os registros para consultas administrativas.
-    public List<RegistroAgua> select_all() {
+    public List<RegistroAgua> selectAll() {
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setId(resultadoConsulta.getInt("id"));
-                rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                rea.setHidrometroInicio(resultadoConsulta.getBigDecimal("hidrometro_inicio"));
-                rea.setHidrometroFinal(resultadoConsulta.getBigDecimal("hidrometro_final"));
-                rea.setIdLote(resultadoConsulta.getInt("id_lote"));
-                resultado.add(rea);
+            while (rs.next()) {
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setId(rs.getInt("id"));
+                registroAgua.setDtRegistro(rs.getDate("dt_registro"));
+                registroAgua.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                registroAgua.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                registroAgua.setIdLote(rs.getInt("id_lote"));
+                resultado.add(registroAgua);
             }
             return resultado;
         } catch (SQLException e) {
@@ -171,16 +171,16 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    public List<RegistroAgua> select_lote() {
+    public List<RegistroAgua> selectLote() {
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ID_LOTE);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectIdLote);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setIdLote(resultadoConsulta.getInt("id_lote"));
-                resultado.add(rea);
+            while (rs.next()) {
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setIdLote(rs.getInt("id_lote"));
+                resultado.add(registroAgua);
             }
             return resultado;
         } catch (SQLException e) {
@@ -188,16 +188,16 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    public List<RegistroAgua> select_data() {
+    public List<RegistroAgua> selectData() {
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_DATA);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectDataRegistro);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setDtRegistro(resultadoConsulta.getDate("dt_registro"));
-                resultado.add(rea);
+            while (rs.next()) {
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setDtRegistro(rs.getDate("dt_registro"));
+                resultado.add(registroAgua);
             }
             return resultado;
         } catch (SQLException e) {
@@ -205,16 +205,16 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    public List<RegistroAgua> select_hidroInic() {
+    public List<RegistroAgua> selectHidrometroInicio() {
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_HIDRO_INIC);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectHidrometroInicio);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setHidrometroInicio(resultadoConsulta.getBigDecimal("hidrometro_inicio"));
-                resultado.add(rea);
+            while (rs.next()) {
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setHidrometroInicio(rs.getBigDecimal("hidrometro_inicio"));
+                resultado.add(registroAgua);
             }
             return resultado;
         } catch (SQLException e) {
@@ -222,16 +222,16 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
         }
     }
 
-    public List<RegistroAgua> select_hidroFim() {
+    public List<RegistroAgua> selectHidrometroFim() {
         List<RegistroAgua> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_HIDRO_FIM);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectHidrometroFim);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                RegistroAgua rea = new RegistroAgua();
-                rea.setHidrometroFinal(resultadoConsulta.getBigDecimal("hidrometro_final"));
-                resultado.add(rea);
+            while (rs.next()) {
+                RegistroAgua registroAgua = new RegistroAgua();
+                registroAgua.setHidrometroFinal(rs.getBigDecimal("hidrometro_final"));
+                resultado.add(registroAgua);
             }
             return resultado;
         } catch (SQLException e) {
@@ -240,14 +240,14 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     }
 
     // Insere um novo registro.
-    public String insert(RegistroAgua rea) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setDate(1, rea.getDtRegistro());
-            preparoConsultaSQL.setBigDecimal(2, rea.getHidrometroInicio());
-            preparoConsultaSQL.setBigDecimal(3, rea.getHidrometroFinal());
-            preparoConsultaSQL.setInt(4, rea.getIdLote());
-            preparoConsultaSQL.executeUpdate();
+    public String insert(RegistroAgua registroAgua) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsert)) {
+            ps.setDate(1, registroAgua.getDtRegistro());
+            ps.setBigDecimal(2, registroAgua.getHidrometroInicio());
+            ps.setBigDecimal(3, registroAgua.getHidrometroFinal());
+            ps.setInt(4, registroAgua.getIdLote());
+            ps.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar inserir informacoes no banco de dados.\n" + e.getMessage());
@@ -256,10 +256,10 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
 
     // Exclui o registro identificado.
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
-            preparoConsultaSQL.setInt(1,id);
-            preparoConsultaSQL.execute();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteById)) {
+            ps.setInt(1,id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar deletar informacoes no banco de dados.\n" + e.getMessage());
@@ -267,60 +267,60 @@ public class RegistroAguaDAO implements primeirobd.repository.RegistroAguaDAO {
     }
 
     // Atualiza o registro identificado.
-    public String update_id(int idNew,int idOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1,idNew);
-            preparoConsultaSQL.setInt(2,idOld);
-            preparoConsultaSQL.execute();
+    public String updateId(int idNew,int idOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1,idNew);
+            ps.setInt(2,idOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
-    public String update_idLote(String lotNew,String lotOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID_LOTE)) {
-            preparoConsultaSQL.setString(1,lotNew);
-            preparoConsultaSQL.setString(2,lotOld);
-            preparoConsultaSQL.execute();
-            return "Item atualizado com sucesso no banco de dados";
-        } catch (SQLException e) {
-            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
-        }
-    }
-
-
-    public String update_data(Date dataNew, Date dataOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_DATA)){
-            preparoConsultaSQL.setDate(1,dataNew);
-            preparoConsultaSQL.setDate(2,dataOld);
-            preparoConsultaSQL.execute();
+    public String updateIdLote(String lotNew,String lotOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateIdLote)) {
+            ps.setString(1,lotNew);
+            ps.setString(2,lotOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_hidroInic(double hidroNew,double hidroOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_HIDRO_INIC)) {
-            preparoConsultaSQL.setDouble(1,hidroNew);
-            preparoConsultaSQL.setDouble(2,hidroOld);
-            preparoConsultaSQL.execute();
+
+    public String updateData(Date dataNew, Date dataOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateData)){
+            ps.setDate(1,dataNew);
+            ps.setDate(2,dataOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
         }
     }
 
-    public String update_hidroFim(double hidroNew,double hidroOld ){
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_HIDRO_FIM)) {
-            preparoConsultaSQL.setDouble(1,hidroNew);
-            preparoConsultaSQL.setDouble(2,hidroOld);
-            preparoConsultaSQL.execute();
+    public String updateHidrometroInicio(double hidrometroNew,double hidrometroOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateHidrometroInicio)) {
+            ps.setDouble(1,hidrometroNew);
+            ps.setDouble(2,hidrometroOld);
+            ps.execute();
+            return "Item atualizado com sucesso no banco de dados";
+        } catch (SQLException e) {
+            throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());
+        }
+    }
+
+    public String updateHidrometroFim(double hidrometroNew,double hidrometroOld ){
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateHidrometroFim)) {
+            ps.setDouble(1,hidrometroNew);
+            ps.setDouble(2,hidrometroOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar atualizar informacoes no banco de dados.\n" + e.getMessage());

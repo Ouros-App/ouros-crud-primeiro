@@ -12,110 +12,110 @@ import java.util.List;
 
 // Executa operações dos proprietários associados às granjas.
 public class ProprietarioGranjaDAO implements primeirobd.repository.ProprietarioGranjaDAO {
-    public static final String SELECT_ALL = "SELECT id,nome,cpf,email,id_granja FROM proprietario_granja";
-    public static final String SELECT_NOME = "SELECT nome FROM proprietario_granja";
-    public static final String SELECT_ID = "SELECT id FROM proprietario_granja";
-    public static final String SELECT_EMAIL = "SELECT email FROM proprietario_granja";
-    public static final String SELECT_ID_GRANJA = "SELECT id_granja FROM proprietario_granja";
-    public static final String DELETE_BY_ID = "DELETE FROM proprietario_granja WHERE id = ?";
-    public static final String INSERT = "INSERT INTO proprietario_granja (nome,cpf,senha,email,id_granja) VALUES (?,?,?,?,?)";
-    public static final String EXISTS_BY_EMAIL = "SELECT 1 FROM proprietario_granja WHERE email = ?";
-    public static final String EXISTS_BY_CPF = "SELECT 1 FROM proprietario_granja WHERE cpf = ?";
-    public static final String UPDATE_ID = "UPDATE proprietario_granja SET id = ? WHERE id = ?";
-    public static final String UPDATE_EMAIL = "UPDATE proprietario_granja SET email = ? WHERE email = ?";
-    public static final String UPDATE_NOME = "UPDATE proprietario_granja SET nome = ? WHERE nome = ?";
-     public static final String UPDATE_ID_GRANJA = "UPDATE proprietario_granja SET id_granja = ? WHERE id_granja = ?";
-    public static final String SELECT_BY_EMAIL = "SELECT id,nome,cpf,email,senha,id_granja FROM proprietario_granja WHERE email = ?";
-    private static final String UPDATE_SENHA = "UPDATE proprietario_granja SET senha = ? WHERE id = ?";
+    public static final String comandoSelectAll = "SELECT id,nome,cpf,email,id_granja FROM proprietario_granja";
+    public static final String comandoSelectNome = "SELECT nome FROM proprietario_granja";
+    public static final String comandoSelectId = "SELECT id FROM proprietario_granja";
+    public static final String comandoSelectEmail = "SELECT email FROM proprietario_granja";
+    public static final String comandoSelectIdGranja = "SELECT id_granja FROM proprietario_granja";
+    public static final String comandoDeleteById = "DELETE FROM proprietario_granja WHERE id = ?";
+    public static final String comandoInsert = "INSERT INTO proprietario_granja (nome,cpf,senha,email,id_granja) VALUES (?,?,?,?,?)";
+    public static final String comandoExistsByEmail = "SELECT 1 FROM proprietario_granja WHERE email = ?";
+    public static final String comandoExistsByCpf = "SELECT 1 FROM proprietario_granja WHERE cpf = ?";
+    public static final String comandoUpdateId = "UPDATE proprietario_granja SET id = ? WHERE id = ?";
+    public static final String comandoUpdateEmail = "UPDATE proprietario_granja SET email = ? WHERE email = ?";
+    public static final String comandoUpdateNome = "UPDATE proprietario_granja SET nome = ? WHERE nome = ?";
+     public static final String comandoUpdateIdGranja = "UPDATE proprietario_granja SET id_granja = ? WHERE id_granja = ?";
+    public static final String comandoSelectByEmail = "SELECT id,nome,cpf,email,senha,id_granja FROM proprietario_granja WHERE email = ?";
+    private static final String comandoUpdateSenha = "UPDATE proprietario_granja SET senha = ? WHERE id = ?";
 
-    public List<ProprietarioGranja> select_all() {
-        List<ProprietarioGranja> informacoes = new ArrayList<>();
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<ProprietarioGranja> selectAll() {
+        List<ProprietarioGranja> resultado = new ArrayList<>();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setId(resultadoConsulta.getInt("id"));
-                prg.setCpf(resultadoConsulta.getString("cpf"));
-                prg.setEmail(resultadoConsulta.getString("email"));
-                prg.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                prg.setNome(resultadoConsulta.getString("nome"));
-                informacoes.add(prg);
+            while (rs.next()) {
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setId(rs.getInt("id"));
+                proprietarioGranja.setCpf(rs.getString("cpf"));
+                proprietarioGranja.setEmail(rs.getString("email"));
+                proprietarioGranja.setIdGranja(rs.getInt("id_granja"));
+                proprietarioGranja.setNome(rs.getString("nome"));
+                resultado.add(proprietarioGranja);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<ProprietarioGranja> select_nome() {
-        List<ProprietarioGranja> informacoes = new ArrayList<>();
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_NOME);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<ProprietarioGranja> selectNome() {
+        List<ProprietarioGranja> resultado = new ArrayList<>();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoSelectNome);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setNome(resultadoConsulta.getString("nome"));
-                informacoes.add(prg);
+            while (rs.next()) {
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setNome(rs.getString("nome"));
+                resultado.add(proprietarioGranja);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<ProprietarioGranja> select_id() {
-        List<ProprietarioGranja> informacoes = new ArrayList<>();
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ID);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<ProprietarioGranja> selectId() {
+        List<ProprietarioGranja> resultado = new ArrayList<>();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoSelectId);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setId(resultadoConsulta.getInt("id"));
-                informacoes.add(prg);
+            while (rs.next()) {
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setId(rs.getInt("id"));
+                resultado.add(proprietarioGranja);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<ProprietarioGranja> select_idGranja() {
-        List<ProprietarioGranja> informacoes = new ArrayList<>();
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ID_GRANJA);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<ProprietarioGranja> selectIdGranja() {
+        List<ProprietarioGranja> resultado = new ArrayList<>();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoSelectIdGranja);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                informacoes.add(prg);
+            while (rs.next()) {
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setIdGranja(rs.getInt("id_granja"));
+                resultado.add(proprietarioGranja);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<ProprietarioGranja> select_email() {
-        List<ProprietarioGranja> informacoes = new ArrayList<>();
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_EMAIL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<ProprietarioGranja> selectEmail() {
+        List<ProprietarioGranja> resultado = new ArrayList<>();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoSelectEmail);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setEmail(resultadoConsulta.getString("email"));
-                informacoes.add(prg);
+            while (rs.next()) {
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setEmail(rs.getString("email"));
+                resultado.add(proprietarioGranja);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
@@ -123,8 +123,8 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     }
 
     public boolean existsByEmail(String email) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(EXISTS_BY_EMAIL)) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(comandoExistsByEmail)) {
             stmt.setString(1, email);
             try (ResultSet rs = stmt.executeQuery()) {
                 return rs.next();
@@ -135,8 +135,8 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     }
 
     public boolean existsByCpf(String cpf) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(EXISTS_BY_CPF)) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(comandoExistsByCpf)) {
             stmt.setString(1, cpf);
             try (ResultSet rs = stmt.executeQuery()) {
                 return rs.next();
@@ -147,10 +147,10 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     }
 
     public String delete(int id) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
-            preparoConsultaSQL.setInt(1, id);
-            preparoConsultaSQL.execute();
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoDeleteById)) {
+            ps.setInt(1, id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -158,19 +158,19 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public int insert(ProprietarioGranja prg) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(
-                     INSERT, Statement.RETURN_GENERATED_KEYS)) {
+    public int insert(ProprietarioGranja proprietarioGranja) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(
+                     comandoInsert, Statement.RETURN_GENERATED_KEYS)) {
 
-            preparoConsultaSQL.setString(1, prg.getNome());
-            preparoConsultaSQL.setString(2, prg.getCpf());
-            preparoConsultaSQL.setString(3, prg.getSenha());
-            preparoConsultaSQL.setString(4, prg.getEmail());
-            preparoConsultaSQL.setInt(5, prg.getIdGranja());
-            preparoConsultaSQL.executeUpdate();
+            ps.setString(1, proprietarioGranja.getNome());
+            ps.setString(2, proprietarioGranja.getCpf());
+            ps.setString(3, proprietarioGranja.getSenha());
+            ps.setString(4, proprietarioGranja.getEmail());
+            ps.setInt(5, proprietarioGranja.getIdGranja());
+            ps.executeUpdate();
 
-            try (ResultSet rs = preparoConsultaSQL.getGeneratedKeys()) {
+            try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
                     return rs.getInt(1);
                 }
@@ -182,12 +182,12 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public String update_id(int idNew, int idOld) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1, idNew);
-            preparoConsultaSQL.setInt(2, idOld);
-            preparoConsultaSQL.execute();
+    public String updateId(int idNew, int idOld) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1, idNew);
+            ps.setInt(2, idOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -195,12 +195,12 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public String update_idGranja(int idGranjaNew, int idGranjaOld) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID_GRANJA)) {
-            preparoConsultaSQL.setInt(1, idGranjaNew);
-            preparoConsultaSQL.setInt(2, idGranjaOld);
-            preparoConsultaSQL.execute();
+    public String updateIdGranja(int idGranjaNew, int idGranjaOld) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdateIdGranja)) {
+            ps.setInt(1, idGranjaNew);
+            ps.setInt(2, idGranjaOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -208,12 +208,12 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public String update_email(String emailNew, String emailOld) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_EMAIL)) {
-            preparoConsultaSQL.setString(1, emailNew);
-            preparoConsultaSQL.setString(2, emailOld);
-            preparoConsultaSQL.execute();
+    public String updateEmail(String emailNew, String emailOld) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdateEmail)) {
+            ps.setString(1, emailNew);
+            ps.setString(2, emailOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -221,12 +221,12 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public String update_nome(String nomeNew, String nomeOld) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_NOME)) {
-            preparoConsultaSQL.setString(1, nomeNew);
-            preparoConsultaSQL.setString(2, nomeOld);
-            preparoConsultaSQL.execute();
+    public String updateNome(String nomeNew, String nomeOld) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdateNome)) {
+            ps.setString(1, nomeNew);
+            ps.setString(2, nomeOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -234,12 +234,12 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
         }
     }
 
-    public String update_senha(String senhaNew, String senhaOld) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_SENHA)) {
-            preparoConsultaSQL.setString(1, senhaNew);
-            preparoConsultaSQL.setString(2, senhaOld);
-            preparoConsultaSQL.execute();
+    public String updateSenha(String senhaNew, String senhaOld) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdateSenha)) {
+            ps.setString(1, senhaNew);
+            ps.setString(2, senhaOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -248,9 +248,9 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     }
 
 // A senha lida do banco é um hash usado apenas na autenticação.
-    public ProprietarioGranja buscarPorEmail(String email) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_EMAIL)) {
+    public ProprietarioGranja selectByEmail(String email) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(comandoSelectByEmail)) {
 
             stmt.setString(1, email);
 
@@ -258,14 +258,14 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
                 if (!rs.next()) {
                     return null; // Nenhum usuário foi encontrado com esse e-mail.
                 }
-                ProprietarioGranja prg = new ProprietarioGranja();
-                prg.setId(rs.getInt("id"));
-                prg.setNome(rs.getString("nome"));
-                prg.setCpf(rs.getString("cpf"));
-                prg.setEmail(rs.getString("email"));
-                prg.setSenha(rs.getString("senha")); // O valor lido é o hash, não a senha em texto puro.
-                prg.setIdGranja(rs.getInt("id_granja"));
-                return prg;
+                ProprietarioGranja proprietarioGranja = new ProprietarioGranja();
+                proprietarioGranja.setId(rs.getInt("id"));
+                proprietarioGranja.setNome(rs.getString("nome"));
+                proprietarioGranja.setCpf(rs.getString("cpf"));
+                proprietarioGranja.setEmail(rs.getString("email"));
+                proprietarioGranja.setSenha(rs.getString("senha")); // O valor lido é o hash, não a senha em texto puro.
+                proprietarioGranja.setIdGranja(rs.getInt("id_granja"));
+                return proprietarioGranja;
             }
 
         } catch (SQLException e) {
@@ -274,8 +274,8 @@ public class ProprietarioGranjaDAO implements primeirobd.repository.Proprietario
     }
 // Persiste somente o hash já preparado pela camada de autenticação.
     public void atualizarSenha(int usuarioId, String senhaHash) {
-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = conexao.prepareStatement(UPDATE_SENHA)) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement stmt = connection.prepareStatement(comandoUpdateSenha)) {
 
             stmt.setString(1, senhaHash);
             stmt.setInt(2, usuarioId);

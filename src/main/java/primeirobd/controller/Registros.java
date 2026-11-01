@@ -55,7 +55,7 @@ public class Registros extends HttpServlet {
 
         // Abre o formulário de novo registro dentro do modal.
         if ("inserir".equals(acao)) {
-            request.setAttribute("lotes", loteDAO.select_all_join_paginado());
+            request.setAttribute("lotes", loteDAO.selectPaginadoSemParametros());
             request.getRequestDispatcher("/WEB-INF/views/registro-novo.jsp")
                     .forward(request, response);
             return;
@@ -66,8 +66,8 @@ public class Registros extends HttpServlet {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Object selecionado = tipo.equals("energia")
-                        ? registroEnergiaDAO.select_by_id(id)
-                        : registroAguaDAO.select_by_id(id);
+                        ? registroEnergiaDAO.selectById(id)
+                        : registroAguaDAO.selectById(id);
 
                 if (selecionado == null) {
                     response.sendRedirect(request.getContextPath() + "/registros?tipo=" + tipo + "&erro=naoencontrado");
@@ -77,7 +77,7 @@ public class Registros extends HttpServlet {
 
                 String jsp;
                 if ("editar".equals(acao)) {
-                    request.setAttribute("lotes", loteDAO.select_all_join_paginado());
+                    request.setAttribute("lotes", loteDAO.selectPaginadoSemParametros());
                     jsp = "/WEB-INF/views/editar-registro.jsp";
                 } else {
                     jsp = "/WEB-INF/views/excluir-registro.jsp";
@@ -101,20 +101,20 @@ public class Registros extends HttpServlet {
         }
 
         if (tipo.equals("energia")) {
-            int total = registroEnergiaDAO.contar(termo);
+            int total = registroEnergiaDAO.contarBusca(termo);
 
             Paginacao paginacao = new Paginacao(pagina, TAMANHO_PAGINA, total);
 
-            request.setAttribute("registroEnergias", registroEnergiaDAO.select_paginado(
+            request.setAttribute("registroEnergias", registroEnergiaDAO.selectPaginadoComBusca(
                     termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor));
             request.setAttribute("paginacao", paginacao);
 
         } else {
-            int total = registroAguaDAO.contar(termo);
+            int total = registroAguaDAO.contarBusca(termo);
 
             Paginacao paginacao = new Paginacao(pagina, TAMANHO_PAGINA, total);
 
-            request.setAttribute("registroAguas", registroAguaDAO.select_paginado(
+            request.setAttribute("registroAguas", registroAguaDAO.selectPaginadoComBusca(
                     termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor));
             request.setAttribute("paginacao", paginacao);
         }
@@ -183,50 +183,50 @@ public class Registros extends HttpServlet {
             return;
         }
 
-        Lote lot = loteDAO.select_by_id(idLote);
-        if (lot == null) {
+        Lote loteModel = loteDAO.selectById(idLote);
+        if (loteModel == null) {
             response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=lote");
             return;
         }
 
-        if (data.isBefore(lot.getDtChegada().toLocalDate())
-                || (lot.getDtEntrega() != null && data.isAfter(lot.getDtEntrega().toLocalDate()))) {
+        if (data.isBefore(loteModel.getDtChegada().toLocalDate())
+                || (loteModel.getDtEntrega() != null && data.isAfter(loteModel.getDtEntrega().toLocalDate()))) {
             response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=data");
             return;
         }
 
         if (tipo.equals("agua")) {
-            RegistroAgua rea = new RegistroAgua();
-            rea.setIdLote(idLote);
-            rea.setDtRegistro(Date.valueOf(data));
-            rea.setHidrometroInicio(inicial);
-            rea.setHidrometroFinal(fim);
+            RegistroAgua registroAgua = new RegistroAgua();
+            registroAgua.setIdLote(idLote);
+            registroAgua.setDtRegistro(Date.valueOf(data));
+            registroAgua.setHidrometroInicio(inicial);
+            registroAgua.setHidrometroFinal(fim);
 
             if ("inserir".equals(acao)) {
-                registroAguaDAO.insert(rea);
+                registroAguaDAO.insert(registroAgua);
             } else {
-                if (registroAguaDAO.select_by_id(idRegistro) == null) {
+                if (registroAguaDAO.selectById(idRegistro) == null) {
                     response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=naoencontrado");
                     return;
                 }
-                rea.setId(idRegistro);
-                registroAguaDAO.update_registro(rea);
+                registroAgua.setId(idRegistro);
+                registroAguaDAO.updateRegistro(registroAgua);
             }
         } else {
-            RegistroEnergia ree = new RegistroEnergia();
-            ree.setIdLote(idLote);
-            ree.setDtRegistro(Date.valueOf(data));
-            ree.setConsumo(fim.subtract(inicial));
+            RegistroEnergia registroEnergia = new RegistroEnergia();
+            registroEnergia.setIdLote(idLote);
+            registroEnergia.setDtRegistro(Date.valueOf(data));
+            registroEnergia.setConsumo(fim.subtract(inicial));
 
             if ("inserir".equals(acao)) {
-                registroEnergiaDAO.insert(ree);
+                registroEnergiaDAO.insert(registroEnergia);
             } else {
-                if (registroEnergiaDAO.select_by_id(idRegistro) == null) {
+                if (registroEnergiaDAO.selectById(idRegistro) == null) {
                     response.sendRedirect(contexto + "/registros?tipo=" + tipo + "&erro=naoencontrado");
                     return;
                 }
-                ree.setId(idRegistro);
-                registroEnergiaDAO.update_registro(ree);
+                registroEnergia.setId(idRegistro);
+                registroEnergiaDAO.updateRegistro(registroEnergia);
             }
         }
 

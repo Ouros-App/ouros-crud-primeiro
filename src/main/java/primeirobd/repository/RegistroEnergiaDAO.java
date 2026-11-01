@@ -8,20 +8,22 @@ import java.util.List;
 
 public interface RegistroEnergiaDAO {
     // Busca registros de energia por diferentes critérios.
-    List<RegistroEnergia> select_all();
-    List<RegistroEnergia> select_lote();
-    List<RegistroEnergia> select_data();
-    List<RegistroEnergia> select_consumo();
+    List<RegistroEnergia> selectAll();
+    List<RegistroEnergia> selectLote();
+    List<RegistroEnergia> selectData();
+    List<RegistroEnergia> selectConsumo();
+    RegistroEnergia selectById(int id);
     // Remove e salva registros de energia.
     String delete(int id);
-    String insert(RegistroEnergia ree);
+    String insert(RegistroEnergia registroEnergia);
     // Atualiza os dados do registro de energia.
-    String update_id(int idNew, int idOld);
-    String update_idLote(String lotNew, String lotOld);
-    String update_data(Date dataNew, Date dataOld);
-    String update_consumo(double consNew, double consOld);
+    String updateId(int idNew, int idOld);
+    String updateIdLote(String loteNew, String loteOld);
+    String updateData(Date dataNew, Date dataOld);
+    String updateConsumo(double consumoNew, double consumoOld);
+    String updateRegistro(RegistroEnergia registroEnergia);
 
     // Conta e busca registros filtrados com ordenação e paginação.
-    int contar(String busca);
-    List<RegistroEnergia> select_paginado(String busca, int tamanho, int offset, String ordenarPor);
+    int contarBusca(String busca);
+    List<RegistroEnergia> selectPaginadoComBusca(String busca, int tamanho, int offset, String ordenarPor);
 }

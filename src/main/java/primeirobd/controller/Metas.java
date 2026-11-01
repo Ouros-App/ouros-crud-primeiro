@@ -20,7 +20,7 @@ import java.util.Set;
 
 @WebServlet(name = "Metas", value = "/metas")
 public class Metas extends HttpServlet {
-    private MetaDAO meta;
+    private MetaDAO metaDao;
     private GranjaDAO granja;
 
     // Valores permitidos para o status da meta.
@@ -36,7 +36,7 @@ public class Metas extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        meta = new MetaDAO();
+        metaDao = new MetaDAO();
         granja = new GranjaDAO();
     }
 
@@ -52,7 +52,7 @@ public class Metas extends HttpServlet {
 
         // Abre o formulário de nova meta dentro do modal.
         if ("inserir".equals(acao)) {
-            request.setAttribute("granjas", granja.select_all());
+            request.setAttribute("granjas", granja.selectAll());
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/meta-nova.jsp")
                     .forward(request, response);
@@ -63,13 +63,13 @@ public class Metas extends HttpServlet {
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Meta selecionada = meta.select_by_id(id);
+                Meta selecionada = metaDao.selectById(id);
                 if (selecionada == null) {
                     response.sendRedirect(request.getContextPath() + "/metas?erro=naoencontrado");
                     return;
                 }
                 request.setAttribute("metaSelecionada", selecionada);
-                request.setAttribute("granjas", granja.select_all());
+                request.setAttribute("granjas", granja.selectAll());
                 getServletContext()
                         .getRequestDispatcher("/WEB-INF/views/editar-meta.jsp")
                         .forward(request, response);
@@ -83,7 +83,7 @@ public class Metas extends HttpServlet {
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Meta selecionada = meta.select_by_id(id);
+                Meta selecionada = metaDao.selectById(id);
                 if (selecionada == null) {
                     response.sendRedirect(request.getContextPath() + "/metas?erro=naoencontrado");
                     return;
@@ -110,10 +110,10 @@ public class Metas extends HttpServlet {
             ordenarPor = "titulo";
         }
 
-        int total = meta.contar(individual, termo);
+        int total = metaDao.contarBusca(individual, termo);
         Paginacao paginacao = new Paginacao(pagina, tamanho, total);
 
-        List<Meta> metas = meta.select_paginado(
+        List<Meta> metas = metaDao.selectPaginadoComBusca(
                 individual, termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor);
 
         request.setAttribute("metas", metas);
@@ -138,7 +138,7 @@ public class Metas extends HttpServlet {
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                meta.delete(id);
+                metaDao.delete(id);
             } catch (NumberFormatException e) {
                 response.sendRedirect(contexto + "/metas?tipo=" + tipoVolta + "&erro=id");
                 return;
@@ -195,8 +195,8 @@ public class Metas extends HttpServlet {
         if (individual) {
             boolean granjaExiste = false;
 
-            for (Granja g : granja.select_all()) {
-                if (g.getId() == idGranja) {
+            for (Granja granjaModel : granja.selectAll()) {
+                if (granjaModel.getId() == idGranja) {
                     granjaExiste = true;
                     break;
                 }
@@ -207,34 +207,34 @@ public class Metas extends HttpServlet {
             }
         }
 
-        Meta met = new Meta();
-        met.setTitulo(titulo.trim());
-        met.setDescricao(descricao.trim());
-        met.setTipoMeta(tipoMeta);
-        met.setStatus(status);
-        met.setValorAlvo(alvo);
-        met.setIndividual(individual);
+        Meta metaModel = new Meta();
+        metaModel.setTitulo(titulo.trim());
+        metaModel.setDescricao(descricao.trim());
+        metaModel.setTipoMeta(tipoMeta);
+        metaModel.setStatus(status);
+        metaModel.setValorAlvo(alvo);
+        metaModel.setIndividual(individual);
 
         // Mantém os campos de granja, região e estado de acordo com o tipo da meta.
         if (individual) {
-            met.setIdGranja(idGranja);
-            met.setRegiao(null);
-            met.setEstado(null);
+            metaModel.setIdGranja(idGranja);
+            metaModel.setRegiao(null);
+            metaModel.setEstado(null);
         } else {
-            met.setIdGranja(0);
-            met.setRegiao(regiao.trim());
-            met.setEstado(estado.trim());
+            metaModel.setIdGranja(0);
+            metaModel.setRegiao(regiao.trim());
+            metaModel.setEstado(estado.trim());
         }
 
         if ("inserir".equals(acao)) {
-            meta.insert(met);
+            metaDao.insert(metaModel);
         } else {
-            if (meta.select_by_id(idMeta) == null) {
+            if (metaDao.selectById(idMeta) == null) {
                 response.sendRedirect(contexto + "/metas?tipo=" + tipoVolta + "&erro=naoencontrado");
                 return;
             }
-            met.setId(idMeta);
-            meta.update_meta(met);
+            metaModel.setId(idMeta);
+            metaDao.updateMeta(metaModel);
         }
 
         response.sendRedirect(contexto + "/metas?tipo=" + tipoVolta);

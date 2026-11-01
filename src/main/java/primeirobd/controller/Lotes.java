@@ -21,12 +21,12 @@ import java.util.List;
 
 @WebServlet(name ="Lotes", value ="/lotes")
 public class Lotes extends HttpServlet{
-    private LoteDAO lote;
+    private LoteDAO loteDao;
     private GranjaDAO granja;
 
     @Override
     public void init() throws ServletException {
-        lote = new LoteDAO();
+        loteDao = new LoteDAO();
         granja = new GranjaDAO();
     }
 
@@ -37,7 +37,7 @@ public class Lotes extends HttpServlet{
 
         // Abre o formulário de novo lote dentro do modal.
         if ("inserir".equals(acao)) {
-            request.setAttribute("granjas", granja.select_all());
+            request.setAttribute("granjas", granja.selectAll());
             getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/lote-novo.jsp")
                     .forward(request, response);
@@ -48,13 +48,13 @@ public class Lotes extends HttpServlet{
         if ("editar".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Lote selecionado = lote.select_by_id(id);
+                Lote selecionado = loteDao.selectById(id);
                 if (selecionado == null) {
                     response.sendRedirect(request.getContextPath() + "/lotes?erro=naoencontrado");
                     return;
                 }
                 request.setAttribute("loteSelecionado", selecionado);
-                request.setAttribute("granjas", granja.select_all());
+                request.setAttribute("granjas", granja.selectAll());
                 getServletContext()
                         .getRequestDispatcher("/WEB-INF/views/editar-lote.jsp")
                         .forward(request, response);
@@ -68,7 +68,7 @@ public class Lotes extends HttpServlet{
         if ("excluir".equals(acao)) {
             try {
                 int id = Integer.parseInt(request.getParameter("id"));
-                Lote selecionado = lote.select_by_id(id);
+                Lote selecionado = loteDao.selectById(id);
                 if (selecionado == null) {
                     response.sendRedirect(request.getContextPath() + "/lotes?erro=naoencontrado");
                     return;
@@ -98,15 +98,15 @@ public class Lotes extends HttpServlet{
         List<Lote> lotes;
 
         if (busca.isEmpty()) {
-            total = lote.contar();
+            total = loteDao.contar();
             Paginacao paginacao = new Paginacao(pagina, tamanho, total);
-            lotes = lote.select_paginado(paginacao.getTamanho(), paginacao.getOffset(), ordenarPor);
+            lotes = loteDao.selectPaginado(paginacao.getTamanho(), paginacao.getOffset(), ordenarPor);
             request.setAttribute("paginacao", paginacao);
         } else {
             String termo = "%" + busca + "%";
-            total = lote.contar_filtro_pesquisa(termo);
+            total = loteDao.contarBusca(termo);
             Paginacao paginacao = new Paginacao(pagina, tamanho, total);
-            lotes = lote.select_paginado_filtro_pesquisa(termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor);
+            lotes = loteDao.selectPaginadoComBusca(termo, paginacao.getTamanho(), paginacao.getOffset(), ordenarPor);
             request.setAttribute("paginacao", paginacao);
         }
 
@@ -132,7 +132,7 @@ public class Lotes extends HttpServlet{
                 response.sendRedirect(contexto + "/lotes?erro=id");
                 return;
             }
-            lote.delete(id);
+            loteDao.delete(id);
             response.sendRedirect(contexto + "/lotes");
             return;
         }
@@ -185,7 +185,7 @@ public class Lotes extends HttpServlet{
 
         boolean granjaExiste = false;
 
-        for (Granja g : granja.select_all()) {
+        for (Granja g : granja.selectAll()) {
             if (g.getId() == idGranja) {
                 granjaExiste = true;
                 break;
@@ -196,24 +196,24 @@ public class Lotes extends HttpServlet{
             return;
         }
 
-        Lote lot = new Lote();
-        lot.setIdGranja(idGranja);
-        lot.setGalinhasEntregadas(entregues);
-        lot.setGalinhasRecebidas(recebidas);
-        lot.setGanho(ganho);
-        lot.setDtNascimento(Date.valueOf(nascimento));
-        lot.setDtChegada(Date.valueOf(chegada));
-        lot.setDtEntrega(entrega == null ? null : Date.valueOf(entrega));
+        Lote loteModel = new Lote();
+        loteModel.setIdGranja(idGranja);
+        loteModel.setGalinhasEntregadas(entregues);
+        loteModel.setGalinhasRecebidas(recebidas);
+        loteModel.setGanho(ganho);
+        loteModel.setDtNascimento(Date.valueOf(nascimento));
+        loteModel.setDtChegada(Date.valueOf(chegada));
+        loteModel.setDtEntrega(entrega == null ? null : Date.valueOf(entrega));
 
         if ("inserir".equals(acao)) {
-            lote.insert(lot);
+            loteDao.insert(loteModel);
         } else {
-            if (lote.select_by_id(idLote) == null) {
+            if (loteDao.selectById(idLote) == null) {
                 response.sendRedirect(contexto + "/lotes?erro=naoencontrado");
                 return;
             }
-            lot.setId(idLote);
-            lote.update_lote(lot);
+            loteModel.setId(idLote);
+            loteDao.updateLote(loteModel);
         }
 
         response.sendRedirect(contexto + "/lotes");

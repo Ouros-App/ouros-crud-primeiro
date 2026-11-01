@@ -74,7 +74,7 @@ public class AuthenticationFilter implements Filter {
            com a mesma informação, o que não causa problema.
          */
         int id = (Integer) sessao.getAttribute("administradorId");
-        Administrador adm = administradorDao.buscarPorId(id);
+        Administrador adm = administradorDao.selectById(id);
 
         if (adm == null) {
             // administrador apagado do banco: encerra a sessão

@@ -14,21 +14,13 @@ import java.util.List;
 // Reúne dados de granjas, endereços, responsáveis e indicadores.
 public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
-    public static final String SELECT_ALL =
+    public static final String comandoSelectAll =
             "SELECT id, area_propriedade, capacidade_aves, id_empresa, nome, regiao FROM granja";
 
-    public static final String SELECT_NOME =
+    public static final String comandoSelectNome =
             "SELECT nome FROM granja";
 
-    public static final String SELECT_ALL_JOIN_PAGINADO =
-            "SELECT *, " +
-                    "CONCAT(endereco_proprietario.municipio, ' - ', endereco_proprietario.estado) AS localizacao, " +
-                    "proprietario_granja.nome AS responsavel " +
-                    "FROM granja " +
-                    "JOIN proprietario_granja ON granja.id = proprietario_granja.id_granja " +
-                    "JOIN endereco_proprietario ON proprietario_granja.id = endereco_proprietario.id_proprietario";
-
-    public static final String SELECT_CGI =
+    public static final String comandoSelectCgi =
             "SELECT registro_agua.hidrometro_inicio, " +
                     "registro_agua.hidrometro_final, lote.galinhas_entregadas, " +
                     "registro_energia.consumo " +
@@ -36,13 +28,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                     "JOIN lote ON registro_agua.id_lote = lote.id " +
                     "JOIN registro_energia ON registro_energia.id_lote = registro_agua.id_lote";
 
-    public static final String SELECT_REGIAO =
+    public static final String comandoSelectRegiao =
             "SELECT regiao FROM granja";
 
-    public static final String SELECT_CAPACIDADE =
+    public static final String comandoSelectCapacidade =
             "SELECT capacidade_aves FROM granja";
 
-    public static final String INSERT_GRANJA_COM_ENDERECO =
+    public static final String comandoInsertGranjaComEndereco =
             "WITH nova AS ( " +
                     "   INSERT INTO granja (nome, capacidade_aves, regiao, area_propriedade, id_empresa) " +
                     "   VALUES (?,?,?,?,?) RETURNING id " +
@@ -50,7 +42,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                     "INSERT INTO endereco_granja (cep, numero, municipio, estado, logradouro, id_granja) " +
                     "SELECT ?, ?, ?, ?, ?, id FROM nova";
 
-    public static final String SELECT_BY_ID =
+    public static final String comandoSelectById =
             "SELECT g.id, g.nome, g.capacidade_aves, g.regiao, g.area_propriedade, g.id_empresa, " +
                     "eg.cep, eg.numero, eg.municipio, eg.estado, eg.logradouro " +
                     "FROM granja g " +
@@ -58,14 +50,14 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                     "WHERE g.id = ? " +
                     "ORDER BY eg.id LIMIT 1";
 
-    public static final String UPDATE_ALL =
+    public static final String comandoUpdateAll =
             "UPDATE granja SET nome = ?, capacidade_aves = ?, regiao = ?, " +
                     "area_propriedade = ?, id_empresa = ? WHERE id = ?";
 
-    public static final String UPDATE_ENDERECO =
+    public static final String comandoUpdateEndereco =
             "UPDATE endereco_granja SET municipio = ?, estado = ? WHERE id_granja = ?";
 
-    public static final String DELETE_GRANJA_E_DEPENDENCIAS =
+    public static final String comandoDeleteGranjaEDependencias =
             "WITH alvo AS (SELECT ?::int AS id), " +
                     "apaga_avaliacao AS (DELETE FROM avaliacao WHERE id_dica IN " +
                     "   (SELECT id FROM dica WHERE id_granja = (SELECT id FROM alvo))), " +
@@ -88,38 +80,35 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                     "apaga_endereco_granja AS (DELETE FROM endereco_granja WHERE id_granja = (SELECT id FROM alvo)) " +
                     "DELETE FROM granja WHERE id = (SELECT id FROM alvo)";
 
-    public static final String DELETE_BY_ID =
+    public static final String comandoDeleteById =
             "DELETE FROM granja WHERE id = ?";
 
-    public static final String INSERT =
+    public static final String comandoInsert =
             "INSERT INTO granja (nome, capacidade_aves, regiao, area_propriedade, id_empresa) VALUES (?,?,?,?,?)";
 
-    public static final String UPDATE_ID =
+    public static final String comandoUpdateId =
             "UPDATE granja SET id = ? WHERE id = ?";
 
-    public static final String UPDATE_NOME =
+    public static final String comandoUpdateNome =
             "UPDATE granja SET nome = ? WHERE nome = ?";
 
-    public static final String UPDATE_CAPACIDADE =
+    public static final String comandoUpdaeCapacidade =
             "UPDATE granja SET capacidade_aves = ? WHERE capacidade_aves = ?";
 
     // Corrigido: o valor antigo precisa ser comparado com a coluna regiao.
-    public static final String UPDATE_REGIAO =
+    public static final String comandoUpdateRegiao =
             "UPDATE granja SET regiao = ? WHERE regiao = ?";
 
-    public static final String UPDATE_AREA =
+    public static final String comandoUpdateArea =
             "UPDATE granja SET area_propriedade = ? WHERE area_propriedade = ?";
 
-    public static final String UPDATE_IDEMPRESA =
+    public static final String comandoUpdateIdEmpresa =
             "UPDATE granja SET id_empresa = ? WHERE id_empresa = ?";
 
-    public static final String SELECT_COUNT =
+    public static final String comandoSelectCount =
             "SELECT COUNT(*) FROM granja";
 
-    public static final String SELECT_PAGINADO =
-            "SELECT * FROM granja LIMIT ? OFFSET ?";
-
-    public static final String SELECT_COUNT_FILTRADO =
+    public static final String comandoSelectCountPaginadoComBusca =
             "SELECT COUNT(*) " +
                     "FROM granja g " +
                     "LEFT JOIN LATERAL ( " +
@@ -133,7 +122,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                     "AND (? = '' OR LOWER(CONCAT_WS(' ', COALESCE(ender.municipio, ''), " +
                     "COALESCE(ender.estado, ''))) LIKE LOWER(?))";
 
-    public static final String SELECT_PAGINADO_JOIN =
+    public static final String comandoSelectPaginadoComBusca =
             "WITH consumo_por_lote AS ( " +
                     "   SELECT l.id AS id_lote, l.id_granja, l.galinhas_entregadas, " +
                     "          AVG(ra.hidrometro_final - ra.hidrometro_inicio) AS consumo_agua, " +
@@ -178,13 +167,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
     // Conta todas as granjas, mantendo o metodo antigo.
     public int contar() {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCount);
+             ResultSet rs = ps.executeQuery()) {
 
-            if (resultadoConsulta.next()) {
-                return resultadoConsulta.getInt(1);
+            if (rs.next()) {
+                return rs.getInt(1);
             }
             return 0;
 
@@ -197,22 +186,22 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
 
     // Conta somente as granjas que correspondem à busca e ao filtro.
-    public int contar(String busca, String localizacao) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBuscaELocalizacao(String busca, String localizacao) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
         busca = busca == null ? "" : busca.trim();
         localizacao = localizacao == null ? "" : localizacao.trim();
 
-        try (PreparedStatement preparoConsultaSQL =
-                     conexao.prepareStatement(SELECT_COUNT_FILTRADO)) {
+        try (PreparedStatement ps =
+                     connection.prepareStatement(comandoSelectCountPaginadoComBusca)) {
 
-            preparoConsultaSQL.setString(1, busca);
-            preparoConsultaSQL.setString(2, "%" + busca + "%");
-            preparoConsultaSQL.setString(3, localizacao);
-            preparoConsultaSQL.setString(4, "%" + localizacao + "%");
+            ps.setString(1, busca);
+            ps.setString(2, "%" + busca + "%");
+            ps.setString(3, localizacao);
+            ps.setString(4, "%" + localizacao + "%");
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                if (resultadoConsulta.next()) {
-                    return resultadoConsulta.getInt(1);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
                 }
                 return 0;
             }
@@ -225,15 +214,9 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    // Metodo antigo, mantido para não quebrar chamadas existentes.
-    public List<Granja> select_paginado(int tamanho, int offset) {
-        return select_paginado(tamanho, offset, "", "", "granja");
-    }
-
-
     // Paginação integrada à busca, à localização e à ordenação.
 // A consulta combina filtros, ordenação segura, paginação e cálculo de CGI.
-    public List<Granja> select_paginado(
+    public List<Granja> selectPaginado(
             int tamanho,
             int offset,
             String busca,
@@ -241,7 +224,7 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             String ordenarPor) {
 
         List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
         busca = busca == null ? "" : busca.trim();
         localizacao = localizacao == null ? "" : localizacao.trim();
@@ -256,30 +239,30 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
             colunaOrdenacao = "g.nome";
         }
 
-        String sql = String.format(SELECT_PAGINADO_JOIN, colunaOrdenacao);
+        String sql = String.format(comandoSelectPaginadoComBusca, colunaOrdenacao);
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
-            preparoConsultaSQL.setString(1, busca);
-            preparoConsultaSQL.setString(2, "%" + busca + "%");
-            preparoConsultaSQL.setString(3, localizacao);
-            preparoConsultaSQL.setString(4, "%" + localizacao + "%");
-            preparoConsultaSQL.setInt(5, Math.max(1, tamanho));
-            preparoConsultaSQL.setInt(6, Math.max(0, offset));
+            ps.setString(1, busca);
+            ps.setString(2, "%" + busca + "%");
+            ps.setString(3, localizacao);
+            ps.setString(4, "%" + localizacao + "%");
+            ps.setInt(5, Math.max(1, tamanho));
+            ps.setInt(6, Math.max(0, offset));
 
-            try (ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-                while (resultadoConsulta.next()) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
                     Granja gra = new Granja();
 
-                    gra.setId(resultadoConsulta.getInt("id"));
-                    gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                    gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                    gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
-                    gra.setNome(resultadoConsulta.getString("nome"));
-                    gra.setRegiao(resultadoConsulta.getString("regiao"));
-                    gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
-                    gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
-                    gra.setCgi(resultadoConsulta.getDouble("cgi"));
+                    gra.setId(rs.getInt("id"));
+                    gra.setAreaPropriedade(rs.getInt("area_propriedade"));
+                    gra.setCapacidadeDeAves(rs.getInt("capacidade_aves"));
+                    gra.setIdEmpresa(rs.getInt("id_empresa"));
+                    gra.setNome(rs.getString("nome"));
+                    gra.setRegiao(rs.getString("regiao"));
+                    gra.setLocalizacao(rs.getString("localizacao"));
+                    gra.setNomeResponsavel(rs.getString("responsavel"));
+                    gra.setCgi(rs.getDouble("cgi"));
 
                     resultado.add(gra);
                 }
@@ -295,14 +278,14 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    // Método exigido pela interface: busca por nome com paginação.
-    @Override
-    public List<Granja> select_paginado_filtro_pesquisa(
+    // Metodo exigido pela interface: busca por nome com paginação.
+
+    public List<Granja> selectPaginadoComBusca(
             String busca,
             int tamanho,
             int offset) {
 
-        return select_paginado(
+        return selectPaginado(
                 tamanho,
                 offset,
                 busca,
@@ -313,21 +296,21 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
 
     // Select de todas as granjas sem os dados relacionados.
-    public List<Granja> select_all() {
+    public List<Granja> selectAll() {
         List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Granja gra = new Granja();
-                gra.setId(resultadoConsulta.getInt("id"));
-                gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
-                gra.setNome(resultadoConsulta.getString("nome"));
-                gra.setRegiao(resultadoConsulta.getString("regiao"));
+                gra.setId(rs.getInt("id"));
+                gra.setAreaPropriedade(rs.getInt("area_propriedade"));
+                gra.setCapacidadeDeAves(rs.getInt("capacidade_aves"));
+                gra.setIdEmpresa(rs.getInt("id_empresa"));
+                gra.setNome(rs.getString("nome"));
+                gra.setRegiao(rs.getString("regiao"));
                 resultado.add(gra);
             }
 
@@ -340,61 +323,19 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
         }
     }
 
-
-    public List<Granja> select_all_join_paginado() {
-        List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        List<CGI> informacoesCGI = select_cgi();
-        int contador = 0;
-
-        try (PreparedStatement preparoConsultaSQL =
-                     conexao.prepareStatement(SELECT_ALL_JOIN_PAGINADO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
-
-            while (resultadoConsulta.next()) {
-                Granja gra = new Granja();
-                gra.setId(resultadoConsulta.getInt("id"));
-                gra.setAreaPropriedade(resultadoConsulta.getInt("area_propriedade"));
-                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
-                gra.setIdEmpresa(resultadoConsulta.getInt("id_empresa"));
-                gra.setNome(resultadoConsulta.getString("nome"));
-                gra.setRegiao(resultadoConsulta.getString("regiao"));
-                gra.setLocalizacao(resultadoConsulta.getString("localizacao"));
-                gra.setNomeResponsavel(resultadoConsulta.getString("responsavel"));
-
-                // Mantém o cálculo antigo sem acessar uma posição inexistente.
-                if (contador < informacoesCGI.size()
-                        && informacoesCGI.get(contador).getGalinhasEntregadas() > 0) {
-                    gra.setCgi(CalculoCGI.calcularCGI(gra, informacoesCGI, contador));
-                }
-
-                contador++;
-                resultado.add(gra);
-            }
-
-            return resultado;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(
-                    "Erro ao tentar mostrar granjas com relacionamentos.\n" + e.getMessage(), e
-            );
-        }
-    }
-
-
-    public List<CGI> select_cgi() {
+    public List<CGI> selectCgi() {
         List<CGI> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_CGI);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCgi);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 CGI cgi = new CGI();
-                cgi.setHidrometroInicio(resultadoConsulta.getDouble("hidrometro_inicio"));
-                cgi.setHidrometroFinal(resultadoConsulta.getDouble("hidrometro_final"));
-                cgi.setGalinhasEntregadas(resultadoConsulta.getInt("galinhas_entregadas"));
-                cgi.setConsumoEnergetico(resultadoConsulta.getDouble("consumo"));
+                cgi.setHidrometroInicio(rs.getDouble("hidrometro_inicio"));
+                cgi.setHidrometroFinal(rs.getDouble("hidrometro_final"));
+                cgi.setGalinhasEntregadas(rs.getInt("galinhas_entregadas"));
+                cgi.setConsumoEnergetico(rs.getDouble("consumo"));
                 resultado.add(cgi);
             }
 
@@ -408,16 +349,16 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public List<Granja> select_nome() {
+    public List<Granja> selectNome() {
         List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_NOME);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectNome);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Granja gra = new Granja();
-                gra.setNome(resultadoConsulta.getString("nome"));
+                gra.setNome(rs.getString("nome"));
                 resultado.add(gra);
             }
 
@@ -429,16 +370,16 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public List<Granja> select_regiao() {
+    public List<Granja> selectRegiao() {
         List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_REGIAO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectRegiao);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Granja gra = new Granja();
-                gra.setRegiao(resultadoConsulta.getString("regiao"));
+                gra.setRegiao(rs.getString("regiao"));
                 resultado.add(gra);
             }
 
@@ -450,16 +391,16 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public List<Granja> select_capacidade() {
+    public List<Granja> selectCapacidade() {
         List<Granja> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_CAPACIDADE);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCapacidade);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Granja gra = new Granja();
-                gra.setCapacidadeDeAves(resultadoConsulta.getInt("capacidade_aves"));
+                gra.setCapacidadeDeAves(rs.getInt("capacidade_aves"));
                 resultado.add(gra);
             }
 
@@ -472,10 +413,10 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
 
     // Busca uma granja pelo identificador.
-    public Granja select_by_id(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public Granja selectById(int id) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectById)) {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -502,9 +443,9 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
     // Insere a granja e seu endereço relacionado.
     public String insert(Granja gra) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(INSERT_GRANJA_COM_ENDERECO)) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsertGranjaComEndereco)) {
             ps.setString(1, gra.getNome());
             ps.setInt(2, gra.getCapacidadeDeAves());
             ps.setString(3, gra.getRegiao());
@@ -524,12 +465,12 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
     // Atualiza granja e endereço na mesma transação.
-    public String update_granja_com_endereco(Granja gra) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateGranjaComEndereco(Granja gra) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
         try {
-            conexao.setAutoCommit(false);
-            try (PreparedStatement ps1 = conexao.prepareStatement(UPDATE_ALL);
-                 PreparedStatement ps2 = conexao.prepareStatement(UPDATE_ENDERECO)) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement ps1 = connection.prepareStatement(comandoUpdateAll);
+                 PreparedStatement ps2 = connection.prepareStatement(comandoUpdateEndereco)) {
 
                 ps1.setString(1, gra.getNome());
                 ps1.setInt(2, gra.getCapacidadeDeAves());
@@ -544,13 +485,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
                 ps2.setInt(3, gra.getId());
                 ps2.executeUpdate();
 
-                conexao.commit();
+                connection.commit();
                 return "Granja atualizada com sucesso";
             } catch (SQLException e) {
-                conexao.rollback();
+                connection.rollback();
                 throw e;
             } finally {
-                conexao.setAutoCommit(true);
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar granja.\n" + e.getMessage(), e);
@@ -559,11 +500,11 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
     // Exclui a granja e suas dependências relacionadas.
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_GRANJA_E_DEPENDENCIAS)) {
-            preparoConsultaSQL.setInt(1, id);
-            preparoConsultaSQL.execute();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteGranjaEDependencias)) {
+            ps.setInt(1, id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -573,13 +514,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
 
 
     // Métodos de atualização compatíveis com a interface legada.
-    public String update_id(int idNew, int idOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateId(int idNew, int idOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1, idNew);
-            preparoConsultaSQL.setInt(2, idOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1, idNew);
+            ps.setInt(2, idOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -588,13 +529,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public String update_nome(String nomeNew, String nomeOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateNome(String nomeNew, String nomeOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_NOME)) {
-            preparoConsultaSQL.setString(1, nomeNew);
-            preparoConsultaSQL.setString(2, nomeOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateNome)) {
+            ps.setString(1, nomeNew);
+            ps.setString(2, nomeOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -603,13 +544,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public String update_capacidade(String capacidadeNew, String capacidadeOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateCapacidade(String capacidadeNew, String capacidadeOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_CAPACIDADE)) {
-            preparoConsultaSQL.setString(1, capacidadeNew);
-            preparoConsultaSQL.setString(2, capacidadeOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdaeCapacidade)) {
+            ps.setString(1, capacidadeNew);
+            ps.setString(2, capacidadeOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -618,13 +559,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public String update_regiao(String regiaoNew, String regiaoOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateRegiao(String regiaoNew, String regiaoOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_REGIAO)) {
-            preparoConsultaSQL.setString(1, regiaoNew);
-            preparoConsultaSQL.setString(2, regiaoOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateRegiao)) {
+            ps.setString(1, regiaoNew);
+            ps.setString(2, regiaoOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -633,13 +574,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public String update_area(int areaNew, int areaOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateArea(int areaNew, int areaOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_AREA)) {
-            preparoConsultaSQL.setInt(1, areaNew);
-            preparoConsultaSQL.setInt(2, areaOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateArea)) {
+            ps.setInt(1, areaNew);
+            ps.setInt(2, areaOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -648,13 +589,13 @@ public class GranjaDAO implements primeirobd.repository.GranjaDAO {
     }
 
 
-    public String update_idEmpresa(int idEmpresaNew, int idEmpresaOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public String updateIdEmpresa(int idEmpresaNew, int idEmpresaOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_IDEMPRESA)) {
-            preparoConsultaSQL.setInt(1, idEmpresaNew);
-            preparoConsultaSQL.setInt(2, idEmpresaOld);
-            preparoConsultaSQL.executeUpdate();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateIdEmpresa)) {
+            ps.setInt(1, idEmpresaNew);
+            ps.setInt(2, idEmpresaOld);
+            ps.executeUpdate();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {

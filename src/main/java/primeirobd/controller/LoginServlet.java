@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet {
         }
 
         // Busca o administrador pelo e-mail.
-        Administrador administrador = dao.buscarPorEmail(email);
+        Administrador administrador = dao.selectByEmail(email);
 
         // Valida o administrador e a senha.
         if (administrador == null

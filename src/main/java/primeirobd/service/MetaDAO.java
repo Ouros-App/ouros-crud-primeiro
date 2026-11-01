@@ -14,41 +14,41 @@ import java.sql.Types;
 
 // Administra metas individuais ou gerais vinculadas às granjas.
 public class MetaDAO implements primeirobd.repository.MetaDAO {
-    public static final String SELECT_ALL = "SELECT * FROM meta";
-    public static final String SELECT_ID_GRANJA= "SELECT id_granja FROM meta";
-    public static final String SELECT_VALOR_ALVO = "SELECT valor_alvo FROM meta";
-    public static final String DELETE_BY_ID = "DELETE FROM meta WHERE id = ?";
-    public static final String INSERT = "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
-    public static final String UPDATE_ID = "UPDATE meta SET id = ? WHERE id = ?";
-    public static final String UPDATE_TITULO = "UPDATE meta SET titulo = ? WHERE titulo = ?";
-    public static final String UPDATE_ID_GRANJA = "UPDATE meta SET id_granja = ? WHERE id_granja = ?";
-    public static final String UPDATE_VALOR_ALVO = "UPDATE meta SET valor_alvo = ? WHERE valor_alvo = ?";
-    public static final String SELECT_COUNT =  "SELECT COUNT(*) FROM meta";
+    public static final String comandoSelectAll = "SELECT * FROM meta";
+    public static final String comandoSelectIdGranja= "SELECT id_granja FROM meta";
+    public static final String comandoSelectValorAlvo = "SELECT valor_alvo FROM meta";
+    public static final String comandoDeleteById = "DELETE FROM meta WHERE id = ?";
+    public static final String comandoInsert = "INSERT INTO meta (titulo,descricao,tipo_meta,status,valor_alvo,regiao,estado,is_individual,id_granja) VALUES(?,?,?,?,?,?,?,?,?)";
+    public static final String comandoUpdateId = "UPDATE meta SET id = ? WHERE id = ?";
+    public static final String comandoUpdateTitulo = "UPDATE meta SET titulo = ? WHERE titulo = ?";
+    public static final String comandoUpdateIdGranja = "UPDATE meta SET id_granja = ? WHERE id_granja = ?";
+    public static final String comandoUpdateValorAlvo = "UPDATE meta SET valor_alvo = ? WHERE valor_alvo = ?";
+    public static final String comandoSelectCount =  "SELECT COUNT(*) FROM meta";
 
-    public static final String SELECT_COUNT_PAGINADO =
+    public static final String comandoSelectCountPaginado =
             "SELECT COUNT(*) FROM meta m " +
                     "LEFT JOIN granja g ON g.id = m.id_granja " +
                     "WHERE m.is_individual = ? AND (m.titulo LIKE ? OR g.nome LIKE ?)";
 
-    public static final String SELECT_PAGINADO =
+    public static final String comandoSelectPaginado =
             "SELECT m.id, m.titulo, m.valor_alvo, m.status, g.nome AS nome_granja " +
                     "FROM meta m " +
                     "LEFT JOIN granja g ON g.id = m.id_granja " +
                     "WHERE m.is_individual = ? AND (m.titulo LIKE ? OR g.nome LIKE ?) " +
                     "ORDER BY %s, m.id " +
                     "LIMIT ? OFFSET ?";
-    public static final String SELECT_BY_ID =
+    public static final String comandoSelectbyId =
             "SELECT id, titulo, descricao, tipo_meta, status, valor_alvo, regiao, estado, " +
                     "is_individual, id_granja FROM meta WHERE id = ?";
 
-    public static final String UPDATE_ALL =
+    public static final String comandoUpdateAll =
             "UPDATE meta SET titulo = ?, descricao = ?, tipo_meta = ?, status = ?, valor_alvo = ?, " +
                     "regiao = ?, estado = ?, is_individual = ?, id_granja = ? WHERE id = ?";    public static final String SELECT_TITULO = "SELECT titulo FROM meta";
 
-    public int contar(boolean individual, String busca) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarBusca(boolean individual, String busca) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_COUNT_PAGINADO)) {
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectCountPaginado)) {
             ps.setBoolean(1, individual);
             ps.setString(2, busca);
             ps.setString(3, busca);
@@ -61,13 +61,13 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public int contar_all() {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+    public int contarAllMetas() {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try(PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_COUNT);
-            ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()){
-            if (resultadoConsulta.next()){
-                return resultadoConsulta.getInt(1);
+        try(PreparedStatement ps = connection.prepareStatement(comandoSelectCount);
+            ResultSet rs = ps.executeQuery()){
+            if (rs.next()){
+                return rs.getInt(1);
             }
             return 0;
 
@@ -77,19 +77,19 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     }
 
     // Filtra por tipo e texto antes de aplicar a ordenação e a paginação.
-    public List<Meta> select_paginado(boolean individual, String busca, int tamanho, int offset, String ordenarPor) {
+    public List<Meta> selectPaginadoComBusca(boolean individual, String busca, int tamanho, int offset, String ordenarPor) {
         String colunaOrdenacao;
         if ("status".equals(ordenarPor)) {
             colunaOrdenacao = "m.status";
         } else {
             colunaOrdenacao = "m.titulo";
         }
-        String query = String.format(SELECT_PAGINADO, colunaOrdenacao);
+        String query = String.format(comandoSelectPaginado, colunaOrdenacao);
 
         List<Meta> resultado = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
 
-        try (PreparedStatement ps = conexao.prepareStatement(query)) {
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setBoolean(1, individual);
             ps.setString(2, busca);
             ps.setString(3, busca);
@@ -113,9 +113,9 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public Meta select_by_id(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(SELECT_BY_ID)) {
+    public Meta selectById(int id) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectbyId)) {
             ps.setInt(1, id);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -141,9 +141,9 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
     // metodo update completo (todos os campos da meta são editáveis)
 // Metas gerais não recebem uma granja vinculada.
-    public String update_meta(Meta met) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement ps = conexao.prepareStatement(UPDATE_ALL)) {
+    public String updateMeta(Meta met) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateAll)) {
             ps.setString(1, met.getTitulo());
             ps.setString(2, met.getDescricao());
             ps.setString(3, met.getTipoMeta());
@@ -166,101 +166,101 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     }
 
     // Lista os registros para consultas administrativas.
-    public List<Meta> select_all() {
-        List<Meta> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Meta> selectAll() {
+        List<Meta> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Meta met = new Meta();
-                met.setId(resultadoConsulta.getInt("id"));
-                met.setDescricao(resultadoConsulta.getString("descricao"));
-                met.setEstado(resultadoConsulta.getString("estado"));
-                met.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                met.setIndividual(resultadoConsulta.getBoolean("is_individual"));
-                met.setRegiao(resultadoConsulta.getString("regiao"));
-                met.setStatus(resultadoConsulta.getString("status"));
-                met.setTipoMeta(resultadoConsulta.getString("tipo_meta"));
-                met.setTitulo(resultadoConsulta.getString("titulo"));
-                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
-                informacoes.add(met);
+                met.setId(rs.getInt("id"));
+                met.setDescricao(rs.getString("descricao"));
+                met.setEstado(rs.getString("estado"));
+                met.setIdGranja(rs.getInt("id_granja"));
+                met.setIndividual(rs.getBoolean("is_individual"));
+                met.setRegiao(rs.getString("regiao"));
+                met.setStatus(rs.getString("status"));
+                met.setTipoMeta(rs.getString("tipo_meta"));
+                met.setTitulo(rs.getString("titulo"));
+                met.setValorAlvo(rs.getBigDecimal("valor_alvo"));
+                resultado.add(met);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<Meta> select_paginado(){
-        List<Meta> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ALL);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Meta> selectPaginado(){
+        List<Meta> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectAll);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Meta met = new Meta();
-                met.setTitulo(resultadoConsulta.getString("titulo"));
-                met.setNomeGranja(resultadoConsulta.getString("nome"));
-                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
-                informacoes.add(met);
+                met.setTitulo(rs.getString("titulo"));
+                met.setNomeGranja(rs.getString("nome"));
+                met.setValorAlvo(rs.getBigDecimal("valor_alvo"));
+                resultado.add(met);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Erro: " + e.getMessage());
         }
     }
 
-    public List<Meta> select_titulo() {
-        List<Meta> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_TITULO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Meta> selectTitulo() {
+        List<Meta> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_TITULO);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Meta met = new Meta();
-                met.setTitulo(resultadoConsulta.getString("titulo"));
-                informacoes.add(met);
+                met.setTitulo(rs.getString("titulo"));
+                resultado.add(met);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<Meta> select_idGranja() {
-        List<Meta> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_ID_GRANJA);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Meta> selectIdGranja() {
+        List<Meta> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectIdGranja);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Meta met = new Meta();
-                met.setIdGranja(resultadoConsulta.getInt("id_granja"));
-                informacoes.add(met);
+                met.setIdGranja(rs.getInt("id_granja"));
+                resultado.add(met);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
         }
     }
 
-    public List<Meta> select_valorAlvo() {
-        List<Meta> informacoes = new ArrayList<>();
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(SELECT_VALOR_ALVO);
-             ResultSet resultadoConsulta = preparoConsultaSQL.executeQuery()) {
+    public List<Meta> selectValorAlvo() {
+        List<Meta> resultado = new ArrayList<>();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoSelectValorAlvo);
+             ResultSet rs = ps.executeQuery()) {
 
-            while (resultadoConsulta.next()) {
+            while (rs.next()) {
                 Meta met = new Meta();
-                met.setValorAlvo(resultadoConsulta.getBigDecimal("valor_alvo"));
-                informacoes.add(met);
+                met.setValorAlvo(rs.getBigDecimal("valor_alvo"));
+                resultado.add(met);
             }
-            return informacoes;
+            return resultado;
 
         } catch (SQLException e) {
             throw new RuntimeException("Ocorreu um erro ao tentar mostrar informacoes do banco de dados.\n" + e.getMessage());
@@ -269,10 +269,10 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
     // Exclui o registro identificado.
     public String delete(int id) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(DELETE_BY_ID)) {
-            preparoConsultaSQL.setInt(1,id);
-            preparoConsultaSQL.execute();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoDeleteById)) {
+            ps.setInt(1,id);
+            ps.execute();
             return "Item apagado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -282,18 +282,18 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
 
     // Insere um novo registro.
     public String insert(Meta met) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(INSERT)) {
-            preparoConsultaSQL.setString(1, met.getTitulo());
-            preparoConsultaSQL.setString(2, met.getDescricao());
-            preparoConsultaSQL.setString(3, met.getTipoMeta());
-            preparoConsultaSQL.setString(4, met.getStatus());
-            preparoConsultaSQL.setBigDecimal(5, met.getValorAlvo());
-            preparoConsultaSQL.setString(6, met.getRegiao());
-            preparoConsultaSQL.setString(7, met.getEstado());
-            preparoConsultaSQL.setBoolean(8, met.isIndividual());
-            preparoConsultaSQL.setInt(9, met.getIdGranja());
-            preparoConsultaSQL.executeUpdate();
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoInsert)) {
+            ps.setString(1, met.getTitulo());
+            ps.setString(2, met.getDescricao());
+            ps.setString(3, met.getTipoMeta());
+            ps.setString(4, met.getStatus());
+            ps.setBigDecimal(5, met.getValorAlvo());
+            ps.setString(6, met.getRegiao());
+            ps.setString(7, met.getEstado());
+            ps.setBoolean(8, met.isIndividual());
+            ps.setInt(9, met.getIdGranja());
+            ps.executeUpdate();
             return "Item inserido com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -302,12 +302,12 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
     }
 
     // Atualiza o registro identificado.
-    public String update_id(int idNew, int idOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID)) {
-            preparoConsultaSQL.setInt(1,idNew);
-            preparoConsultaSQL.setInt(2,idOld);
-            preparoConsultaSQL.execute();
+    public String updateId(int idNew, int idOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateId)) {
+            ps.setInt(1,idNew);
+            ps.setInt(2,idOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -315,12 +315,12 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public String update_titulo(String tituloNew, String tituloOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_TITULO)) {
-            preparoConsultaSQL.setString(1,tituloNew);
-            preparoConsultaSQL.setString(2,tituloOld);
-            preparoConsultaSQL.execute();
+    public String updateTitulo(String tituloNew, String tituloOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateTitulo)) {
+            ps.setString(1,tituloNew);
+            ps.setString(2,tituloOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -328,12 +328,12 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public String update_idGranja(int idGranjaNew, int idGranjaOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_ID_GRANJA)) {
-            preparoConsultaSQL.setInt(1,idGranjaNew);
-            preparoConsultaSQL.setInt(2,idGranjaOld);
-            preparoConsultaSQL.execute();
+    public String updateIdGranja(int idGranjaNew, int idGranjaOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateIdGranja)) {
+            ps.setInt(1,idGranjaNew);
+            ps.setInt(2,idGranjaOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {
@@ -341,12 +341,12 @@ public class MetaDAO implements primeirobd.repository.MetaDAO {
         }
     }
 
-    public String update_valorAlvo(double valorAlvoNew, double valorAlvoOld) {
-        Connection conexao = ConexaoBancoPrimeiro.getConnection();
-        try (PreparedStatement preparoConsultaSQL = conexao.prepareStatement(UPDATE_VALOR_ALVO)) {
-            preparoConsultaSQL.setDouble(1,valorAlvoNew);
-            preparoConsultaSQL.setDouble(2,valorAlvoOld);
-            preparoConsultaSQL.execute();
+    public String updateValorAlvo(double valorAlvoNew, double valorAlvoOld) {
+        Connection connection = ConexaoBancoPrimeiro.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(comandoUpdateValorAlvo)) {
+            ps.setDouble(1,valorAlvoNew);
+            ps.setDouble(2,valorAlvoOld);
+            ps.execute();
             return "Item atualizado com sucesso no banco de dados";
 
         } catch (SQLException e) {

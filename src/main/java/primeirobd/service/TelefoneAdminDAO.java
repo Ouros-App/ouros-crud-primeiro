@@ -5,14 +5,14 @@ import java.sql.*;
 // Mantém o telefone associado ao administrador.
 public class TelefoneAdminDAO {
 
-    private static final String INSERT =
+    private static final String comandoInsert =
             "INSERT INTO telefone_admin (telefone, usuario_id) VALUES (?, ?)";
-    private static final String UPDATE =
+    private static final String comandoUpdate =
             "UPDATE telefone_admin SET telefone = ? WHERE usuario_id = ?";
 
     public void insert(int usuarioId, String telefone) {
         try (Connection c = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = c.prepareStatement(INSERT)) {
+             PreparedStatement stmt = c.prepareStatement(comandoInsert)) {
             stmt.setString(1, telefone);
             stmt.setInt(2, usuarioId);
             stmt.executeUpdate();
@@ -24,11 +24,11 @@ public class TelefoneAdminDAO {
     // Atualiza o telefone ou insere o vínculo quando necessário.
 // Atualiza o telefone existente ou cria o vínculo quando necessário.
     public void salvar(int usuarioId, String telefone) {
-        try (Connection c = ConexaoBancoPrimeiro.getConnection();
-             PreparedStatement stmt = c.prepareStatement(UPDATE)) {
-            stmt.setString(1, telefone);
-            stmt.setInt(2, usuarioId);
-            if (stmt.executeUpdate() == 0) {
+        try (Connection connection = ConexaoBancoPrimeiro.getConnection();
+             PreparedStatement ps = connection.prepareStatement(comandoUpdate)) {
+            ps.setString(1, telefone);
+            ps.setInt(2, usuarioId);
+            if (ps.executeUpdate() == 0) {
                 insert(usuarioId, telefone);
             }
         } catch (SQLException e) {

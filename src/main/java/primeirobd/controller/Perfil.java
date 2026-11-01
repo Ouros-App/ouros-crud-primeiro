@@ -58,7 +58,7 @@ public class Perfil extends HttpServlet {
         int id = (Integer) sessao.getAttribute("administradorId");
 
         // Busca os dados atualizados do administrador.
-        Administrador adm = dao.buscarPorId(id);
+        Administrador adm = dao.selectById(id);
 
         // Sem cadastro correspondente, informa que o recurso não existe.
         if (adm == null) {
@@ -112,7 +112,7 @@ public class Perfil extends HttpServlet {
             if ("true".equals(remover)) {
 
                 // Remove do cadastro a referência para a foto.
-                dao.atualizarFotoPerfil(id, null);
+                dao.updateFotoPerfil(id, null);
 
                 // Volta ao perfil informando que a foto foi removida.
                 response.sendRedirect(
@@ -132,7 +132,7 @@ public class Perfil extends HttpServlet {
             telefone = telefone == null ? "" : telefone.trim();
 
             // Busca os dados atuais, inclusive para conferir a senha.
-            Administrador atual = dao.buscarPorId(id);
+            Administrador atual = dao.selectById(id);
 
             if (atual == null) {
                 response.sendError(
@@ -218,18 +218,18 @@ public class Perfil extends HttpServlet {
             }
 
             // Grava os dados validados no banco.
-            dao.atualizarDados(id, nome);
+            dao.updateDados(id, nome);
 
             if (!telefone.isEmpty()) {
                 new TelefoneAdminDAO().salvar(id, telefone);
             }
 
             if (trocarSenha) {
-                dao.atualizarSenha(id, BCrypt.hashpw(senhaNova, BCrypt.gensalt()));
+                dao.updateSenha(id, BCrypt.hashpw(senhaNova, BCrypt.gensalt()));
             }
 
             if (urlFoto != null) {
-                dao.atualizarFotoPerfil(id, urlFoto);
+                dao.updateFotoPerfil(id, urlFoto);
             }
 
             // Conclui a alteração e informa o sucesso ao usuário.

@@ -8,23 +8,24 @@ import java.util.List;
 
 public interface RegistroAguaDAO {
     // Busca registros de água por diferentes critérios.
-    List<RegistroAgua> select_all();
-    List<RegistroAgua> select_lote();
-    List<RegistroAgua> select_data();
-    List<RegistroAgua> select_hidroInic();
-    List<RegistroAgua> select_hidroFim();
+    List<RegistroAgua> selectAll();
+    List<RegistroAgua> selectLote();
+    List<RegistroAgua> selectData();
+    List<RegistroAgua> selectHidrometroInicio();
+    List<RegistroAgua> selectHidrometroFim();
+    RegistroAgua selectById(int id);
     // Remove e salva registros de água.
     String delete(int id);
-    String insert(RegistroAgua reA);
+    String insert(RegistroAgua registroAgua);
     // Atualiza os dados do registro de água.
-    String update_id(int idNew, int idOld);
-    String update_idLote(String lotNew, String lotOld);
-    String update_data(Date dataNew, Date dataOld);
-    String update_hidroInic(double hidroNew, double hidroOld);
-    String update_hidroFim(double hidroNew, double hidroOld);
+    String updateId(int idNew, int idOld);
+    String updateIdLote(String loteNew, String loteOld);
+    String updateData(Date dataNew, Date dataOld);
+    String updateHidrometroInicio(double hidrometroNew, double hidrometroOld);
+    String updateHidrometroFim(double hidrometroNew, double hidrometroOld);
 
     // Conta e busca registros filtrados com ordenação e paginação.
-    int contar(String busca);
-    List<RegistroAgua> select_paginado(String busca, int tamanho, int offset, String ordenarPor);
+    int contarBusca(String busca);
+    List<RegistroAgua> selectPaginadoComBusca(String busca, int tamanho, int offset, String ordenarPor);
 
 }
