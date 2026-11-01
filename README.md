@@ -11,8 +11,6 @@ O repositório reúne o **CRUD (back-end + painel administrativo)** e a **landin
 ### Autenticação e conta
 - Cadastro de administrador com validação de CPF (dígitos verificadores), e-mail, telefone e senha forte.
 - Senhas criptografadas com **BCrypt**.
-- **Verificação de e-mail** por link com token (válido por 24 h, uso único).
-- **Recuperação de senha** por e-mail (token válido por 30 min, uso único; só o pedido mais recente vale).
 - Login com sessão autenticada e **filtro de autenticação** que protege todas as rotas privadas.
 - Página de **perfil**: edição de nome e telefone, troca de senha e foto de perfil (PNG/JPG até 2 MB, enviada ao **Cloudinary**).
 
