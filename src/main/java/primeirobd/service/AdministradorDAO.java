@@ -25,7 +25,7 @@ public class AdministradorDAO implements primeirobd.repository.AdministradorDAO 
             "SELECT a.id, a.nome, a.cpf, a.email, a.senha, " +
                     "a.foto_perfil_url, t.telefone " +
                     "FROM administrador a " +
-                    "LEFT JOIN telefone_admin t ON t.usuario_id = a.id " +
+                    "LEFT JOIN telefone_admin t ON t.id_administrador = a.id " +
                     "WHERE a.id = ?";
     public static final String comandoUpdatePerfil = "UPDATE administrador SET foto_perfil_url = ? WHERE id = ?";
     private static final String comandoUpdateDados = "UPDATE administrador SET nome = ? WHERE id = ?";

@@ -20,12 +20,9 @@ public class AuthenticationFilter implements Filter {
     private final AdministradorDAO administradorDao = new AdministradorDAO();
 
     private static final Set<String> ROTAS_PUBLICAS = Set.of(
-            "/",
             "/landing",
             "/landing.jsp",
             "/sobre.jsp",
-            "/index",
-            "/index.jsp",
             "/login",
             "/login.jsp"
     );

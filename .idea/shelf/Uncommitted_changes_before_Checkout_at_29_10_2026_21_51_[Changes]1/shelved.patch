@@ -1,0 +1,607 @@
+Index: pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\r\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n    <modelVersion>4.0.0</modelVersion>\r\n\r\n    <groupId>com.zaia</groupId>\r\n    <artifactId>inter_modulo</artifactId>\r\n    <version>1.0-SNAPSHOT</version>\r\n\r\n    <properties>\r\n        <maven.compiler.source>25</maven.compiler.source>\r\n        <maven.compiler.target>25</maven.compiler.target>\r\n        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>\r\n    </properties>\r\n\r\n    <packaging>war</packaging>\r\n\r\n    <dependencies>\r\n        <dependency>\r\n            <groupId>com.cloudinary</groupId>\r\n            <artifactId>cloudinary-http5</artifactId>\r\n            <version>2.0.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.postgresql</groupId>\r\n            <artifactId>postgresql</artifactId>\r\n            <version>42.7.3</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>io.github.cdimascio</groupId>\r\n            <artifactId>dotenv-java</artifactId>\r\n            <version>3.2.0</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>junit</groupId>\r\n            <artifactId>junit</artifactId>\r\n            <version>4.13.2</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.tomcat</groupId>\r\n            <artifactId>tomcat-servlet-api</artifactId>\r\n            <version>11.0.24</version>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>jakarta.servlet</groupId>\r\n            <artifactId>jakarta.servlet-api</artifactId>\r\n            <version>6.1.0</version>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.apache.tomcat</groupId>\r\n            <artifactId>tomcat-jdbc</artifactId>\r\n            <version>11.0.24</version>\r\n            <scope>test</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>jakarta.servlet.jsp.jstl</groupId>\r\n            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>\r\n            <version>3.0.2</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.glassfish.web</groupId>\r\n            <artifactId>jakarta.servlet.jsp.jstl</artifactId>\r\n            <version>3.0.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>jakarta.mail</groupId>\r\n            <artifactId>jakarta.mail-api</artifactId>\r\n            <version>2.1.3</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.eclipse.angus</groupId>\r\n            <artifactId>angus-mail</artifactId>\r\n            <version>2.0.3</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>jakarta.security.enterprise</groupId>\r\n            <artifactId>jakarta.security.enterprise-api</artifactId>\r\n            <version>3.0.0</version>\r\n            <scope>provided</scope>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>org.mindrot</groupId>\r\n            <artifactId>jbcrypt</artifactId>\r\n            <version>0.4</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.google.code.gson</groupId>\r\n            <artifactId>gson</artifactId>\r\n            <version>2.10.1</version>\r\n        </dependency>\r\n        <dependency>\r\n            <groupId>com.cloudinary</groupId>\r\n            <artifactId>cloudinary-http5</artifactId>\r\n            <version>2.0.0</version>\r\n        </dependency>\r\n    </dependencies>\r\n    <build>\r\n        <plugins>\r\n            <plugin>\r\n                <groupId>org.apache.maven.plugins</groupId>\r\n                <artifactId>maven-war-plugin</artifactId>\r\n                <version>3.4.0</version>\r\n            </plugin>\r\n        </plugins>\r\n    </build>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pom.xml b/pom.xml
+--- a/pom.xml	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ b/pom.xml	(date 1793295822108)
+@@ -5,7 +5,7 @@
+     <modelVersion>4.0.0</modelVersion>
+ 
+     <groupId>com.zaia</groupId>
+-    <artifactId>inter_modulo</artifactId>
++    <artifactId>InterBack</artifactId>
+     <version>1.0-SNAPSHOT</version>
+ 
+     <properties>
+@@ -17,11 +17,6 @@
+     <packaging>war</packaging>
+ 
+     <dependencies>
+-        <dependency>
+-            <groupId>com.cloudinary</groupId>
+-            <artifactId>cloudinary-http5</artifactId>
+-            <version>2.0.0</version>
+-        </dependency>
+         <dependency>
+             <groupId>org.postgresql</groupId>
+             <artifactId>postgresql</artifactId>
+Index: src/main/java/primeirobd/controller/Index.java
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/Index.java b/src/main/java/primeirobd/controller/Index.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/controller/Index.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,18 +0,0 @@
+-package primeirobd.controller;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import primeirobd.service.*;
+-import primeirobd.model.*;
+-
+-import java.io.IOException;
+-
+-@WebServlet(name = "Index", value = "/index")
+-public class Index extends HttpServlet {
+-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+-        request.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+-    }
+-}
+Index: src/main/java/primeirobd/controller/RecuperarSenhaServlet.java
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/RecuperarSenhaServlet.java b/src/main/java/primeirobd/controller/RecuperarSenhaServlet.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/controller/RecuperarSenhaServlet.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,72 +0,0 @@
+-package primeirobd.controller;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import primeirobd.model.Administrador;
+-import primeirobd.service.AdministradorDAO;
+-import primeirobd.service.RecuperarSenhaDAO;
+-import primeirobd.utils.EmailService;
+-import primeirobd.utils.TokenUtil;
+-import primeirobd.utils.Validador;
+-
+-import java.io.IOException;
+-import java.time.LocalDateTime;
+-
+-/*
+-    Esqueci minha senha etapa 1 :(
+-
+-    Validador             -> confere o formato do email (regex)
+-    AdministradorDAO -> busca o administrador pelo email
+-    TokenUtil             -> gera o token
+-    RecuperarSenhaDAO   -> guarda o token (mesmo molde do VerificacaoEmailDAO)
+-    EmailService          -> envia o email com o link
+- */
+-
+-@WebServlet(name = "RecuperarSenha", value = "/recuperar-senha")
+-public class RecuperarSenhaServlet extends HttpServlet {
+-
+-    private static final String PAGINA_ESQUECI = "RecuperarSenha.jsp";
+-    private static final int VALIDADE_MINUTOS = 30;
+-
+-
+-    private final AdministradorDAO administradorDao = new AdministradorDAO();
+-    private final RecuperarSenhaDAO recuperarDao = new RecuperarSenhaDAO();
+-
+-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+-            throws IOException {
+-        // quem abrir a URL do servlet direto volta para o formulário
+-        response.sendRedirect(PAGINA_ESQUECI);
+-    }
+-
+-    @Override
+-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+-            throws ServletException, IOException {
+-            String email = request.getParameter("email");
+-
+-            if (email == null || !Validador.isEmailValido(email.trim())) {
+-                response.sendRedirect(PAGINA_ESQUECI + "?erro=email");
+-                return;
+-            }
+-            email = email.trim();
+-
+-            Administrador administrador = administradorDao.buscarPorEmail(email);
+-
+-            // só envia se o usuário existe, mas a resposta é igual nos dois casos
+-            if (administrador != null) {
+-                try {
+-                    String token = TokenUtil.gerarToken();
+-                    recuperarDao.salvarToken(
+-                            administrador.getId(), token, LocalDateTime.now().plusMinutes(VALIDADE_MINUTOS));
+-                    EmailService.enviarEmailRecuperacao(email, token, VALIDADE_MINUTOS);
+-                } catch (Exception e) {
+-                    e.printStackTrace();
+-                    response.sendRedirect(PAGINA_ESQUECI + "?erro=falha");
+-                    return;
+-                }
+-            }
+-        response.sendRedirect(PAGINA_ESQUECI + "?status=enviado");
+-    }
+-}
+Index: src/main/java/primeirobd/service/VerificacaoEmailDAO.java
+===================================================================
+diff --git a/src/main/java/primeirobd/service/VerificacaoEmailDAO.java b/src/main/java/primeirobd/service/VerificacaoEmailDAO.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/service/VerificacaoEmailDAO.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,73 +0,0 @@
+-package primeirobd.service;
+-
+-import primeirobd.model.VerificacaoEmail;
+-
+-import java.sql.Connection;
+-import java.sql.PreparedStatement;
+-import java.sql.ResultSet;
+-import java.sql.SQLException;
+-import java.sql.Timestamp;
+-import java.time.LocalDateTime;
+-
+-public class VerificacaoEmailDAO {
+-
+-    public static final String INSERT =
+-            "INSERT INTO verificacao_email_admin (usuario_id, token, expira_em, usado) VALUES (?, ?, ?, false)";
+-
+-    public static final String SELECT_BY_TOKEN =
+-            "SELECT id, usuario_id, token, expira_em, usado FROM verificacao_email_admin WHERE token = ?";
+-
+-    public static final String MARCAR_COMO_USADO =
+-            "UPDATE verificacao_email_admin SET usado = true WHERE token = ?";
+-
+-    public void salvarToken(int administradorId, String token, LocalDateTime expiraEm) {
+-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+-             PreparedStatement stmt = conexao.prepareStatement(INSERT)) {
+-
+-            stmt.setInt(1, administradorId);
+-            stmt.setString(2, token);
+-            stmt.setTimestamp(3, Timestamp.valueOf(expiraEm));
+-            stmt.executeUpdate();
+-
+-        } catch (SQLException e) {
+-            throw new RuntimeException("Erro ao salvar token de verificação.\n" + e.getMessage());
+-        }
+-    }
+-
+-    public VerificacaoEmail buscarPorToken(String token) {
+-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+-             PreparedStatement stmt = conexao.prepareStatement(SELECT_BY_TOKEN)) {
+-
+-            stmt.setString(1, token);
+-
+-            try (ResultSet rs = stmt.executeQuery()) {
+-                if (!rs.next()) {
+-                    return null; // nenhum token encontrado com esse valor
+-                }
+-
+-                VerificacaoEmail vt = new VerificacaoEmail();
+-                vt.setId(rs.getInt("id"));
+-                vt.setAdministradorId(rs.getInt("usuario_id"));
+-                vt.setToken(rs.getString("token"));
+-                vt.setExpiraEm(rs.getTimestamp("expira_em").toLocalDateTime());
+-                vt.setUsado(rs.getBoolean("usado"));
+-                return vt;
+-            }
+-
+-        } catch (SQLException e) {
+-            throw new RuntimeException("Erro ao buscar token de verificação.\n" + e.getMessage());
+-        }
+-    }
+-
+-    public void marcarComoUsado(String token) {
+-        try (Connection conexao = ConexaoBancoPrimeiro.getConnection();
+-             PreparedStatement stmt = conexao.prepareStatement(MARCAR_COMO_USADO)) {
+-
+-            stmt.setString(1, token);
+-            stmt.executeUpdate();
+-
+-        } catch (SQLException e) {
+-            throw new RuntimeException("Erro ao marcar token como usado.\n" + e.getMessage());
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/primeirobd/utils/TokenUtil.java
+===================================================================
+diff --git a/src/main/java/primeirobd/utils/TokenUtil.java b/src/main/java/primeirobd/utils/TokenUtil.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/utils/TokenUtil.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,16 +0,0 @@
+-package primeirobd.utils;
+-import java.security.SecureRandom;
+-import java.util.Base64;
+-
+-
+-public class TokenUtil {
+-    public static String gerarToken(){
+-        // SecueRandom, é um random mais seguro e imprevisivel
+-        SecureRandom random = new SecureRandom();
+-        // array de 24 bytes 256 valores possiveis
+-        byte[] bytes = new byte[24];
+-        random.nextBytes(bytes);
+-        // deixa tudo em um formato legivel
+-        return Base64.getUrlEncoder().withoutPadding().encodeToString(bytes);
+-    }
+-}
+Index: src/main/java/primeirobd/controller/RedefinirSenhaServlet.java
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/RedefinirSenhaServlet.java b/src/main/java/primeirobd/controller/RedefinirSenhaServlet.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/controller/RedefinirSenhaServlet.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,103 +0,0 @@
+-package primeirobd.controller;
+-
+-import jakarta.servlet.ServletException;
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-import org.mindrot.jbcrypt.BCrypt;
+-import primeirobd.model.RecuperarSenha;
+-import primeirobd.service.AdministradorDAO;
+-import primeirobd.service.RecuperarSenhaDAO;
+-import primeirobd.utils.Validador;
+-
+-import java.io.IOException;
+-import java.time.LocalDateTime;
+-
+-/*
+-    esqueci minha senha etapa 2 :)
+-    o usuário chega aqui pelo link do email (/RedefinirSenha?token=...).
+-
+-    RecuperarSenhaDAO     -> busca e marca o token como usado
+-    AdministradorDAO -> atualiza a senha do administrador
+-    Validador             -> regra de senha (a mesma do cadastro)
+- */
+-@WebServlet(name = "RedefinirSenha", value = "/redefinir-senha")
+-public class RedefinirSenhaServlet extends HttpServlet {
+-
+-    private static final String PAGINA_REDEFINIR = "/RedefinirSenha.jsp";
+-
+-    private final RecuperarSenhaDAO recuperarDao = new RecuperarSenhaDAO();
+-    private final AdministradorDAO administradorDao = new AdministradorDAO();
+-
+-
+-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+-            throws ServletException, IOException {
+-
+-        String token = request.getParameter("token");
+-
+-        // a página mostra o formulário ou "link inválido", conforme este atributo
+-        request.setAttribute("tokenValido", tokenIsValido(token));
+-        request.setAttribute("token", token);
+-        request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
+-    }
+-
+-
+-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+-            throws ServletException, IOException {
+-
+-        String token = request.getParameter("token");
+-        String novaSenha = request.getParameter("novaSenha");
+-        String confirmarSenha = request.getParameter("confirmarSenha");
+-
+-        //confere o token de novo antes de trocar a senha pq nos nao confiamos no GET >:(
+-        RecuperarSenha registro = (token == null || token.isBlank())
+-                ? null
+-                : recuperarDao.buscarPorToken(token);
+-
+-        if (!tokenIsValido(registro)) {
+-            request.setAttribute("tokenValido", false);
+-            request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
+-            return;
+-        }
+-
+-        // a partir daqui o token é válido: se der erro, volta para o formulário
+-        request.setAttribute("tokenValido", true);
+-        request.setAttribute("token", token);
+-
+-        if (novaSenha == null || !novaSenha.equals(confirmarSenha)) {
+-            request.setAttribute("erro", "diferentes");
+-            request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
+-            return;
+-        }
+-
+-        if (!Validador.isSenhaValida(novaSenha)) {
+-            request.setAttribute("erro", "fraca");
+-            request.getRequestDispatcher(PAGINA_REDEFINIR).forward(request, response);
+-            return;
+-        }
+-
+-        // senha criptografada, igual ao cadastro
+-        String senhaHash = BCrypt.hashpw(novaSenha, BCrypt.gensalt());
+-        administradorDao.atualizarSenha(registro.getAdministradorId(), senhaHash);
+-
+-        // o link só funciona uma vez
+-        recuperarDao.marcarComoUsado(token);
+-
+-        response.sendRedirect("login.jsp?status=senhaalterada");
+-    }
+-
+-    private boolean tokenIsValido(String token) {
+-        if (token == null || token.isBlank()) {
+-            return false;
+-        }
+-        return tokenIsValido(recuperarDao.buscarPorToken(token));
+-    }
+-
+-    // existe, não foi usado e não expirou
+-    private boolean tokenIsValido(RecuperarSenha registro) {
+-        return registro != null
+-                && !registro.isUsado()
+-                && registro.getExpiraEm().isAfter(LocalDateTime.now());
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/primeirobd/utils/EmailService.java
+===================================================================
+diff --git a/src/main/java/primeirobd/utils/EmailService.java b/src/main/java/primeirobd/utils/EmailService.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/utils/EmailService.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,114 +0,0 @@
+-package primeirobd.utils;
+-
+-import io.github.cdimascio.dotenv.Dotenv;
+-import jakarta.mail.*;
+-import jakarta.mail.internet.InternetAddress;
+-import jakarta.mail.internet.MimeMessage;
+-import java.util.Properties;
+-
+-/*
+-Classe responsável por enviar os emails do sistema:
+-verificação de cadastro e recuperação de senha.
+-
+- * <dependency>
+- *     <groupId>org.eclipse.angus</groupId>
+- *     <artifactId>angus-mail</artifactId>
+- *     <version>2.0.3</version>
+- * </dependency>
+- */
+-public class EmailService {
+-    // carregando o .env
+-    private static final Dotenv dotenv = Dotenv.load();
+-
+-    // Endereço e porta do servidor SMTP que vai enviar o email.
+-    private static final String SMTP_HOST = "smtp.gmail.com";
+-    private static final String SMTP_PORT = "587";
+-
+-    // Conta de email que vai APARECER como remetente
+-    private static final String USUARIO = dotenv.get("EMAIL_USUARIO");
+-    private static final String SENHA = dotenv.get("EMAIL_SENHA");
+-
+-    // Endereço público do sistema (ngrok)
+-    private static final String BASE_URL = "https://alkaline-numerate-conjoined.ngrok-free.dev/InterBack";
+-
+-    /*
+-      Envia o email de verificação para o destinatário, contendo
+-      um link com o token gerado para aquele cadastro.
+-     */
+-    public static void enviarEmailVerificacao(String destinatario, String token) {
+-
+-        // Monta o link que o usuário vai clicar.
+-        String link = BASE_URL + "/verificar?token=" + token;
+-
+-        enviar(destinatario,
+-                "Confirme seu email",
+-                "Clique no link para confirmar seu cadastro:\n\n" + link +
+-                        "\n\nEsse link expira em 24 horas.");
+-    }
+-
+-    /*
+-      Envia o email de recuperação de senha, com o link que abre
+-      a página para criar uma nova senha.
+-     */
+-    public static void enviarEmailRecuperacao(String destinatario, String token, int validadeMinutos) {
+-
+-        String link = BASE_URL + "/RedefinirSenha?token=" + token;
+-
+-        enviar(destinatario,
+-                "Redefinição de senha",
+-                "Recebemos um pedido para redefinir a sua senha.\n\n" +
+-                        "Clique no link para criar uma nova senha:\n\n" + link +
+-                        "\n\nEsse link expira em " + validadeMinutos + " minutos e só pode ser usado uma vez." +
+-                        "\n\nSe você não pediu isso, ignore este email.");
+-    }
+-
+-    /*
+-      Código de envio compartilhado pelos dois emails acima:
+-      só muda o destinatário, o assunto e o texto.
+-     */
+-    private static void enviar(String destinatario, String assunto, String texto) {
+-
+-        // "Properties" configura como a conexão com o servidor SMTP deve se comportar
+-        Properties props = new Properties();
+-        props.put("mail.smtp.auth", "true");            // precisa de usuário/senha
+-        props.put("mail.smtp.starttls.enable", "true");  // conexão criptografada
+-        props.put("mail.smtp.host", SMTP_HOST);
+-        props.put("mail.smtp.port", SMTP_PORT);
+-
+-        /*
+-        "Session" representa a sessão de envio de email configurada acima.
+-         O "Authenticator" é chamado internamente pela biblioteca sempre
+-         que ela precisa se autenticar no servidor SMTP.
+-         */
+-        Session session = Session.getInstance(props, new Authenticator() {
+-            protected PasswordAuthentication getPasswordAuthentication() {
+-                return new PasswordAuthentication(USUARIO, SENHA);
+-            }
+-        });
+-
+-        try {
+-            // "MimeMessage" é o objeto que representa o email em si:
+-            // remetente, destinatário, assunto e corpo da mensagem.
+-            Message message = new MimeMessage(session);
+-
+-            message.setFrom(new InternetAddress(USUARIO));
+-
+-            // Pode receber mais de um destinatário separado por vírgula;
+-            message.setRecipients(
+-                    Message.RecipientType.TO,
+-                    InternetAddress.parse(destinatario)
+-            );
+-
+-            message.setSubject(assunto);
+-            message.setText(texto);
+-
+-            // Envia o email de fato, conectando no servidor SMTP configurado.
+-            Transport.send(message);
+-
+-        } catch (MessagingException e) {
+-
+-            e.printStackTrace();
+-            throw new RuntimeException("Erro ao enviar email: " + assunto, e);
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: src/main/java/primeirobd/controller/VerificarEmailServlet.java
+===================================================================
+diff --git a/src/main/java/primeirobd/controller/VerificarEmailServlet.java b/src/main/java/primeirobd/controller/VerificarEmailServlet.java
+deleted file mode 100644
+--- a/src/main/java/primeirobd/controller/VerificarEmailServlet.java	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,52 +0,0 @@
+-package primeirobd.controller;
+-
+-import primeirobd.model.VerificacaoEmail;
+-import primeirobd.service.AdministradorDAO;
+-import primeirobd.service.VerificacaoEmailDAO;
+-
+-import java.io.IOException;
+-import java.time.LocalDateTime;
+-
+-import jakarta.servlet.annotation.WebServlet;
+-import jakarta.servlet.http.HttpServlet;
+-import jakarta.servlet.http.HttpServletRequest;
+-import jakarta.servlet.http.HttpServletResponse;
+-
+-@WebServlet(name = "VerificarEmailServlet", value = "/verificar")
+-public class VerificarEmailServlet extends HttpServlet {
+-
+-    private final VerificacaoEmailDAO verificacaoDao = new VerificacaoEmailDAO();
+-    private final AdministradorDAO administradorDao = new AdministradorDAO();
+-
+-    @Override
+-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+-            throws IOException {
+-
+-        String token = request.getParameter("token");
+-
+-        response.setContentType("text/plain;charset=UTF-8");
+-
+-        if (token == null || token.isBlank()) {
+-            response.getWriter().write("Token não informado.");
+-            return;
+-        }
+-
+-        VerificacaoEmail registro = verificacaoDao.buscarPorToken(token);
+-
+-        boolean tokenValido = registro != null
+-                && !registro.isUsado()
+-                && registro.getExpiraEm().isAfter(LocalDateTime.now());
+-
+-
+-        if (tokenValido) {
+-            // marca o token como usado, pra impedir reaproveitamento do mesmo link
+-            verificacaoDao.marcarComoUsado(token);
+-
+-            administradorDao.marcarEmailComoVerificado(registro.getAdministradorId());
+-
+-            response.getWriter().write("Email verificado com sucesso!");
+-        } else {
+-            response.getWriter().write("Token inválido ou expirado.");
+-        }
+-    }
+-}
+\ No newline at end of file
+Index: .idea/artifacts/Inter_Back.xml
+===================================================================
+diff --git a/.idea/artifacts/Inter_Back.xml b/.idea/artifacts/Inter_Back.xml
+deleted file mode 100644
+--- a/.idea/artifacts/Inter_Back.xml	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,20 +0,0 @@
+-<component name="ArtifactManager">
+-  <artifact type="exploded-war" name="Inter_Back">
+-    <output-path>$PROJECT_DIR$/out/artifacts/Inter_Back</output-path>
+-    <root id="root">
+-      <element id="module-output" name="inter_modulo" />
+-      <element id="library" level="project" name="Maven: io.github.cdimascio:dotenv-java:3.2.0" />
+-      <element id="library" level="project" name="Maven: jakarta.activation:jakarta.activation-api:2.1.3" />
+-      <element id="library" level="project" name="Maven: jakarta.el:jakarta.el-api:5.0.0" />
+-      <element id="library" level="project" name="Maven: jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:3.0.2" />
+-      <element id="library" level="project" name="Maven: jakarta.servlet:jakarta.servlet-api:6.1.0" />
+-      <element id="library" level="project" name="Maven: org.apache.tomcat:tomcat-servlet-api:11.0.24" />
+-      <element id="library" level="project" name="Maven: org.eclipse.angus:angus-activation:2.0.2" />
+-      <element id="library" level="project" name="Maven: org.checkerframework:checker-qual:3.42.0" />
+-      <element id="library" level="project" name="Maven: org.glassfish.web:jakarta.servlet.jsp.jstl:3.0.1" />
+-      <element id="library" level="project" name="Maven: jakarta.mail:jakarta.mail-api:2.1.3" />
+-      <element id="library" level="project" name="Maven: org.eclipse.angus:angus-mail:2.0.3" />
+-      <element id="library" level="project" name="Maven: org.postgresql:postgresql:42.7.3" />
+-    </root>
+-  </artifact>
+-</component>
+\ No newline at end of file
+Index: src/main/webapp/index.jsp
+===================================================================
+diff --git a/src/main/webapp/index.jsp b/src/main/webapp/index.jsp
+deleted file mode 100644
+--- a/src/main/webapp/index.jsp	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ /dev/null	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
+@@ -1,20 +0,0 @@
+-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+-<!DOCTYPE html>
+-<html lang="pt-br">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Início</title>
+-    <link rel="stylesheet" href="Style.css">
+-    <link rel="icon" type="image/png" href="img/Asa-icon.png">
+-    <base href="${pageContext.request.scheme}://${pageContext.request.serverName}:${pageContext.request.serverPort}${pageContext.request.contextPath}/">
+-</head>
+-<body>
+-<a href="inicio" class="MenuItem inicio">
+-    <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+-    <a href="login" class="MenuItem">
+-        <span class="Icone"><img src="img/inicio.svg" alt=""></span> Início
+-</a>
+-</a>
+-</body>
+-</html>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_25\" project-jdk-name=\"openjdk-26\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision ffe7f56dd89144f6cd782783818855adb7c85228)
++++ b/.idea/misc.xml	(date 1793295481294)
+@@ -8,5 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="openjdk-26" project-jdk-type="JavaSDK" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_25" project-jdk-name="openjdk-26" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
+ </project>
+\ No newline at end of file
