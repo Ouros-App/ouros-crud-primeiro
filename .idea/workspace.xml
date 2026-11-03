@@ -10,8 +10,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa8f1fa8-b505-44ee-b77d-90274e1cba8d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/filter/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/AdministradorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/primeirobd/service/TelefoneAdminDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/primeirobd/service/TelefoneAdminDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +153,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "Tomcat Server.Tomcat 11.0.26.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "refactor/telefone-admin-antigo",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/20260083-ieg/Documents/LPR/InterBack",
     "node.js.detected.package.jshint": "true",
@@ -362,6 +362,8 @@
       <workItem from="1793537511825" duration="361000" />
       <workItem from="1793561742902" duration="1118000" />
       <workItem from="1793660500094" duration="2478000" />
+      <workItem from="1793698630871" duration="57000" />
+      <workItem from="1793699882350" duration="2199000" />
     </task>
     <servers />
   </component>

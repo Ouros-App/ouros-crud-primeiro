@@ -6,15 +6,15 @@ import java.sql.*;
 public class TelefoneAdminDAO {
 
     private static final String comandoInsert =
-            "INSERT INTO telefone_admin (telefone, usuario_id) VALUES (?, ?)";
+            "INSERT INTO telefone_admin (telefone, id_administrador) VALUES (?, ?)";
     private static final String comandoUpdate =
-            "UPDATE telefone_admin SET telefone = ? WHERE usuario_id = ?";
+            "UPDATE telefone_admin SET telefone = ? WHERE id_administrador = ?";
 
-    public void insert(int usuarioId, String telefone) {
+    public void insert(int idAdministrador, String telefone) {
         try (Connection c = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement stmt = c.prepareStatement(comandoInsert)) {
             stmt.setString(1, telefone);
-            stmt.setInt(2, usuarioId);
+            stmt.setInt(2, idAdministrador);
             stmt.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao salvar telefone do administrador.\n" + e.getMessage());
@@ -23,13 +23,13 @@ public class TelefoneAdminDAO {
 
     // Atualiza o telefone ou insere o vínculo quando necessário.
 // Atualiza o telefone existente ou cria o vínculo quando necessário.
-    public void salvar(int usuarioId, String telefone) {
+    public void salvar(int idAdministrador, String telefone) {
         try (Connection connection = ConexaoBancoPrimeiro.getConnection();
              PreparedStatement ps = connection.prepareStatement(comandoUpdate)) {
             ps.setString(1, telefone);
-            ps.setInt(2, usuarioId);
+            ps.setInt(2, idAdministrador);
             if (ps.executeUpdate() == 0) {
-                insert(usuarioId, telefone);
+                insert(idAdministrador, telefone);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar telefone do administrador.\n" + e.getMessage());
